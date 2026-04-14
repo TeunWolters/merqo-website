@@ -124,59 +124,40 @@
     transition: opacity 0.3s ease;
   }
 
-  /* ── Notch badge linksonder ── */
+  /* ── Badge linksonder ── */
   .proj-badge {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 1rem;
+    left: 1rem;
     background: #F0EDE7;
-    border-radius: 0 16px 0 0; /* alleen top-rechts afgerond */
-    padding: 0.85rem 1.3rem 0.85rem 1.1rem;
+    border-radius: 12px;
+    padding: 0.75rem 1.1rem;
     z-index: 2;
   }
-  /* concave rechts: invult de hoek naast de badge */
-  .proj-badge::before {
-    content: '';
-    position: absolute;
-    top: 0; right: -16px;
-    width: 16px; height: 16px;
-    background: radial-gradient(circle at 0% 0%, transparent 16px, #F0EDE7 16px);
-    pointer-events: none;
-  }
-  /* concave boven: invult de hoek boven de badge */
-  .proj-badge::after {
-    content: '';
-    position: absolute;
-    top: -16px; right: 0;
-    width: 16px; height: 16px;
-    background: radial-gradient(circle at 100% 100%, transparent 16px, #F0EDE7 16px);
-    pointer-events: none;
-  }
-
   .proj-badge-title {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(15px, 1.3vw, 19px);
+    font-size: clamp(14px, 1.2vw, 18px);
     letter-spacing: -0.03em;
     line-height: 1.15;
     color: #1E1F1B;
-    margin: 0 0 0.2rem;
+    margin: 0 0 0.15rem;
   }
   .proj-badge-sub {
-    font-size: 12px;
+    font-size: 11px;
     color: rgba(30,31,27,0.45);
     font-family: var(--font-body);
     margin: 0;
     line-height: 1.4;
   }
 
-  /* ── Notch tag rechtsboven ── */
+  /* ── Tag rechtsboven ── */
   .proj-tag-badge {
     position: absolute;
-    top: 0; right: 0;
+    top: 1rem; right: 1rem;
     background: #F0EDE7;
-    border-radius: 0 0 0 16px; /* alleen bottom-links afgerond */
-    padding: 0.6rem 1.1rem 0.75rem 1rem;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
     z-index: 2;
     font-size: 9px;
     font-weight: 700;
@@ -185,24 +166,6 @@
     color: #1E1F1B;
     font-family: var(--font-body);
     white-space: nowrap;
-  }
-  /* concave links: invult de hoek naast de tag */
-  .proj-tag-badge::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: -16px;
-    width: 16px; height: 16px;
-    background: radial-gradient(circle at 100% 100%, transparent 16px, #F0EDE7 16px);
-    pointer-events: none;
-  }
-  /* concave onder: invult de hoek onder de tag */
-  .proj-tag-badge::after {
-    content: '';
-    position: absolute;
-    bottom: -16px; left: 0;
-    width: 16px; height: 16px;
-    background: radial-gradient(circle at 0% 0%, transparent 16px, #F0EDE7 16px);
-    pointer-events: none;
   }
 
   @media (max-width: 768px) {
