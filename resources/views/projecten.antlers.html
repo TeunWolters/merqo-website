@@ -138,6 +138,17 @@
     min-width: 55%;
     z-index: 2;
   }
+  /* Convex hoek rechtsboven: kwartcirkel die de inkeping opvult */
+  .proj-badge::after {
+    content: '';
+    position: absolute;
+    top: -24px;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    background: radial-gradient(circle at 0% 0%, transparent 24px, #F0EDE7 24.1px);
+    pointer-events: none;
+  }
   .proj-badge-title {
     font-family: var(--font-display);
     font-weight: 800;
