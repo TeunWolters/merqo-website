@@ -608,28 +608,35 @@
   function propsAt(off) {
     var absOff = Math.abs(off);
     var sign   = off < 0 ? -1 : 1;
-    var scale, opac;
 
-    // Alleen kaarten binnen offset 2.5 zijn zichtbaar
-    if (absOff >= 2.5) {
-      return { rotY: 0, transX: sign * 780, transZ: -300, scale: 0.6, opac: 0, zIdx: 0 };
+    // Kaarten voorbij offset 2.4: volledig verborgen
+    if (absOff > 2.4) {
+      return { rotY: 0, transX: sign * 500, transZ: -400, scale: 0.55, opac: 0, zIdx: 0 };
     }
 
+    // Offset 0-1: actieve kaart en directe buren
     if (absOff <= 1) {
-      scale = 1     - (1    - 0.84) * absOff;
-      opac  = 1     - (1    - 0.65) * absOff;
-    } else {
-      scale = Math.max(0.70, 0.84 - (absOff - 1) * 0.14);
-      opac  = Math.max(0,    0.65 - (absOff - 1) * 0.65);
+      return {
+        rotY:   sign * 12 * absOff,
+        transX: sign * 260 * absOff,
+        transZ: -60 * absOff,
+        scale:  1 - (1 - 0.84) * absOff,
+        opac:   1 - (1 - 0.65) * absOff,
+        zIdx:   Math.round(20 - absOff * 2)
+      };
     }
 
+    // Offset 1-2.4: peek-kaarten achter de buitenste kaarten
+    // transX trekt terug richting midden (minder dan offset-1),
+    // transZ dieper om ze achter de buitenste kaarten te plaatsen
+    var t = absOff - 1; // 0..1.4
     return {
-      rotY:   sign * Math.min(absOff * 12, 24),
-      transX: sign * Math.min(absOff * 260, 520),
-      transZ: -Math.min(absOff * 60, 120),
-      scale:  scale,
-      opac:   opac,
-      zIdx:   Math.round(20 - absOff * 2)
+      rotY:   sign * 8,
+      transX: sign * (260 - t * 90),   // bij offset 2 = 170px (tussen midden en buitenste kaart)
+      transZ: -(60 + t * 220),          // bij offset 2 = -280px (flink dieper)
+      scale:  Math.max(0.60, 0.76 - t * 0.14),
+      opac:   Math.max(0.28, 0.50 - t * 0.22),
+      zIdx:   Math.round(16 - t * 8)   // lager dan offset-1 (z=18), dus achter
     };
   }
 
