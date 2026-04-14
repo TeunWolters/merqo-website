@@ -762,12 +762,12 @@
 </script>
 
 
-{{# ── 3. DIENSTEN - bento grid ──────────────────────────────── #}}
-<section id="diensten" class="cream-grain" style="background:#EDEAE3; padding:4rem 0 7rem;">
+{{# ── 3. DIENSTEN - editorial list ───────────────────────────── #}}
+<section id="diensten" class="cream-grain" style="background:#EDEAE3; padding:4rem 0 7rem; overflow:visible; position:relative;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
 
     {{# Header #}}
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:1.75rem;flex-wrap:wrap;" data-reveal>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:3rem;flex-wrap:wrap;" data-reveal>
       <div>
         <div class="eyebrow">
           <div class="eyebrow-line"></div>
@@ -778,84 +778,76 @@
           <span style="color:#a8c8ca; font-style:italic;">antwoord op iets</span>
         </h2>
       </div>
-      <a href="/contact" class="btn-primary" data-magnetic>
-        Start een project
-      </a>
+      <a href="/contact" class="btn-primary" data-magnetic>Start een project</a>
     </div>
 
-    {{# Bento grid - 3×2 uniform #}}
-    <div class="srv-bento" data-stagger>
+    {{# Numbered service list #}}
+    <div class="srv-list" data-reveal>
 
-      <a href="/strategie" class="srv-bento-card" data-stagger-item
-         style="background-image:url('/assets/team/team-werk.jpg');">
-        <div class="srv-bento-overlay"></div>
-        <div class="srv-bento-body">
-          <span class="srv-bento-tag">Als je plan ontbreekt maar de druk groeit</span>
-          <h3 class="srv-bento-title">Strategie</h3>
+      <a href="/strategie" class="srv-item">
+        <div class="srv-thumb"><img src="/assets/team/team-werk.jpg" alt="Strategie"></div>
+        <span class="srv-num">01</span>
+        <div class="srv-content">
+          <h3 class="srv-name">Strategie</h3>
+          <p class="srv-desc">Als je plan ontbreekt maar de druk groeit</p>
         </div>
-        <div class="srv-bento-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
+        <span class="srv-keys">Positionering · Merkstrategie · Doelgroep</span>
+        <div class="srv-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
       </a>
 
-      <a href="/branding" class="srv-bento-card" data-stagger-item
-         style="background-image:url('/assets/team/team-groep-grijs.jpg');">
-        <div class="srv-bento-overlay"></div>
-        <div class="srv-bento-body">
-          <span class="srv-bento-tag">Als je merk niet overeenkomt met je kwaliteit</span>
-          <h3 class="srv-bento-title">Branding</h3>
+      <a href="/branding" class="srv-item">
+        <div class="srv-thumb"><img src="/assets/team/team-groep-grijs.jpg" alt="Branding"></div>
+        <span class="srv-num">02</span>
+        <div class="srv-content">
+          <h3 class="srv-name">Branding</h3>
+          <p class="srv-desc">Als je merk niet overeenkomt met je kwaliteit</p>
         </div>
-        <div class="srv-bento-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
+        <span class="srv-keys">Logo · Huisstijl · Merkidentiteit</span>
+        <div class="srv-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
       </a>
 
-      <a href="/websites" class="srv-bento-card" data-stagger-item
-         style="background-image:url('/assets/team/team-laptop.jpg');">
-        <div class="srv-bento-overlay"></div>
-        <div class="srv-bento-body">
-          <span class="srv-bento-tag">Als je website bezoekers niet omzet naar klanten</span>
-          <h3 class="srv-bento-title">Websites</h3>
+      <a href="/websites" class="srv-item">
+        <div class="srv-thumb"><img src="/assets/team/team-laptop.jpg" alt="Websites"></div>
+        <span class="srv-num">03</span>
+        <div class="srv-content">
+          <h3 class="srv-name">Websites</h3>
+          <p class="srv-desc">Als je website bezoekers niet omzet naar klanten</p>
         </div>
-        <div class="srv-bento-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
+        <span class="srv-keys">Design · Development · CMS</span>
+        <div class="srv-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
       </a>
 
-      <a href="/marketing" class="srv-bento-card" data-stagger-item
-         style="background-image:url('/assets/team/team-tafel.jpg');">
-        <div class="srv-bento-overlay"></div>
-        <div class="srv-bento-body">
-          <span class="srv-bento-tag">Als je adverteert maar niets terugverdient</span>
-          <h3 class="srv-bento-title">Marketing</h3>
+      <a href="/marketing" class="srv-item">
+        <div class="srv-thumb"><img src="/assets/team/team-tafel.jpg" alt="Marketing"></div>
+        <span class="srv-num">04</span>
+        <div class="srv-content">
+          <h3 class="srv-name">Marketing</h3>
+          <p class="srv-desc">Als je adverteert maar niets terugverdient</p>
         </div>
-        <div class="srv-bento-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
+        <span class="srv-keys">Campagnes · Social · Ads</span>
+        <div class="srv-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
       </a>
 
-      <a href="/fotografie-video" class="srv-bento-card" data-stagger-item
-         style="background-image:url('/assets/team/team-duo-tablet.jpg');">
-        <div class="srv-bento-overlay"></div>
-        <div class="srv-bento-body">
-          <span class="srv-bento-tag">Als beelden je merk goedkoper laten lijken</span>
-          <h3 class="srv-bento-title">Fotografie &amp; Video</h3>
+      <a href="/fotografie-video" class="srv-item">
+        <div class="srv-thumb"><img src="/assets/team/team-duo-tablet.jpg" alt="Fotografie &amp; Video"></div>
+        <span class="srv-num">05</span>
+        <div class="srv-content">
+          <h3 class="srv-name">Fotografie &amp; Video</h3>
+          <p class="srv-desc">Als beelden je merk goedkoper laten lijken</p>
         </div>
-        <div class="srv-bento-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
+        <span class="srv-keys">Fotografie · Video · Content</span>
+        <div class="srv-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
       </a>
 
-      <a href="/drukwerk" class="srv-bento-card" data-stagger-item
-         style="background-image:url('/assets/team/team-document.jpg');">
-        <div class="srv-bento-overlay"></div>
-        <div class="srv-bento-body">
-          <span class="srv-bento-tag">Als je visitekaartje je website tegenspreekt</span>
-          <h3 class="srv-bento-title">Drukwerk</h3>
+      <a href="/drukwerk" class="srv-item">
+        <div class="srv-thumb"><img src="/assets/team/team-document.jpg" alt="Drukwerk"></div>
+        <span class="srv-num">06</span>
+        <div class="srv-content">
+          <h3 class="srv-name">Drukwerk</h3>
+          <p class="srv-desc">Als je visitekaartje je website tegenspreekt</p>
         </div>
-        <div class="srv-bento-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
+        <span class="srv-keys">Print · Visitekaartjes · Folders</span>
+        <div class="srv-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
       </a>
 
     </div>
@@ -863,92 +855,111 @@
 </section>
 
 <style>
-  .srv-bento {
+  /* ── Service list ── */
+  .srv-list { border-top: 1px solid rgba(30,31,27,0.1); }
+
+  .srv-item {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-  .srv-bento-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    aspect-ratio: 4/3;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    grid-template-columns: 2.5rem 1fr auto auto;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid rgba(30,31,27,0.1);
     text-decoration: none;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    color: inherit;
+    position: relative;
     cursor: pointer;
   }
-  .srv-bento-overlay {
+
+  /* Floating thumbnail on hover */
+  .srv-thumb {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.04) 100%);
-    transition: opacity 0.4s ease;
+    right: 4.5rem;
+    top: 50%;
+    transform: translateY(-44%) translateX(12px) scale(0.94);
+    width: 160px;
+    height: 108px;
+    border-radius: 12px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s ease, transform 0.38s cubic-bezier(0.16,1,0.3,1);
+    z-index: 10;
+    box-shadow: 0 12px 32px rgba(30,31,27,0.2);
   }
-  .srv-bento-body {
-    position: relative;
-    z-index: 2;
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  .srv-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .srv-item:hover .srv-thumb {
+    opacity: 1;
+    transform: translateY(-44%) translateX(0) scale(1);
   }
-  .srv-bento-tag {
+
+  /* Number */
+  .srv-num {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ed6b46;
+    transition: opacity 0.2s;
+  }
+
+  /* Content */
+  .srv-content { min-width: 0; }
+  .srv-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(20px, 2.2vw, 32px);
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    color: #1E1F1B;
+    margin: 0 0 0.25rem;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .srv-item:hover .srv-name { transform: translateX(10px); }
+
+  .srv-desc {
     font-family: var(--font-body);
     font-size: 13px;
-    font-weight: 400;
-    font-style: italic;
-    letter-spacing: 0;
-    text-transform: none;
-    color: rgba(240,237,231,0.6);
-    display: block;
-    order: 2;
+    color: rgba(30,31,27,0.45);
+    margin: 0;
+    line-height: 1.4;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1) 0.02s;
   }
-  .srv-bento-title {
-    font-family: var(--font-display);
-    font-size: clamp(22px, 2.8vw, 34px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.0;
-    color: #F0EDE7;
-    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-    order: 1;
-  }
-  .srv-bento-desc {
+  .srv-item:hover .srv-desc { transform: translateX(10px); }
+
+  /* Keywords */
+  .srv-keys {
     font-family: var(--font-body);
-    font-size: 12px;
-    color: rgba(240,237,231,0);
-    line-height: 1.55;
-    max-width: 28ch;
-    transition: color 0.3s ease 0.05s, transform 0.35s cubic-bezier(0.16,1,0.3,1) 0.05s;
-    transform: translateY(6px);
+    font-size: 11px;
+    color: rgba(30,31,27,0.32);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
   }
-  .srv-bento-arrow {
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    width: 34px; height: 34px;
+
+  /* Arrow */
+  .srv-arrow {
+    width: 44px; height: 44px;
     border-radius: 50%;
-    border: 1.5px solid rgba(240,237,231,0.25);
-    color: rgba(240,237,231,0.6);
+    border: 1.5px solid rgba(30,31,27,0.14);
     display: flex; align-items: center; justify-content: center;
-    transition: background 0.3s, border-color 0.3s, transform 0.4s cubic-bezier(0.16,1,0.3,1);
-    z-index: 2;
+    color: rgba(30,31,27,0.38);
+    flex-shrink: 0;
+    transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.35s cubic-bezier(0.16,1,0.3,1);
   }
-  .srv-bento-card:hover { transform: translateY(-3px); }
-  .srv-bento-card:hover .srv-bento-overlay { opacity: 0.7; }
-  .srv-bento-card:hover .srv-bento-title { transform: translateY(-4px); }
-  .srv-bento-card:hover .srv-bento-desc { color: rgba(240,237,231,0.65) !important; transform: translateY(0); }
-  .srv-bento-card:hover .srv-bento-arrow { background: var(--color-orange); border-color: var(--color-orange); color: #fff; transform: rotate(45deg); }
-  .srv-bento-card:hover img { transform: scale(1.05); }
-  @media (max-width: 700px) {
-    .srv-bento { grid-template-columns: repeat(2, 1fr); }
+  .srv-item:hover .srv-arrow {
+    background: #ed6b46;
+    border-color: #ed6b46;
+    color: #fff;
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 900px) {
+    .srv-item { grid-template-columns: 2rem 1fr auto; gap: 1.25rem; }
+    .srv-keys { display: none; }
+    .srv-thumb { display: none; }
   }
   @media (max-width: 480px) {
-    .srv-bento { grid-template-columns: 1fr; }
+    .srv-name { font-size: 20px; }
   }
 </style>
 
