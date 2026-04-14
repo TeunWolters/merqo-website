@@ -74,6 +74,17 @@
               <path d="M7 17L17 7M17 7H7M17 7v10"/>
             </svg>
           </div>
+          {{# Hover overlay #}}
+          <div class="proj-card-overlay">
+            <span style="display:inline-flex; align-items:center; gap:0.6rem; background:rgba(240,237,231,0.12);
+                         backdrop-filter:blur(12px); border:1px solid rgba(240,237,231,0.25);
+                         border-radius:999px; padding:0.65rem 1.4rem;
+                         font-family:var(--font-body); font-size:13px; font-weight:700;
+                         letter-spacing:0.3px; color:#F0EDE7;">
+              Bekijk project
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </span>
+          </div>
         </div>
 
         {{# Tekst #}}
@@ -117,6 +128,7 @@
     box-shadow: 0 24px 60px rgba(30,31,27,0.12), 0 0 0 1px rgba(30,31,27,0.08);
   }
   .proj-card:hover .proj-card-img img { transform: scale(1.06); }
+  .proj-card:hover .proj-card-overlay { opacity: 1; }
   .proj-card:hover .proj-arrow {
     border-color: rgba(30,31,27,0.5);
     color: #1E1F1B;
@@ -127,6 +139,17 @@
     position: relative;
     aspect-ratio: 4/3;
     overflow: hidden;
+  }
+  .proj-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20,16,12,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    backdrop-filter: blur(3px);
   }
 
   .proj-card-body {

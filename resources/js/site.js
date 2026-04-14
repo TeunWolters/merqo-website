@@ -407,6 +407,29 @@ function initHeroGradient() {
   requestAnimationFrame(tick);
 }
 
+// ── Button spotlight ─────────────────────────────────────────
+function initButtonSpotlight() {
+  document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+    const spot = document.createElement('span');
+    spot.style.cssText = [
+      'position:absolute', 'pointer-events:none', 'border-radius:inherit',
+      'inset:0', 'opacity:0', 'transition:opacity 0.3s ease',
+      'background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.18) 0%, transparent 65%)',
+    ].join(';');
+    btn.style.overflow = 'hidden';
+    btn.appendChild(spot);
+
+    btn.addEventListener('mouseenter', () => { spot.style.opacity = '1'; });
+    btn.addEventListener('mouseleave', () => { spot.style.opacity = '0'; });
+    btn.addEventListener('mousemove', (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width)  * 100;
+      const y = ((e.clientY - r.top)  / r.height) * 100;
+      spot.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(255,255,255,0.22) 0%, transparent 65%)`;
+    });
+  });
+}
+
 // ── Init ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initHeroGradient();
@@ -423,6 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAboutReveal();
   initScrollProgress();
   initCursor();
+  initButtonSpotlight();
 
   // Give Alpine time to mount before refreshing triggers
   setTimeout(() => ScrollTrigger.refresh(), 600);
