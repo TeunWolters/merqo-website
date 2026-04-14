@@ -16,86 +16,80 @@
 
 
 {{# ══════════════════════════════════════════════════════
-    PROJECTEN GRID
+    PROJECTEN GRID - yvdh-stijl: donker, groot, 2 kolommen
     ══════════════════════════════════════════════════════ #}}
-<section style="background:#F0EDE7; padding:5rem 0 7rem;">
+<section style="background:#151310; padding:5rem 0 7rem;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
 
     {{# Intro #}}
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:end; margin-bottom:4rem;" class="proj-intro-grid" data-reveal>
-      <div>
-        <div class="eyebrow mb-6">
-          <div class="eyebrow-line"></div>
-          <div class="eyebrow-text">Ons werk</div>
-        </div>
-        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(28px,3.5vw,44px);
-                   letter-spacing:-0.04em; line-height:1.06; color:#1E1F1B; margin:0;">
-          Merken die we<br>hebben gebouwd.
-        </h2>
-      </div>
-      <p style="font-family:var(--font-body); font-size:15px; line-height:1.85; color:rgba(30,31,27,0.55); margin:0; max-width:42ch;">
-        Elk project begint met een vraag: wat moet dit merk opleveren? Hieronder een selectie van trajecten waarbij strategie, design en uitvoering samenkwamen tot iets dat echt werkt.
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:3rem; flex-wrap:wrap; gap:1.5rem;" data-reveal>
+      <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(24px,2.5vw,36px);
+                 letter-spacing:-0.04em; line-height:1.1; color:#F0EDE7; margin:0;">
+        <span style="opacity:0.4;">Merken die we</span><br>hebben gebouwd.
+      </h2>
+      <p style="font-family:var(--font-body); font-size:14px; line-height:1.8; color:rgba(240,237,231,0.4); margin:0; max-width:36ch;">
+        Een selectie van trajecten waarbij strategie, design en uitvoering samenkwamen.
       </p>
     </div>
-
-    <style>
-      @media (max-width: 768px) { .proj-intro-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; } }
-    </style>
 
     {{# Grid #}}
     <div class="proj-grid" data-stagger>
       {{ collection:projects sort="order:asc" }}
       <a href="{{ url }}" class="proj-card" data-stagger-item>
 
-        {{# Afbeelding #}}
+        {{# Afbeelding met alles erop #}}
         <div class="proj-card-img">
           {{ if image }}
-            <img src="{{ image }}" alt="{{ title }}" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.65s cubic-bezier(0.16,1,0.3,1);">
+            <img src="{{ image }}" alt="{{ title }}" loading="lazy"
+                 style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.7s cubic-bezier(0.16,1,0.3,1);">
           {{ else }}
-            <div style="width:100%; height:100%; background:linear-gradient(160deg,#D6D2CB,#C2BDB6);"></div>
+            <div style="width:100%; height:100%; background:linear-gradient(160deg,#2a2520,#1a1610);"></div>
           {{ /if }}
-          {{# Gradient overlay #}}
-          <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.1) 50%, transparent 100%); pointer-events:none;"></div>
-          {{# Categorie badge #}}
-          {{ if category }}
-          <div style="position:absolute; top:18px; right:18px;">
-            <span style="display:inline-block; padding:4px 12px; border-radius:999px;
-                         background:rgba(240,237,231,0.12); backdrop-filter:blur(10px);
-                         border:1px solid rgba(240,237,231,0.18); font-size:9px; font-weight:700;
+
+          {{# Gradient overlay onderaan #}}
+          <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,8,6,0.88) 0%, rgba(10,8,6,0.2) 45%, transparent 75%); pointer-events:none;"></div>
+
+          {{# Tags bovenaan rechts #}}
+          {{ if tags }}
+          <div style="position:absolute; top:20px; right:20px; display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;">
+            {{ tags }}
+            <span style="display:inline-block; padding:5px 13px; border-radius:999px;
+                         background:rgba(240,237,231,0.1); backdrop-filter:blur(12px);
+                         border:1px solid rgba(240,237,231,0.15); font-size:9px; font-weight:700;
                          letter-spacing:1.5px; text-transform:uppercase;
-                         color:rgba(240,237,231,0.85); font-family:var(--font-body);">{{ category }}</span>
+                         color:rgba(240,237,231,0.8); font-family:var(--font-body);">{{ value }}</span>
+            {{ /tags }}
+          </div>
+          {{ elseif category }}
+          <div style="position:absolute; top:20px; right:20px;">
+            <span style="display:inline-block; padding:5px 13px; border-radius:999px;
+                         background:rgba(240,237,231,0.1); backdrop-filter:blur(12px);
+                         border:1px solid rgba(240,237,231,0.15); font-size:9px; font-weight:700;
+                         letter-spacing:1.5px; text-transform:uppercase;
+                         color:rgba(240,237,231,0.8); font-family:var(--font-body);">{{ category }}</span>
           </div>
           {{ /if }}
-          {{# Pijl #}}
-          <div style="position:absolute; top:18px; left:18px; width:34px; height:34px; border-radius:50%;
-               border:1.5px solid rgba(240,237,231,0.28); color:rgba(240,237,231,0.6);
-               display:flex; align-items:center; justify-content:center; transition:all 0.25s;" class="proj-arrow">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M7 17L17 7M17 7H7M17 7v10"/>
-            </svg>
+
+          {{# Tekst onderaan links #}}
+          <div style="position:absolute; bottom:0; left:0; right:0; padding:1.75rem 1.75rem 1.75rem;">
+            <h3 style="font-family:var(--font-display); font-weight:800; font-size:clamp(20px,1.8vw,26px);
+                       letter-spacing:-0.03em; line-height:1.1; color:#F0EDE7; margin:0 0 0.3rem;">{{ title }}</h3>
+            {{ if tagline }}
+            <p style="font-size:13px; color:rgba(240,237,231,0.5); font-family:var(--font-body); margin:0; line-height:1.5;">{{ tagline }}</p>
+            {{ /if }}
           </div>
-          {{# Hover overlay #}}
+
+          {{# Hover overlay - "Bekijk project" #}}
           <div class="proj-card-overlay">
-            <span style="display:inline-flex; align-items:center; gap:0.6rem; background:rgba(240,237,231,0.12);
-                         backdrop-filter:blur(12px); border:1px solid rgba(240,237,231,0.25);
-                         border-radius:999px; padding:0.65rem 1.4rem;
-                         font-family:var(--font-body); font-size:13px; font-weight:700;
-                         letter-spacing:0.3px; color:#F0EDE7;">
+            <span style="display:inline-flex; align-items:center; gap:0.6rem;
+                         background:rgba(240,237,231,0.1); backdrop-filter:blur(16px);
+                         border:1px solid rgba(240,237,231,0.2); border-radius:999px;
+                         padding:0.7rem 1.5rem; font-family:var(--font-body);
+                         font-size:13px; font-weight:700; letter-spacing:0.3px; color:#F0EDE7;">
               Bekijk project
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </span>
           </div>
-        </div>
-
-        {{# Tekst #}}
-        <div class="proj-card-body">
-          {{ if category }}
-          <span class="proj-cat">{{ category }}</span>
-          {{ /if }}
-          <h3 class="proj-title">{{ title }}</h3>
-          {{ if tagline }}
-          <p class="proj-tagline">{{ tagline }}</p>
-          {{ /if }}
         </div>
 
       </a>
@@ -109,90 +103,51 @@
 <style>
   .proj-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
   .proj-card {
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px;
+    display: block;
+    border-radius: 16px;
     overflow: hidden;
-    background: #fff;
     text-decoration: none;
-    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
-    box-shadow: 0 2px 12px rgba(30,31,27,0.06), 0 0 0 1px rgba(30,31,27,0.06);
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
   }
-  .proj-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 60px rgba(30,31,27,0.12), 0 0 0 1px rgba(30,31,27,0.08);
-  }
-  .proj-card:hover .proj-card-img img { transform: scale(1.06); }
+  .proj-card:hover { transform: scale(0.985); }
+  .proj-card:hover .proj-card-img img { transform: scale(1.07); }
   .proj-card:hover .proj-card-overlay { opacity: 1; }
-  .proj-card:hover .proj-arrow {
-    border-color: rgba(30,31,27,0.5);
-    color: #1E1F1B;
-    background: rgba(30,31,27,0.04);
-  }
 
   .proj-card-img {
     position: relative;
     aspect-ratio: 4/3;
     overflow: hidden;
+    background: #1a1610;
   }
+
   .proj-card-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(20,16,12,0.55);
+    background: rgba(10,8,6,0.5);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.35s ease;
-    backdrop-filter: blur(3px);
+    transition: opacity 0.3s ease;
   }
 
-  .proj-card-body {
-    padding: 1.4rem 1.5rem 1.6rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    flex: 1;
-    background: #fff;
+  /* Eerste kaart groot over volle breedte */
+  .proj-grid .proj-card:first-child {
+    grid-column: 1 / -1;
+  }
+  .proj-grid .proj-card:first-child .proj-card-img {
+    aspect-ratio: 16/7;
   }
 
-  .proj-cat {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(30,31,27,0.35);
-    font-family: var(--font-body);
-  }
-
-  .proj-title {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(18px, 1.6vw, 24px);
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    color: #1E1F1B;
-    margin: 0;
-  }
-
-  .proj-tagline {
-    font-size: 13px;
-    color: rgba(30,31,27,0.45);
-    font-family: var(--font-body);
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  @media (max-width: 1024px) {
-    .proj-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 640px) {
-    .proj-grid { grid-template-columns: 1fr; }
+  @media (max-width: 768px) {
+    .proj-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+    .proj-grid .proj-card:first-child { grid-column: auto; }
+    .proj-grid .proj-card:first-child .proj-card-img { aspect-ratio: 4/3; }
   }
 </style>
 

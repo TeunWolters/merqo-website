@@ -23,3 +23,7 @@ tree:
     entry: scan
   -
     entry: portaal
+  -
+    entry: privacy
+  -
+    entry: algemene-voorwaarden
