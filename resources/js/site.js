@@ -490,11 +490,11 @@ Alpine.data('megaMenu', () => ({
 }));
 
 Alpine.data('contactForm', () => ({
-  name: '', email: '', message: '',
-  sending: false, sent: false, error: false,
+  form: { name: '', company: '', email: '', service: '', message: '', budget: '' },
+  sending: false, success: false, error: false,
 
   async submit() {
-    if (!this.name || !this.email || !this.message) return;
+    if (!this.form.name || !this.form.email || !this.form.message) return;
     this.sending = true;
     this.error = false;
     try {
@@ -505,11 +505,11 @@ Alpine.data('contactForm', () => ({
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content ?? '',
           'Accept': 'application/json',
         },
-        body: JSON.stringify({ name: this.name, email: this.email, message: this.message }),
+        body: JSON.stringify(this.form),
       });
       if (res.ok) {
-        this.sent = true;
-        this.name = this.email = this.message = '';
+        this.success = true;
+        this.form = { name: '', company: '', email: '', service: '', message: '', budget: '' };
       } else { this.error = true; }
     } catch { this.error = true; }
     finally { this.sending = false; }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,9 @@ Route::post('/contact/verstuur', function (Request $request) {
         'name'    => ['required', 'string', 'max:255'],
         'email'   => ['required', 'email'],
         'message' => ['required', 'string'],
+        'company' => ['nullable', 'string', 'max:255'],
+        'service' => ['nullable', 'string', 'max:255'],
+        'budget'  => ['nullable', 'string', 'max:255'],
     ]);
 
     $slug = \Illuminate\Support\Str::slug($data['name']) . '-' . time();
@@ -103,10 +107,36 @@ Route::post('/contact/verstuur', function (Request $request) {
             'title'   => $data['name'],
             'email'   => $data['email'],
             'message' => $data['message'],
+            'company' => $data['company'] ?? '',
+            'service' => $data['service'] ?? '',
+            'budget'  => $data['budget'] ?? '',
             'status'  => 'nieuw',
             'date'    => now()->toDateString(),
         ])
         ->save();
+
+    // Mail notificatie naar Luuk
+    $name    = $data['name'];
+    $email   = $data['email'];
+    $company = $data['company'] ?? 'Niet ingevuld';
+    $service = $data['service'] ?? 'Niet ingevuld';
+    $budget  = $data['budget']  ?? 'Niet ingevuld';
+    $message = $data['message'];
+
+    Mail::raw(
+        "Nieuw contactformulier via merqo.nl\n\n" .
+        "Naam:     {$name}\n" .
+        "E-mail:   {$email}\n" .
+        "Bedrijf:  {$company}\n" .
+        "Dienst:   {$service}\n" .
+        "Budget:   {$budget}\n\n" .
+        "Bericht:\n{$message}\n",
+        function ($mail) use ($name, $email) {
+            $mail->to('info@merqo.nl')
+                 ->replyTo($email, $name)
+                 ->subject("Nieuw bericht van {$name} via merqo.nl");
+        }
+    );
 
     return response()->json(['ok' => true]);
 });

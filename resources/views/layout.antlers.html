@@ -133,13 +133,30 @@
     }
     </script>
 
-    {{# Microsoft Clarity - heatmaps & sessie-opnames #}}
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "wbjwwl5oqj");
+    {{# Tracking scripts - alleen laden na cookie-consent #}}
+    <script>
+      function merqoLoadTracking() {
+        // Microsoft Clarity
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wbjwwl5oqj");
+
+        // Meta Pixel - vervang PIXEL_ID door jouw echte ID
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+        (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'PIXEL_ID');
+        fbq('track', 'PageView');
+      }
+
+      // Laad tracking als eerder akkoord gegeven
+      if (localStorage.getItem('merqo_cookie_consent') === 'accepted') {
+        merqoLoadTracking();
+      }
     </script>
 
     <meta name="csrf-token" content="{{ csrf_token }}">
@@ -199,6 +216,57 @@
     </main>
 
     {{ partial:footer }}
+
+    {{# Cookie consent banner (AVG/GDPR) #}}
+    <div id="merqo-cookie-banner"
+         style="display:none; position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%); z-index:9999;
+                background:#1E1F1B; color:#F0EDE7; border-radius:16px; padding:1.25rem 1.5rem;
+                box-shadow:0 8px 40px rgba(0,0,0,0.25); max-width:560px; width:calc(100% - 2rem);
+                align-items:center; gap:1.5rem; flex-wrap:wrap;">
+      <p style="margin:0; font-size:13px; line-height:1.6; color:rgba(240,237,231,0.75); flex:1; min-width:200px;">
+        Wij gebruiken cookies voor analyse en om de website te verbeteren. Jouw keuze wordt opgeslagen.
+        <a href="/privacy" style="color:#ed6b46; text-decoration:none;">Meer info</a>
+      </p>
+      <div style="display:flex; gap:0.75rem; flex-shrink:0;">
+        <button onclick="merqoCookieReject()"
+                style="padding:0.55rem 1.1rem; border-radius:99px; border:1.5px solid rgba(240,237,231,0.2);
+                       background:transparent; color:rgba(240,237,231,0.6); font-size:12px; font-weight:600;
+                       cursor:pointer; font-family:inherit; transition:all 0.15s;"
+                onmouseover="this.style.borderColor='rgba(240,237,231,0.5)'; this.style.color='#F0EDE7'"
+                onmouseout="this.style.borderColor='rgba(240,237,231,0.2)'; this.style.color='rgba(240,237,231,0.6)'">
+          Weigeren
+        </button>
+        <button onclick="merqoCookieAccept()"
+                style="padding:0.55rem 1.25rem; border-radius:99px; border:none;
+                       background:#ed6b46; color:#fff; font-size:12px; font-weight:700;
+                       cursor:pointer; font-family:inherit; transition:opacity 0.15s;"
+                onmouseover="this.style.opacity='0.88'"
+                onmouseout="this.style.opacity='1'">
+          Accepteren
+        </button>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        var consent = localStorage.getItem('merqo_cookie_consent');
+        if (!consent) {
+          var banner = document.getElementById('merqo-cookie-banner');
+          if (banner) banner.style.display = 'flex';
+        }
+      })();
+
+      function merqoCookieAccept() {
+        localStorage.setItem('merqo_cookie_consent', 'accepted');
+        document.getElementById('merqo-cookie-banner').style.display = 'none';
+        merqoLoadTracking();
+      }
+
+      function merqoCookieReject() {
+        localStorage.setItem('merqo_cookie_consent', 'rejected');
+        document.getElementById('merqo-cookie-banner').style.display = 'none';
+      }
+    </script>
 
     {{# WhatsApp floating button #}}
     <a href="https://wa.me/31630772283?text=Hi%20Luuk%2C%20ik%20bezocht%20jullie%20website%20en%20ben%20benieuwd%20wat%20Merqo%20voor%20mij%20kan%20betekenen.%20Kunnen%20we%20even%20kennismaken%3F"
