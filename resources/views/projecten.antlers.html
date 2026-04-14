@@ -100,7 +100,7 @@
     position: relative;
     text-decoration: none;
     border-radius: 18px;
-    overflow: hidden;
+    overflow: visible;
     background: #F0EDE7;
     transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
   }
@@ -112,6 +112,8 @@
     position: relative;
     aspect-ratio: 4/3;
     background: #C8C4BD;
+    border-radius: 18px;
+    overflow: hidden;
   }
 
   .proj-card-overlay {
@@ -125,16 +127,17 @@
     transition: opacity 0.3s ease;
   }
 
-  /* ── Bite badge linksonder ── */
+  /* ── Bite badge linksonder - steekt buiten kaart ── */
   .proj-badge {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: -8px;
+    left: -8px;
     background: #F0EDE7;
-    border-radius: 0 24px 0 18px; /* alleen top-rechts afgerond = de "hap" */
-    padding: 1.1rem 1.75rem 1.25rem 1.25rem;
+    border-radius: 0 24px 18px 18px;
+    padding: 1.1rem 1.75rem 1.5rem 1.5rem;
     min-width: 55%;
     z-index: 2;
+    box-shadow: 0 4px 24px rgba(30,31,27,0.08);
   }
   .proj-badge-title {
     font-family: var(--font-display);
