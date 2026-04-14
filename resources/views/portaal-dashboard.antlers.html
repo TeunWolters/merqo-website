@@ -1,0 +1,399 @@
+{{# ── Klantportaal Dashboard ── #}}
+{{# Layout: portaal-layout #}}
+<div class="min-h-screen flex" style="background:#EFEEEA;" x-data="portaalDashboard()">
+
+  {{# ══════════════════════════════════════════
+      SIDEBAR
+  ══════════════════════════════════════════ #}}
+  <aside
+    class="fixed top-0 left-0 bottom-0 z-40 flex flex-col transition-all duration-300"
+    style="width:260px; background:#1E1F1B; border-right:1px solid rgba(240,237,231,0.06);"
+    :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
+  >
+    {{# Logo + sluit op mobile #}}
+    <div class="flex items-center justify-between px-6 h-16 shrink-0" style="border-bottom:1px solid rgba(240,237,231,0.06);">
+      <a href="/">
+        <img src="/assets/merqo-logo-white.svg" alt="Merqo" class="h-6 w-auto">
+      </a>
+      <button class="lg:hidden text-[rgba(240,237,231,0.4)] hover:text-white transition-colors" @click="sidebarOpen = false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    {{# Bedrijfsnaam #}}
+    <div class="px-6 py-5 shrink-0">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 font-bold text-sm"
+             style="background:linear-gradient(135deg,#ed6b46,#a8c8ca); color:#fff; font-family:var(--font-display);"
+             x-text="clientInitials"></div>
+        <div>
+          <div class="text-sm font-semibold text-[#F0EDE7] leading-tight" x-text="clientName"></div>
+          <div class="text-xs mt-0.5" style="color:rgba(240,237,231,0.4);">Klantportaal</div>
+        </div>
+      </div>
+    </div>
+
+    {{# Navigatie #}}
+    <nav class="flex-1 px-3 pb-4 overflow-y-auto">
+      <div class="text-[10px] font-bold uppercase tracking-widest mb-2 px-3" style="color:rgba(240,237,231,0.25);">Overzicht</div>
+
+      <template x-for="item in nav" :key="item.id">
+        <button
+          @click="activeSection = item.id; sidebarOpen = false"
+          class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 mb-0.5 text-left"
+          :class="activeSection === item.id
+            ? 'text-[#F0EDE7] bg-white/10'
+            : 'text-[rgba(240,237,231,0.5)] hover:text-[rgba(240,237,231,0.85)] hover:bg-white/5'"
+        >
+          <span x-html="item.icon" class="shrink-0 w-4 h-4 flex items-center justify-center"></span>
+          <span x-text="item.label"></span>
+          <span
+            x-show="item.badge"
+            class="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded-full"
+            style="background:rgba(237,107,70,0.2); color:#ed6b46;"
+            x-text="item.badge"
+          ></span>
+        </button>
+      </template>
+    </nav>
+
+    {{# Uitloggen #}}
+    <div class="px-3 pb-5 shrink-0" style="border-top:1px solid rgba(240,237,231,0.06);">
+      <div class="pt-4 px-3 text-xs mb-3" style="color:rgba(240,237,231,0.3);" x-text="'Ingelogd als ' + clientEmail"></div>
+      <a
+        href="/portaal/logout"
+        class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150"
+        style="color:rgba(240,237,231,0.4);"
+        onmouseover="this.style.color='rgba(240,237,231,0.8)'; this.style.background='rgba(240,237,231,0.05)'"
+        onmouseout="this.style.color='rgba(240,237,231,0.4)'; this.style.background='transparent'"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Uitloggen
+      </a>
+    </div>
+  </aside>
+
+  {{# Overlay mobile #}}
+  <div
+    x-show="sidebarOpen"
+    @click="sidebarOpen = false"
+    class="fixed inset-0 z-30 lg:hidden"
+    style="background:rgba(0,0,0,0.5);"
+    x-cloak
+  ></div>
+
+  {{# ══════════════════════════════════════════
+      MAIN CONTENT
+  ══════════════════════════════════════════ #}}
+  <div class="flex-1 flex flex-col min-h-screen lg:pl-[260px]">
+
+    {{# ── Topbar ── #}}
+    <header class="sticky top-0 z-20 flex items-center justify-between px-6 lg:px-8 h-16 shrink-0"
+            style="background:rgba(239,238,234,0.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(30,31,27,0.08);">
+
+      {{# Mobile: hamburger #}}
+      <button class="lg:hidden" @click="sidebarOpen = true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E1F1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+      {{# Sectie titel #}}
+      <div class="font-semibold text-[#1E1F1B] text-sm" x-text="nav.find(n => n.id === activeSection)?.label ?? ''"></div>
+
+      {{# Rechts: datum + Merqo link #}}
+      <div class="flex items-center gap-4">
+        <div class="text-xs text-[#6B6860] hidden sm:block" x-text="today"></div>
+        <a href="/" class="text-xs font-semibold text-[#ed6b46] hover:underline">← Naar merqo.nl</a>
+      </div>
+    </header>
+
+    {{# ── Page content ── #}}
+    <main class="flex-1 px-6 lg:px-10 py-8 max-w-5xl w-full mx-auto">
+
+      {{# ══ SECTIE: Dashboard ══ #}}
+      <div x-show="activeSection === 'dashboard'">
+
+        <div class="mb-8">
+          <h1 class="font-display font-bold text-[#1E1F1B] mb-1" style="font-size:26px;">Goedemorgen, <span x-text="clientFirstName"></span> 👋</h1>
+          <p class="text-[#6B6860] text-sm">Hier vind je alles rondom jouw samenwerking met Merqo.</p>
+        </div>
+
+        {{# Snelle stats #}}
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <template x-for="stat in stats" :key="stat.label">
+            <div class="card-merqo bg-white p-5">
+              <div class="text-2xl font-bold font-display text-[#1E1F1B]" x-text="stat.value"></div>
+              <div class="text-xs text-[#6B6860] mt-1" x-text="stat.label"></div>
+            </div>
+          </template>
+        </div>
+
+        {{# Recente documenten #}}
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="font-display font-bold text-[#1E1F1B]" style="font-size:16px;">Recente bestanden</h2>
+            <button @click="activeSection = 'bestanden'" class="text-xs text-[#ed6b46] font-semibold hover:underline">Alle bestanden →</button>
+          </div>
+          <div class="flex flex-col gap-3">
+            <template x-for="doc in recentDocs" :key="doc.id">
+              <div class="card-merqo bg-white p-4 flex items-center gap-4 hover:shadow-md transition-shadow">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" :style="`background:${doc.color}20`">
+                  <span x-html="doc.icon" :style="`color:${doc.color}`" class="w-5 h-5 flex items-center justify-center"></span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-[#1E1F1B] text-sm truncate" x-text="doc.naam"></div>
+                  <div class="text-xs text-[#6B6860] mt-0.5" x-text="doc.datum + ' · ' + doc.type"></div>
+                </div>
+                <a :href="doc.url" target="_blank" class="shrink-0 text-[#6B6860] hover:text-[#ed6b46] transition-colors">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        {{# Project updates #}}
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="font-display font-bold text-[#1E1F1B]" style="font-size:16px;">Laatste updates</h2>
+            <button @click="activeSection = 'updates'" class="text-xs text-[#ed6b46] font-semibold hover:underline">Alle updates →</button>
+          </div>
+          <div class="flex flex-col gap-3">
+            <template x-for="update in updates.slice(0,3)" :key="update.id">
+              <div class="card-merqo bg-white p-4 flex items-start gap-4">
+                <div class="w-2 h-2 rounded-full mt-2 shrink-0" :style="`background:${update.color}`"></div>
+                <div class="flex-1">
+                  <div class="font-semibold text-[#1E1F1B] text-sm" x-text="update.titel"></div>
+                  <div class="text-xs text-[#6B6860] mt-0.5" x-text="update.tekst"></div>
+                  <div class="text-[10px] text-[#6B6860] mt-2 opacity-60" x-text="update.datum"></div>
+                </div>
+                <span class="tag text-[10px] shrink-0" :style="`background:${update.color}15; color:${update.color}`" x-text="update.status"></span>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      {{# ══ SECTIE: Fundament ══ #}}
+      <div x-show="activeSection === 'fundament'">
+        <div class="mb-8">
+          <div class="eyebrow mb-4">Jouw merkfundament</div>
+          <h1 class="font-display font-bold text-[#1E1F1B] mb-3" style="font-size:26px;">Het fundament</h1>
+          <p class="text-[#6B6860] text-sm max-w-xl">Je merkfundament is de basis van alles. Hier staat je positionering, doelgroep, merkwaarden en tone of voice - opgesteld door Merqo, speciaal voor jouw bedrijf.</p>
+        </div>
+
+        <template x-if="fundamentDocs.length === 0">
+          <div class="card-merqo bg-white p-10 text-center">
+            <div class="text-4xl mb-4">📋</div>
+            <div class="font-semibold text-[#1E1F1B] mb-2">Nog niet beschikbaar</div>
+            <div class="text-sm text-[#6B6860]">Merqo is je fundament aan het opstellen. Je ontvangt een melding zodra het klaar is.</div>
+          </div>
+        </template>
+
+        <div class="flex flex-col gap-4">
+          <template x-for="doc in fundamentDocs" :key="doc.id">
+            <div class="card-merqo bg-white p-5 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style="background:linear-gradient(135deg,rgba(237,107,70,0.12),rgba(168,200,202,0.12));">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-bold text-[#1E1F1B]" x-text="doc.naam"></div>
+                <div class="text-xs text-[#6B6860] mt-0.5" x-text="'Geüpload op ' + doc.datum + ' · ' + doc.bestandsgrootte"></div>
+              </div>
+              <a :href="doc.url" target="_blank"
+                 class="btn-primary text-sm px-5 py-2.5 shrink-0">
+                Bekijken
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      {{# ══ SECTIE: Bestanden ══ #}}
+      <div x-show="activeSection === 'bestanden'">
+        <div class="mb-8">
+          <h1 class="font-display font-bold text-[#1E1F1B] mb-3" style="font-size:26px;">Alle bestanden</h1>
+          <p class="text-[#6B6860] text-sm">Alle documenten die Merqo met jou heeft gedeeld.</p>
+        </div>
+
+        {{# Filters #}}
+        <div class="flex flex-wrap gap-2 mb-6">
+          <template x-for="cat in bestandsCategorieen" :key="cat">
+            <button
+              @click="bestandsFilter = cat"
+              class="px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-150"
+              :class="bestandsFilter === cat
+                ? 'bg-[#1E1F1B] text-[#F0EDE7]'
+                : 'bg-white text-[#6B6860] hover:text-[#1E1F1B] hover:bg-white/80'"
+              x-text="cat"
+            ></button>
+          </template>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <template x-for="doc in gefilterdeBestanden" :key="doc.id">
+            <div class="card-merqo bg-white p-4 flex items-center gap-4 hover:shadow-md transition-shadow group">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" :style="`background:${doc.color}15`">
+                <span x-html="doc.icon" :style="`color:${doc.color}`" class="w-5 h-5 flex items-center justify-center"></span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-[#1E1F1B] text-sm truncate" x-text="doc.naam"></div>
+                <div class="text-xs text-[#6B6860] mt-0.5" x-text="doc.datum + ' · ' + doc.type + ' · ' + doc.bestandsgrootte"></div>
+              </div>
+              <span class="tag text-[10px] shrink-0" x-text="doc.categorie" :style="`background:${doc.color}15; color:${doc.color}`"></span>
+              <a :href="doc.url" target="_blank"
+                 class="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity ml-2 p-2 rounded-lg hover:bg-[#F0EDE7] text-[#6B6860] hover:text-[#1E1F1B]">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </a>
+            </div>
+          </template>
+
+          <template x-if="gefilterdeBestanden.length === 0">
+            <div class="card-merqo bg-white p-10 text-center text-sm text-[#6B6860]">
+              Geen bestanden in deze categorie.
+            </div>
+          </template>
+        </div>
+      </div>
+
+      {{# ══ SECTIE: Updates ══ #}}
+      <div x-show="activeSection === 'updates'">
+        <div class="mb-8">
+          <h1 class="font-display font-bold text-[#1E1F1B] mb-3" style="font-size:26px;">Projectupdates</h1>
+          <p class="text-[#6B6860] text-sm">Alle updates van Merqo over jouw projecten.</p>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <template x-for="update in updates" :key="update.id">
+            <div class="card-merqo bg-white p-5 flex items-start gap-4">
+              <div class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5" :style="`background:${update.color}15`">
+                <div class="w-2.5 h-2.5 rounded-full" :style="`background:${update.color}`"></div>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="font-bold text-[#1E1F1B]" x-text="update.titel"></div>
+                  <span class="tag text-[10px] shrink-0" :style="`background:${update.color}15; color:${update.color}`" x-text="update.status"></span>
+                </div>
+                <div class="text-sm text-[#6B6860] mt-1.5 leading-relaxed" x-text="update.tekst"></div>
+                <div class="text-[11px] text-[#6B6860] mt-3 opacity-60" x-text="update.datum"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      {{# ══ SECTIE: Facturen ══ #}}
+      <div x-show="activeSection === 'facturen'">
+        <div class="mb-8">
+          <h1 class="font-display font-bold text-[#1E1F1B] mb-3" style="font-size:26px;">Facturen</h1>
+          <p class="text-[#6B6860] text-sm">Een overzicht van alle facturen die Merqo heeft verzonden.</p>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <template x-for="factuur in facturen" :key="factuur.id">
+            <div class="card-merqo bg-white p-5 flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" :style="factuur.betaald ? 'background:rgba(168,200,202,0.15)' : 'background:rgba(237,107,70,0.12)'">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" :stroke="factuur.betaald ? '#a8c8ca' : '#ed6b46'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-[#1E1F1B] text-sm" x-text="factuur.nummer"></div>
+                <div class="text-xs text-[#6B6860] mt-0.5" x-text="factuur.omschrijving + ' · ' + factuur.datum"></div>
+              </div>
+              <div class="text-right shrink-0">
+                <div class="font-bold text-[#1E1F1B]" x-text="factuur.bedrag"></div>
+                <div class="text-[10px] font-semibold mt-0.5"
+                     :style="factuur.betaald ? 'color:#a8c8ca' : 'color:#ed6b46'"
+                     x-text="factuur.betaald ? '✓ Betaald' : 'Openstaand'"></div>
+              </div>
+              <a :href="factuur.url" target="_blank"
+                 class="shrink-0 p-2 rounded-lg hover:bg-[#F0EDE7] text-[#6B6860] hover:text-[#1E1F1B] transition-colors ml-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </a>
+            </div>
+          </template>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('portaalDashboard', () => ({
+    sidebarOpen: false,
+    activeSection: 'dashboard',
+    bestandsFilter: 'Alles',
+
+    // Client info - wordt server-side ingevuld via Statamic
+    clientName: '{{ current_user:name ?? "Jouw bedrijf" }}',
+    clientEmail: '{{ current_user:email ?? "" }}',
+    get clientFirstName() { return this.clientName.split(' ')[0]; },
+    get clientInitials() { return this.clientName.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase(); },
+
+    today: new Intl.DateTimeFormat('nl-NL', { weekday:'long', day:'numeric', month:'long' }).format(new Date()),
+
+    nav: [
+      { id: 'dashboard',  label: 'Dashboard',       badge: null,  icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>' },
+      { id: 'fundament',  label: 'Het fundament',   badge: null,  icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>' },
+      { id: 'bestanden',  label: 'Bestanden',        badge: null,  icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>' },
+      { id: 'updates',    label: 'Projectupdates',   badge: 2,     icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>' },
+      { id: 'facturen',   label: 'Facturen',         badge: null,  icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>' },
+      { id: 'aanvragen',  label: 'Aanvragen',        badge: null,  icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>' },
+    ],
+
+    stats: [
+      { value: '3', label: 'Documenten' },
+      { value: '2', label: 'Nieuwe updates' },
+      { value: '1', label: 'Open factuur' },
+      { value: '100%', label: 'Fundament compleet' },
+    ],
+
+    // Dummy data - wordt vervangen door Statamic collectie data
+    recentDocs: [
+      { id:1, naam:'Merkfundament - Merqo v1.0', type:'PDF', datum:'7 apr 2026', url:'#', color:'#ed6b46', bestandsgrootte:'2.4 MB',
+        icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+        categorie:'Fundament' },
+      { id:2, naam:'Contentkalender Q2 2026', type:'XLSX', datum:'5 apr 2026', url:'#', color:'#22c55e', bestandsgrootte:'840 KB',
+        icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>',
+        categorie:'Rapport' },
+      { id:3, naam:'Huisstijl brandbook', type:'PDF', datum:'1 apr 2026', url:'#', color:'#a8c8ca', bestandsgrootte:'12 MB',
+        icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+        categorie:'Branding' },
+    ],
+
+    fundamentDocs: [
+      { id:1, naam:'Merkfundament - v1.0', datum:'7 april 2026', bestandsgrootte:'2.4 MB', url:'#' },
+    ],
+
+    alleBestanden: [
+      { id:1, naam:'Merkfundament - v1.0', type:'PDF', datum:'7 apr 2026', url:'#', color:'#ed6b46', bestandsgrootte:'2.4 MB', categorie:'Fundament',
+        icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>' },
+      { id:2, naam:'Contentkalender Q2 2026', type:'XLSX', datum:'5 apr 2026', url:'#', color:'#22c55e', bestandsgrootte:'840 KB', categorie:'Rapport',
+        icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>' },
+      { id:3, naam:'Huisstijl brandbook', type:'PDF', datum:'1 apr 2026', url:'#', color:'#a8c8ca', bestandsgrootte:'12 MB', categorie:'Branding',
+        icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>' },
+      { id:4, naam:'Factuur MRQ-2026-001', type:'PDF', datum:'1 apr 2026', url:'#', color:'#6B6860', bestandsgrootte:'180 KB', categorie:'Factuur',
+        icon:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>' },
+    ],
+
+    bestandsCategorieen: ['Alles', 'Fundament', 'Branding', 'Rapport', 'Factuur'],
+
+    get gefilterdeBestanden() {
+      if (this.bestandsFilter === 'Alles') return this.alleBestanden;
+      return this.alleBestanden.filter(d => d.categorie === this.bestandsFilter);
+    },
+
+    updates: [
+      { id:1, titel:'Merkfundament afgerond', tekst:'Je merkfundament is volledig opgesteld en staat klaar in je portaal. Neem een kijkje en laat ons weten wat je ervan vindt.', datum:'7 april 2026 · 14:32', status:'Nieuw', color:'#ed6b46' },
+      { id:2, titel:'Website ontwerp gestart', tekst:'We zijn begonnen met de eerste schetsen voor je nieuwe website. Verwacht over twee weken de eerste moodboard.', datum:'3 april 2026 · 09:15', status:'Nieuw', color:'#a8c8ca' },
+      { id:3, titel:'Kickoff gesprek gehad', tekst:'Bedankt voor het fijne gesprek! We hebben een helder beeld van je wensen en ambities. We gaan aan de slag.', datum:'28 maart 2026 · 10:00', status:'Afgerond', color:'#22c55e' },
+    ],
+
+    facturen: [
+      { id:1, nummer:'MRQ-2026-001', omschrijving:'Merkstrategie & fundament', datum:'1 apr 2026', bedrag:'€ 1.450,00', betaald:false, url:'#' },
+      { id:2, nummer:'MRQ-2026-000', omschrijving:'Kickoff sessie', datum:'1 mrt 2026', bedrag:'€ 350,00', betaald:true, url:'#' },
+    ],
+  }));
+});
+</script>

@@ -1,0 +1,145 @@
+{{# ════════════════════════════════════════════════════════════
+    MERQO - GEDEELDE SUBPAGE HERO
+    Gebruik: {{ partial:partials/page-hero
+       label="Identiteit"
+       title="Merken die"
+       title_accent="blijven hangen"
+       tagline="Van logo tot merkstrategie..."
+       cta_label="Doe de gratis scan"
+       cta_url="/scan"
+       cta2_label="Bekijk ons werk"
+       cta2_url="/projecten"
+       stat1="50+" stat1_label="merkidentiteiten"
+       stat2="5+"  stat2_label="jaar ervaring"
+       stat3="100%" stat3_label="vrijblijvend gesprek"
+    }}
+    ════════════════════════════════════════════════════════════ #}}
+
+<section data-header-bg="dark"
+         style="position:relative; overflow:hidden; background:#ddd5c8; min-height:72vh; display:flex; align-items:flex-end;">
+
+  {{# Blob achtergrond - zelfde als homepage #}}
+  <div style="position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;">
+    <div class="ph-blob-a" style="position:absolute; width:80vw; height:80vw; background:#ed6b46; filter:blur(90px); opacity:0.8; will-change:transform;"></div>
+    <div class="ph-blob-b" style="position:absolute; width:70vw; height:70vw; background:#8fcdd0; filter:blur(90px); opacity:0.8; will-change:transform;"></div>
+    <div class="ph-blob-c" style="position:absolute; width:60vw; height:60vw; background:#f5b87a; filter:blur(80px); opacity:0.65; will-change:transform;"></div>
+  </div>
+
+  <style>
+    @keyframes ph-morph-a {
+      0%,100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+      33%     { border-radius: 45% 55% 40% 60% / 60% 35% 65% 40%; }
+      66%     { border-radius: 35% 65% 60% 40% / 40% 55% 45% 60%; }
+    }
+    @keyframes ph-morph-b {
+      0%,100% { border-radius: 40% 60% 45% 55% / 60% 45% 55% 40%; }
+      33%     { border-radius: 60% 40% 65% 35% / 45% 60% 40% 55%; }
+      66%     { border-radius: 50% 50% 35% 65% / 55% 40% 60% 45%; }
+    }
+    @keyframes ph-morph-c {
+      0%,100% { border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%; }
+      50%     { border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%; }
+    }
+    @keyframes ph-drift-a {
+      0%   { transform: translate(-25%, -35%); }
+      33%  { transform: translate(15%, -15%); }
+      66%  { transform: translate(-10%, -50%); }
+      100% { transform: translate(-25%, -35%); }
+    }
+    @keyframes ph-drift-b {
+      0%   { transform: translate(45%, 15%); }
+      33%  { transform: translate(65%, 50%); }
+      66%  { transform: translate(20%, 45%); }
+      100% { transform: translate(45%, 15%); }
+    }
+    @keyframes ph-drift-c {
+      0%   { transform: translate(10%, 35%); }
+      50%  { transform: translate(50%, 5%); }
+      100% { transform: translate(10%, 35%); }
+    }
+    .ph-blob-a { animation: ph-morph-a 12s ease-in-out infinite, ph-drift-a 25s ease-in-out infinite; }
+    .ph-blob-b { animation: ph-morph-b 15s ease-in-out infinite, ph-drift-b 30s ease-in-out infinite; }
+    .ph-blob-c { animation: ph-morph-c 18s ease-in-out infinite, ph-drift-c 20s ease-in-out infinite; }
+  </style>
+
+  {{# Vignette #}}
+  <div style="position:absolute; inset:0; pointer-events:none; z-index:2;
+              background:linear-gradient(to bottom,
+                rgba(255,255,255,0.06) 0%,
+                transparent 30%,
+                rgba(210,140,90,0.18) 100%);"></div>
+
+  {{# Grain #}}
+  <div class="hero-grain" style="z-index:3;"></div>
+
+  {{# Inhoud #}}
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 w-full"
+       style="position:relative; z-index:4; padding-top:10rem; padding-bottom:clamp(2rem,3.5vh,3rem);">
+
+    {{# Eyebrow #}}
+    {{ if label }}
+    <div class="eyebrow mb-5">
+      <div class="eyebrow-line" style="background:linear-gradient(90deg,rgba(255,255,255,0.5),transparent);"></div>
+      <div class="eyebrow-text" style="color:rgba(255,255,255,0.6);">{{ label }}</div>
+    </div>
+    {{ /if }}
+
+    {{# Headline #}}
+    <h1 style="font-family:var(--font-display); font-weight:800;
+               font-size:clamp(44px,7.5vw,96px); letter-spacing:-0.05em;
+               line-height:0.93; color:#fff; margin-bottom:0; max-width:14ch; padding-bottom:0.15em;">
+      {{ title }}{{ if title_accent }}<br><em style="color:#ed6b46; font-style:italic;">{{ title_accent }}</em>{{ /if }}
+    </h1>
+
+    {{# Glassmorphism onderbalk - zelfde stijl als homepage #}}
+    <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:1.25rem;
+                margin-top:2rem; padding:1.5rem 1.75rem;
+                border:1px solid rgba(255,255,255,0.45); border-radius:24px;
+                background:rgba(255,255,255,0.28);
+                backdrop-filter:blur(20px) saturate(1.4);
+                -webkit-backdrop-filter:blur(20px) saturate(1.4);
+                box-shadow:0 8px 32px rgba(180,80,30,0.12), inset 0 1px 0 rgba(255,255,255,0.5);">
+
+      {{# Tagline of stats #}}
+      {{ if stat1 }}
+      <div style="display:flex; gap:2rem; flex-wrap:wrap;">
+        <div style="display:flex; flex-direction:column; gap:0.15rem;">
+          <span style="font-family:var(--font-display); font-size:1.5rem; font-weight:800; color:#1E1F1B; line-height:1;">{{ stat1 }}</span>
+          <span style="font-size:11px; color:rgba(30,31,27,0.5); font-family:var(--font-body);">{{ stat1_label }}</span>
+        </div>
+        {{ if stat2 }}
+        <div style="display:flex; flex-direction:column; gap:0.15rem; border-left:1px solid rgba(30,31,27,0.1); padding-left:2rem;">
+          <span style="font-family:var(--font-display); font-size:1.5rem; font-weight:800; color:#1E1F1B; line-height:1;">{{ stat2 }}</span>
+          <span style="font-size:11px; color:rgba(30,31,27,0.5); font-family:var(--font-body);">{{ stat2_label }}</span>
+        </div>
+        {{ /if }}
+        {{ if stat3 }}
+        <div style="display:flex; flex-direction:column; gap:0.15rem; border-left:1px solid rgba(30,31,27,0.1); padding-left:2rem;">
+          <span style="font-family:var(--font-display); font-size:1.5rem; font-weight:800; color:#1E1F1B; line-height:1;">{{ stat3 }}</span>
+          <span style="font-size:11px; color:rgba(30,31,27,0.5); font-family:var(--font-body);">{{ stat3_label }}</span>
+        </div>
+        {{ /if }}
+      </div>
+      {{ elseif tagline }}
+      <p style="color:rgba(30,31,27,0.72); font-size:13px; line-height:1.75;
+                max-width:340px; font-family:var(--font-body); margin:0;">
+        {{ tagline }}
+      </p>
+      {{ /if }}
+
+      {{# CTA knoppen #}}
+      <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+        <a href="{{ cta_url ?? '/scan' }}" class="btn-primary">
+          {{ cta_label ?? 'Doe de gratis scan' }}
+        </a>
+        {{ if cta2_label }}
+        <a href="{{ cta2_url ?? '/contact' }}" class="btn-ghost">
+          {{ cta2_label }}
+        </a>
+        {{ /if }}
+      </div>
+
+    </div>
+
+  </div>
+</section>

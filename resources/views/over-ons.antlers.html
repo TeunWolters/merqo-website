@@ -1,0 +1,1162 @@
+{{# ════════════════════════════════════════════════════════════
+    MERQO - OVER ONS
+    ════════════════════════════════════════════════════════════ #}}
+
+{{ partial:partials/page-hero
+   label="Over ons"
+   title="Merken bouwen"
+   title_accent="is ons vak"
+   accent_color="#ed6b46"
+   tagline="Wij zijn Merqo, een creatief bureau uit Hengelo dat merken bouwt die blijven hangen."
+   stat1="100+" stat1_label="klanten"
+   stat2="5+" stat2_label="jaar ervaring"
+   stat3="6" stat3_label="specialisten"
+}}
+
+
+{{# ── Manifest ── #}}
+<section class="oo-manifest" data-reveal>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 oo-manifest__grid">
+
+    {{# Left: sticky eyebrow + statement #}}
+    <div class="oo-manifest__left">
+      <div class="eyebrow mb-8">
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-text">Ons manifest</div>
+      </div>
+      <p class="oo-manifest__statement">
+        De meeste bureaus voeren uit. Wij stellen eerst de vraag waarom.
+      </p>
+    </div>
+
+    {{# Right: numbered philosophy paragraphs #}}
+    <div class="oo-manifest__right" data-stagger>
+
+      <div class="oo-manifest__item" data-stagger-item>
+        <span class="oo-manifest__number">01</span>
+        <div>
+          <h3 class="oo-manifest__item-title">Vraag voor uitvoering</h3>
+          <p class="oo-manifest__item-text">
+            Wij beginnen niet met ontwerpen. Wij beginnen met begrijpen. Wat is het werkelijke probleem dat dit merk moet oplossen? Pas als dat helder is, heeft elk creatief besluit een fundament.
+          </p>
+        </div>
+      </div>
+
+      <div class="oo-manifest__item" data-stagger-item>
+        <span class="oo-manifest__number">02</span>
+        <div>
+          <h3 class="oo-manifest__item-title">Geen decoratie maar positie</h3>
+          <p class="oo-manifest__item-text">
+            Een merk is geen logo. Het is de reden waarom een klant voor jou kiest en niet voor de concurrent naast je. Wij bouwen die reden, visueel, verbaal en strategisch, totdat hij onweerlegbaar is.
+          </p>
+        </div>
+      </div>
+
+      <div class="oo-manifest__item" data-stagger-item>
+        <span class="oo-manifest__number">03</span>
+        <div>
+          <h3 class="oo-manifest__item-title">Meetbaar of het telt niet</h3>
+          <p class="oo-manifest__item-text">
+            Strategie zonder resultaat is filosofie. Elk traject wordt afgerekend op wat het oplevert voor het bedrijf, niet op hoe mooi het eruitziet. Wij zijn pas tevreden als jij dat bent.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+{{# ── Team - split layout ── #}}
+<section style="background:#F0EDE7; padding:6rem 0 0;">
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="border-top:1px solid #D6D2CB; padding-top:5rem; margin-bottom:3rem;">
+      <div class="eyebrow mb-4" data-reveal>
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-text">Het team</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ts-split">
+
+    {{# ── Links: scrollbare kaarten ── #}}
+    <div class="ts-left-col">
+
+      {{# Luuk Scheffer #}}
+      <div class="ts-card" data-member="luuk" x-data="{ open: false }">
+        <div class="ts-card-inner" @click="open = !open">
+          <img src="/assets/team/luuk.jpg" alt="Luuk Scheffer" class="ts-card-img"
+               :style="open ? 'transform:scale(1.04)' : 'transform:scale(1)'">
+          <div class="ts-grad-top"></div>
+          <div class="ts-grad-bot"></div>
+          <div class="ts-name-block" x-show="!open" x-transition.opacity>
+            <h3 class="ts-card-name">Luuk Scheffer</h3>
+            <div class="ts-card-role-label">Eigenaar &amp; Designer</div>
+          </div>
+          <div class="ts-badge-block" x-show="!open" x-transition.opacity>
+            <span class="ts-badge">Design</span>
+          </div>
+          <div class="ts-card-footer" x-show="!open" x-transition.opacity>
+            <div class="ts-avatar-ring">
+              <img src="/assets/team/luuk.jpg" alt="">
+            </div>
+            <div class="ts-more-pill">
+              Meer info
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </div>
+          <div class="ts-bio-overlay" x-show="open" x-transition.opacity>
+            <div>
+              <div class="ts-bio-cat">Eigenaar &amp; Designer</div>
+              <h3 class="ts-bio-title">Luuk Scheffer</h3>
+              <p class="ts-bio-body">Mede-oprichter van Merqo en verantwoordelijk voor design. Geeft merken hun visuele identiteit: van eerste logo-schets tot volledige campagnebeelden.</p>
+            </div>
+            <div class="ts-bio-footer">
+              <a href="https://www.linkedin.com/company/merqo" target="_blank" rel="noopener" class="ts-bio-li">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+              <button @click.stop="open = false" class="ts-bio-close">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{# Bleike Klein Breteler #}}
+      <div class="ts-card" data-member="bleike" x-data="{ open: false }">
+        <div class="ts-card-inner" @click="open = !open">
+          <img src="/assets/team/bleike.jpg" alt="Bleike Klein Breteler" class="ts-card-img"
+               :style="open ? 'transform:scale(1.04)' : 'transform:scale(1)'">
+          <div class="ts-grad-top"></div>
+          <div class="ts-grad-bot"></div>
+          <div class="ts-name-block" x-show="!open" x-transition.opacity>
+            <h3 class="ts-card-name">Bleike Klein Breteler</h3>
+            <div class="ts-card-role-label">Eigenaar &amp; Designer</div>
+          </div>
+          <div class="ts-badge-block" x-show="!open" x-transition.opacity>
+            <span class="ts-badge">Design</span>
+          </div>
+          <div class="ts-card-footer" x-show="!open" x-transition.opacity>
+            <div class="ts-avatar-ring">
+              <img src="/assets/team/bleike.jpg" alt="">
+            </div>
+            <div class="ts-more-pill">
+              Meer info
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </div>
+          <div class="ts-bio-overlay" x-show="open" x-transition.opacity>
+            <div>
+              <div class="ts-bio-cat">Eigenaar &amp; Designer</div>
+              <h3 class="ts-bio-title">Bleike Klein Breteler</h3>
+              <p class="ts-bio-body">Mede-oprichter van Merqo en verantwoordelijk voor design. Vertaalt merkstrategie naar visuele concepten die écht werken en blijven hangen.</p>
+            </div>
+            <div class="ts-bio-footer">
+              <a href="https://www.linkedin.com/company/merqo" target="_blank" rel="noopener" class="ts-bio-li">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+              <button @click.stop="open = false" class="ts-bio-close">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{# Teun Wolters #}}
+      <div class="ts-card" data-member="teun" x-data="{ open: false }">
+        <div class="ts-card-inner" @click="open = !open">
+          <img src="/assets/team/teun.jpg" alt="Teun Wolters" class="ts-card-img"
+               :style="open ? 'transform:scale(1.04)' : 'transform:scale(1)'">
+          <div class="ts-grad-top"></div>
+          <div class="ts-grad-bot"></div>
+          <div class="ts-name-block" x-show="!open" x-transition.opacity>
+            <h3 class="ts-card-name">Teun Wolters</h3>
+            <div class="ts-card-role-label">Marketing Strateeg &amp; AI</div>
+          </div>
+          <div class="ts-badge-block" x-show="!open" x-transition.opacity>
+            <span class="ts-badge">Strategie</span>
+          </div>
+          <div class="ts-card-footer" x-show="!open" x-transition.opacity>
+            <div class="ts-avatar-ring">
+              <img src="/assets/team/teun.jpg" alt="">
+            </div>
+            <div class="ts-more-pill">
+              Meer info
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </div>
+          <div class="ts-bio-overlay" x-show="open" x-transition.opacity>
+            <div>
+              <div class="ts-bio-cat">Marketing Strateeg &amp; AI</div>
+              <h3 class="ts-bio-title">Teun Wolters</h3>
+              <p class="ts-bio-body">Verantwoordelijk voor marketing strategie en AI-toepassingen. Zorgt dat merken slimmer en sneller groeien, met data als kompas en creativiteit als motor.</p>
+            </div>
+            <div class="ts-bio-footer">
+              <a href="https://www.linkedin.com/in/teunwolters" target="_blank" rel="noopener" class="ts-bio-li">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+              <button @click.stop="open = false" class="ts-bio-close">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{# Naomi Thalen #}}
+      <div class="ts-card" data-member="naomi" x-data="{ open: false }">
+        <div class="ts-card-inner" @click="open = !open">
+          <img src="/assets/team/naomi.jpg" alt="Naomi Thalen" class="ts-card-img"
+               :style="open ? 'transform:scale(1.04)' : 'transform:scale(1)'">
+          <div class="ts-grad-top"></div>
+          <div class="ts-grad-bot"></div>
+          <div class="ts-name-block" x-show="!open" x-transition.opacity>
+            <h3 class="ts-card-name">Naomi Thalen</h3>
+            <div class="ts-card-role-label">Social Media Marketeer</div>
+          </div>
+          <div class="ts-badge-block" x-show="!open" x-transition.opacity>
+            <span class="ts-badge">Marketing</span>
+          </div>
+          <div class="ts-card-footer" x-show="!open" x-transition.opacity>
+            <div class="ts-avatar-ring">
+              <img src="/assets/team/naomi.jpg" alt="">
+            </div>
+            <div class="ts-more-pill">
+              Meer info
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </div>
+          <div class="ts-bio-overlay" x-show="open" x-transition.opacity>
+            <div>
+              <div class="ts-bio-cat">Social Media Marketeer</div>
+              <h3 class="ts-bio-title">Naomi Thalen</h3>
+              <p class="ts-bio-body">Beheert social media met strategie en gevoel. Zet merken neer op de kanalen waar hun doelgroep zit en weet precies wat wel en niet werkt.</p>
+            </div>
+            <div class="ts-bio-footer">
+              <a href="https://www.linkedin.com/company/merqo" target="_blank" rel="noopener" class="ts-bio-li">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+              <button @click.stop="open = false" class="ts-bio-close">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{# Jette Massop #}}
+      <div class="ts-card" data-member="jette" x-data="{ open: false }">
+        <div class="ts-card-inner" @click="open = !open">
+          <img src="/assets/team/jette.jpg" alt="Jette Massop" class="ts-card-img"
+               :style="open ? 'transform:scale(1.04)' : 'transform:scale(1)'">
+          <div class="ts-grad-top"></div>
+          <div class="ts-grad-bot"></div>
+          <div class="ts-name-block" x-show="!open" x-transition.opacity>
+            <h3 class="ts-card-name">Jette Massop</h3>
+            <div class="ts-card-role-label">Stagiaire</div>
+          </div>
+          <div class="ts-badge-block" x-show="!open" x-transition.opacity>
+            <span class="ts-badge">Social</span>
+          </div>
+          <div class="ts-card-footer" x-show="!open" x-transition.opacity>
+            <div class="ts-avatar-ring">
+              <img src="/assets/team/jette.jpg" alt="">
+            </div>
+            <div class="ts-more-pill">
+              Meer info
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </div>
+          <div class="ts-bio-overlay" x-show="open" x-transition.opacity>
+            <div>
+              <div class="ts-bio-cat">Stagiaire</div>
+              <h3 class="ts-bio-title">Jette Massop</h3>
+              <p class="ts-bio-body">Ondersteunt het team met frisse ideeën en een scherp oog voor detail. Groeit elke dag mee met het bureau en levert al vanaf dag één echte bijdragen.</p>
+            </div>
+            <div class="ts-bio-footer">
+              <a href="https://www.linkedin.com/company/merqo" target="_blank" rel="noopener" class="ts-bio-li">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+              <button @click.stop="open = false" class="ts-bio-close">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    {{# ── Rechts: sticky info-panel ── #}}
+    <div class="ts-right-col">
+      <div class="ts-sticky-panel">
+        <div class="eyebrow mb-6">
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-text">Het team</div>
+        </div>
+        <h2 style="font-family:var(--font-display);font-size:clamp(2rem,3vw,3rem);font-weight:800;letter-spacing:-0.04em;line-height:1.05;color:#1E1F1B;margin:0 0 1.5rem;">
+          Mensen achter<br>het merk
+        </h2>
+        <div id="ts-dynamic-panel" style="transition:opacity 0.3s ease, transform 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;">
+            <img id="ts-dyn-photo" src="" alt=""
+                 style="width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;
+                        border:2.5px solid #D6D2CB;flex-shrink:0;">
+            <div>
+              <p id="ts-dyn-role" style="font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:#ed6b46;font-family:var(--font-body);margin:0 0 4px;"></p>
+              <p id="ts-dyn-name" style="font-family:var(--font-display);font-size:1.3rem;font-weight:800;letter-spacing:-0.03em;color:#1E1F1B;margin:0;line-height:1.1;"></p>
+            </div>
+          </div>
+          <p id="ts-dyn-bio" style="font-family:var(--font-body);font-size:0.95rem;line-height:1.7;color:rgba(30,31,27,0.65);margin:0 0 2rem;"></p>
+          <a id="ts-dyn-linkedin" href="#" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;
+                    background:#1E1F1B;color:#F0EDE7;font-size:12px;font-weight:600;
+                    font-family:var(--font-body);text-decoration:none;letter-spacing:0.5px;
+                    transition:background 0.2s;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid #D6D2CB;">
+          <div style="display:flex;gap:2rem;">
+            <div>
+              <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:#1E1F1B;letter-spacing:-0.04em;">5</div>
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(30,31,27,0.45);font-family:var(--font-body);">Teamleden</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:#1E1F1B;letter-spacing:-0.04em;">100+</div>
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(30,31,27,0.45);font-family:var(--font-body);">Klanten</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+  .ts-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem 0 2.5rem;
+    align-items: start;
+  }
+  .ts-left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 0 2rem 6rem 0;
+  }
+  .ts-right-col {
+    position: sticky;
+    top: 100px;
+    padding: 0 0 4rem 3rem;
+    border-left: 1px solid #D6D2CB;
+  }
+  .ts-sticky-panel { padding-top: 1rem; }
+  .ts-card { border-radius: 20px; overflow: hidden; }
+  .ts-card-inner {
+    position: relative;
+    aspect-ratio: 3/4;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .ts-card-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top;
+    transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+  }
+  .ts-grad-top {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, transparent 42%);
+    pointer-events: none;
+  }
+  .ts-grad-bot {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.68) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  .ts-name-block {
+    position: absolute; top: 0; left: 0; right: 0;
+    padding: 1.25rem 1.25rem 0;
+  }
+  .ts-card-name {
+    font-family: var(--font-display); font-size: clamp(1rem,1.6vw,1.4rem);
+    font-weight: 800; color: #F0EDE7; letter-spacing: -0.03em;
+    line-height: 1.1; margin: 0;
+  }
+  .ts-card-role-label {
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(240,237,231,0.55); font-weight: 700;
+    margin-top: 4px; font-family: var(--font-body);
+  }
+  .ts-badge-block {
+    position: absolute; top: 1rem; right: 1rem;
+  }
+  .ts-badge {
+    display: inline-block; padding: 4px 11px; border-radius: 999px;
+    background: rgba(240,237,231,0.18); backdrop-filter: blur(10px);
+    border: 1px solid rgba(240,237,231,0.25); font-size: 9px;
+    font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(240,237,231,0.85); font-family: var(--font-body);
+  }
+  .ts-card-footer {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1.1rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .ts-avatar-ring {
+    width: 34px; height: 34px; border-radius: 50%; overflow: hidden;
+    border: 2px solid rgba(240,237,231,0.35); flex-shrink: 0;
+  }
+  .ts-avatar-ring img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .ts-more-pill {
+    display: flex; align-items: center; gap: 5px;
+    padding: 6px 13px; border-radius: 999px;
+    background: rgba(30,31,27,0.72); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #F0EDE7; font-size: 11px; font-weight: 600;
+    font-family: var(--font-body);
+  }
+  .ts-bio-overlay {
+    position: absolute; inset: 0;
+    background: rgba(20,14,10,0.92); backdrop-filter: blur(4px);
+    padding: 1.5rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .ts-bio-cat {
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 700; color: #ed6b46; font-family: var(--font-body); margin-bottom: 6px;
+  }
+  .ts-bio-title {
+    font-family: var(--font-display); font-size: 1.25rem; font-weight: 800;
+    color: #F0EDE7; letter-spacing: -0.03em; margin: 0 0 0.75rem;
+  }
+  .ts-bio-body {
+    font-family: var(--font-body); font-size: 0.82rem; line-height: 1.65;
+    color: rgba(240,237,231,0.7); margin: 0;
+  }
+  .ts-bio-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 1rem; border-top: 1px solid rgba(240,237,231,0.12);
+  }
+  .ts-bio-li {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 14px; border-radius: 999px;
+    background: rgba(240,237,231,0.1); border: 1px solid rgba(240,237,231,0.15);
+    color: #F0EDE7; font-size: 11px; font-weight: 600;
+    font-family: var(--font-body); text-decoration: none;
+    transition: background 0.2s;
+  }
+  .ts-bio-li:hover { background: rgba(240,237,231,0.18); }
+  .ts-bio-close {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(240,237,231,0.1); border: 1px solid rgba(240,237,231,0.15);
+    color: #F0EDE7; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .ts-bio-close:hover { background: rgba(240,237,231,0.2); }
+
+  @media (max-width: 1024px) {
+    .ts-split { grid-template-columns: 1fr; padding: 0 1.5rem; }
+    .ts-right-col { display: none; }
+    .ts-left-col { padding-right: 0; }
+  }
+  @media (max-width: 600px) {
+    .ts-left-col { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+(function () {
+  var members = {
+    luuk:   { name: 'Luuk Scheffer',        role: 'Eigenaar & Designer',       bio: 'Mede-oprichter van Merqo en verantwoordelijk voor design. Geeft merken hun visuele identiteit: van eerste logo-schets tot volledige campagnebeelden.',                               linkedin: 'https://www.linkedin.com/company/merqo', photo: '/assets/team/luuk.jpg'   },
+    bleike: { name: 'Bleike Klein Breteler', role: 'Eigenaar & Designer',       bio: 'Mede-oprichter van Merqo en verantwoordelijk voor design. Vertaalt merkstrategie naar visuele concepten die écht werken en blijven hangen.',                                         linkedin: 'https://www.linkedin.com/company/merqo', photo: '/assets/team/bleike.jpg' },
+    teun:   { name: 'Teun Wolters',          role: 'Marketing Strateeg & AI',   bio: 'Verantwoordelijk voor marketing strategie en AI-toepassingen. Zorgt dat merken slimmer en sneller groeien, met data als kompas en creativiteit als motor.',                         linkedin: 'https://www.linkedin.com/in/teunwolters',photo: '/assets/team/teun.jpg'   },
+    naomi:  { name: 'Naomi Thalen',          role: 'Social Media Marketeer',    bio: 'Beheert social media met strategie en gevoel. Zet merken neer op de kanalen waar hun doelgroep zit en weet precies wat wel en niet werkt.',                                           linkedin: 'https://www.linkedin.com/company/merqo', photo: '/assets/team/naomi.jpg'  },
+    jette:  { name: 'Jette Massop',          role: 'Stagiaire',                 bio: 'Ondersteunt het team met frisse ideeën en een scherp oog voor detail. Groeit elke dag mee met het bureau en levert al vanaf dag één echte bijdragen.',                               linkedin: 'https://www.linkedin.com/company/merqo', photo: '/assets/team/jette.jpg'  }
+  };
+
+  var current = null;
+
+  function updatePanel(id) {
+    if (id === current) return;
+    current = id;
+    var m = members[id];
+    if (!m) return;
+    var panel = document.getElementById('ts-dynamic-panel');
+    if (!panel) return;
+    panel.style.opacity = '0';
+    panel.style.transform = 'translateY(10px)';
+    setTimeout(function () {
+      document.getElementById('ts-dyn-photo').src         = m.photo;
+      document.getElementById('ts-dyn-photo').alt         = m.name;
+      document.getElementById('ts-dyn-role').textContent  = m.role;
+      document.getElementById('ts-dyn-name').textContent  = m.name;
+      document.getElementById('ts-dyn-bio').textContent   = m.bio;
+      document.getElementById('ts-dyn-linkedin').href     = m.linkedin;
+      panel.style.opacity   = '1';
+      panel.style.transform = 'translateY(0)';
+    }, 180);
+  }
+
+  function init() {
+    var cards = Array.from(document.querySelectorAll('[data-member]'));
+    if (!cards.length) return;
+
+    // Toon altijd het meest zichtbare lid: kaart waarvan het midden het dichtst bij het midden van het scherm zit
+    function pickActive() {
+      var mid = window.innerHeight / 2;
+      var best = null, bestDist = Infinity;
+      cards.forEach(function(c) {
+        var r = c.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return; // buiten beeld
+        var cardMid = r.top + r.height / 2;
+        var dist = Math.abs(cardMid - mid);
+        if (dist < bestDist) { bestDist = dist; best = c; }
+      });
+      if (best) updatePanel(best.dataset.member);
+    }
+
+    pickActive();
+    window.addEventListener('scroll', pickActive, { passive: true });
+  }
+
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', init)
+    : init();
+})();
+</script>
+
+
+{{# ── Merkvolwassenheid-check ── #}}
+<section style="background: #F0EDE7; padding: 96px 24px;">
+  <div style="max-width: 42rem; margin: 0 auto;">
+
+    <div x-data="{
+      step: 0,
+      answers: [],
+      done: false,
+      questions: [
+        {
+          nr: 1,
+          vraag: 'Kun je in één zin uitleggen waarom klanten voor jou kiezen en niet voor je concurrent?',
+          opties: [
+            { label: 'A', tekst: 'Ja, dat staat zelfs op papier', punten: 3 },
+            { label: 'B', tekst: 'Ja, maar het verschilt per gesprek', punten: 2 },
+            { label: 'C', tekst: 'Niet echt, we zeggen gewoon wat we doen', punten: 1 }
+          ]
+        },
+        {
+          nr: 2,
+          vraag: 'Hoe reageren nieuwe klanten als ze jouw website voor het eerst zien?',
+          opties: [
+            { label: 'A', tekst: 'Ze begrijpen direct wat we doen en voor wie', punten: 3 },
+            { label: 'B', tekst: 'Ze moeten wel even doorlezen', punten: 2 },
+            { label: 'C', tekst: 'We horen vaak \'interessant\' maar zonder verdere actie', punten: 1 }
+          ]
+        },
+        {
+          nr: 3,
+          vraag: 'Wat gebeurt er als je vraagt waarom een klant ooit voor jullie koos?',
+          opties: [
+            { label: 'A', tekst: 'Ze noemen specifieke dingen die ons onderscheiden', punten: 3 },
+            { label: 'B', tekst: 'Ze zeggen \'goede prijs-kwaliteitsverhouding\'', punten: 2 },
+            { label: 'C', tekst: 'Eigenlijk weten we dat niet precies', punten: 1 }
+          ]
+        },
+        {
+          nr: 4,
+          vraag: 'Hoe bepaal je je marketingbudget?',
+          opties: [
+            { label: 'A', tekst: 'Op basis van doelen en verwachte ROI per kanaal', punten: 3 },
+            { label: 'B', tekst: 'Wat overblijft na andere kosten', punten: 2 },
+            { label: 'C', tekst: 'We doen eigenlijk nauwelijks aan marketing', punten: 1 }
+          ]
+        },
+        {
+          nr: 5,
+          vraag: 'Als je morgen verdubbeld zou groeien: is jouw merk daar klaar voor?',
+          opties: [
+            { label: 'A', tekst: 'Ja, we kunnen dat aan zonder onze identiteit te verliezen', punten: 3 },
+            { label: 'B', tekst: 'Deels, maar het zou rommelig worden', punten: 2 },
+            { label: 'C', tekst: 'Eerlijk gezegd niet', punten: 1 }
+          ]
+        }
+      ],
+      get score() {
+        return this.answers.reduce((s, p) => s + p, 0);
+      },
+      get niveau() {
+        const s = this.score;
+        if (s >= 13) return { nr: 5, tekst: 'Jouw merk is een strategisch asset. Verfijning is de enige volgende stap.' };
+        if (s >= 10) return { nr: 4, tekst: 'Sterke basis, maar er lekt nog merkpotentieel weg op cruciale momenten.' };
+        if (s >= 7)  return { nr: 3, tekst: 'Jouw merk werkt, maar stuurt nog niet actief. Dat kost je klanten zonder dat je het merkt.' };
+        if (s >= 4)  return { nr: 2, tekst: 'Jouw merk volgt jou, maar jij stuurt het niet. Dat geeft anderen de ruimte om je positie in te nemen.' };
+        return       { nr: 1, tekst: 'Jouw merk bestaat, maar presteert nog niet. Dit is het moment om dat te veranderen.' };
+      },
+      kies(punten) {
+        this.answers.push(punten);
+        if (this.step < this.questions.length - 1) {
+          this.step++;
+        } else {
+          this.done = true;
+        }
+      },
+      opnieuw() {
+        this.step = 0;
+        this.answers = [];
+        this.done = false;
+      }
+    }">
+
+      {{# Intro #}}
+      <div style="text-align: center; margin-bottom: 48px;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+          <div style="width: 32px; height: 1px; background: #ed6b46;"></div>
+          <span style="font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #ed6b46;">Merkvolwassenheid-check</span>
+          <div style="width: 32px; height: 1px; background: #ed6b46;"></div>
+        </div>
+        <h2 style="font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; color: #1E1F1B; line-height: 1.15; margin: 0 0 16px;">Hoe sterk is jouw merk?</h2>
+        <p style="font-family: var(--font-body); font-size: 1.0625rem; color: #4a4a44; max-width: 32rem; margin: 0 auto;">5 vragen. Geen bullshit. Ontdek in 2 minuten op welk niveau jouw merk opereert.</p>
+      </div>
+
+      {{# Kaart #}}
+      <div style="background: #fff; border-radius: 24px; padding: clamp(32px, 6vw, 56px); box-shadow: 0 2px 24px rgba(30,31,27,0.06);">
+
+        {{# Vragen #}}
+        <template x-if="!done">
+          <div>
+            {{# Progress bar #}}
+            <div style="margin-bottom: 36px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-family: var(--font-body); font-size: 13px; color: #8a8a7e;" x-text="'Vraag ' + (step + 1) + ' van ' + questions.length"></span>
+                <span style="font-family: var(--font-body); font-size: 13px; color: #8a8a7e;" x-text="Math.round(((step) / questions.length) * 100) + '%'"></span>
+              </div>
+              <div style="height: 4px; background: #F0EDE7; border-radius: 99px; overflow: hidden;">
+                <div style="height: 100%; background: #ed6b46; border-radius: 99px; transition: width 0.35s ease;"
+                     :style="'width: ' + ((step / questions.length) * 100) + '%'"></div>
+              </div>
+            </div>
+
+            {{# Vraagnummer eyebrow #}}
+            <div style="margin-bottom: 12px;">
+              <span style="font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #ed6b46;" x-text="'Vraag ' + questions[step].nr"></span>
+            </div>
+
+            {{# Vraag #}}
+            <p style="font-family: var(--font-display); font-size: clamp(1.125rem, 2.5vw, 1.375rem); font-weight: 600; color: #1E1F1B; line-height: 1.35; margin: 0 0 28px;" x-text="questions[step].vraag"></p>
+
+            {{# Antwoorden #}}
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <template x-for="(optie, i) in questions[step].opties" :key="i">
+                <button
+                  @click="kies(optie.punten)"
+                  x-data="{ hovered: false }"
+                  @mouseenter="hovered = true" @mouseleave="hovered = false"
+                  :style="hovered ? 'border-color:#ed6b46; background:#fff8f6; transform:translateX(4px);' : 'border-color:#e5e2db; background:#fff; transform:translateX(0);'"
+                  style="display: flex; align-items: center; gap: 16px; width: 100%; text-align: left; padding: 18px 20px; border: 1.5px solid #e5e2db; border-radius: 12px; cursor: pointer; font-family: var(--font-body); font-size: 1rem; color: #1E1F1B; line-height: 1.4; transition: border-color 0.18s, background 0.18s, transform 0.12s;">
+                  <span style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid #e5e2db; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #8a8a7e;" x-text="optie.label"></span>
+                  <span x-text="optie.tekst"></span>
+                </button>
+              </template>
+            </div>
+          </div>
+        </template>
+
+        {{# Resultaat #}}
+        <template x-if="done">
+          <div style="text-align: center;">
+            {{# Progress bar volledig #}}
+            <div style="margin-bottom: 40px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-family: var(--font-body); font-size: 13px; color: #8a8a7e;">Voltooid</span>
+                <span style="font-family: var(--font-body); font-size: 13px; color: #8a8a7e;">100%</span>
+              </div>
+              <div style="height: 4px; background: #F0EDE7; border-radius: 99px; overflow: hidden;">
+                <div style="height: 100%; width: 100%; background: #ed6b46; border-radius: 99px;"></div>
+              </div>
+            </div>
+
+            {{# Niveau badge #}}
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; border-radius: 50%; background: #FFF0EB; margin-bottom: 20px;">
+              <span style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: #ed6b46;" x-text="niveau.nr"></span>
+            </div>
+
+            <div style="margin-bottom: 8px;">
+              <span style="font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #a8c8ca;">Jouw merkvolwassenheid</span>
+            </div>
+
+            <h3 style="font-family: var(--font-display); font-size: clamp(1.25rem, 3vw, 1.625rem); font-weight: 700; color: #1E1F1B; margin: 0 0 16px;" x-text="'Niveau ' + niveau.nr"></h3>
+
+            <p style="font-family: var(--font-body); font-size: 1.0625rem; color: #4a4a44; line-height: 1.6; max-width: 28rem; margin: 0 auto 36px;" x-text="niveau.tekst"></p>
+
+            {{# CTA knop #}}
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+              <a href="/scan" class="btn-primary">
+                Doe de gratis scan
+              </a>
+              <button @click="opnieuw()"
+                      x-data="{ hov: false }" @mouseenter="hov=true" @mouseleave="hov=false"
+                      :style="hov ? 'color:#1E1F1B;' : 'color:#8a8a7e;'"
+                      style="background: none; border: none; font-family: var(--font-body); font-size: 0.9rem; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; padding: 0; transition: color 0.18s;">
+                Doe de check opnieuw
+              </button>
+            </div>
+          </div>
+        </template>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{{# ── Waarden ── #}}
+<section style="background:#F0EDE7; padding:6rem 0;" data-reveal>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; border-radius:24px; overflow:hidden;" class="waarden-strip">
+
+      {{# Kaart 1: Eerlijk #}}
+      <div style="background:#1E1F1B; padding:3rem 2.5rem; display:flex; flex-direction:column; gap:2rem;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(237,107,70,0.15);
+                    display:flex; align-items:center; justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:2.5px;
+                      text-transform:uppercase; color:#ed6b46; margin-bottom:0.75rem;">01</div>
+          <h3 style="font-family:var(--font-display); font-size:clamp(22px,2.5vw,30px); font-weight:800;
+                     letter-spacing:-0.04em; color:#F0EDE7; margin:0 0 1rem; line-height:1.1;">Eerlijk boven alles</h3>
+          <p style="font-family:var(--font-body); font-size:14px; line-height:1.8; color:rgba(240,237,231,0.55); margin:0;">
+            We zeggen wat we denken, ook als dat moeilijk is. Geen gladde verkooppraatjes, maar een partner die altijd recht voor zijn raap is.
+          </p>
+        </div>
+        <div style="margin-top:auto; padding-top:1.5rem; border-top:1px solid rgba(240,237,231,0.08);">
+          <span style="font-family:var(--font-display); font-size:11px; font-weight:700; letter-spacing:1px;
+                       color:rgba(240,237,231,0.25); text-transform:uppercase;">Merqo principe</span>
+        </div>
+      </div>
+
+      {{# Kaart 2: Vakmanschap #}}
+      <div style="background:#ed6b46; padding:3rem 2.5rem; display:flex; flex-direction:column; gap:2rem;">
+        <div style="width:48px; height:48px; border-radius:14px; background:rgba(255,255,255,0.18);
+                    display:flex; align-items:center; justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:2.5px;
+                      text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:0.75rem;">02</div>
+          <h3 style="font-family:var(--font-display); font-size:clamp(22px,2.5vw,30px); font-weight:800;
+                     letter-spacing:-0.04em; color:#fff; margin:0 0 1rem; line-height:1.1;">Vakmanschap</h3>
+          <p style="font-family:var(--font-body); font-size:14px; line-height:1.8; color:rgba(255,255,255,0.7); margin:0;">
+            Elk detail telt, van strategie tot eindproduct. Wij nemen de tijd om het goed te doen, want middelmatig is geen optie als jouw merk op het spel staat.
+          </p>
+        </div>
+        <div style="margin-top:auto; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.15);">
+          <span style="font-family:var(--font-display); font-size:11px; font-weight:700; letter-spacing:1px;
+                       color:rgba(255,255,255,0.3); text-transform:uppercase;">Merqo principe</span>
+        </div>
+      </div>
+
+      {{# Kaart 3: Resultaat #}}
+      <div style="background:#F5F2EC; padding:3rem 2.5rem; display:flex; flex-direction:column; gap:2rem;
+                  border:2px solid rgba(30,31,27,0.08);">
+        <div style="width:48px; height:48px; border-radius:14px; background:#1E1F1B;
+                    display:flex; align-items:center; justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0EDE7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:2.5px;
+                      text-transform:uppercase; color:rgba(30,31,27,0.35); margin-bottom:0.75rem;">03</div>
+          <h3 style="font-family:var(--font-display); font-size:clamp(22px,2.5vw,30px); font-weight:800;
+                     letter-spacing:-0.04em; color:#1E1F1B; margin:0 0 1rem; line-height:1.1;">Resultaat als maatstaf</h3>
+          <p style="font-family:var(--font-body); font-size:14px; line-height:1.8; color:rgba(30,31,27,0.55); margin:0;">
+            Mooie merken die ook écht werken. Wij meten, leren en optimaliseren zodat jouw investering terugkomt in groei, herkenning en klanten die blijven.
+          </p>
+        </div>
+        <div style="margin-top:auto; padding-top:1.5rem; border-top:1px solid rgba(30,31,27,0.08);">
+          <span style="font-family:var(--font-display); font-size:11px; font-weight:700; letter-spacing:1px;
+                       color:rgba(30,31,27,0.2); text-transform:uppercase;">Merqo principe</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    .waarden-strip { grid-template-columns: 1fr !important; border-radius: 20px !important; }
+  }
+</style>
+
+
+{{# ── Waarom Merqo ── #}}
+<section style="background:#F5F2EC; padding:6rem 0;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;" class="waarom-grid">
+
+      <div style="position:sticky; top:120px;" class="waarom-left" data-reveal>
+        <div class="eyebrow" style="margin-bottom:1.5rem;">
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-text">Waarom Merqo</div>
+        </div>
+        <h2 style="font-family:var(--font-display); font-weight:800;
+                   font-size:clamp(28px,3.5vw,44px); letter-spacing:-0.04em;
+                   line-height:1.06; color:#1E1F1B; margin:0 0 1.5rem;">
+          Niet groter.<br>Wel beter.
+        </h2>
+        <p style="font-family:var(--font-body); font-size:15px; line-height:1.8;
+                  color:rgba(30,31,27,0.55); margin:0 0 2.5rem; max-width:34ch;">
+          Veel bureaus groeien door meer aan te nemen en meer te beloven. Wij groeien door beter te worden in wat we doen, en dat te laten zien in het werk.
+        </p>
+        <a href="/contact" class="btn-primary">Plan een gesprek</a>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:0;" data-stagger>
+
+        <div style="padding:2.25rem 0; border-top:1px solid rgba(30,31,27,0.1);" data-stagger-item>
+          <div style="display:flex; gap:1.5rem; align-items:flex-start;">
+            <div style="width:40px; height:40px; border-radius:12px; background:#ed6b46;
+                        display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <h3 style="font-family:var(--font-display); font-size:1.1rem; font-weight:800;
+                         letter-spacing:-0.03em; color:#1E1F1B; margin:0 0 0.5rem;">Strategie voor uitvoering</h3>
+              <p style="font-family:var(--font-body); font-size:0.9rem; line-height:1.75;
+                        color:rgba(30,31,27,0.55); margin:0;">
+                We beginnen niet met een logo of een campagne. We beginnen met de vraag waarom. Pas als de strategie klopt, gaat het creatieve team aan de slag.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:2.25rem 0; border-top:1px solid rgba(30,31,27,0.1);" data-stagger-item>
+          <div style="display:flex; gap:1.5rem; align-items:flex-start;">
+            <div style="width:40px; height:40px; border-radius:12px; background:#8fcdd0;
+                        display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div>
+              <h3 style="font-family:var(--font-display); font-size:1.1rem; font-weight:800;
+                         letter-spacing:-0.03em; color:#1E1F1B; margin:0 0 0.5rem;">Alles onder één dak</h3>
+              <p style="font-family:var(--font-body); font-size:0.9rem; line-height:1.75;
+                        color:rgba(30,31,27,0.55); margin:0;">
+                Strategie, branding, website, marketing en fotografie, dat doen wij allemaal zelf. Geen losse partijen die langs elkaar werken, maar één team met één visie op jouw merk.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:2.25rem 0; border-top:1px solid rgba(30,31,27,0.1);" data-stagger-item>
+          <div style="display:flex; gap:1.5rem; align-items:flex-start;">
+            <div style="width:40px; height:40px; border-radius:12px; background:#1E1F1B;
+                        display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <h3 style="font-family:var(--font-display); font-size:1.1rem; font-weight:800;
+                         letter-spacing:-0.03em; color:#1E1F1B; margin:0 0 0.5rem;">Persoonlijk, niet procesmatig</h3>
+              <p style="font-family:var(--font-body); font-size:0.9rem; line-height:1.75;
+                        color:rgba(30,31,27,0.55); margin:0;">
+                Je werkt direct met de mensen die jouw merk bouwen. Geen accountmanager als doorgeefluik, maar echte betrokkenheid van het eerste gesprek tot de oplevering.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:2.25rem 0; border-top:1px solid rgba(30,31,27,0.1); border-bottom:1px solid rgba(30,31,27,0.1);" data-stagger-item>
+          <div style="display:flex; gap:1.5rem; align-items:flex-start;">
+            <div style="width:40px; height:40px; border-radius:12px; background:#f5b87a;
+                        display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <h3 style="font-family:var(--font-display); font-size:1.1rem; font-weight:800;
+                         letter-spacing:-0.03em; color:#1E1F1B; margin:0 0 0.5rem;">Resultaat is de maatstaf</h3>
+              <p style="font-family:var(--font-body); font-size:0.9rem; line-height:1.75;
+                        color:rgba(30,31,27,0.55); margin:0;">
+                Mooi werk dat niets oplevert is geen goed werk. Elk traject heeft een doel dat meetbaar is, en we zijn pas tevreden als jij dat ook bent.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width:900px) {
+    .waarom-grid { grid-template-columns:1fr !important; gap:3rem !important; }
+    .waarom-left { position:static !important; }
+  }
+</style>
+
+{{# ── CTA ── #}}
+<section class="oo-cta" data-reveal>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 oo-cta__inner">
+    <p class="oo-cta__eyebrow">Klaar om te bouwen?</p>
+    <h2 class="oo-cta__heading">
+      Laten we samen iets<br>
+      <span style="color:#ed6b46; font-style:italic;">maken wat blijft.</span>
+    </h2>
+    <p class="oo-cta__tagline">
+      Plan een vrijblijvend gesprek en ontdek wat Merqo voor jouw merk kan betekenen.
+    </p>
+    <div style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;">
+      <a href="/contact" class="btn-primary">Plan een gesprek</a>
+      <a href="/scan" class="btn-ghost" style="color:#F0EDE7; border-color:rgba(240,237,231,0.2);">Doe de gratis scan</a>
+    </div>
+  </div>
+</section>
+
+
+<style>
+/* ════════════════════════════════════════
+   OVER ONS - PAGE STYLES
+   ════════════════════════════════════════ */
+
+/* ── Manifest ── */
+.oo-manifest {
+  background: #F0EDE7;
+  padding: 6rem 0;
+}
+.oo-manifest__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+@media (min-width: 1024px) {
+  .oo-manifest__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .oo-manifest__left {
+    position: sticky;
+    top: 8rem;
+  }
+}
+.oo-manifest__statement {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: #1E1F1B;
+  line-height: 1.2;
+}
+.oo-manifest__right {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.oo-manifest__item {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+.oo-manifest__number {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #ed6b46;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  padding-top: 0.25rem;
+}
+.oo-manifest__item-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1E1F1B;
+  margin-bottom: 0.5rem;
+}
+.oo-manifest__item-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #6B6860;
+  line-height: 1.75;
+}
+
+/* ── Team ── */
+.oo-team {
+  background: #EDEAE3;
+  padding: 6rem 0;
+}
+.oo-team__intro {
+  margin-bottom: 3.5rem;
+}
+.oo-team__tagline {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  color: #6B6860;
+  max-width: 40rem;
+  line-height: 1.6;
+}
+.oo-team__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .oo-team__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+}
+.oo-team__card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.oo-team__card:hover {
+  transform: translateY(-8px);
+}
+.oo-team__photo-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #D8D4CE;
+}
+.oo-team__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.oo-team__info {
+  padding: 0 0.25rem;
+}
+.oo-team__name {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #1E1F1B;
+  margin: 0 0 0.2rem;
+}
+.oo-team__role {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: #6B6860;
+  margin: 0;
+}
+
+/* ── Waarden ── */
+.oo-waarden {
+  background: #F0EDE7;
+  padding: 6rem 0;
+}
+.oo-waarden__intro {
+  margin-bottom: 3.5rem;
+}
+.oo-waarden__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .oo-waarden__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+.oo-waarden__card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: box-shadow 0.25s ease;
+}
+.oo-waarden__card:hover {
+  box-shadow: 0 12px 40px rgba(30, 31, 27, 0.08);
+}
+.oo-waarden__icon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F7F0EA;
+  border-radius: 12px;
+}
+.oo-waarden__card-title {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #1E1F1B;
+}
+.oo-waarden__card-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #6B6860;
+  line-height: 1.75;
+}
+
+/* ── CTA ── */
+.oo-cta {
+  background: #1E1F1B;
+  padding: 7rem 0;
+}
+.oo-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.75rem;
+}
+.oo-cta__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a8c8ca;
+}
+.oo-cta__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 800;
+  color: #F0EDE7;
+  line-height: 1.15;
+  margin: 0;
+}
+.oo-cta__tagline {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  color: rgba(240, 237, 231, 0.65);
+  max-width: 36rem;
+  line-height: 1.6;
+  margin: 0;
+}
+</style>

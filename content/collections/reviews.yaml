@@ -1,0 +1,5 @@
+title: Reviews
+template: false
+route: false
+sort_field: order
+sort_direction: asc

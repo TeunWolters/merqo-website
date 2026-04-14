@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ seo_title ?? title ?? site:name }} | Merqo Creative Agency</title>
+    <meta name="description" content="{{ seo_description ?? 'Merqo is een strategisch creatief bureau in Hengelo. Wij bouwen merken via branding, strategie, marketing, websites, fotografie en drukwerk.' }}">
+    <meta name="robots" content="index, follow">
+
+    {{# Geo meta - Local SEO #}}
+    <meta name="geo.region" content="NL-OV">
+    <meta name="geo.placename" content="Hengelo, Overijssel">
+    <meta name="geo.position" content="52.2660;6.7937">
+    <meta name="ICBM" content="52.2660, 6.7937">
+
+    {{# Favicons #}}
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    {{# Google Fonts - async voor render-performance #}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
+
+    {{# Open Graph #}}
+    <meta property="og:title" content="{{ seo_title ?? title ?? site:name }} | Merqo Creative Agency">
+    <meta property="og:description" content="{{ seo_description ?? 'Strategisch creatief bureau in Hengelo. Branding, strategie, marketing, websites, fotografie en drukwerk.' }}">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:site_name" content="Merqo Creative Agency">
+    <meta property="og:url" content="{{ current_url }}">
+    <meta property="og:image" content="{{ seo_image ?? '/assets/team/team-groep-grijs.jpg' }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    {{# Twitter Card #}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@merqo_agency">
+    <meta name="twitter:title" content="{{ seo_title ?? title ?? site:name }} | Merqo Creative Agency">
+    <meta name="twitter:description" content="{{ seo_description ?? 'Strategisch creatief bureau in Hengelo. Branding, strategie, marketing, websites, fotografie en drukwerk.' }}">
+    <meta name="twitter:image" content="{{ seo_image ?? '/assets/team/team-groep-grijs.jpg' }}">
+
+    {{# Canonical #}}
+    <link rel="canonical" href="{{ current_url }}">
+
+    {{# JSON-LD - Organisation + LocalBusiness #}}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://merqo.nl/#organization",
+          "name": "Merqo",
+          "legalName": "Merqo B.V.",
+          "url": "https://merqo.nl",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://merqo.nl/assets/merqo-logo-dark.svg"
+          },
+          "description": "Merqo is een strategisch creatief bureau in Hengelo dat merken bouwt via branding, strategie, marketing, websites, fotografie en drukwerk.",
+          "email": "info@merqo.nl",
+          "telephone": "+31630772283",
+          "vatID": "NL868304591B01",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Hengelo",
+            "postalCode": "7558 PJ",
+            "addressRegion": "Overijssel",
+            "addressCountry": "NL"
+          },
+          "sameAs": [
+            "https://www.instagram.com/merqo.agency",
+            "https://www.linkedin.com/company/merqo"
+          ]
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://merqo.nl/#localbusiness",
+          "name": "Merqo Creative Agency",
+          "image": "https://merqo.nl/assets/team/team-groep-grijs.jpg",
+          "url": "https://merqo.nl",
+          "telephone": "+31630772283",
+          "email": "info@merqo.nl",
+          "priceRange": "€€",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Hengelo",
+            "postalCode": "7558 PJ",
+            "addressRegion": "Overijssel",
+            "addressCountry": "NL"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.2660,
+            "longitude": 6.7937
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+              "opens": "09:00",
+              "closes": "17:30"
+            }
+          ],
+          "areaServed": ["Hengelo","Enschede","Almelo","Deventer","Zwolle","Overijssel"],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Diensten",
+            "itemListElement": [
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Branding","url":"https://merqo.nl/branding"}},
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Marketing","url":"https://merqo.nl/marketing"}},
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Websites","url":"https://merqo.nl/websites"}},
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Fotografie en Video","url":"https://merqo.nl/fotografie-video"}},
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Merkstrategie","url":"https://merqo.nl/strategie"}},
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Drukwerk","url":"https://merqo.nl/drukwerk"}}
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://merqo.nl/#website",
+          "url": "https://merqo.nl",
+          "name": "Merqo Creative Agency",
+          "publisher": {"@id": "https://merqo.nl/#organization"},
+          "inLanguage": "nl-NL"
+        }
+      ]
+    }
+    </script>
+
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    {{ vite src="resources/js/site.js|resources/css/site.css" }}
+
+    {{# Preload hero image per pagina #}}
+    {{ if preload_image }}
+    <link rel="preload" as="image" href="{{ preload_image }}">
+    {{ /if }}
+
+    {{# BreadcrumbList schema voor subpagina's #}}
+    {{ if segment_1 }}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://merqo.nl/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ title }}",
+          "item": "{{ current_url }}"
+        }
+      ]
+    }
+    </script>
+    {{ /if }}
+  </head>
+
+  <body>
+
+    {{# ── Page loader ── #}}
+    <div id="site-loader" style="position:fixed; inset:0; z-index:99999; background:#F4F1EC; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none;">
+      <img src="/assets/merqo-logo-dark.svg" alt="Merqo" id="loader-logo"
+           style="height:32px; width:auto; opacity:0; transform:translateY(10px); transition:opacity 0.5s ease, transform 0.5s ease;">
+      <div id="loader-bar-wrap" style="width:120px; height:1.5px; background:rgba(30,31,27,0.1); border-radius:99px; margin-top:2rem; overflow:hidden; opacity:0; transition:opacity 0.4s ease 0.3s;">
+        <div id="loader-bar" style="height:100%; width:0%; background:#ed6b46; border-radius:99px; transition:width 1.1s cubic-bezier(0.16,1,0.3,1);"></div>
+      </div>
+    </div>
+
+    <div id="page-transition" style="position:fixed; inset:0; background:#160a06; z-index:9999; pointer-events:none; opacity:0; transition:opacity 0.35s ease;"></div>
+
+    {{# Custom cursor #}}
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+
+    {{ partial:header }}
+
+    <main>
+      {{ template_content }}
+    </main>
+
+    {{ partial:footer }}
+
+    {{# WhatsApp floating button #}}
+    <a href="https://wa.me/31630772283?text=Hallo%20Merqo%2C%20ik%20heb%20een%20vraag%20over%20jullie%20diensten."
+       target="_blank" rel="noopener" aria-label="Chat met Luuk Scheffer via WhatsApp"
+       style="position:fixed; bottom:1.75rem; right:1.75rem; z-index:9000;
+              width:54px; height:54px; border-radius:50%; background:#25D366;
+              display:flex; align-items:center; justify-content:center;
+              box-shadow:0 4px 24px rgba(37,211,102,0.38);
+              transition:transform 0.2s ease, box-shadow 0.2s ease;"
+       onmouseenter="this.style.transform='scale(1.08)'; this.style.boxShadow='0 6px 30px rgba(37,211,102,0.5)'"
+       onmouseleave="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 24px rgba(37,211,102,0.38)'">
+      <svg width="27" height="27" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.664 4.826 1.826 6.838L2 30l7.384-1.932A13.916 13.916 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.55 11.55 0 01-5.888-1.608l-.422-.25-4.374 1.146 1.166-4.256-.276-.438A11.554 11.554 0 014.4 16C4.4 9.592 9.592 4.4 16 4.4S27.6 9.592 27.6 16 22.408 27.6 16 27.6zm6.342-8.626c-.346-.174-2.048-1.01-2.366-1.126-.318-.116-.55-.174-.782.174-.232.348-.894 1.126-1.096 1.358-.202.232-.404.26-.75.086-.346-.174-1.46-.538-2.782-1.716-1.028-.916-1.722-2.05-1.924-2.398-.202-.348-.022-.536.152-.708.156-.156.346-.406.52-.608.174-.202.23-.348.346-.58.116-.232.058-.434-.028-.608-.088-.174-.782-1.88-1.07-2.576-.282-.676-.568-.584-.782-.596-.202-.01-.434-.012-.664-.012-.232 0-.608.086-.924.434-.318.348-1.21 1.182-1.21 2.884 0 1.702 1.24 3.348 1.41 3.58.174.232 2.44 3.726 5.914 5.224.826.356 1.47.57 1.972.728.828.264 1.582.228 2.178.138.664-.1 2.048-.836 2.338-1.644.29-.808.29-1.5.202-1.646-.086-.144-.318-.23-.664-.406z"/>
+      </svg>
+    </a>
+
+    <script>
+(function() {
+  var loader  = document.getElementById('site-loader');
+  var logo    = document.getElementById('loader-logo');
+  var barWrap = document.getElementById('loader-bar-wrap');
+  var bar     = document.getElementById('loader-bar');
+
+  // Toon logo + balk
+  requestAnimationFrame(function() {
+    logo.style.opacity    = '1';
+    logo.style.transform  = 'translateY(0)';
+    barWrap.style.opacity = '1';
+    setTimeout(function() { bar.style.width = '100%'; }, 60);
+  });
+
+  // Na 1.5s → fade out loader
+  setTimeout(function() {
+    loader.style.transition = 'opacity 0.5s ease';
+    loader.style.opacity    = '0';
+    setTimeout(function() { loader.style.display = 'none'; }, 500);
+  }, 1500);
+})();
+
+(function() {
+  var overlay = document.getElementById('page-transition');
+  // Fade in on load
+  window.addEventListener('DOMContentLoaded', function() {
+    overlay.style.opacity = '0';
+  });
+  // Fade out to new page on link click
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('http') || a.target === '_blank') return;
+    e.preventDefault();
+    overlay.style.opacity = '1';
+    setTimeout(function() { window.location.href = href; }, 340);
+  });
+  // Fade back in when returning
+  window.addEventListener('pageshow', function() {
+    overlay.style.opacity = '0';
+  });
+})();
+</script>
+  </body>
+</html>

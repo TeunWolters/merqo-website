@@ -1,0 +1,69 @@
+title: 'Scan Aanvraag'
+fields:
+  -
+    handle: title
+    field:
+      type: text
+      display: Bedrijfsnaam
+      required: true
+  -
+    handle: naam
+    field:
+      type: text
+      display: 'Naam contactpersoon'
+  -
+    handle: email
+    field:
+      type: text
+      display: 'E-mailadres'
+  -
+    handle: website
+    field:
+      type: text
+      display: Website
+  -
+    handle: branche
+    field:
+      type: text
+      display: Branche
+  -
+    handle: kanalen
+    field:
+      type: text
+      display: 'Huidige marketingkanalen'
+  -
+    handle: doel
+    field:
+      type: text
+      display: Doelstelling
+  -
+    handle: uitdaging
+    field:
+      type: text
+      display: 'Grootste uitdaging'
+  -
+    handle: schaal
+    field:
+      type: text
+      display: 'Bedrijfsschaal'
+  -
+    handle: status
+    field:
+      type: select
+      display: Status
+      options:
+        nieuw: Nieuw
+        in_behandeling: 'In behandeling'
+        afgerond: Afgerond
+      default: nieuw
+  -
+    handle: notities
+    field:
+      type: textarea
+      display: 'Interne notities'
+      instructions: 'Alleen zichtbaar voor Merqo.'
+  -
+    handle: date
+    field:
+      type: date
+      display: 'Datum aanvraag'

@@ -1,0 +1,39 @@
+title: 'Contact Aanvraag'
+fields:
+  -
+    handle: title
+    field:
+      type: text
+      display: Naam
+      required: true
+  -
+    handle: email
+    field:
+      type: text
+      display: 'E-mailadres'
+  -
+    handle: message
+    field:
+      type: textarea
+      display: Bericht
+  -
+    handle: status
+    field:
+      type: select
+      display: Status
+      options:
+        nieuw: Nieuw
+        in_behandeling: 'In behandeling'
+        afgerond: Afgerond
+      default: nieuw
+  -
+    handle: notities
+    field:
+      type: textarea
+      display: 'Interne notities'
+      instructions: 'Alleen zichtbaar voor Merqo.'
+  -
+    handle: date
+    field:
+      type: date
+      display: 'Datum aanvraag'

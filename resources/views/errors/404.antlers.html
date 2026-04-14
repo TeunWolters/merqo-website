@@ -1,0 +1,61 @@
+<section data-header-bg="dark" style="background:#160a06; min-height:100vh; position:relative; overflow:hidden;">
+
+  {{# Coral gradient background image #}}
+  <div style="position:absolute; inset:0; z-index:0;">
+    <img src="/assets/brand/gradient-bg-coral.png" alt="" role="presentation"
+         style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;">
+  </div>
+
+  {{# Dark vignette overlay #}}
+  <div style="position:absolute; inset:0; z-index:1;
+              background:radial-gradient(ellipse at center, rgba(22,10,6,0.3) 0%, rgba(22,10,6,0.75) 100%);"></div>
+
+  {{# Grain overlay #}}
+  <div class="hero-grain" style="position:absolute; inset:0; z-index:2; pointer-events:none;"></div>
+
+  {{# Giant background "404" number #}}
+  <span aria-hidden="true"
+        style="position:absolute; inset:0; z-index:3;
+               display:flex; align-items:center; justify-content:center;
+               font-size:clamp(120px,20vw,220px); font-weight:800;
+               color:rgba(240,237,231,0.06); letter-spacing:-0.05em; line-height:1;
+               pointer-events:none; user-select:none;"
+        class="font-display">
+    404
+  </span>
+
+  {{# Center content #}}
+  <div style="position:relative; z-index:4; min-height:100vh;
+              display:flex; align-items:center; justify-content:center; text-align:center;">
+    <div style="padding:2rem 1.5rem; max-width:640px; width:100%;">
+
+      {{# Eyebrow #}}
+      <p style="color:rgba(240,237,231,0.4); font-size:0.75rem; font-weight:500;
+                letter-spacing:0.12em; text-transform:uppercase; margin-bottom:2rem;">
+        404 · Pagina niet gevonden
+      </p>
+
+      {{# Headline #}}
+      <h1 class="font-display"
+          style="font-size:clamp(36px,5vw,64px); font-weight:800;
+                 color:#F0EDE7; letter-spacing:-0.03em; line-height:1.05;
+                 margin-bottom:1.5rem;">
+        Dit merk bestaat nog niet.
+      </h1>
+
+      {{# Body copy #}}
+      <p style="color:rgba(240,237,231,0.5); max-width:40ch; margin:0 auto 2.5rem;
+                line-height:1.65; font-size:1rem;">
+        De pagina die je zoekt is verplaatst, verwijderd of heeft nooit bestaan. Laten we je terugbrengen.
+      </p>
+
+      {{# CTA buttons #}}
+      <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:center;">
+        <a href="/" class="btn-primary">Terug naar home</a>
+        <a href="/projecten" class="btn-ghost">Bekijk ons werk</a>
+      </div>
+
+    </div>
+  </div>
+
+</section>

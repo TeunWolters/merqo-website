@@ -1,0 +1,96 @@
+title: Project
+fields:
+  -
+    handle: title
+    field:
+      type: text
+      display: Projectnaam
+      required: true
+  -
+    handle: tagline
+    field:
+      type: text
+      display: Tagline
+  -
+    handle: category
+    field:
+      type: text
+      display: Categorie
+  -
+    handle: order
+    field:
+      type: integer
+      display: Volgorde
+  -
+    handle: date
+    field:
+      type: date
+      display: Datum
+      time_enabled: false
+  -
+    handle: image
+    field:
+      type: assets
+      display: Hoofdafbeelding
+      max_files: 1
+      mode: list
+  -
+    handle: logo
+    field:
+      type: assets
+      display: Logo (bij voorkeur SVG of PNG transparant)
+      max_files: 1
+      mode: list
+  -
+    handle: services
+    field:
+      type: list
+      display: Geleverde diensten
+  -
+    handle: brand_colors
+    field:
+      type: grid
+      display: Merkkleuren
+      fields:
+        -
+          handle: hex
+          field:
+            type: text
+            display: Hex code (bijv. "#C8956C")
+        -
+          handle: name
+          field:
+            type: text
+            display: Naam van de kleur
+  -
+    handle: brand_fonts
+    field:
+      type: grid
+      display: Typografie
+      fields:
+        -
+          handle: name
+          field:
+            type: text
+            display: Fontnaam
+        -
+          handle: style
+          field:
+            type: text
+            display: Stijl (bijv. Display, Body)
+        -
+          handle: sample
+          field:
+            type: text
+            display: Voorbeeldtekst
+  -
+    handle: images
+    field:
+      type: assets
+      display: Extra afbeeldingen (galerij)
+      mode: list
+  -
+    handle: content
+    field:
+      type: markdown
+      display: Verhaal

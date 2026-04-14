@@ -1,0 +1,544 @@
+{{# ════════════════════════════════════════════════════════════
+    MERQO - PROJECT DETAIL
+    ════════════════════════════════════════════════════════════ #}}
+
+{{# ── Hero ── #}}
+<section data-header-bg="dark" style="position:relative; overflow:hidden; background:#0D0D0C; min-height:82vh; display:flex; align-items:flex-end;">
+  {{ if image }}
+  <img src="{{ image }}" alt="{{ title }}"
+       style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; z-index:0; pointer-events:none;">
+  {{ else }}
+  <img src="/assets/brand/gradient-bg-coral.png" alt=""
+       style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; z-index:0; pointer-events:none; opacity:0.75;">
+  {{ /if }}
+  <div style="position:absolute; inset:0; pointer-events:none; z-index:1;
+              background:linear-gradient(to bottom,
+                rgba(0,0,0,0.18) 0%,
+                rgba(0,0,0,0) 15%,
+                rgba(13,13,12,0.45) 55%,
+                rgba(13,13,12,0.92) 100%);"></div>
+  <div class="hero-grain" style="z-index:2;"></div>
+
+  {{# Terug link #}}
+  <a href="/projecten"
+     style="position:absolute; top:7.5rem; left:2.5rem; z-index:3;
+            display:inline-flex; align-items:center; gap:0.5rem;
+            font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+            color:rgba(240,237,231,0.4); text-decoration:none; transition:color 0.2s;"
+     onmouseover="this.style.color='rgba(240,237,231,0.85)'"
+     onmouseout="this.style.color='rgba(240,237,231,0.4)'">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
+    </svg>
+    Alle projecten
+  </a>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 w-full" style="position:relative; z-index:3; padding-bottom:5rem; padding-top:10rem;">
+    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.75rem;">
+      <span style="display:inline-block; padding:4px 12px; font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; border-radius:999px; color:rgba(240,237,231,0.6); background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15);">{{ category }}</span>
+      {{ if date }}<span style="font-size:11px; font-family:monospace; color:rgba(240,237,231,0.35);">{{ date | format:"F Y" }}</span>{{ /if }}
+    </div>
+    <h1 style="font-family:var(--font-display); font-weight:800; font-size:clamp(52px,8vw,100px); letter-spacing:-0.05em; line-height:0.92; color:#F0EDE7; margin-bottom:1.5rem; max-width:14ch;">
+      {{ title }}
+    </h1>
+    <p style="color:rgba(220,214,206,0.6); font-size:clamp(16px,1.5vw,20px); line-height:1.6; max-width:52ch; font-family:var(--font-body);">
+      {{ tagline }}
+    </p>
+  </div>
+</section>
+
+{{# ── Meta strip ── #}}
+<section style="background:#F0EDE7; padding:2.5rem 0; border-bottom:1px solid rgba(30,31,27,0.08);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="meta-strip-grid">
+
+      <div class="meta-col">
+        <p class="meta-label">Klant</p>
+        <p class="meta-value">{{ title }}</p>
+      </div>
+
+      <div class="meta-col">
+        <p class="meta-label">Categorie</p>
+        <p class="meta-value">{{ category }}</p>
+      </div>
+
+      {{ if date }}
+      <div class="meta-col">
+        <p class="meta-label">Jaar</p>
+        <p class="meta-value">{{ date | format:"Y" }}</p>
+      </div>
+      {{ /if }}
+
+      {{ if services }}
+      <div class="meta-col">
+        <p class="meta-label">Diensten</p>
+        <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:0.1rem;">
+          {{ services }}
+          <span style="display:inline-block; padding:3px 10px; font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; border-radius:999px; color:#6B6860; background:rgba(30,31,27,0.07); border:1px solid rgba(30,31,27,0.1);">{{ value }}</span>
+          {{ /services }}
+        </div>
+      </div>
+      {{ /if }}
+
+    </div>
+  </div>
+</section>
+
+{{# ══════════════════════════════════════════════════
+    BRAND SHOWCASE - scroll animated
+    ══════════════════════════════════════════════════ #}}
+<section style="background:#F0EDE7; padding:3rem 0 6rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    {{# ── Label ── #}}
+    <div style="display:flex; align-items:center; gap:1rem; margin-bottom:3rem;">
+      <span style="font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(30,31,27,0.3); white-space:nowrap; font-family:var(--font-body);">Brand systeem</span>
+      <div style="flex:1; height:1px; background:rgba(30,31,27,0.1);"></div>
+      <span style="font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(30,31,27,0.22); font-family:monospace;">{{ category }}</span>
+    </div>
+
+    {{# ── Grote projectfoto ── #}}
+    <div class="bs-hero-image" data-reveal>
+      {{ if image }}
+        <img src="{{ image }}" alt="{{ title }}"
+             style="width:100%; height:100%; object-fit:cover; display:block;">
+      {{ else }}
+        <div style="width:100%; height:100%; background:linear-gradient(135deg,#e8e0d4,#d4cbbf); display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:var(--font-display); font-size:10rem; font-weight:800; color:rgba(30,31,27,0.06); letter-spacing:-0.05em; line-height:1; user-select:none;">{{ title | truncate:1:"" }}</span>
+        </div>
+      {{ /if }}
+    </div>
+
+    {{# ── 3 brand kaarten - stagger in op scroll ── #}}
+    <div class="bs-cards" data-stagger>
+
+      {{# Kleurpalet #}}
+      {{ if brand_colors }}
+      <div class="bs-card" data-stagger-item>
+        <p class="bs-label">Kleurpalet</p>
+        <div class="bs-swatches" id="bs-swatches-{{ title | slugify }}">
+          {{ brand_colors }}
+          <div class="bs-swatch" style="background:{{ hex }};">
+            <div class="bs-swatch-info">
+              <span style="font-family:monospace; font-size:10px; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.5px;">{{ hex }}</span>
+              <span style="font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.4);">{{ name }}</span>
+            </div>
+          </div>
+          {{ /brand_colors }}
+        </div>
+      </div>
+      {{ /if }}
+
+      {{# Typografie #}}
+      {{ if brand_fonts }}
+      <div class="bs-card" data-stagger-item>
+        <p class="bs-label">Typografie</p>
+        <div style="display:flex; flex-direction:column; gap:1.5rem; flex:1; justify-content:center; padding-top:0.5rem;">
+          {{ brand_fonts }}
+          <div style="padding-bottom:1.5rem; border-bottom:1px solid rgba(30,31,27,0.07);">
+            <div style="font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#a8c8ca; margin-bottom:0.6rem; font-family:var(--font-body);">{{ style }}</div>
+            <div style="font-family:var(--font-display); font-size:clamp(1.6rem,2.8vw,2.8rem); font-weight:800; color:#1E1F1B; letter-spacing:-0.04em; line-height:1.05; margin-bottom:0.35rem;">{{ sample }}</div>
+            <div style="font-size:10px; color:rgba(30,31,27,0.32); font-family:monospace; letter-spacing:0.5px;">{{ name }}</div>
+          </div>
+          {{ /brand_fonts }}
+        </div>
+      </div>
+      {{ /if }}
+
+      {{# Geleverd #}}
+      {{ if services }}
+      <div class="bs-card" data-stagger-item>
+        <p class="bs-label">Geleverd</p>
+        <div style="display:flex; flex-direction:column; flex:1; justify-content:center; gap:0;">
+          {{ services }}
+          {{ count = loop.index }}
+          <div style="display:flex; align-items:baseline; gap:1rem; padding:1rem 0; border-bottom:1px solid rgba(30,31,27,0.06);">
+            <span style="font-family:monospace; font-size:9px; color:rgba(30,31,27,0.25); flex-shrink:0; width:1.5ch;">{{ loop.index | pad:2:"0" }}</span>
+            <span style="font-size:14px; font-weight:600; color:#1E1F1B; line-height:1.35; font-family:var(--font-body);">{{ value }}</span>
+          </div>
+          {{ /services }}
+        </div>
+        <div style="padding-top:1.5rem; margin-top:auto;">
+          <div style="font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(30,31,27,0.28); margin-bottom:0.35rem; font-family:var(--font-body);">Klant</div>
+          <div style="font-family:var(--font-display); font-weight:800; font-size:1.1rem; color:#1E1F1B; letter-spacing:-0.02em; line-height:1.2;">{{ title }}</div>
+        </div>
+      </div>
+      {{ /if }}
+
+    </div>{{# /bs-cards #}}
+  </div>
+</section>
+
+<script>
+(function() {
+  // Kleur-swatches: groeien omhoog als ze in beeld komen
+  var swatchGroups = document.querySelectorAll('.bs-swatches');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var swatches = entry.target.querySelectorAll('.bs-swatch');
+        swatches.forEach(function(sw, i) {
+          setTimeout(function() {
+            sw.classList.add('bs-swatch--visible');
+          }, i * 110);
+        });
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  swatchGroups.forEach(function(g) { obs.observe(g); });
+})();
+</script>
+
+{{# ══════════════════════════════════════════════════
+    MOCKUP - device presentatie (optioneel)
+    Voeg `mockup: /assets/projects/jouw-mockup.jpg`
+    toe aan de frontmatter van het project om te tonen
+    ══════════════════════════════════════════════════ #}}
+{{ if mockup }}
+<section style="background:#0D0D0C; padding:5rem 0 6rem; position:relative; overflow:hidden;">
+  {{# Subtiele grain #}}
+  <div class="hero-grain" style="z-index:0; opacity:0.4;"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10" style="position:relative; z-index:1;">
+
+    {{# Label #}}
+    <div style="display:flex; align-items:center; gap:1rem; margin-bottom:3rem;">
+      <span style="font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(240,237,231,0.2); white-space:nowrap; font-family:var(--font-body);">In gebruik</span>
+      <div style="flex:1; height:1px; background:rgba(255,255,255,0.06);"></div>
+    </div>
+
+    {{# Mockup afbeelding - laptop/telefoon render #}}
+    <div data-reveal style="max-width:1000px; margin:0 auto;">
+      <img src="{{ mockup }}" alt="{{ title }} mockup"
+           style="width:100%; height:auto; display:block; border-radius:16px; box-shadow:0 60px 120px rgba(0,0,0,0.5), 0 20px 40px rgba(0,0,0,0.3);">
+    </div>
+
+  </div>
+</section>
+{{ /if }}
+
+{{# ── Verhaal ── #}}
+<section style="background:#F0EDE7;" class="py-24 lg:py-32 px-6 lg:px-10">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+
+      {{# Sticky sidebar #}}
+      <div class="lg:col-span-3" data-reveal>
+        <div style="position:sticky; top:8rem;">
+          <div class="eyebrow mb-6">
+            <div class="eyebrow-line"></div>
+            <div class="eyebrow-text">Het verhaal</div>
+          </div>
+          {{ if services }}
+          <div class="lg:hidden mb-8">
+            <p style="font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#9A9690; margin-bottom:1rem; margin-top:0;">Wat wij deden</p>
+            <ul style="display:flex; flex-direction:column; gap:0.6rem; list-style:none; padding:0; margin:0;">
+              {{ services }}
+              <li style="font-size:13px; color:#6B6860; display:flex; align-items:center; gap:0.5rem;">
+                <span style="width:4px; height:4px; border-radius:50%; background:#a8c8ca; flex-shrink:0;"></span>
+                {{ value }}
+              </li>
+              {{ /services }}
+            </ul>
+          </div>
+          {{ /if }}
+          <div style="background:#E8E4DE; border-radius:16px; padding:1.5rem; margin-top:2rem;" class="hidden lg:block">
+            <div style="font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9A9690; margin-bottom:0.75rem;">Klant</div>
+            <div style="font-family:var(--font-display); font-weight:800; color:#1E1F1B; font-size:1.1rem; margin-bottom:0.25rem;">{{ title }}</div>
+            <div style="font-size:13px; color:#6B6860;">{{ category }}</div>
+            {{ if date }}
+            <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid rgba(30,31,27,0.08);">
+              <div style="font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9A9690; margin-bottom:0.25rem;">Periode</div>
+              <div style="font-size:13px; color:#6B6860;">{{ date | format:"F Y" }}</div>
+            </div>
+            {{ /if }}
+          </div>
+        </div>
+      </div>
+
+      {{# Content #}}
+      <div class="lg:col-span-7 xl:col-span-6" data-reveal>
+        <div style="font-size:17px; line-height:1.85; color:#4A4845;"
+             class="prose prose-lg max-w-none
+                    prose-headings:font-display prose-headings:font-bold prose-headings:text-[#1E1F1B] prose-headings:tracking-tight
+                    prose-p:text-[#6B6860] prose-p:leading-relaxed
+                    prose-strong:text-[#1E1F1B] prose-strong:font-semibold">
+          {{ content }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{# ══════════════════════════════════════════════════
+    PARALLAX FOTOGALERIJ - 3 kolommen, elk eigen snelheid
+    Voeg images[] toe aan frontmatter van het project
+    ══════════════════════════════════════════════════ #}}
+{{ if images }}
+<section class="pg-section" style="background:#1E1F1B; overflow:hidden; position:relative;">
+
+  {{# Subtiele grain #}}
+  <div class="hero-grain" style="z-index:1; opacity:0.35; pointer-events:none;"></div>
+
+  {{# Label #}}
+  <div style="position:relative; z-index:2; padding:5rem 2.5rem 3rem; display:flex; align-items:center; gap:1.5rem;">
+    <span style="font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(240,237,231,0.2); white-space:nowrap; font-family:var(--font-body);">Beeldmateriaal</span>
+    <div style="flex:1; height:1px; background:rgba(255,255,255,0.07);"></div>
+    <span style="font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(240,237,231,0.12); font-family:monospace;">{{ title }}</span>
+  </div>
+
+  {{# 3 kolommen - JS verdeelt afbeeldingen #}}
+  <div class="pg-track" style="position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; padding:0 1rem 8rem; align-items:start;">
+    <div class="pg-col" id="pg-col-0" style="display:flex; flex-direction:column; gap:1rem; will-change:transform;"></div>
+    <div class="pg-col" id="pg-col-1" style="display:flex; flex-direction:column; gap:1rem; margin-top:6rem; will-change:transform;"></div>
+    <div class="pg-col" id="pg-col-2" style="display:flex; flex-direction:column; gap:1rem; margin-top:3rem; will-change:transform;"></div>
+  </div>
+
+  {{# Alle afbeeldings-urls als data - JS pakt ze op #}}
+  <div id="pg-images" style="display:none;">
+    {{ images }}
+    <span data-src="{{ url }}" data-alt="{{ title }}"></span>
+    {{ /images }}
+  </div>
+
+</section>
+
+<script>
+(function() {
+  var section = document.querySelector('.pg-section');
+  var cols    = [
+    document.getElementById('pg-col-0'),
+    document.getElementById('pg-col-1'),
+    document.getElementById('pg-col-2'),
+  ];
+  var srcs = Array.from(document.querySelectorAll('#pg-images [data-src]'));
+  if (!section || !srcs.length) return;
+
+  // Verdeel afbeeldingen over 3 kolommen (round-robin)
+  srcs.forEach(function(el, i) {
+    var img = document.createElement('img');
+    img.src = el.dataset.src;
+    img.alt = el.dataset.alt || '';
+    img.style.cssText = 'width:100%; display:block; border-radius:16px; object-fit:cover;';
+    // Afwisselende aspect ratios voor dynamisch ritme
+    var ratios = ['3/4','4/3','1/1','3/4','16/9'];
+    img.style.aspectRatio = ratios[i % ratios.length];
+    cols[i % 3].appendChild(img);
+  });
+
+  // Parallax snelheden per kolom - kolom 1 langzaam, 0 en 2 sneller in tegengestelde richting
+  var speeds = [-0.12, 0.18, -0.08];
+
+  var ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        var rect   = section.getBoundingClientRect();
+        var wh     = window.innerHeight;
+        // Progress: 0 als section net in beeld, 1 als section net uit beeld
+        var progress = (wh - rect.top) / (wh + rect.height);
+        var range    = rect.height + wh;
+
+        cols.forEach(function(col, i) {
+          var offset = (progress - 0.5) * range * speeds[i];
+          col.style.transform = 'translateY(' + offset + 'px)';
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // init
+})();
+</script>
+{{ /if }}
+
+{{# ── Resultaten + quote ── #}}
+<section style="background:#EDEAE3; border-top:1px solid rgba(30,31,27,0.08); padding:5rem 0 6rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;" class="result-grid">
+
+      {{# Quote van de klant #}}
+      {{ if quote }}
+      <div data-reveal>
+        <div style="font-size:3rem; color:#ed6b46; line-height:1; margin-bottom:1rem; font-family:Georgia,serif;">"</div>
+        <blockquote style="font-family:var(--font-display); font-size:clamp(20px,2.2vw,28px); font-weight:700; color:#1E1F1B; letter-spacing:-0.03em; line-height:1.3; margin:0 0 2rem 0;">{{ quote }}</blockquote>
+        {{ if quote_name }}
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <div style="width:40px; height:1px; background:#ed6b46;"></div>
+          <div>
+            <div style="font-size:13px; font-weight:700; color:#1E1F1B; font-family:var(--font-body);">{{ quote_name }}</div>
+            {{ if quote_role }}<div style="font-size:11px; color:#6B6860; font-family:var(--font-body);">{{ quote_role }}</div>{{ /if }}
+          </div>
+        </div>
+        {{ /if }}
+      </div>
+      {{ else }}
+      <div data-reveal>
+        <div class="eyebrow mb-6">
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-text">Resultaat</div>
+        </div>
+        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(28px,3vw,42px); letter-spacing:-0.04em; color:#1E1F1B; line-height:1.1; margin-bottom:1rem;">Opgeleverd &amp; goedgekeurd.</h2>
+        <p style="color:#6B6860; font-size:15px; line-height:1.75; max-width:36ch;">Een merk dat staat - van strategie tot uitvoering, volledig op maat gemaakt voor {{ title }}.</p>
+      </div>
+      {{ /if }}
+
+      {{# Statistieken #}}
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(30,31,27,0.1); border-radius:20px; overflow:hidden;" data-reveal>
+        <div style="background:#EDEAE3; padding:2.25rem; display:flex; flex-direction:column; gap:0.4rem;">
+          <div style="font-family:var(--font-display); font-size:2.2rem; font-weight:800; color:#1E1F1B; line-height:1;">✓</div>
+          <div style="font-size:13px; color:#6B6860; font-family:var(--font-body);">Opgeleverd</div>
+        </div>
+        <div style="background:#EDEAE3; padding:2.25rem; display:flex; flex-direction:column; gap:0.4rem;">
+          <div style="font-family:var(--font-display); font-size:2.2rem; font-weight:800; color:#a8c8ca; line-height:1;">100%</div>
+          <div style="font-size:13px; color:#6B6860; font-family:var(--font-body);">Tevreden klant</div>
+        </div>
+        <div style="background:#EDEAE3; padding:2.25rem; display:flex; flex-direction:column; gap:0.4rem;">
+          <div style="font-family:var(--font-display); font-size:2.2rem; font-weight:800; color:#ed6b46; line-height:1;">{{ date | format:"Y" }}</div>
+          <div style="font-size:13px; color:#6B6860; font-family:var(--font-body);">Jaar van uitvoering</div>
+        </div>
+        <div style="background:#EDEAE3; padding:2.25rem; display:flex; flex-direction:column; gap:0.4rem;">
+          <div style="font-family:var(--font-display); font-size:2.2rem; font-weight:800; color:#1E1F1B; line-height:1;">Merqo</div>
+          <div style="font-size:13px; color:#6B6860; font-family:var(--font-body);">Hengelo · NL</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width: 768px) { .result-grid { grid-template-columns: 1fr !important; gap: 3rem !important; } }
+</style>
+
+{{# ── Nav onderaan ── #}}
+<section style="background:#F0EDE7; border-top:1px solid rgba(30,31,27,0.08);" class="py-16 px-6 lg:px-10">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-6 flex-wrap">
+    <a href="/projecten"
+       style="display:inline-flex; align-items:center; gap:0.5rem; font-size:14px; font-weight:600; color:#6B6860; text-decoration:none; transition:color 0.2s;"
+       onmouseover="this.style.color='#1E1F1B'" onmouseout="this.style.color='#6B6860'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
+      </svg>
+      Alle projecten
+    </a>
+    <a href="/contact" class="btn-primary" data-magnetic>Start een project</a>
+  </div>
+</section>
+
+{{# ── Styles: meta strip + brand showcase ── #}}
+<style>
+  /* ── Meta strip ── */
+  .meta-strip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+  .meta-col { display: flex; flex-direction: column; gap: 0.5rem; }
+  .meta-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: rgba(30,31,27,0.35);
+    margin: 0; font-family: var(--font-body);
+  }
+  .meta-value {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 0.95rem; color: #1E1F1B;
+    letter-spacing: -0.02em; margin: 0; line-height: 1.3;
+  }
+  @media (max-width: 768px) {
+    .meta-strip-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  }
+  @media (max-width: 480px) {
+    .meta-strip-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  }
+
+  /* ── Brand showcase ── */
+
+  /* Grote hero afbeelding */
+  .bs-hero-image {
+    width: 100%;
+    height: 560px;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    background: #E8E4DE;
+  }
+
+  /* 3-koloms grid voor brand kaarten */
+  .bs-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  /* Elke kaart */
+  .bs-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+    border: 1px solid rgba(30,31,27,0.06);
+  }
+
+  .bs-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(30,31,27,0.3);
+    margin: 0 0 1.5rem 0;
+    font-family: var(--font-body);
+  }
+
+  /* Kleurblokken: verticaal gestapeld, groeien omhoog */
+  .bs-swatches {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .bs-swatch {
+    flex: 1;
+    border-radius: 14px;
+    min-height: 80px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.9rem 1.1rem;
+    position: relative;
+    overflow: hidden;
+    /* Start: clip van onderen, groeit omhoog */
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bs-swatch--visible {
+    clip-path: inset(0% 0 0 0);
+  }
+
+  .bs-swatch-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .bs-cards { grid-template-columns: 1fr 1fr; }
+    .bs-hero-image { height: 420px; }
+  }
+  @media (max-width: 640px) {
+    .bs-cards { grid-template-columns: 1fr; }
+    .bs-hero-image { height: 280px; border-radius: 16px; }
+    .bs-card { min-height: auto; }
+  }
+</style>

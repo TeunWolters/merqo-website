@@ -1,0 +1,5 @@
+title: Projecten
+template: project
+route: /projecten/{slug}
+sort_field: order
+sort_direction: asc

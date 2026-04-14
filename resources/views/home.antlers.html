@@ -1,0 +1,1242 @@
+{{# ════════════════════════════════════════════════════════════
+    MERQO HOMEPAGE
+    ════════════════════════════════════════════════════════════ #}}
+
+{{# ── Scroll progress bar ── #}}
+<div class="scroll-progress-line"></div>
+
+{{# ── 1. HERO - gradient cover stijl ──────────────────────── #}}
+<section data-header-bg="dark" class="hero" style="position: relative; overflow: hidden; background: #ddd5c8; min-height: 100svh;">
+
+  {{# Blob achtergrond #}}
+  <div id="hero-blobs" style="position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;">
+    <div id="blob-a" style="position:absolute; width:75vw; height:75vw; background:#ed6b46; filter:blur(90px); opacity:0.85; will-change:transform;"></div>
+    <div id="blob-b" style="position:absolute; width:65vw; height:65vw; background:#8fcdd0; filter:blur(90px); opacity:0.85; will-change:transform;"></div>
+    <div id="blob-c" style="position:absolute; width:55vw; height:55vw; background:#f5b87a; filter:blur(80px); opacity:0.7; will-change:transform;"></div>
+  </div>
+  <style>
+    @keyframes morph-a {
+      0%,100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+      25%      { border-radius: 45% 55% 40% 60% / 60% 35% 65% 40%; }
+      50%      { border-radius: 35% 65% 60% 40% / 40% 55% 45% 60%; }
+      75%      { border-radius: 55% 45% 35% 65% / 65% 40% 60% 35%; }
+    }
+    @keyframes morph-b {
+      0%,100% { border-radius: 40% 60% 45% 55% / 60% 45% 55% 40%; }
+      25%      { border-radius: 60% 40% 65% 35% / 45% 60% 40% 55%; }
+      50%      { border-radius: 50% 50% 35% 65% / 55% 40% 60% 45%; }
+      75%      { border-radius: 35% 65% 55% 45% / 40% 65% 35% 60%; }
+    }
+    @keyframes morph-c {
+      0%,100% { border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%; }
+      33%      { border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%; }
+      66%      { border-radius: 65% 35% 50% 50% / 35% 65% 50% 50%; }
+    }
+    @keyframes drift-a {
+      0%   { transform: translate(-20%, -30%); }
+      25%  { transform: translate(10%, -10%); }
+      50%  { transform: translate(30%, -40%); }
+      75%  { transform: translate(-5%, -55%); }
+      100% { transform: translate(-20%, -30%); }
+    }
+    @keyframes drift-b {
+      0%   { transform: translate(50%, 20%); }
+      30%  { transform: translate(20%, 50%); }
+      60%  { transform: translate(60%, 55%); }
+      80%  { transform: translate(70%, 20%); }
+      100% { transform: translate(50%, 20%); }
+    }
+    @keyframes drift-c {
+      0%   { transform: translate(15%, 40%); }
+      33%  { transform: translate(55%, 10%); }
+      66%  { transform: translate(-5%, 20%); }
+      100% { transform: translate(15%, 40%); }
+    }
+    #blob-a { animation: morph-a 10s ease-in-out infinite, drift-a 22s ease-in-out infinite; }
+    #blob-b { animation: morph-b 13s ease-in-out infinite, drift-b 28s ease-in-out infinite; }
+    #blob-c { animation: morph-c 16s ease-in-out infinite, drift-c 18s ease-in-out infinite; }
+  </style>
+
+  {{# Vignette - lichte versie voor de gradient hero #}}
+  <div style="position: absolute; inset: 0; pointer-events: none; z-index: 2;
+              background: linear-gradient(to bottom,
+                rgba(255,255,255,0.08) 0%,
+                transparent 30%,
+                rgba(210,140,90,0.15) 100%);"></div>
+
+  {{# Grain overlay #}}
+  <div class="hero-grain" style="z-index: 3;"></div>
+
+  {{# Label links - onder de nav, alleen desktop #}}
+  <div class="lg-label-left" style="position: absolute; left: 2.75rem; top: 6.5rem; z-index: 6;">
+    <div style="font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700;
+                color: rgba(30,31,27,0.38); line-height: 2.2; font-family: var(--font-body);">
+      <p>Creative Agency</p>
+      <p>Hengelo · NL</p>
+    </div>
+  </div>
+
+  {{# Label rechts - diensten als floating info, alleen desktop #}}
+  <div class="lg-label-right" style="position: absolute; right: 2.75rem; top: 6.5rem; z-index: 6; text-align: right;">
+    <div style="font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700;
+                color: rgba(30,31,27,0.38); line-height: 2.2; font-family: var(--font-body);">
+      <p>Strategie</p>
+      <p>Branding</p>
+      <p>Websites</p>
+      <p>Campagnes</p>
+    </div>
+  </div>
+
+  {{# Hoofdinhoud - flex zodat alles boven de vouw past #}}
+  <div style="position: relative; z-index: 7;
+              min-height: 100svh;
+              display: flex; flex-direction: column; justify-content: flex-end;
+              padding-bottom: clamp(2rem, 3.5vh, 3rem);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10" style="width:100%">
+
+      {{# Headline - grote magazine-typografie #}}
+      <h1 style="font-family: var(--font-display); font-weight: 800;
+                 font-size: clamp(48px, 9vw, 116px);
+                 letter-spacing: -0.05em; line-height: 0.90;
+                 color: #fff; padding-bottom: 0.15em;">
+        <span class="reveal-word">Merken die</span><br>
+        <span class="reveal-word" style="color: #ed6b46; font-style: italic;">winnen</span>&nbsp;<span class="reveal-word">worden gebouwd</span>
+      </h1>
+
+      {{# Onderbalk - glassmorphism licht #}}
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end;
+                  justify-content: space-between; gap: 1.25rem;
+                  margin-top: 2rem; padding: 1.5rem 1.75rem;
+                  border: 1px solid rgba(255,255,255,0.45);
+                  border-radius: 24px;
+                  background: rgba(255,255,255,0.28);
+                  backdrop-filter: blur(20px) saturate(1.4);
+                  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+                  box-shadow: 0 8px 32px rgba(180,80,30,0.12), inset 0 1px 0 rgba(255,255,255,0.5);">
+        <p style="color: rgba(30,31,27,0.72); font-size: 13px; line-height: 1.75;
+                  max-width: 340px; font-family: var(--font-body);">
+          De meeste bedrijven verliezen marktaandeel niet door een slecht product, maar door een merk dat de waarde ervan niet overbrengt.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+          <a href="/scan" class="btn-primary" data-magnetic>
+            Doe de gratis scan
+          </a>
+          <a href="/#projecten" class="btn-ghost" data-magnetic>
+            Bekijk ons werk
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<style>
+  .lg-label-left, .lg-label-right { display: none; }
+  @media (min-width: 1024px) {
+    .lg-label-left, .lg-label-right { display: block; }
+  }
+</style>
+
+
+
+
+{{# ── 2. MERQO INTRO - teamfoto + verhaal ───────────────────── #}}
+<section class="cream-grain" style="background:#F0EDE7; padding:7rem 0 8rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div class="intro-main-grid" style="display:grid; grid-template-columns:1.05fr 0.95fr; gap:6rem; align-items:center;">
+
+      {{# Links: teamfoto groot + floating stats #}}
+      <div data-reveal style="position:relative;">
+        <div style="border-radius:24px; overflow:hidden; aspect-ratio:4/5;">
+          <img src="/assets/team/team-duo.jpg" alt="Het Merqo team"
+               style="width:100%; height:100%; object-fit:cover; object-position:top;" data-parallax="0.1">
+        </div>
+
+        {{# Floating stat-strip over de foto #}}
+        <div style="position:absolute; bottom:2rem; left:2rem; right:2rem;
+             background:rgba(28,23,16,0.75); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+             border:1px solid rgba(255,255,255,0.1); border-radius:16px;
+             padding:1.25rem 1.75rem; display:flex; align-items:center; gap:0;">
+          <div style="flex:1; text-align:center; border-right:1px solid rgba(255,255,255,0.1); padding-right:1.5rem;">
+            <div style="font-family:var(--font-display); font-size:28px; font-weight:800;
+                        letter-spacing:-0.03em; color:#F0EDE7; line-height:1;">50+</div>
+            <div style="font-family:var(--font-body); font-size:9px; font-weight:700;
+                        letter-spacing:2px; text-transform:uppercase; color:rgba(240,237,231,0.4);
+                        margin-top:4px;">Klanten</div>
+          </div>
+          <div style="flex:1; text-align:center; border-right:1px solid rgba(255,255,255,0.1); padding:0 1.5rem;">
+            <div style="font-family:var(--font-display); font-size:28px; font-weight:800;
+                        letter-spacing:-0.03em; color:#F0EDE7; line-height:1;">5+</div>
+            <div style="font-family:var(--font-body); font-size:9px; font-weight:700;
+                        letter-spacing:2px; text-transform:uppercase; color:rgba(240,237,231,0.4);
+                        margin-top:4px;">Jaar</div>
+          </div>
+          <div style="flex:1; text-align:center; padding-left:1.5rem;">
+            <div style="font-family:var(--font-display); font-size:28px; font-weight:800;
+                        letter-spacing:-0.03em; color:#F0EDE7; line-height:1;">6</div>
+            <div style="font-family:var(--font-body); font-size:9px; font-weight:700;
+                        letter-spacing:2px; text-transform:uppercase; color:rgba(240,237,231,0.4);
+                        margin-top:4px;">Vakgebieden</div>
+          </div>
+        </div>
+      </div>
+
+      {{# Rechts: persoonlijk verhaal #}}
+      <div data-reveal>
+        <div class="eyebrow" style="margin-bottom:2rem;">
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-text">Wie zijn wij</div>
+        </div>
+
+        <h2 style="font-family:var(--font-display); font-weight:800;
+                   font-size:clamp(34px,4.5vw,56px); letter-spacing:-0.04em;
+                   line-height:1.02; color:var(--color-text); margin-bottom:2rem;">
+          Wij bouwen het<br>
+          fundament waar <span style="color:var(--color-accent-mid); font-style:italic;">groei</span><br>
+          op staat
+        </h2>
+
+        <div style="display:flex; flex-direction:column; gap:1.25rem; margin-bottom:2.5rem;">
+          <p style="font-family:var(--font-body); font-size:15px; line-height:1.9; color:var(--color-muted);">
+            Merqo werkt voor mkb-ondernemers die klaar zijn om serieus te groeien - en die merken dat hun positionering en uitstraling daarin de rem zijn. Niet de ambities, niet het product, maar de manier waarop ze naar buiten treden.
+          </p>
+          <p style="font-family:var(--font-body); font-size:15px; line-height:1.9; color:var(--color-muted);">
+            Wij zijn geen uitvoerende partij die opdrachten afwerkt. Wij denken mee over de vraag achter de vraag. Elk traject begint met één centrale vraag: wat moet dit opleveren voor jouw bedrijf? Het antwoord bepaalt elke keuze daarna.
+          </p>
+          <p style="font-family:var(--font-body); font-size:15px; line-height:1.9; color:var(--color-muted);">
+            Van merkstrategie tot website, van visuele identiteit tot campagne: alles vanuit één helder vertrekpunt. Zodat elke euro die je investeert in je merk, terugverdiend wordt in herkenbaarheid, vertrouwen en groei.
+          </p>
+        </div>
+
+        <a href="/over-ons" class="btn-primary">
+          Maak kennis met ons team
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @media (max-width: 900px) {
+    .intro-main-grid { grid-template-columns: 1fr !important; gap: 3.5rem !important; }
+  }
+</style>
+
+
+{{# ── 2b. PIJNPUNTEN - strategische herkenning ── #}}
+<section style="background:#E8E4DC; padding:6rem 0 7rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;" class="pain-grid">
+
+      {{# Links: sticky kop #}}
+      <div style="position:sticky; top:120px;" class="pain-left">
+        <div class="eyebrow" style="margin-bottom:1.5rem;">
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-text">Herken jij dit?</div>
+        </div>
+        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(2rem,3.5vw,3.2rem);
+                   letter-spacing:-0.04em; line-height:1.05; color:#1E1F1B; margin:0 0 1.5rem;">
+          Groei stagneert zelden door gebrek aan kwaliteit
+        </h2>
+        <p style="font-family:var(--font-body); font-size:1rem; line-height:1.8; color:rgba(30,31,27,0.55); margin:0 0 2.5rem; max-width:34ch;">
+          In vrijwel elk geval ligt het aan de manier waarop een bedrijf zichzelf presenteert en positioneert in de markt.
+        </p>
+        <a href="/scan" style="display:inline-flex; align-items:center; gap:10px;
+           padding:13px 24px; border-radius:999px; background:#ed6b46; color:#fff;
+           font-family:var(--font-body); font-size:13px; font-weight:700;
+           letter-spacing:0.3px; text-decoration:none; transition:background 0.2s;">
+          Ontdek waar jouw groei lekt
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M14 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      {{# Rechts: pijnpunten als grote genummerde blokken #}}
+      <div style="display:flex; flex-direction:column; gap:0;">
+
+        <div class="pain-item" style="padding:2.5rem 0; border-top:1px solid rgba(30,31,27,0.1);">
+          <div style="display:flex; gap:1.5rem; align-items:flex-start;">
+            <span style="font-family:var(--font-display); font-size:11px; font-weight:700; color:#ed6b46;
+                         letter-spacing:2px; padding-top:5px; flex-shrink:0;">01</span>
+            <div>
+              <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;
+                         letter-spacing:-0.03em; color:#1E1F1B; margin:0 0 0.6rem;">
+                Je groeit, maar je marktpositie groeit niet mee
+              </h3>
+              <p style="font-family:var(--font-body); font-size:0.9rem; line-height:1.75;
+                        color:rgba(30,31,27,0.55); margin:0;">
+                Bedrijven die jarenlang op mond-tot-mondreclame draaien, merken dat dit op een gegeven moment plafond bereikt. Zonder heldere positionering in de markt is het onmogelijk om structureel nieuwe klanten te trekken: je bent afhankelijk van toeval.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pain-item" style="padding:2.5rem 0; border-top:1px solid rgba(30,31,27,0.1);">
+          <div style="display:flex; gap:1.5rem; align-items:flex-start;">
+            <span style="font-family:var(--font-display); font-size:11px; font-weight:700; color:#ed6b46;
+                         letter-spacing:2px; padding-top:5px; flex-shrink:0;">02</span>
+            <div>
+              <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;
+                         letter-spacing:-0.03em; color:#1E1F1B; margin:0 0 0.6rem;">
+                Klanten kiezen de concurrent, terwijl jij objectief beter bent
+              </h3>
+              <p style="font-family:var(--font-body); font-size:0.9rem; line-height:1.75;
+                        color:rgba(30,31,27,0.55); margin:0;">
+                Koopbeslissingen worden voor 80% bepaald door perceptie, niet door feiten. Als jouw concurrent beter communiceert wat hij waard is, verlies je, ook als jouw product of dienst de betere is. Perceptie is realiteit.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pain-item" style="padding:2.5rem 0; border-top:1px solid rgba(30,31,27,0.1);">
+          <div style="display:flex; gap:1.5rem; align-items:flex-start;">
+            <span style="font-family:var(--font-display); font-size:11px; font-weight:700; color:#ed6b46;
+                         letter-spacing:2px; padding-top:5px; flex-shrink:0;">03</span>
+            <div>
+              <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;
+                         letter-spacing:-0.03em; color:#1E1F1B; margin:0 0 0.6rem;">
+                Je trekt klanten die niet bij je passen en verliest de klanten die er toe doen
+              </h3>
+              <p style="font-family:var(--font-body); font-size:0.9rem; line-height:1.75;
+                        color:rgba(30,31,27,0.55); margin:0;">
+                Een onduidelijk merk trekt een breed, ongedefinieerd publiek. Dat klinkt goed, maar leidt tot prijsdiscussies, afhakers en hoge acquisitiekosten. Een sterk merk filtert vanzelf: het trekt mensen die begrijpen wat je waard bent en er voor willen betalen.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pain-item" style="padding:2.5rem 0; border-top:1px solid rgba(30,31,27,0.1); border-bottom:1px solid rgba(30,31,27,0.1);">
+          <div style="display:flex; gap:1.5rem; align-items:flex-start;">
+            <span style="font-family:var(--font-display); font-size:11px; font-weight:700; color:#ed6b46;
+                         letter-spacing:2px; padding-top:5px; flex-shrink:0;">04</span>
+            <div>
+              <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;
+                         letter-spacing:-0.03em; color:#1E1F1B; margin:0 0 0.6rem;">
+                Marketing-uitgaven leveren weinig op en je weet niet waarom
+              </h3>
+              <p style="font-family:var(--font-body); font-size:0.9rem; line-height:1.75;
+                        color:rgba(30,31,27,0.55); margin:0;">
+                Advertenties, social media, een nieuwe website: als het fundament (je merkstrategie en positionering) niet klopt, verdamp je budget zonder structureel resultaat. Marketing versterkt wat er al is. Een zwak verhaal wordt er niet sterker van als je er meer geld in stopt.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 900px) {
+    .pain-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+    .pain-left { position: static !important; }
+  }
+</style>
+
+{{# ── 3. KLANTCASES - carousel ─────────── #}}
+<section id="projecten" style="background:#F0EDE7; padding:4rem 0 5rem; position:relative;">
+  {{# Gradient achtergrond #}}
+  <div style="position:absolute; inset:0; background:url('/assets/brand/gradient-bg-teal.png') center/cover no-repeat; opacity:0.1; pointer-events:none; z-index:0;"></div>
+
+  {{# Header in max-w-7xl #}}
+  <div class="max-w-7xl mx-auto px-6 lg:px-10" style="position:relative; z-index:1; margin-bottom:2.5rem;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+      <div class="eyebrow" data-reveal>
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-text">Geselecteerd werk</div>
+      </div>
+      <a href="/projecten" class="btn-ghost-dark" style="flex-shrink:0;" data-magnetic data-reveal>
+        Alle cases
+      </a>
+    </div>
+    <h2 data-reveal style="font-family:var(--font-display); font-weight:800;
+        font-size:clamp(36px,5vw,64px); letter-spacing:-0.04em; line-height:1;
+        color:#1E1F1B; margin-bottom:0; position:relative; z-index:2;">
+      Geselecteerd werk
+    </h2>
+  </div>
+
+  {{# Coverflow carousel - 3D draaiend wiel #}}
+  <div class="hc-stage" id="hc-stage" style="position:relative; z-index:1;">
+
+    {{# Kaarten - alle projecten #}}
+    {{ collection:projects sort="order:asc" }}
+    <a href="{{ url }}" class="hc-ccard" data-ccard data-url="{{ url }}">
+      {{# Afbeelding #}}
+      {{ if image }}
+        <img src="{{ image }}" alt="{{ title }}"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+      {{ else }}
+        <div style="position:absolute;inset:0;background:linear-gradient(160deg,#D6D2CB,#C8C4BE);"></div>
+      {{ /if }}
+      {{# Overlay gradient #}}
+      <div style="position:absolute;inset:0;
+           background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.15) 50%,rgba(0,0,0,0.04) 100%);
+           pointer-events:none;"></div>
+      {{# Categorie badge #}}
+      {{ if category }}
+        <div style="position:absolute;top:18px;right:18px;">
+          <span style="display:inline-block;padding:4px 12px;border-radius:999px;
+                       background:rgba(240,237,231,0.13);backdrop-filter:blur(10px);
+                       border:1px solid rgba(240,237,231,0.18);font-size:9px;font-weight:700;
+                       letter-spacing:1.5px;text-transform:uppercase;
+                       color:rgba(240,237,231,0.85);font-family:var(--font-body);">{{ category }}</span>
+        </div>
+      {{ /if }}
+      {{# Pijl #}}
+      <div style="position:absolute;top:18px;left:18px;
+           width:34px;height:34px;border-radius:50%;
+           border:1.5px solid rgba(240,237,231,0.28);color:rgba(240,237,231,0.55);
+           display:flex;align-items:center;justify-content:center;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 17L17 7M17 7H7M17 7v10"/>
+        </svg>
+      </div>
+      {{# Tekst onderaan #}}
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:24px;">
+        {{ if category }}
+          <div style="font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+               font-weight:700;color:rgba(240,237,231,0.42);font-family:var(--font-body);margin-bottom:7px;">{{ category }}</div>
+        {{ /if }}
+        <h3 style="font-family:var(--font-display);font-weight:800;
+            font-size:clamp(20px,1.8vw,28px);letter-spacing:-0.03em;line-height:1.05;
+            color:#F0EDE7;margin:0 0 5px;">{{ title }}</h3>
+        {{ if tagline }}
+          <p class="hc-desc" style="font-size:12px;color:rgba(240,237,231,0);
+             font-family:var(--font-body);line-height:1.5;margin:0;
+             transition:color 0.4s ease;">{{ tagline }}</p>
+        {{ /if }}
+      </div>
+    </a>
+    {{ /collection:projects }}
+
+    {{# Navigatiepijlen #}}
+    <button class="hc-arrow hc-prev" id="hc-prev" aria-label="Vorige">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
+      </svg>
+    </button>
+    <button class="hc-arrow hc-next" id="hc-next" aria-label="Volgende">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M14 5l7 7-7 7"/>
+      </svg>
+    </button>
+
+    {{# Dots #}}
+    <div class="hc-dots" id="hc-dots"></div>
+
+    {{# Counter #}}
+    <div class="hc-counter" id="hc-counter"></div>
+
+  </div>
+
+</section>
+
+<style>
+  /* ── Stage: perspectief container ── */
+  .hc-stage {
+    height: 580px;
+    overflow: hidden;
+    perspective: 1400px;
+    perspective-origin: 50% 46%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: grab;
+    user-select: none;
+  }
+  .hc-stage.is-dragging { cursor: grabbing; }
+
+  /* ── Kaart: absoluut gepositioneerd, subtiel 3D ── */
+  .hc-ccard {
+    position: absolute;
+    width: 460px;
+    height: 500px;
+    border-radius: 24px;
+    overflow: hidden;
+    text-decoration: none;
+    background: #D6D2CB;
+    transform-origin: center center;
+    will-change: transform, opacity;
+    cursor: pointer;
+    backface-visibility: hidden;
+  }
+
+  .hc-ccard.hc-active {
+    box-shadow: none;
+    outline: 1.5px solid rgba(240,237,231,0.18);
+    outline-offset: -1px;
+  }
+  .hc-ccard.hc-active .hc-desc { color: rgba(240,237,231,0.58) !important; }
+  .hc-ccard:not(.hc-active):hover {
+    filter: brightness(1.12);
+  }
+
+  /* ── Navigatiepijlen ── */
+  .hc-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(30,31,27,0.14);
+    background: rgba(240,237,231,0.92);
+    backdrop-filter: blur(8px);
+    color: #1E1F1B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .hc-arrow:hover { background: #fff; border-color: rgba(30,31,27,0.3); transform: translateY(-50%) scale(1.08); }
+  .hc-prev { left: 2.5rem; }
+  .hc-next { right: 2.5rem; }
+
+  /* ── Dots - pill stijl ── */
+  .hc-dots {
+    position: absolute;
+    bottom: -3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 20;
+  }
+  .hc-dot {
+    height: 6px;
+    width: 6px;
+    border-radius: 999px;
+    background: rgba(30,31,27,0.2);
+    border: none;
+    cursor: pointer;
+    transition: width 0.35s cubic-bezier(0.16,1,0.3,1), background 0.3s;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .hc-dot.active {
+    width: 22px;
+    background: #1E1F1B;
+  }
+
+  /* ── Counter ── */
+  .hc-counter {
+    position: absolute;
+    top: 1.5rem;
+    right: 2.5rem;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: rgba(30,31,27,0.35);
+    z-index: 20;
+    user-select: none;
+  }
+
+  @media (max-width: 1024px) {
+    .hc-ccard { width: 380px; height: 460px; }
+  }
+  @media (max-width: 768px) {
+    .hc-stage { height: 440px; }
+    .hc-ccard { width: 300px; height: 380px; }
+    .hc-prev { left: 1rem; }
+    .hc-next { right: 1rem; }
+  }
+  @media (max-width: 480px) {
+    .hc-stage { height: 380px; }
+    .hc-ccard { width: 260px; height: 330px; border-radius: 18px; }
+  }
+</style>
+
+<script>
+(function () {
+  var stage = document.getElementById('hc-stage');
+  if (!stage) return;
+  var cards = Array.from(stage.querySelectorAll('[data-ccard]'));
+  if (!cards.length) return;
+
+  var total    = cards.length;
+  // position is unbounded float - loopt gewoon door voor infinite loop
+  var position = 0;
+  var target   = 0;
+  var vel      = 0;
+  var rafId    = null;
+
+  var STIFFNESS = 0.06;
+  var DAMPING   = 0.82;
+  var REST_EPS  = 0.0005;
+
+  // Dots
+  var dotsEl = document.getElementById('hc-dots');
+  var dots   = [];
+  cards.forEach(function(_, i) {
+    var d = document.createElement('button');
+    d.className = 'hc-dot';
+    d.setAttribute('aria-label', 'Ga naar kaart ' + (i + 1));
+    d.addEventListener('click', function() { snapTo(i); });
+    dotsEl.appendChild(d);
+    dots.push(d);
+  });
+
+  // Kortste-pad offset voor kaart i t.o.v. huidige position (met wrap)
+  function offsetFor(i, pos) {
+    var diff = ((i - pos) % total + total) % total;
+    if (diff > total / 2) diff -= total;
+    return diff;
+  }
+
+  function activeIdx() {
+    return ((Math.round(position) % total) + total) % total;
+  }
+
+  function propsAt(off) {
+    var absOff = Math.abs(off);
+    var sign   = off < 0 ? -1 : 1;
+    var scale, opac;
+    if (absOff <= 1) {
+      scale = 1    - (1    - 0.78) * absOff;
+      opac  = 1    - (1    - 0.55) * absOff;
+    } else {
+      scale = Math.max(0.58, 0.78 - (absOff - 1) * 0.12);
+      opac  = Math.max(0.20, 0.55 - (absOff - 1) * 0.18);
+    }
+    return {
+      rotY:   sign * Math.min(absOff * 22, 44),
+      transX: sign * Math.min(absOff * 340, 720),
+      transZ: -Math.min(absOff * 180, 560),
+      scale:  scale,
+      opac:   opac,
+      zIdx:   Math.round(20 - absOff * 2)
+    };
+  }
+
+  function render() {
+    var active = activeIdx();
+    cards.forEach(function(card, i) {
+      var off = offsetFor(i, position);
+      var p   = propsAt(off);
+      card.style.transform = 'translateX(' + p.transX + 'px) translateZ(' + p.transZ + 'px) rotateY(' + p.rotY + 'deg) scale(' + p.scale + ')';
+      card.style.opacity   = p.opac;
+      card.style.zIndex    = p.zIdx;
+      card.classList.toggle('hc-active', i === active);
+    });
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === active); });
+    var counter = document.getElementById('hc-counter');
+    if (counter) counter.textContent = String(active + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+  }
+
+  function tick() {
+    vel       = (vel + (target - position) * STIFFNESS) * DAMPING;
+    position += vel;
+    render();
+    if (Math.abs(vel) > REST_EPS || Math.abs(target - position) > REST_EPS) {
+      rafId = requestAnimationFrame(tick);
+    } else {
+      position = target;
+      render();
+      rafId = null;
+    }
+  }
+
+  function startSpring() {
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  }
+
+  // Snap naar kaart idx via kortste pad (links of rechts)
+  function snapTo(idx) {
+    var off = offsetFor(idx, position);
+    target = position + off;
+    startSpring();
+  }
+
+  // Pijlen
+  document.getElementById('hc-prev').addEventListener('click', function() { target -= 1; startSpring(); });
+  document.getElementById('hc-next').addEventListener('click', function() { target += 1; startSpring(); });
+
+  // Klik op zijkaart
+  cards.forEach(function(card, i) {
+    card.addEventListener('click', function(e) {
+      if (i !== activeIdx()) { e.preventDefault(); snapTo(i); }
+    });
+  });
+
+  // ── Auto-play ────────────────────────────────────────────────
+  setInterval(function() {
+    target += 1;
+    startSpring();
+  }, 2500);
+
+  // Init
+  render();
+  autoPlay();
+
+  function autoPlay() {} // noop - autoplay loopt via setInterval hierboven
+})();
+</script>
+
+
+{{# ── 3. DIENSTEN - bento grid ──────────────────────────────── #}}
+<section id="diensten" class="cream-grain" style="background:#EDEAE3; padding:4rem 0 7rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    {{# Header #}}
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:1.75rem;flex-wrap:wrap;" data-reveal>
+      <div>
+        <div class="eyebrow">
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-text">Wat wij oplossen</div>
+        </div>
+        <h2 class="h-section" style="color:var(--color-text);">
+          Elke dienst is een<br>
+          <span style="color:#a8c8ca; font-style:italic;">antwoord op iets</span>
+        </h2>
+      </div>
+      <a href="/contact" class="btn-primary" data-magnetic>
+        Start een project
+      </a>
+    </div>
+
+    {{# Bento grid - 3×2 uniform #}}
+    <div class="srv-bento" data-stagger>
+
+      <a href="/strategie" class="srv-bento-card" data-stagger-item
+         style="background-image:url('/assets/team/team-werk.jpg');">
+        <div class="srv-bento-overlay"></div>
+        <div class="srv-bento-body">
+          <span class="srv-bento-tag">Als je plan ontbreekt maar de druk groeit</span>
+          <h3 class="srv-bento-title">Strategie</h3>
+        </div>
+        <div class="srv-bento-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
+      </a>
+
+      <a href="/branding" class="srv-bento-card" data-stagger-item
+         style="background-image:url('/assets/team/team-groep-grijs.jpg');">
+        <div class="srv-bento-overlay"></div>
+        <div class="srv-bento-body">
+          <span class="srv-bento-tag">Als je merk niet overeenkomt met je kwaliteit</span>
+          <h3 class="srv-bento-title">Branding</h3>
+        </div>
+        <div class="srv-bento-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
+      </a>
+
+      <a href="/websites" class="srv-bento-card" data-stagger-item
+         style="background-image:url('/assets/team/team-laptop.jpg');">
+        <div class="srv-bento-overlay"></div>
+        <div class="srv-bento-body">
+          <span class="srv-bento-tag">Als je website bezoekers niet omzet naar klanten</span>
+          <h3 class="srv-bento-title">Websites</h3>
+        </div>
+        <div class="srv-bento-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
+      </a>
+
+      <a href="/marketing" class="srv-bento-card" data-stagger-item
+         style="background-image:url('/assets/team/team-tafel.jpg');">
+        <div class="srv-bento-overlay"></div>
+        <div class="srv-bento-body">
+          <span class="srv-bento-tag">Als je adverteert maar niets terugverdient</span>
+          <h3 class="srv-bento-title">Marketing</h3>
+        </div>
+        <div class="srv-bento-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
+      </a>
+
+      <a href="/fotografie-video" class="srv-bento-card" data-stagger-item
+         style="background-image:url('/assets/team/team-duo-tablet.jpg');">
+        <div class="srv-bento-overlay"></div>
+        <div class="srv-bento-body">
+          <span class="srv-bento-tag">Als beelden je merk goedkoper laten lijken</span>
+          <h3 class="srv-bento-title">Fotografie &amp; Video</h3>
+        </div>
+        <div class="srv-bento-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
+      </a>
+
+      <a href="/drukwerk" class="srv-bento-card" data-stagger-item
+         style="background-image:url('/assets/team/team-document.jpg');">
+        <div class="srv-bento-overlay"></div>
+        <div class="srv-bento-body">
+          <span class="srv-bento-tag">Als je visitekaartje je website tegenspreekt</span>
+          <h3 class="srv-bento-title">Drukwerk</h3>
+        </div>
+        <div class="srv-bento-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .srv-bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .srv-bento-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    aspect-ratio: 4/3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-decoration: none;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    cursor: pointer;
+  }
+  .srv-bento-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.04) 100%);
+    transition: opacity 0.4s ease;
+  }
+  .srv-bento-body {
+    position: relative;
+    z-index: 2;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .srv-bento-tag {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    color: rgba(240,237,231,0.6);
+    display: block;
+    order: 2;
+  }
+  .srv-bento-title {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.8vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+    color: #F0EDE7;
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    order: 1;
+  }
+  .srv-bento-desc {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: rgba(240,237,231,0);
+    line-height: 1.55;
+    max-width: 28ch;
+    transition: color 0.3s ease 0.05s, transform 0.35s cubic-bezier(0.16,1,0.3,1) 0.05s;
+    transform: translateY(6px);
+  }
+  .srv-bento-arrow {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(240,237,231,0.25);
+    color: rgba(240,237,231,0.6);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.3s, border-color 0.3s, transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    z-index: 2;
+  }
+  .srv-bento-card:hover { transform: translateY(-3px); }
+  .srv-bento-card:hover .srv-bento-overlay { opacity: 0.7; }
+  .srv-bento-card:hover .srv-bento-title { transform: translateY(-4px); }
+  .srv-bento-card:hover .srv-bento-desc { color: rgba(240,237,231,0.65) !important; transform: translateY(0); }
+  .srv-bento-card:hover .srv-bento-arrow { background: var(--color-orange); border-color: var(--color-orange); color: #fff; transform: rotate(45deg); }
+  .srv-bento-card:hover img { transform: scale(1.05); }
+  @media (max-width: 700px) {
+    .srv-bento { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .srv-bento { grid-template-columns: 1fr; }
+  }
+</style>
+
+
+{{# ── 4. AANPAK - schoon en rustig ──────────────────────────── #}}
+<section id="aanpak" style="background:#F5F2EC; padding:6rem 0;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; flex-wrap:wrap; margin-bottom:4rem;" data-reveal>
+      <div>
+        <div class="eyebrow" style="margin-bottom:1.25rem;">
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-text">Werkwijze</div>
+        </div>
+        <h2 style="font-family:var(--font-display); font-weight:800;
+                   font-size:clamp(28px,4vw,52px); letter-spacing:-0.04em;
+                   line-height:1.05; color:#1E1F1B; margin:0; max-width:14ch;">
+          Van eerste gesprek<br>tot een merk dat <em style="color:#a8c8ca; font-style:italic;">staat.</em>
+        </h2>
+      </div>
+      <p style="font-family:var(--font-body); font-size:14px; line-height:1.8;
+                color:#6B6860; max-width:34ch; margin:0;">
+        Geen standaard traject. Elke samenwerking begint met begrijpen wat jouw merk nodig heeft.
+      </p>
+    </div>
+
+    {{# Vijf stappen als horizontale rij #}}
+    <div class="ww-grid" data-stagger>
+
+      <div class="ww-step" data-stagger-item>
+        <div class="ww-num">01</div>
+        <div class="ww-title">Ontdekken</div>
+        <div class="ww-sub">Intake, doelgroep en kernwaarden ophalen</div>
+      </div>
+
+      <div class="ww-step" data-stagger-item>
+        <div class="ww-num">02</div>
+        <div class="ww-title">Strategie</div>
+        <div class="ww-sub">Positionering, richting en merkfundament</div>
+      </div>
+
+      <div class="ww-step" data-stagger-item>
+        <div class="ww-num">03</div>
+        <div class="ww-title">Ontwerpen</div>
+        <div class="ww-sub">Visuele identiteit en communicatiemiddelen</div>
+      </div>
+
+      <div class="ww-step" data-stagger-item>
+        <div class="ww-num">04</div>
+        <div class="ww-title">Bouwen</div>
+        <div class="ww-sub">Productie, drukwerk en lancering</div>
+      </div>
+
+      <div class="ww-step" data-stagger-item>
+        <div class="ww-num">05</div>
+        <div class="ww-title">Groeien</div>
+        <div class="ww-sub">Evalueren, doorontwikkelen en opschalen</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ww-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(30,31,27,0.1);
+  }
+
+  .ww-step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.75rem 1.5rem 2rem 0;
+    border-right: 1px solid rgba(30,31,27,0.1);
+  }
+  .ww-step:last-child { border-right: none; }
+  .ww-step + .ww-step { padding-left: 1.5rem; }
+
+  .ww-num {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ed6b46;
+    margin-bottom: 1rem;
+  }
+
+  .ww-title {
+    font-family: var(--font-display);
+    font-size: clamp(16px, 1.6vw, 22px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #1E1F1B;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .ww-sub {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: #9B9890;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1024px) {
+    .ww-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ww-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+
+{{# ── 5. OVER ONS - foto gedreven, editorial ───────────────── #}}
+<section id="over-ons" class="cream-grain" style="background:#F0EDE7; padding:8rem 0;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    {{# Asymmetrisch layout: foto groot links, minimale tekst rechts #}}
+    <div class="overons-grid" style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:6rem; align-items:center;">
+
+      {{# Grote foto links #}}
+      <div data-reveal style="position:relative;">
+        <div style="border-radius:24px; overflow:hidden; aspect-ratio:4/5;">
+          <img src="/assets/team/team-duo.jpg" alt="Het Merqo team"
+               style="width:100%; height:100%; object-fit:cover; object-position:top;"
+               data-parallax="0.1">
+        </div>
+        {{# Floating label op de foto - glassmorphism #}}
+        <div style="position:absolute; bottom:2rem; left:2rem; right:2rem;
+             background:rgba(28,23,16,0.72); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+             border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:1.25rem 1.5rem;
+             display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+          <div>
+            <div style="font-family:var(--font-body); font-size:9px; font-weight:700;
+                        letter-spacing:2.5px; text-transform:uppercase; color:rgba(240,237,231,0.45);">
+              Merqo Creative Agency
+            </div>
+            <div style="font-family:var(--font-display); font-size:18px; font-weight:800;
+                        color:#F0EDE7; letter-spacing:-0.02em; margin-top:2px;">
+              Hengelo, Nederland
+            </div>
+          </div>
+          <div style="font-family:var(--font-body); font-size:11px; color:rgba(240,237,231,0.4); text-align:right; line-height:1.5;">
+            Sinds 2019
+          </div>
+        </div>
+      </div>
+
+      {{# Minimale tekst rechts #}}
+      <div data-reveal>
+        <div class="eyebrow" style="margin-bottom:2rem;">
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-text">Over ons</div>
+        </div>
+        <h2 style="font-family:var(--font-display); font-weight:800;
+                   font-size:clamp(32px,4vw,52px); letter-spacing:-0.04em;
+                   line-height:1.02; color:var(--color-text); margin-bottom:2rem;">
+          Wij denken verder<br>
+          dan de <span style="color:var(--color-accent-mid); font-style:italic;">opdracht</span>
+        </h2>
+        <p style="font-family:var(--font-body); font-size:15px; line-height:1.9;
+                  color:var(--color-muted); margin-bottom:1.5rem; max-width:36ch;">
+          Merqo is een creatief bureau in Hengelo. Geen leverancier, maar een vaste partner die begrijpt waarom iets werkt, niet alleen hoe het eruitziet.
+        </p>
+        <p style="font-family:var(--font-body); font-size:15px; line-height:1.9;
+                  color:var(--color-muted); margin-bottom:3rem; max-width:36ch;">
+          Wij combineren strategie met vakmanschap. Elke keuze heeft een reden, en die leggen wij uit.
+        </p>
+        <a href="/over-ons" class="btn-primary">
+          Maak kennis met ons team
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @media (max-width: 900px) {
+    .overons-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  }
+</style>
+
+
+{{# ── 5. REVIEWS ──────────────────────────────────────────── #}}
+<section style="background:#F0EDE7;" class="py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div class="max-w-xl mb-14" data-reveal>
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-text">Klantreviews</div>
+      </div>
+      <h2 class="h-section" style="color:#1E1F1B;">
+        Wat klanten over<br>
+        ons <span style="color:#a8c8ca; font-style:italic;">zeggen</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" data-stagger>
+      {{ collection:reviews limit="3" sort="order:asc" }}
+        <blockquote data-stagger-item style="padding:32px 36px; background:#fff; border-radius:24px; position:relative; overflow:hidden; display:flex; flex-direction:column; border:1px solid rgba(30,31,27,0.08);">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:#ed6b46;border-radius:0 2px 2px 0;"></div>
+          <div class="flex items-center gap-1 mb-5">
+            {{ loop from="1" to="5" }}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            {{ /loop }}
+          </div>
+          <p class="text-[15px] leading-[1.7] mb-6" style="color:#4A4845;">"{{ quote }}"</p>
+          <footer class="flex items-center gap-3 pt-5" style="border-top:1px solid rgba(30,31,27,0.1);">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(237,107,70,0.12);">
+              <span class="text-sm font-bold" style="color:#ed6b46;">{{ company | substr(0, 1) }}</span>
+            </div>
+            <div>
+              <div class="text-sm font-bold" style="color:#1E1F1B;">{{ company }}</div>
+              <div class="text-[#6B6860] text-xs">Klant van Merqo</div>
+            </div>
+          </footer>
+        </blockquote>
+      {{ /collection:reviews }}
+
+      {{# Fallback indien nog geen reviews in CMS #}}
+      {{ if {collection:reviews | count} == 0 }}
+        <blockquote data-stagger-item style="padding:32px 36px; background:#fff; border-radius:24px; position:relative; overflow:hidden; display:flex; flex-direction:column; border:1px solid rgba(30,31,27,0.08);">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:#ed6b46;border-radius:0 2px 2px 0;"></div>
+          <div class="flex items-center gap-1 mb-5">{{ loop from="1" to="5" }}<svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{{ /loop }}</div>
+          <p class="text-[15px] leading-[1.7] mb-6" style="color:#4A4845;">"Merqo heeft ons merk echt neergezet. Van logo tot socials, alles klopt en straalt precies uit wie wij zijn."</p>
+          <footer class="flex items-center gap-3 pt-5" style="border-top:1px solid rgba(30,31,27,0.1);">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(237,107,70,0.12);"><span class="text-sm font-bold" style="color:#ed6b46;">D</span></div>
+            <div><div class="text-sm font-bold" style="color:#1E1F1B;">De Smokerij</div><div class="text-[#6B6860] text-xs">Klant van Merqo</div></div>
+          </footer>
+        </blockquote>
+        <blockquote data-stagger-item style="padding:32px 36px; background:#fff; border-radius:24px; position:relative; overflow:hidden; display:flex; flex-direction:column; border:1px solid rgba(30,31,27,0.08);">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:#ed6b46;border-radius:0 2px 2px 0;"></div>
+          <div class="flex items-center gap-1 mb-5">{{ loop from="1" to="5" }}<svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{{ /loop }}</div>
+          <p class="text-[15px] leading-[1.7] mb-6" style="color:#4A4845;">"Wat ons opviel is dat Merqo écht meedenkt. Niet alleen uitvoeren wat je vraagt, maar kritisch kijken wat het beste werkt."</p>
+          <footer class="flex items-center gap-3 pt-5" style="border-top:1px solid rgba(30,31,27,0.1);">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(237,107,70,0.12);"><span class="text-sm font-bold" style="color:#ed6b46;">B</span></div>
+            <div><div class="text-sm font-bold" style="color:#1E1F1B;">Bierkompas</div><div class="text-[#6B6860] text-xs">Klant van Merqo</div></div>
+          </footer>
+        </blockquote>
+        <blockquote data-stagger-item style="padding:32px 36px; background:#fff; border-radius:24px; position:relative; overflow:hidden; display:flex; flex-direction:column; border:1px solid rgba(30,31,27,0.08);">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:#ed6b46;border-radius:0 2px 2px 0;"></div>
+          <div class="flex items-center gap-1 mb-5">{{ loop from="1" to="5" }}<svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{{ /loop }}</div>
+          <p class="text-[15px] leading-[1.7] mb-6" style="color:#4A4845;">"Snelle communicatie, duidelijke aanpak en een eindresultaat waar we heel blij mee zijn. Merqo begrijpt wat een ondernemer nodig heeft."</p>
+          <footer class="flex items-center gap-3 pt-5" style="border-top:1px solid rgba(30,31,27,0.1);">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(237,107,70,0.12);"><span class="text-sm font-bold" style="color:#ed6b46;">T</span></div>
+            <div><div class="text-sm font-bold" style="color:#1E1F1B;">Tuincentrum Borghuis</div><div class="text-[#6B6860] text-xs">Klant van Merqo</div></div>
+          </footer>
+        </blockquote>
+      {{ /if }}
+    </div>
+
+  </div>
+</section>
+
+
+{{# ── 7. CONTACT ──────────────────────────────────────────── #}}
+<section id="contact" style="background:#F0EDE7;" class="py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+
+      <div>
+        <div class="eyebrow mb-6" data-reveal>
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-text">Contact</div>
+        </div>
+        <h2 class="h-section mb-6" style="color:#1E1F1B;" data-reveal>
+          Klaar om jouw<br>
+          merk te laten <span style="color:#a8c8ca; font-style:italic;">groeien?</span>
+        </h2>
+        <p class="text-[#6B6860] leading-relaxed mb-10" data-reveal>
+          Stuur ons een bericht en wij reageren binnen één werkdag. Liever bellen? Dat kan ook.
+        </p>
+
+        <div class="space-y-5" data-stagger>
+          <a href="mailto:info@merqo.nl" class="flex items-center gap-4 group" data-stagger-item>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors" style="background:#E8E4DE;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-[#6B6860] text-xs mb-0.5">E-mail</div>
+              <div class="text-sm font-medium group-hover:text-[#ed6b46] transition-colors" style="color:#1E1F1B;">info@merqo.nl</div>
+            </div>
+          </a>
+          <a href="tel:+31630772283" class="flex items-center gap-4 group" data-stagger-item>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors" style="background:#E8E4DE;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-[#6B6860] text-xs mb-0.5">Telefoon</div>
+              <div class="text-sm font-medium group-hover:text-[#ed6b46] transition-colors" style="color:#1E1F1B;">06 30 77 22 83</div>
+            </div>
+          </a>
+          <div class="flex items-center gap-4" data-stagger-item>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#E8E4DE;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-[#6B6860] text-xs mb-0.5">Adres</div>
+              <div class="text-sm font-medium" style="color:#1E1F1B;">7558 PJ Hengelo, Nederland</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div x-data="contactForm()" data-reveal>
+
+        <div x-show="sent" x-transition class="h-full flex flex-col items-center justify-center text-center gap-4 py-12" x-cloak>
+          <div class="w-16 h-16 rounded-full bg-[#ed6b46]/10 flex items-center justify-center">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-display font-bold" style="color:#1E1F1B;">Bericht ontvangen</h3>
+          <p class="text-[#6B6860] text-sm max-w-xs">Wij reageren binnen één werkdag. Tot snel.</p>
+        </div>
+
+        <form x-show="!sent" @submit.prevent="submit()" class="space-y-4" novalidate>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-[#6B6860] text-xs font-medium mb-2 uppercase tracking-wider">Naam</label>
+              <input type="text" x-model="name" class="form-input" placeholder="Jouw naam" required>
+            </div>
+            <div>
+              <label class="block text-[#6B6860] text-xs font-medium mb-2 uppercase tracking-wider">E-mail</label>
+              <input type="email" x-model="email" class="form-input" placeholder="jouw@email.nl" required>
+            </div>
+          </div>
+          <div>
+            <label class="block text-[#6B6860] text-xs font-medium mb-2 uppercase tracking-wider">Bericht</label>
+            <textarea x-model="message" class="form-input" placeholder="Vertel ons over jouw project of vraag..." required></textarea>
+          </div>
+          <div x-show="error" class="text-red-400 text-sm" x-cloak>
+            Er ging iets mis. Probeer het opnieuw of stuur een e-mail naar info@merqo.nl.
+          </div>
+          <button type="submit" class="btn-primary w-full justify-center" :disabled="sending" data-magnetic>
+            <span x-show="!sending">Verstuur bericht</span>
+            <span x-show="sending" x-cloak>Bezig met versturen...</span>
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>

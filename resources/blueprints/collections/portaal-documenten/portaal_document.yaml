@@ -1,0 +1,48 @@
+title: 'Portaal Document'
+fields:
+  -
+    handle: title
+    field:
+      type: text
+      required: true
+      display: Documentnaam
+  -
+    handle: categorie
+    field:
+      type: select
+      required: true
+      display: Categorie
+      options:
+        fundament: Fundament
+        branding: Branding
+        rapport: Rapport
+        factuur: Factuur
+        update: Projectupdate
+        overig: Overig
+  -
+    handle: bestand
+    field:
+      type: assets
+      required: true
+      display: Bestand
+      container: assets
+      max_files: 1
+  -
+    handle: klant_email
+    field:
+      type: text
+      required: true
+      display: 'Klant e-mailadres'
+      instructions: 'Het e-mailadres van de klant die dit document mag zien.'
+  -
+    handle: beschrijving
+    field:
+      type: textarea
+      display: Beschrijving
+      instructions: 'Optionele toelichting bij dit document.'
+  -
+    handle: date
+    field:
+      type: date
+      required: true
+      display: Datum

@@ -1,0 +1,289 @@
+{{# ════════════════════════════════════════════════════════════
+    MERQO - GRATIS MERKSCAN  (2 stappen)
+════════════════════════════════════════════════════════════ #}}
+
+<style>
+  .scan-wrap  { background:#F4F1EC; min-height:100vh; padding-top:80px; }
+  .scan-bar   { height:2px; background:rgba(30,31,27,0.07); }
+  .scan-fill  { height:100%; background:#ed6b46; transition:width 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .scan-meta  { max-width:600px; margin:0 auto; padding:1.25rem 2rem; display:flex; align-items:center; justify-content:space-between; }
+  .scan-body  { max-width:600px; margin:0 auto; padding:2.5rem 2rem 8rem; }
+
+  .scan-eyebrow { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+                  color:#ed6b46; font-family:var(--font-body); margin-bottom:1rem; display:block; }
+  .scan-h     { font-family:var(--font-display); font-weight:800; font-size:clamp(30px,5vw,50px);
+                letter-spacing:-0.045em; line-height:1.0; color:#1E1F1B; margin:0 0 0.75rem; }
+  .scan-sub   { font-size:15px; color:#6B6860; margin:0 0 2.5rem; line-height:1.7; }
+
+  .scan-field { display:flex; flex-direction:column; gap:6px; margin-bottom:1rem; }
+  .scan-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+                color:rgba(30,31,27,0.45); font-family:var(--font-body); }
+  .scan-input { padding:0.9rem 1.1rem; border:1.5px solid rgba(30,31,27,0.1); border-radius:12px;
+                font-size:15px; font-family:var(--font-body); color:#1E1F1B;
+                background:#fff; outline:none; transition:border-color 0.2s, box-shadow 0.2s;
+                width:100%; box-sizing:border-box; }
+  .scan-input:focus { border-color:#ed6b46; box-shadow:0 0 0 3px rgba(237,107,70,0.1); }
+
+  .scan-option {
+    display:flex; align-items:center; gap:14px;
+    padding:1rem 1.25rem; background:#fff;
+    border:1.5px solid rgba(30,31,27,0.07); border-radius:14px;
+    cursor:pointer; text-align:left; width:100%;
+    transition:border-color 0.18s, box-shadow 0.18s, transform 0.15s;
+    margin-bottom:8px;
+  }
+  .scan-option:hover { border-color:#ed6b46; box-shadow:0 0 0 3px rgba(237,107,70,0.09); transform:translateY(-1px); }
+  .scan-option.selected { border-color:#ed6b46; box-shadow:0 0 0 3px rgba(237,107,70,0.09); background:#fffaf8; }
+  .scan-option-icon { font-size:1.4rem; flex-shrink:0; width:36px; text-align:center; }
+  .scan-option-text { font-family:var(--font-display); font-weight:700; font-size:0.95rem; color:#1E1F1B; }
+
+  .scan-btn {
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 28px; border-radius:999px; background:#ed6b46; color:#fff;
+    font-family:var(--font-body); font-size:14px; font-weight:700;
+    letter-spacing:0.3px; text-decoration:none; border:none; cursor:pointer;
+    transition:background 0.2s, transform 0.15s; width:100%; justify-content:center;
+    margin-top:1.5rem;
+  }
+  .scan-btn:hover:not(:disabled) { background:#d95e3c; transform:translateY(-1px); }
+  .scan-btn:disabled { opacity:0.45; cursor:not-allowed; }
+
+  .scan-btn-ghost {
+    background:none; border:none; cursor:pointer;
+    font-family:var(--font-body); font-size:13px; font-weight:600;
+    color:rgba(30,31,27,0.4); display:flex; align-items:center; gap:6px;
+    padding:0; margin-top:1rem; transition:color 0.2s;
+  }
+  .scan-btn-ghost:hover { color:#1E1F1B; }
+
+  .scan-success { text-align:center; padding:3rem 1rem; }
+  .scan-success-icon { font-size:3rem; margin-bottom:1.5rem; }
+
+  .scan-step-label { font-size:12px; font-weight:600; color:rgba(30,31,27,0.35); font-family:var(--font-body); }
+
+  .scan-textarea {
+    padding:0.9rem 1.1rem; border:1.5px solid rgba(30,31,27,0.1); border-radius:12px;
+    font-size:15px; font-family:var(--font-body); color:#1E1F1B; background:#fff;
+    outline:none; transition:border-color 0.2s, box-shadow 0.2s;
+    width:100%; box-sizing:border-box; resize:vertical; min-height:100px;
+  }
+  .scan-textarea:focus { border-color:#ed6b46; box-shadow:0 0 0 3px rgba(237,107,70,0.1); }
+</style>
+
+<div class="scan-wrap" x-data="scanForm()" x-cloak>
+
+  {{# Progress bar #}}
+  <div class="scan-bar">
+    <div class="scan-fill" :style="'width:' + (step / 2 * 100) + '%'"></div>
+  </div>
+
+  {{# Meta: stap + label #}}
+  <div class="scan-meta">
+    <div style="display:flex;gap:6px;align-items:center;">
+      <template x-for="i in 2" :key="i">
+        <div :style="i === step
+          ? 'width:20px;height:6px;border-radius:99px;background:#ed6b46;'
+          : i < step
+            ? 'width:6px;height:6px;border-radius:99px;background:#ed6b46;opacity:0.4;'
+            : 'width:6px;height:6px;border-radius:99px;background:rgba(30,31,27,0.15);'">
+        </div>
+      </template>
+    </div>
+    <span class="scan-step-label" x-text="step < 3 ? 'Stap ' + step + ' van 2' : ''"></span>
+  </div>
+
+  <div class="scan-body">
+
+    {{# ── STAP 1: Gegevens ── #}}
+    <div x-show="step === 1"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate-y-3"
+         x-transition:enter-end="opacity-100 translate-y-0">
+
+      <span class="scan-eyebrow">Stap 1 - Jouw gegevens</span>
+      <h1 class="scan-h">Waar loopt jouw<br>groei vast?</h1>
+      <p class="scan-sub">In 2 minuten weet je waar je staat. Persoonlijk advies van Merqo: geen spam, geen verplicht verkoopgesprek.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div class="scan-field" style="grid-column:1/-1;">
+          <label class="scan-label">Bedrijfsnaam *</label>
+          <input x-model="form.bedrijfsnaam" type="text" placeholder="Jouw bedrijf" class="scan-input">
+        </div>
+        <div class="scan-field">
+          <label class="scan-label">Jouw naam *</label>
+          <input x-model="form.naam" type="text" placeholder="Voor- en achternaam" class="scan-input">
+        </div>
+        <div class="scan-field">
+          <label class="scan-label">E-mailadres *</label>
+          <input x-model="form.email" type="email" placeholder="jij@bedrijf.nl" class="scan-input">
+        </div>
+        <div class="scan-field" style="grid-column:1/-1;">
+          <label class="scan-label">Website <span style="opacity:0.5;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel)</span></label>
+          <input x-model="form.website" type="text" placeholder="https://jouwbedrijf.nl" class="scan-input">
+        </div>
+      </div>
+
+      <button @click="step = 2"
+              class="scan-btn"
+              :disabled="!form.bedrijfsnaam || !form.naam || !form.email">
+        Volgende stap
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    {{# ── STAP 2: Uitdaging ── #}}
+    <div x-show="step === 2"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate-y-3"
+         x-transition:enter-end="opacity-100 translate-y-0">
+
+      <span class="scan-eyebrow">Stap 2 - Jouw situatie</span>
+      <h2 class="scan-h">Wat speelt er<br>bij jou?</h2>
+      <p class="scan-sub">Kies wat het beste past. Je kunt altijd toelichting toevoegen.</p>
+
+      <template x-for="u in uitdagingen" :key="u.value">
+        <button @click="form.uitdaging = u.value"
+                class="scan-option"
+                :class="form.uitdaging === u.value ? 'selected' : ''">
+          <span class="scan-option-icon" x-html="u.icon"></span>
+          <span class="scan-option-text" x-text="u.label"></span>
+        </button>
+      </template>
+
+      <div class="scan-field" style="margin-top:1.25rem;">
+        <label class="scan-label">Toelichting <span style="opacity:0.5;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel)</span></label>
+        <textarea x-model="form.toelichting" class="scan-textarea" placeholder="Vertel ons iets meer over jouw situatie..."></textarea>
+      </div>
+
+      <div x-show="error" x-text="error"
+           style="margin-top:1rem;padding:1rem;background:#fff0ee;border:1px solid #ed6b46;border-radius:10px;
+                  font-size:13px;color:#c0392b;font-family:var(--font-body);"></div>
+
+      <button @click="submitScan()"
+              class="scan-btn"
+              :disabled="!form.uitdaging || submitting">
+        <span x-text="submitting ? 'Versturen...' : 'Verstuur mijn scan'"></span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+
+      <p style="font-size:11px; color:rgba(30,31,27,0.35); font-family:var(--font-body); text-align:center; margin-top:0.75rem; line-height:1.6;">
+        Je gegevens worden vertrouwelijk behandeld en niet gedeeld met derden.
+        <a href="/privacy" style="color:rgba(30,31,27,0.45); text-decoration:underline;">Privacybeleid</a>
+      </p>
+
+      <button @click="step = 1" class="scan-btn-ghost">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Terug
+      </button>
+    </div>
+
+    {{# ── BEVESTIGING ── #}}
+    <div x-show="step === 3"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate-y-3"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         class="scan-success">
+      <div class="scan-success-icon">✓</div>
+      <h2 class="scan-h" style="font-size:clamp(24px,4vw,38px);">Goed ontvangen,<br><span x-text="form.naam.split(' ')[0]"></span>.</h2>
+      <p class="scan-sub" style="max-width:36ch; margin:1rem auto 2.5rem;">
+        We nemen binnen één werkdag contact op. Geen geautomatiseerd antwoord: gewoon een mens die jouw situatie heeft gelezen.
+      </p>
+      <a href="/" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:999px;
+                          background:#1E1F1B;color:#F0EDE7;font-family:var(--font-body);font-size:13px;
+                          font-weight:700;text-decoration:none;">
+        Terug naar de website
+      </a>
+    </div>
+
+  </div>
+</div>
+
+{{# ── Social proof sectie onder het formulier ── #}}
+<section style="background:#EDEAE3; padding:5rem 0;">
+  <div style="max-width:600px; margin:0 auto; px:1.5rem; padding:0 1.5rem;">
+
+    <div style="text-align:center; margin-bottom:3rem;">
+      <div style="display:inline-flex; align-items:center; gap:4px; margin-bottom:0.75rem;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span style="font-family:var(--font-body); font-size:12px; font-weight:600; color:#6B6860; margin-left:4px;">5.0 · Google</span>
+      </div>
+      <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(22px,3vw,32px); letter-spacing:-0.04em; color:#1E1F1B; margin:0 0 0.5rem;">
+        100+ ondernemers gingen je voor
+      </h2>
+      <p style="font-family:var(--font-body); font-size:14px; color:#6B6860; margin:0;">Gratis, vrijblijvend en persoonlijk advies.</p>
+    </div>
+
+    <blockquote style="background:#fff; border-radius:20px; padding:2rem 2.25rem; margin:0;">
+      <p style="font-family:var(--font-display); font-size:16px; font-weight:700; font-style:italic;
+                color:#1E1F1B; margin:0 0 1.25rem; line-height:1.55;">
+        "Binnen een week hadden we een helder beeld van waar we stonden en wat er beter kon. Dat gesprek was de start van onze complete rebrand."
+      </p>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <div style="width:38px; height:38px; border-radius:50%; background:#ed6b46; flex-shrink:0;
+                    display:flex; align-items:center; justify-content:center;
+                    font-family:var(--font-display); font-size:11px; font-weight:800; color:#fff;">LB</div>
+        <div>
+          <div style="font-family:var(--font-display); font-size:13px; font-weight:700; color:#1E1F1B;">Lisa van den Berg</div>
+          <div style="font-family:var(--font-body); font-size:12px; color:#9B9890;">Directeur, Hartman Bouw</div>
+        </div>
+      </div>
+    </blockquote>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('scanForm', () => ({
+    step: 1,
+    submitting: false,
+    error: '',
+    form: {
+      bedrijfsnaam: '',
+      naam: '',
+      email: '',
+      website: '',
+      uitdaging: '',
+      toelichting: '',
+    },
+    uitdagingen: [
+      { value: 'groei',        label: 'Mijn groei stagneert ondanks een goed product',            icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>' },
+      { value: 'concurrentie', label: 'Ik verlies klanten aan concurrenten die minder goed zijn', icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' },
+      { value: 'bekendheid',   label: 'Te weinig mensen kennen ons merk',                        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>' },
+      { value: 'marketing',    label: 'Mijn marketing levert weinig meetbaar op',                icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>' },
+      { value: 'merk',         label: 'Mijn merk voelt niet consistent of sterk genoeg',        icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>' },
+      { value: 'begin',        label: 'Ik weet niet waar ik moet beginnen',                      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>' },
+    ],
+
+    async submitScan() {
+      this.submitting = true;
+      this.error = '';
+      try {
+        const res = await fetch('/scan/verstuur', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content ?? '',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(this.form),
+        });
+        if (res.ok) {
+          this.step = 3;
+        } else {
+          const d = await res.json().catch(() => ({}));
+          this.error = d.message || 'Er ging iets mis. Probeer het opnieuw of mail info@merqo.nl.';
+        }
+      } catch {
+        this.error = 'Geen verbinding. Probeer opnieuw of mail info@merqo.nl.';
+      } finally {
+        this.submitting = false;
+      }
+    },
+  }));
+});
+</script>
