@@ -28,7 +28,7 @@
 
       {{# Inhoudsopgave (sticky sidebar) #}}
       <aside class="privacy-toc">
-        <div style="position:sticky; top:6rem;">
+        <div>
           <p style="font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(30,31,27,0.35); margin-bottom:1rem; font-family:var(--font-body);">Inhoud</p>
           <nav style="display:flex; flex-direction:column; gap:0.5rem;">
             <a href="#artikel-1"  class="toc-link">1. Wie zijn wij</a>
@@ -254,9 +254,13 @@
     display: grid;
     grid-template-columns: 220px 1fr;
     gap: 5rem;
-    align-items: start;
   }
-  .privacy-toc { display: block; }
+  .privacy-toc {
+    display: block;
+    align-self: start;
+    position: sticky;
+    top: 6rem;
+  }
   .toc-link {
     font-size: 13px;
     color: rgba(30,31,27,0.45);
