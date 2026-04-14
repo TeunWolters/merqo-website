@@ -609,12 +609,12 @@
     var absOff = Math.abs(off);
     var sign   = off < 0 ? -1 : 1;
 
-    // Kaarten voorbij offset 2.4: volledig verborgen
-    if (absOff > 2.4) {
-      return { rotY: 0, transX: sign * 500, transZ: -400, scale: 0.55, opac: 0, zIdx: 0 };
+    // Kaarten voorbij offset 2: volledig verborgen
+    if (absOff > 2.3) {
+      return { rotY: 0, transX: sign * 400, transZ: -500, scale: 0.5, opac: 0, zIdx: 0 };
     }
 
-    // Offset 0-1: actieve kaart en directe buren
+    // Actieve kaart + directe buren (offset 0–1)
     if (absOff <= 1) {
       return {
         rotY:   sign * 12 * absOff,
@@ -626,17 +626,17 @@
       };
     }
 
-    // Offset 1-2.4: peek-kaarten achter de buitenste kaarten
-    // transX trekt terug richting midden (minder dan offset-1),
-    // transZ dieper om ze achter de buitenste kaarten te plaatsen
-    var t = absOff - 1; // 0..1.4
+    // Peek-kaarten (offset 1–2.3):
+    // Staan DIRECT achter de offset-1 kaart (zelfde transX ≈ 240px),
+    // maar dieper in Z en kleiner → piepen er omheen.
+    var t = absOff - 1; // 0..1.3
     return {
-      rotY:   sign * 8,
-      transX: sign * (260 - t * 90),   // bij offset 2 = 170px (tussen midden en buitenste kaart)
-      transZ: -(60 + t * 220),          // bij offset 2 = -280px (flink dieper)
-      scale:  Math.max(0.60, 0.76 - t * 0.14),
-      opac:   Math.max(0.28, 0.50 - t * 0.22),
-      zIdx:   Math.round(16 - t * 8)   // lager dan offset-1 (z=18), dus achter
+      rotY:   sign * 6,
+      transX: sign * 240,          // vrijwel zelfde X als offset-1 (260px), maar iets naar binnen
+      transZ: -(60 + t * 260),     // dieper: bij offset 2 ≈ -320px
+      scale:  Math.max(0.58, 0.84 - t * 0.26),  // bij offset 2 ≈ 0.58
+      opac:   Math.max(0.35, 0.65 - t * 0.30),  // bij offset 2 ≈ 0.35
+      zIdx:   Math.round(14 - t * 4)             // achter offset-1 (zIdx 18)
     };
   }
 
