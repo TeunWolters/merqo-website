@@ -127,27 +127,16 @@
     transition: opacity 0.3s ease;
   }
 
-  /* ── Bite badge linksonder - steekt buiten kaart ── */
+  /* ── Badge linksonder - platte bovenkant, afgeronde onderkant ── */
   .proj-badge {
     position: absolute;
-    bottom: -1px;
-    left: -1px;
+    bottom: 0;
+    left: 0;
     background: #F0EDE7;
-    border-radius: 0 24px 18px 18px;
+    border-radius: 0 0 18px 18px;
     padding: 1.1rem 1.75rem 1.5rem 1.5rem;
     min-width: 55%;
     z-index: 2;
-  }
-  /* Convex hoek rechtsboven: kwartcirkel die de inkeping opvult */
-  .proj-badge::after {
-    content: '';
-    position: absolute;
-    top: -24px;
-    right: 0;
-    width: 24px;
-    height: 24px;
-    background: radial-gradient(circle at 0% 0%, transparent 24px, #F0EDE7 24.1px);
-    pointer-events: none;
   }
   .proj-badge-title {
     font-family: var(--font-display);
