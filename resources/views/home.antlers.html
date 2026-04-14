@@ -429,13 +429,13 @@
       </svg>
     </button>
 
-    {{# Dots #}}
-    <div class="hc-dots" id="hc-dots"></div>
-
     {{# Counter #}}
     <div class="hc-counter" id="hc-counter"></div>
 
   </div>
+
+  {{# Dots - buiten de stage zodat ze niet worden geclipped #}}
+  <div class="hc-dots" id="hc-dots"></div>
 
 </section>
 
@@ -505,14 +505,12 @@
 
   /* ── Dots - pill stijl ── */
   .hc-dots {
-    position: absolute;
-    bottom: -3rem;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 5px;
-    z-index: 20;
+    margin-top: 2rem;
+    padding-bottom: 0.5rem;
   }
   .hc-dot {
     height: 6px;
@@ -567,17 +565,24 @@
   if (!cards.length) return;
 
   var total    = cards.length;
-  // position is unbounded float - loopt gewoon door voor infinite loop
   var position = 0;
   var target   = 0;
   var vel      = 0;
   var rafId    = null;
+  var autoTimer = null;
+
+  // Drag state
+  var pointerDown     = false;
+  var didDrag         = false;
+  var dragStartX      = 0;
+  var dragTargetStart = 0;
+  var DRAG_THRESHOLD  = 6; // px voordat het als drag telt
 
   var STIFFNESS = 0.06;
   var DAMPING   = 0.82;
   var REST_EPS  = 0.0005;
 
-  // Dots
+  // ── Dots ──────────────────────────────────────────────────────
   var dotsEl = document.getElementById('hc-dots');
   var dots   = [];
   cards.forEach(function(_, i) {
@@ -589,7 +594,7 @@
     dots.push(d);
   });
 
-  // Kortste-pad offset voor kaart i t.o.v. huidige position (met wrap)
+  // ── Helpers ───────────────────────────────────────────────────
   function offsetFor(i, pos) {
     var diff = ((i - pos) % total + total) % total;
     if (diff > total / 2) diff -= total;
@@ -605,8 +610,8 @@
     var sign   = off < 0 ? -1 : 1;
     var scale, opac;
     if (absOff <= 1) {
-      scale = 1    - (1    - 0.78) * absOff;
-      opac  = 1    - (1    - 0.55) * absOff;
+      scale = 1    - (1 - 0.78) * absOff;
+      opac  = 1    - (1 - 0.55) * absOff;
     } else {
       scale = Math.max(0.58, 0.78 - (absOff - 1) * 0.12);
       opac  = Math.max(0.20, 0.55 - (absOff - 1) * 0.18);
@@ -621,6 +626,7 @@
     };
   }
 
+  // ── Render ────────────────────────────────────────────────────
   function render() {
     var active = activeIdx();
     cards.forEach(function(card, i) {
@@ -636,6 +642,7 @@
     if (counter) counter.textContent = String(active + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
   }
 
+  // ── Spring physics ────────────────────────────────────────────
   function tick() {
     vel       = (vel + (target - position) * STIFFNESS) * DAMPING;
     position += vel;
@@ -653,35 +660,97 @@
     if (!rafId) rafId = requestAnimationFrame(tick);
   }
 
-  // Snap naar kaart idx via kortste pad (links of rechts)
   function snapTo(idx) {
     var off = offsetFor(idx, position);
     target = position + off;
     startSpring();
   }
 
-  // Pijlen
+  // ── Auto-play ─────────────────────────────────────────────────
+  function startAutoPlay() {
+    if (autoTimer) clearInterval(autoTimer);
+    autoTimer = setInterval(function() { target += 1; startSpring(); }, 3500);
+  }
+
+  function stopAutoPlay() {
+    clearInterval(autoTimer);
+    autoTimer = null;
+  }
+
+  // Pauzeer bij hover
+  stage.addEventListener('mouseenter', stopAutoPlay);
+  stage.addEventListener('mouseleave', function() { if (!pointerDown) startAutoPlay(); });
+
+  // ── Drag / swipe ──────────────────────────────────────────────
+  function onPointerDown(clientX) {
+    pointerDown     = true;
+    didDrag         = false;
+    dragStartX      = clientX;
+    dragTargetStart = target;
+    stopAutoPlay();
+  }
+
+  function onPointerMove(clientX) {
+    if (!pointerDown) return;
+    var dx = clientX - dragStartX;
+    if (!didDrag && Math.abs(dx) > DRAG_THRESHOLD) {
+      didDrag = true;
+      stage.classList.add('is-dragging');
+    }
+    if (!didDrag) return;
+    target = dragTargetStart - dx / 320;
+    startSpring();
+  }
+
+  function onPointerUp() {
+    if (!pointerDown) return;
+    pointerDown = false;
+    stage.classList.remove('is-dragging');
+    if (didDrag) {
+      target = Math.round(target);
+      startSpring();
+    }
+    // Kleine vertraging zodat click-events didDrag nog kunnen lezen
+    setTimeout(function() { didDrag = false; }, 80);
+    startAutoPlay();
+  }
+
+  // Mouse
+  stage.addEventListener('mousedown', function(e) { onPointerDown(e.clientX); });
+  window.addEventListener('mousemove', function(e) { onPointerMove(e.clientX); });
+  window.addEventListener('mouseup', onPointerUp);
+
+  // Touch
+  stage.addEventListener('touchstart', function(e) {
+    onPointerDown(e.touches[0].clientX);
+  }, { passive: true });
+  window.addEventListener('touchmove', function(e) {
+    if (pointerDown) onPointerMove(e.touches[0].clientX);
+  }, { passive: true });
+  window.addEventListener('touchend', onPointerUp);
+
+  // ── Pijlen ───────────────────────────────────────────────────
   document.getElementById('hc-prev').addEventListener('click', function() { target -= 1; startSpring(); });
   document.getElementById('hc-next').addEventListener('click', function() { target += 1; startSpring(); });
 
-  // Klik op zijkaart
+  // ── Klik op kaart ────────────────────────────────────────────
   cards.forEach(function(card, i) {
     card.addEventListener('click', function(e) {
+      if (didDrag) { e.preventDefault(); return; }
       if (i !== activeIdx()) { e.preventDefault(); snapTo(i); }
     });
   });
 
-  // ── Auto-play ────────────────────────────────────────────────
-  setInterval(function() {
-    target += 1;
-    startSpring();
-  }, 2500);
+  // ── Keyboard (pijltoetsen als de carousel gefocust is) ───────
+  stage.setAttribute('tabindex', '0');
+  stage.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); target -= 1; startSpring(); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); target += 1; startSpring(); }
+  });
 
-  // Init
+  // ── Init ─────────────────────────────────────────────────────
   render();
-  autoPlay();
-
-  function autoPlay() {} // noop - autoplay loopt via setInterval hierboven
+  startAutoPlay();
 })();
 </script>
 
