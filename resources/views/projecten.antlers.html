@@ -16,15 +16,15 @@
 
 
 {{# ══════════════════════════════════════════════════════
-    PROJECTEN GRID - notch badge stijl
+    PROJECTEN GRID - editorial stijl
     ══════════════════════════════════════════════════════ #}}
-<section style="background:#F0EDE7; padding:5rem 0 7rem;">
+<section style="background:#F0EDE7; padding:5rem 0 8rem;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
 
-    {{# Intro #}}
-    <div style="display:flex; align-items:end; justify-content:space-between; margin-bottom:3rem; flex-wrap:wrap; gap:1.5rem;" data-reveal>
+    {{# Intro header #}}
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:4rem; flex-wrap:wrap; gap:1.5rem;" data-reveal>
       <div>
-        <div class="eyebrow mb-5">
+        <div class="eyebrow" style="margin-bottom:1.25rem;">
           <div class="eyebrow-line"></div>
           <div class="eyebrow-text">Ons werk</div>
         </div>
@@ -39,42 +39,36 @@
     </div>
 
     {{# Grid #}}
-    <div class="proj-grid" data-stagger>
+    <div class="proj-grid">
       {{ collection:projects sort="order:asc" }}
-      <a href="{{ url }}" class="proj-card" data-stagger-item>
+      <a href="{{ url }}" class="proj-card">
 
-        {{# Afbeelding vult hele kaart #}}
-        <div class="proj-card-img">
+        {{# Afbeelding #}}
+        <div class="proj-img-wrap">
           {{ if image }}
-            <img src="{{ image }}" alt="{{ title }}" loading="lazy"
-                 style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.7s cubic-bezier(0.16,1,0.3,1);">
+            <img src="{{ image }}" alt="{{ title }}" loading="lazy">
           {{ else }}
             <div style="width:100%; height:100%; background:linear-gradient(160deg,#D6D2CB,#C2BDB6);"></div>
           {{ /if }}
-          {{# Hover overlay #}}
-          <div class="proj-card-overlay">
-            <span style="display:inline-flex; align-items:center; gap:0.6rem;
-                         background:rgba(240,237,231,0.1); backdrop-filter:blur(16px);
-                         border:1px solid rgba(240,237,231,0.2); border-radius:999px;
-                         padding:0.7rem 1.5rem; font-family:var(--font-body);
-                         font-size:13px; font-weight:700; color:#F0EDE7;">
-              Bekijk project
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-            </span>
+          {{# Hover: arrow overlay #}}
+          <div class="proj-hover-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </div>
         </div>
 
-        {{# Tag badge - rechtsboven, notch stijl #}}
-        {{ if category }}
-        <div class="proj-tag-badge">{{ category }}</div>
-        {{ /if }}
-
-        {{# Bite badge - linksonder #}}
-        <div class="proj-badge">
-          <h3 class="proj-badge-title">{{ title }}</h3>
-          {{ if tagline }}<p class="proj-badge-sub">{{ tagline }}</p>{{ /if }}
+        {{# Info onder de foto #}}
+        <div class="proj-info">
+          <div class="proj-info-left">
+            {{ if category }}
+              <span class="proj-category">{{ category }}</span>
+            {{ /if }}
+            <h3 class="proj-title">{{ title }}</h3>
+            {{ if tagline }}<p class="proj-tagline">{{ tagline }}</p>{{ /if }}
+          </div>
+          <div class="proj-info-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
         </div>
-
 
       </a>
       {{ /collection:projects }}
@@ -85,97 +79,145 @@
 
 {{# ── Styles ── #}}
 <style>
+  /* ── Grid layout ── */
   .proj-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
+    gap: 4rem 2.5rem;
   }
 
-  /* Eerste kaart over volle breedte */
-  .proj-grid .proj-card:first-child { grid-column: 1 / -1; }
-  .proj-grid .proj-card:first-child .proj-card-img { aspect-ratio: 16/7; }
+  /* Eerste kaart volledig breed, filmisch 21:9 */
+  .proj-grid .proj-card:first-child {
+    grid-column: 1 / -1;
+  }
+  .proj-grid .proj-card:first-child .proj-img-wrap {
+    aspect-ratio: 21 / 9;
+  }
+  .proj-grid .proj-card:first-child .proj-title {
+    font-size: clamp(22px, 2.5vw, 34px);
+  }
 
+  /* ── Kaart ── */
   .proj-card {
     display: block;
-    position: relative;
     text-decoration: none;
-    border-radius: 18px;
-    overflow: visible;
-    background: #F0EDE7;
-    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    color: inherit;
+    cursor: pointer;
   }
-  .proj-card:hover { transform: scale(0.982); }
-  .proj-card:hover .proj-card-img img { transform: scale(1.06); }
-  .proj-card:hover .proj-card-overlay { opacity: 1; }
 
-  .proj-card-img {
+  /* ── Afbeelding wrapper ── */
+  .proj-img-wrap {
     position: relative;
-    aspect-ratio: 4/3;
-    background: #C8C4BD;
-    border-radius: 18px;
+    aspect-ratio: 3 / 2;
+    border-radius: 14px;
     overflow: hidden;
+    background: #D6D2CB;
+    margin-bottom: 1.25rem;
+  }
+  .proj-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .proj-card:hover .proj-img-wrap img {
+    transform: scale(1.04);
   }
 
-  .proj-card-overlay {
+  /* Arrow cirkel - verschijnt op hover rechtsboven in de foto */
+  .proj-hover-arrow {
     position: absolute;
-    inset: 0;
-    background: rgba(10,8,6,0.45);
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #F0EDE7;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  /* ── Badge linksonder - platte bovenkant, afgeronde onderkant ── */
-  .proj-badge {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: #F0EDE7;
-    border-radius: 0 0 18px 18px;
-    padding: 1.1rem 1.75rem 1.5rem 1.5rem;
-    min-width: 55%;
-    z-index: 2;
-  }
-  .proj-badge-title {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(15px, 1.4vw, 20px);
-    letter-spacing: -0.03em;
-    line-height: 1.15;
     color: #1E1F1B;
-    margin: 0 0 0.2rem;
+    opacity: 0;
+    transform: scale(0.7) rotate(-45deg);
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1);
   }
-  .proj-badge-sub {
-    font-size: 12px;
-    color: rgba(30,31,27,0.4);
-    font-family: var(--font-body);
-    margin: 0;
-    line-height: 1.4;
+  .proj-card:hover .proj-hover-arrow {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
   }
 
-  /* ── Tag rechtsboven ── */
-  .proj-tag-badge {
-    position: absolute;
-    top: 1rem; right: 1rem;
-    background: #F0EDE7;
-    border-radius: 8px;
-    padding: 0.4rem 0.9rem;
-    z-index: 2;
+  /* ── Info onder de foto ── */
+  .proj-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.1rem;
+    border-top: 1px solid rgba(30,31,27,0.1);
+    padding-top: 1rem;
+  }
+  .proj-info-left {
+    flex: 1;
+    min-width: 0;
+  }
+  .proj-category {
+    display: inline-block;
+    font-family: var(--font-body);
     font-size: 9px;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    color: #ed6b46;
+    margin-bottom: 0.5rem;
+  }
+  .proj-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(16px, 1.6vw, 22px);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
     color: #1E1F1B;
+    margin: 0 0 0.35rem;
+    transition: color 0.2s;
+  }
+  .proj-card:hover .proj-title { color: #ed6b46; }
+  .proj-tagline {
     font-family: var(--font-body);
-    white-space: nowrap;
+    font-size: 13px;
+    color: rgba(30,31,27,0.45);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Pijl rechts */
+  .proj-info-arrow {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(30,31,27,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(30,31,27,0.4);
+    margin-top: 2px;
+    transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .proj-card:hover .proj-info-arrow {
+    background: #ed6b46;
+    border-color: #ed6b46;
+    color: #fff;
+    transform: rotate(45deg);
   }
 
   @media (max-width: 768px) {
-    .proj-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .proj-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
     .proj-grid .proj-card:first-child { grid-column: auto; }
-    .proj-grid .proj-card:first-child .proj-card-img { aspect-ratio: 4/3; }
+    .proj-grid .proj-card:first-child .proj-img-wrap { aspect-ratio: 4/3; }
   }
 </style>
 
