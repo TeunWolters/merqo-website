@@ -69,11 +69,12 @@
         <div class="proj-tag-badge">{{ category }}</div>
         {{ /if }}
 
-        {{# Titel badge - linksonder, notch stijl #}}
+        {{# Bite badge - linksonder #}}
         <div class="proj-badge">
           <h3 class="proj-badge-title">{{ title }}</h3>
           {{ if tagline }}<p class="proj-badge-sub">{{ tagline }}</p>{{ /if }}
         </div>
+
 
       </a>
       {{ /collection:projects }}
@@ -124,28 +125,29 @@
     transition: opacity 0.3s ease;
   }
 
-  /* ── Badge linksonder ── */
+  /* ── Bite badge linksonder ── */
   .proj-badge {
     position: absolute;
-    bottom: 1rem;
-    left: 1rem;
+    bottom: 0;
+    left: 0;
     background: #F0EDE7;
-    border-radius: 12px;
-    padding: 0.75rem 1.1rem;
+    border-radius: 0 24px 0 18px; /* alleen top-rechts afgerond = de "hap" */
+    padding: 1.1rem 1.75rem 1.25rem 1.25rem;
+    min-width: 55%;
     z-index: 2;
   }
   .proj-badge-title {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(14px, 1.2vw, 18px);
+    font-size: clamp(15px, 1.4vw, 20px);
     letter-spacing: -0.03em;
     line-height: 1.15;
     color: #1E1F1B;
-    margin: 0 0 0.15rem;
+    margin: 0 0 0.2rem;
   }
   .proj-badge-sub {
-    font-size: 11px;
-    color: rgba(30,31,27,0.45);
+    font-size: 12px;
+    color: rgba(30,31,27,0.4);
     font-family: var(--font-body);
     margin: 0;
     line-height: 1.4;
