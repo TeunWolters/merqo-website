@@ -4,6 +4,8 @@ tree:
   -
     entry: projecten
   -
+    entry: blog
+  -
     entry: over-ons
   -
     entry: branding

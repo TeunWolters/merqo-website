@@ -1,5 +1,6 @@
 title: Blog
-route: 'blog/{slug}'
+mount: blog
+route: '{mount}/{slug}'
 date_behavior:
   past: public
   future: private
