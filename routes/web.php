@@ -20,6 +20,17 @@ Route::get('/sitemap.xml', function () {
 
 /*
 |--------------------------------------------------------------------------
+| Blog 301 redirects (gewijzigde slugs)
+|--------------------------------------------------------------------------
+*/
+
+Route::redirect('/blog/google-bedrijfsprofiel-optimaliseren-lokaal-gevonden', '/blog/google-mijn-bedrijf-optimaliseren', 301);
+Route::redirect('/blog/instagram-voor-bedrijven-volgers-die-converteren',     '/blog/instagram-voor-bedrijven', 301);
+Route::redirect('/blog/goed-logo-laten-ontwerpen-5-principes',               '/blog/logo-laten-ontwerpen', 301);
+Route::redirect('/blog/waarom-merkidentiteit-meer-is-dan-een-logo',          '/blog/merkidentiteit-meer-dan-een-logo', 301);
+
+/*
+|--------------------------------------------------------------------------
 | Blog categorie routes
 |--------------------------------------------------------------------------
 */
