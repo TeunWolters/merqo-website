@@ -330,10 +330,19 @@
             <button onclick="mcQuick('Hoe vraag ik de gratis merkenscan aan?')" class="mc-chip">Gratis scan</button>
           </div>
         </div>
+        {{# Vaste CTA balk #}}
+        <a href="/contact"
+           style="display:flex; align-items:center; justify-content:center; gap:0.5rem; flex-shrink:0;
+                  background:#ed6b46; padding:0.7rem 1.25rem; text-decoration:none;
+                  transition:opacity 0.15s;"
+           onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+          <span style="font-family:var(--font-body); font-size:12px; font-weight:700; color:white; letter-spacing:0.2px;">Plan een gratis kennismaking</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
         {{# Foutmelding #}}
         <div id="mc-error" style="display:none; margin:0 1.25rem 0.5rem; padding:0.6rem 0.875rem; background:rgba(237,107,70,0.1); border-radius:8px; font-family:var(--font-body); font-size:12px; color:#ed6b46; font-weight:600;"></div>
         {{# Input #}}
-        <div style="padding:1rem 1.25rem; border-top:1px solid rgba(30,31,27,0.07); background:#FDFCFA; flex-shrink:0;">
+        <div style="padding:0.875rem 1.25rem; border-top:1px solid rgba(30,31,27,0.07); background:#FDFCFA; flex-shrink:0;">
           <div style="display:flex; gap:0.6rem; align-items:flex-end;">
             <textarea id="mc-input" placeholder="Stel je vraag..." rows="1"
                       oninput="this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,100)+'px'"
