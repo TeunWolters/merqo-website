@@ -479,10 +479,12 @@ Alpine.data('siteHeader', () => ({
   toggle() {
     this.mobileOpen = !this.mobileOpen;
     document.body.style.overflow = this.mobileOpen ? 'hidden' : '';
+    document.dispatchEvent(new Event(this.mobileOpen ? 'mobile-menu-open' : 'mobile-menu-close'));
   },
   close() {
     this.mobileOpen = false;
     document.body.style.overflow = '';
+    document.dispatchEvent(new Event('mobile-menu-close'));
   },
 }));
 

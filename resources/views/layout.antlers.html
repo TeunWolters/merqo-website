@@ -335,6 +335,22 @@
     overlay.style.opacity = '0';
   });
 })();
+
+// WhatsApp knop verbergen als mobiel menu open is
+(function() {
+  var wa = document.getElementById('whatsapp-btn');
+  if (!wa) return;
+  document.addEventListener('alpine:init', function() {
+    document.addEventListener('mobile-menu-open', function() {
+      wa.style.opacity = '0';
+      wa.style.pointerEvents = 'none';
+    });
+    document.addEventListener('mobile-menu-close', function() {
+      wa.style.opacity = '1';
+      wa.style.pointerEvents = '';
+    });
+  });
+})();
 </script>
   </body>
 </html>
