@@ -551,16 +551,16 @@
             <li style="font-family:var(--font-body); font-size:13px; color:#6B6860; display:flex; gap:0.5rem;"><span style="color:#ed6b46;">+</span>Contactformulier</li>
           </ul>
         </div>
-        <div style="background:#1E1F1B; border-radius:16px; padding:1.5rem 1.75rem; position:relative;">
-          <div style="position:absolute; top:-10px; left:1.5rem; background:#ed6b46; color:#fff; font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.25rem 0.75rem; border-radius:999px;">Meest gekozen</div>
+        <div style="background:#ed6b46; border-radius:16px; padding:1.5rem 1.75rem; position:relative;">
+          <div style="position:absolute; top:-10px; left:1.5rem; background:#fff; color:#ed6b46; font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.25rem 0.75rem; border-radius:999px;">Meest gekozen</div>
           <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.75rem;">
-            <h3 style="font-family:var(--font-display); font-size:16px; font-weight:700; color:#F0EDE7;">Bedrijfswebsite</h3>
-            <span style="font-family:var(--font-display); font-size:15px; font-weight:800; color:#ed6b46; white-space:nowrap;">vanaf €2.800</span>
+            <h3 style="font-family:var(--font-display); font-size:16px; font-weight:700; color:#fff;">Bedrijfswebsite</h3>
+            <span style="font-family:var(--font-display); font-size:15px; font-weight:800; color:#fff; white-space:nowrap;">vanaf €2.800</span>
           </div>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.4rem;">
-            <li style="font-family:var(--font-body); font-size:13px; color:rgba(240,237,231,0.7); display:flex; gap:0.5rem;"><span style="color:#ed6b46;">+</span>5 pagina's, CMS &amp; blog</li>
-            <li style="font-family:var(--font-body); font-size:13px; color:rgba(240,237,231,0.7); display:flex; gap:0.5rem;"><span style="color:#ed6b46;">+</span>Contactformulier &amp; SEO</li>
-            <li style="font-family:var(--font-body); font-size:13px; color:rgba(240,237,231,0.7); display:flex; gap:0.5rem;"><span style="color:#ed6b46;">+</span>Mobielvriendelijk &amp; snel</li>
+            <li style="font-family:var(--font-body); font-size:13px; color:rgba(255,255,255,0.85); display:flex; gap:0.5rem;"><span style="color:rgba(255,255,255,0.5);">+</span>5 pagina's, CMS &amp; blog</li>
+            <li style="font-family:var(--font-body); font-size:13px; color:rgba(255,255,255,0.85); display:flex; gap:0.5rem;"><span style="color:rgba(255,255,255,0.5);">+</span>Contactformulier &amp; SEO</li>
+            <li style="font-family:var(--font-body); font-size:13px; color:rgba(255,255,255,0.85); display:flex; gap:0.5rem;"><span style="color:rgba(255,255,255,0.5);">+</span>Mobielvriendelijk &amp; snel</li>
           </ul>
         </div>
         <div style="background:#F5F2EC; border-radius:16px; padding:1.25rem 1.75rem;">
@@ -756,15 +756,31 @@
 </section>
 
 {{# ── 6. CTA ─────────────────────────────────────────────────── #}}
-<section style="background:#1E1F1B; padding:6rem 0;">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10" style="text-align:center;">
+<section style="position:relative; overflow:hidden; background:#ddd5c8; padding:6rem 0;">
+  <div style="position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;">
+    <div class="wbcta-blob-a" style="position:absolute; width:80vw; height:80vw; background:#ed6b46; filter:blur(90px); opacity:0.88; will-change:transform;"></div>
+    <div class="wbcta-blob-b" style="position:absolute; width:65vw; height:65vw; background:#f5b87a; filter:blur(80px); opacity:0.72; will-change:transform;"></div>
+    <div class="wbcta-blob-c" style="position:absolute; width:55vw; height:55vw; background:#8fcdd0; filter:blur(90px); opacity:0.45; will-change:transform;"></div>
+  </div>
+  <style>
+    @keyframes wbcta-morph-a { 0%,100%{border-radius:60% 40% 55% 45%/50% 60% 40% 50%} 33%{border-radius:45% 55% 40% 60%/60% 35% 65% 40%} 66%{border-radius:35% 65% 60% 40%/40% 55% 45% 60%} }
+    @keyframes wbcta-morph-b { 0%,100%{border-radius:40% 60% 45% 55%/60% 45% 55% 40%} 50%{border-radius:60% 40% 65% 35%/45% 60% 40% 55%} }
+    @keyframes wbcta-morph-c { 0%,100%{border-radius:55% 45% 60% 40%/45% 55% 45% 55%} 50%{border-radius:40% 60% 40% 60%/60% 40% 60% 40%} }
+    @keyframes wbcta-drift-a { 0%{transform:translate(-30%,-40%)} 33%{transform:translate(20%,-10%)} 66%{transform:translate(-5%,-55%)} 100%{transform:translate(-30%,-40%)} }
+    @keyframes wbcta-drift-b { 0%{transform:translate(40%,10%)} 50%{transform:translate(60%,55%)} 100%{transform:translate(40%,10%)} }
+    @keyframes wbcta-drift-c { 0%{transform:translate(5%,30%)} 50%{transform:translate(55%,0%)} 100%{transform:translate(5%,30%)} }
+    .wbcta-blob-a { animation: wbcta-morph-a 12s ease-in-out infinite, wbcta-drift-a 24s ease-in-out infinite; }
+    .wbcta-blob-b { animation: wbcta-morph-b 16s ease-in-out infinite, wbcta-drift-b 20s ease-in-out infinite; }
+    .wbcta-blob-c { animation: wbcta-morph-c 14s ease-in-out infinite, wbcta-drift-c 26s ease-in-out infinite; }
+  </style>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10" style="position:relative; z-index:1; text-align:center;">
     <h2 style="font-family:var(--font-display); font-weight:800;
                font-size:clamp(28px,4vw,52px); letter-spacing:-0.04em;
-               line-height:1.06; color:#F0EDE7; margin-bottom:1rem;">
+               line-height:1.06; color:#fff; margin-bottom:1rem;">
       Klaar voor een website<br>die werkt?
     </h2>
     <p style="font-family:var(--font-body); font-size:16px; line-height:1.7;
-              color:rgba(240,237,231,0.55); margin-bottom:2.5rem; max-width:44ch; margin-left:auto; margin-right:auto;">
+              color:rgba(255,255,255,0.7); margin-bottom:2.5rem; max-width:44ch; margin-left:auto; margin-right:auto;">
       Vertel ons over jouw project en wij vertellen je wat er mogelijk is.
     </p>
     <a href="/contact" class="btn-primary">Start een gesprek</a>

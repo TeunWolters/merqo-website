@@ -252,6 +252,49 @@
         </div>
       </div>
 
+      {{# Huub van Midden #}}
+      <div class="ts-card" data-member="huub" x-data="{ open: false }">
+        <div class="ts-card-inner" @click="open = !open">
+          <div class="ts-card-img" style="background:#E8E4DC; display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:var(--font-display); font-size:3.5rem; font-weight:800; color:rgba(30,31,27,0.15); letter-spacing:-0.04em;">HM</span>
+          </div>
+          <div class="ts-grad-top"></div>
+          <div class="ts-grad-bot"></div>
+          <div class="ts-name-block" x-show="!open" x-transition.opacity>
+            <h3 class="ts-card-name">Huub van Midden</h3>
+            <div class="ts-card-role-label">Stagiair Design</div>
+          </div>
+          <div class="ts-badge-block" x-show="!open" x-transition.opacity>
+            <span class="ts-badge">Design</span>
+          </div>
+          <div class="ts-card-footer" x-show="!open" x-transition.opacity>
+            <div class="ts-avatar-ring" style="background:#E8E4DC; display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:var(--font-display); font-size:11px; font-weight:800; color:rgba(30,31,27,0.4);">HM</span>
+            </div>
+            <div class="ts-more-pill">
+              Meer info
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </div>
+          <div class="ts-bio-overlay" x-show="open" x-transition.opacity>
+            <div>
+              <div class="ts-bio-cat">Stagiair Design</div>
+              <h3 class="ts-bio-title">Huub van Midden</h3>
+              <p class="ts-bio-body">Brengt een frisse designblik mee en werkt mee aan visuele projecten voor onze klanten. Leert het vak op de werkvloer en groeit elke dag.</p>
+            </div>
+            <div class="ts-bio-footer">
+              <a href="https://www.linkedin.com/company/merqo" target="_blank" rel="noopener" class="ts-bio-li">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+              <button @click.stop="open = false" class="ts-bio-close">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {{# Jette Massop #}}
       <div class="ts-card" data-member="jette" x-data="{ open: false }">
         <div class="ts-card-inner" @click="open = !open">
@@ -490,6 +533,7 @@
     bleike: { name: 'Bleike Klein Breteler', role: 'Eigenaar & Designer',       bio: 'Mede-oprichter van Merqo en verantwoordelijk voor design. Vertaalt merkstrategie naar visuele concepten die écht werken en blijven hangen.',                                         linkedin: 'https://www.linkedin.com/company/merqo', photo: '/assets/team/bleike.jpg' },
     teun:   { name: 'Teun Wolters',          role: 'Marketing Strateeg & AI',   bio: 'Verantwoordelijk voor marketing strategie en AI-toepassingen. Zorgt dat merken slimmer en sneller groeien, met data als kompas en creativiteit als motor.',                         linkedin: 'https://www.linkedin.com/in/teunwolters',photo: '/assets/team/teun.jpg'   },
     naomi:  { name: 'Naomi Thalen',          role: 'Social Media Marketeer',    bio: 'Beheert social media met strategie en gevoel. Zet merken neer op de kanalen waar hun doelgroep zit en weet precies wat wel en niet werkt.',                                           linkedin: 'https://www.linkedin.com/company/merqo', photo: '/assets/team/naomi.jpg'  },
+    huub:   { name: 'Huub van Midden',        role: 'Stagiair Design',           bio: 'Brengt een frisse designblik mee en werkt mee aan visuele projecten voor onze klanten. Leert het vak op de werkvloer en groeit elke dag.',                                        linkedin: 'https://www.linkedin.com/company/merqo', photo: ''                        },
     jette:  { name: 'Jette Massop',          role: 'Stagiaire',                 bio: 'Ondersteunt het team met frisse ideeën en een scherp oog voor detail. Groeit elke dag mee met het bureau en levert al vanaf dag één echte bijdragen.',                               linkedin: 'https://www.linkedin.com/company/merqo', photo: '/assets/team/jette.jpg'  }
   };
 

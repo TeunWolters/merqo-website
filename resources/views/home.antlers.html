@@ -157,7 +157,7 @@
         </div>
 
         {{# Floating stat-strip over de foto #}}
-        <div style="position:absolute; bottom:2rem; left:2rem; right:2rem;
+        <div class="hero-stat-strip" style="position:absolute; bottom:2rem; left:2rem; right:2rem;
              background:rgba(28,23,16,0.75); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
              border:1px solid rgba(255,255,255,0.1); border-radius:16px;
              padding:1.25rem 1.75rem; display:flex; align-items:center; gap:0;">
@@ -225,6 +225,13 @@
 <style>
   @media (max-width: 900px) {
     .intro-main-grid { grid-template-columns: 1fr !important; gap: 3.5rem !important; }
+  }
+  @media (max-width: 480px) {
+    .hero-stat-strip { left: 1rem; right: 1rem; bottom: 1rem; padding: 0.875rem 1rem; }
+    .hero-stat-strip > div { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+  }
+  @media (max-width: 360px) {
+    .hero-stat-strip { display: none; }
   }
 </style>
 
@@ -994,9 +1001,14 @@
   }
   @media (max-width: 600px) {
     .srv-list { margin: 0 -1rem; }
-    .srv-item { padding: 1.5rem 1rem; gap: 1rem; }
-    .srv-name { font-size: 22px; }
+    .srv-item { padding: 1.5rem 1rem; gap: 1rem; grid-template-columns: 2.5rem 1fr auto; }
+    .srv-name { font-size: 20px; }
     .srv-item:hover { padding-left: 1.5rem; }
+  }
+  @media (max-width: 400px) {
+    .srv-arrow { display: none; }
+    .srv-item { grid-template-columns: 2.5rem 1fr; }
+    .srv-num { font-size: 1.5rem; }
   }
 </style>
 
@@ -1115,6 +1127,11 @@
   @media (max-width: 640px) {
     .ww-grid {
       grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 480px) {
+    .ww-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
