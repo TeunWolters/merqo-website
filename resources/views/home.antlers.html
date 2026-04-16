@@ -585,9 +585,9 @@
   var dragTargetStart = 0;
   var DRAG_THRESHOLD  = 6; // px voordat het als drag telt
 
-  var STIFFNESS = 0.06;
-  var DAMPING   = 0.82;
-  var REST_EPS  = 0.0005;
+  var STIFFNESS = 0.09;
+  var DAMPING   = 0.78;
+  var REST_EPS  = 0.001;
 
   // ── Dots ──────────────────────────────────────────────────────
   var dotsEl = document.getElementById('hc-dots');
@@ -616,34 +616,20 @@
     var absOff = Math.abs(off);
     var sign   = off < 0 ? -1 : 1;
 
-    // Kaarten voorbij offset 2: volledig verborgen
-    if (absOff > 2.3) {
-      return { rotY: 0, transX: sign * 400, transZ: -500, scale: 0.5, opac: 0, zIdx: 0 };
+    // Alleen 3 kaarten zichtbaar: center + 1 links + 1 rechts
+    // Alles vanaf offset 1.5: volledig verborgen
+    if (absOff > 1.4) {
+      return { rotY: 0, transX: sign * 500, transZ: -400, scale: 0.7, opac: 0, zIdx: 0 };
     }
 
-    // Actieve kaart + directe buren (offset 0–1)
-    if (absOff <= 1) {
-      return {
-        rotY:   sign * 12 * absOff,
-        transX: sign * 260 * absOff,
-        transZ: -60 * absOff,
-        scale:  1 - (1 - 0.84) * absOff,
-        opac:   1 - (1 - 0.65) * absOff,
-        zIdx:   Math.round(20 - absOff * 2)
-      };
-    }
-
-    // Peek-kaarten (offset 1–2.3):
-    // Staan DIRECT achter de offset-1 kaart (zelfde transX ≈ 240px),
-    // maar dieper in Z en kleiner → piepen er omheen.
-    var t = absOff - 1; // 0..1.3
+    // Center kaart (offset 0) tot zij-kaarten (offset 1)
     return {
-      rotY:   sign * 6,
-      transX: sign * 240,          // vrijwel zelfde X als offset-1 (260px), maar iets naar binnen
-      transZ: -(60 + t * 260),     // dieper: bij offset 2 ≈ -320px
-      scale:  Math.max(0.58, 0.84 - t * 0.26),  // bij offset 2 ≈ 0.58
-      opac:   Math.max(0.35, 0.65 - t * 0.30),  // bij offset 2 ≈ 0.35
-      zIdx:   Math.round(14 - t * 4)             // achter offset-1 (zIdx 18)
+      rotY:   sign * 10 * absOff,
+      transX: sign * 280 * absOff,
+      transZ: -80 * absOff,
+      scale:  1 - (1 - 0.82) * absOff,
+      opac:   absOff > 1 ? 0 : 1 - (1 - 0.7) * absOff,
+      zIdx:   Math.round(20 - absOff * 4)
     };
   }
 
@@ -1000,15 +986,27 @@
     .srv-item { grid-template-columns: 3rem 1fr auto; }
   }
   @media (max-width: 600px) {
-    .srv-list { margin: 0 -1rem; }
-    .srv-item { padding: 1.5rem 1rem; gap: 1rem; grid-template-columns: 2.5rem 1fr auto; }
-    .srv-name { font-size: 20px; }
-    .srv-item:hover { padding-left: 1.5rem; }
-  }
-  @media (max-width: 400px) {
-    .srv-arrow { display: none; }
-    .srv-item { grid-template-columns: 2.5rem 1fr; }
-    .srv-num { font-size: 1.5rem; }
+    .srv-list { margin: 0 -1.5rem; border-top: none; }
+    .srv-item {
+      padding: 1.25rem 1.5rem;
+      gap: 1rem;
+      grid-template-columns: 2.5rem 1fr auto;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid rgba(30,31,27,0.07) !important;
+      margin-bottom: 0.625rem;
+    }
+    .srv-item::before { display: none; }
+    .srv-name { font-size: 18px; }
+    .srv-desc { font-size: 12px; opacity: 1 !important; color: rgba(30,31,27,0.45); }
+    .srv-arrow {
+      width: 36px; height: 36px;
+      background: rgba(237,107,70,0.08);
+      border-color: transparent;
+      color: #ed6b46;
+    }
+    .srv-arrow svg { stroke: #ed6b46; }
+    .srv-item:hover { padding-left: 1.5rem; background: #fff; }
   }
 </style>
 
@@ -1126,12 +1124,62 @@
 
   @media (max-width: 640px) {
     .ww-grid {
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
+      border-top: none;
+      gap: 0;
+      position: relative;
     }
-  }
-  @media (max-width: 480px) {
-    .ww-grid {
-      grid-template-columns: 1fr;
+    .ww-grid::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 24px;
+      bottom: 24px;
+      width: 2px;
+      background: linear-gradient(to bottom, #ed6b46, rgba(237,107,70,0.1));
+      border-radius: 2px;
+    }
+    .ww-step {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      grid-template-rows: auto auto;
+      gap: 0 1rem;
+      padding: 0 0 2rem 0;
+      border-right: none;
+      border-bottom: none;
+      position: relative;
+    }
+    .ww-step:last-child { padding-bottom: 0; }
+    .ww-step + .ww-step { padding-left: 0; }
+    .ww-num {
+      grid-column: 1;
+      grid-row: 1 / 3;
+      width: 36px;
+      height: 36px;
+      background: #ed6b46;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      letter-spacing: 0;
+      margin-bottom: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .ww-title {
+      grid-column: 2;
+      grid-row: 1;
+      font-size: 17px;
+      padding-top: 6px;
+      margin-bottom: 0.2rem;
+    }
+    .ww-sub {
+      grid-column: 2;
+      grid-row: 2;
+      font-size: 13px;
     }
   }
 </style>

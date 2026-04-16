@@ -255,9 +255,8 @@
       {{# Huub van Midden #}}
       <div class="ts-card" data-member="huub" x-data="{ open: false }">
         <div class="ts-card-inner" @click="open = !open">
-          <div class="ts-card-img" style="background:#E8E4DC; display:flex; align-items:center; justify-content:center;">
-            <span style="font-family:var(--font-display); font-size:3.5rem; font-weight:800; color:rgba(30,31,27,0.15); letter-spacing:-0.04em;">HM</span>
-          </div>
+          <img src="/assets/team/huub.jpg" alt="Huub van Midden" class="ts-card-img"
+               :style="open ? 'transform:scale(1.04)' : 'transform:scale(1)'">
           <div class="ts-grad-top"></div>
           <div class="ts-grad-bot"></div>
           <div class="ts-name-block" x-show="!open" x-transition.opacity>
@@ -268,8 +267,8 @@
             <span class="ts-badge">Design</span>
           </div>
           <div class="ts-card-footer" x-show="!open" x-transition.opacity>
-            <div class="ts-avatar-ring" style="background:#E8E4DC; display:flex; align-items:center; justify-content:center;">
-              <span style="font-family:var(--font-display); font-size:11px; font-weight:800; color:rgba(30,31,27,0.4);">HM</span>
+            <div class="ts-avatar-ring">
+              <img src="/assets/team/huub.jpg" alt="">
             </div>
             <div class="ts-more-pill">
               Meer info
@@ -533,7 +532,7 @@
     bleike: { name: 'Bleike Klein Breteler', role: 'Eigenaar & Designer',       bio: 'Mede-oprichter van Merqo en verantwoordelijk voor design. Vertaalt merkstrategie naar visuele concepten die écht werken en blijven hangen.',                                         linkedin: 'https://www.linkedin.com/company/merqo', photo: '/assets/team/bleike.jpg' },
     teun:   { name: 'Teun Wolters',          role: 'Marketing Strateeg & AI',   bio: 'Verantwoordelijk voor marketing strategie en AI-toepassingen. Zorgt dat merken slimmer en sneller groeien, met data als kompas en creativiteit als motor.',                         linkedin: 'https://www.linkedin.com/in/teunwolters',photo: '/assets/team/teun.jpg'   },
     naomi:  { name: 'Naomi Thalen',          role: 'Social Media Marketeer',    bio: 'Beheert social media met strategie en gevoel. Zet merken neer op de kanalen waar hun doelgroep zit en weet precies wat wel en niet werkt.',                                           linkedin: 'https://www.linkedin.com/company/merqo', photo: '/assets/team/naomi.jpg'  },
-    huub:   { name: 'Huub van Midden',        role: 'Stagiair Design',           bio: 'Brengt een frisse designblik mee en werkt mee aan visuele projecten voor onze klanten. Leert het vak op de werkvloer en groeit elke dag.',                                        linkedin: 'https://www.linkedin.com/company/merqo', photo: ''                        },
+    huub:   { name: 'Huub van Midden',        role: 'Stagiair Design',           bio: 'Brengt een frisse designblik mee en werkt mee aan visuele projecten voor onze klanten. Leert het vak op de werkvloer en groeit elke dag.',                                        linkedin: 'https://www.linkedin.com/company/merqo', photo: '/assets/team/huub.jpg'   },
     jette:  { name: 'Jette Massop',          role: 'Stagiaire',                 bio: 'Ondersteunt het team met frisse ideeën en een scherp oog voor detail. Groeit elke dag mee met het bureau en levert al vanaf dag één echte bijdragen.',                               linkedin: 'https://www.linkedin.com/company/merqo', photo: '/assets/team/jette.jpg'  }
   };
 
