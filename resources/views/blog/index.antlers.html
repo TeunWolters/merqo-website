@@ -193,7 +193,7 @@
             </div>
             <h3 class="blog-title">{{ title }}</h3>
             {{ if intro }}
-              <p class="blog-intro">{{ intro | truncate:110 }}</p>
+              <p class="blog-intro">{{ intro }}</p>
             {{ /if }}
             <span class="blog-readmore">
               Lees meer
@@ -546,7 +546,7 @@
     margin: 0 0 1rem;
     flex: 1;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }

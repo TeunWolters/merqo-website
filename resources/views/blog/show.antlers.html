@@ -2,6 +2,10 @@
     MERQO - KENNISBANK POST DETAIL
     ════════════════════════════════════════════════════════════ #}}
 
+{{ if featured_image }}
+{{ section:preload_image }}{{ featured_image }}{{ /section:preload_image }}
+{{ /if }}
+
 {{ section:seo }}
 <title>{{ seo_title ?? title }} | Merqo</title>
 <meta name="description" content="{{ seo_description ?? intro }}">
@@ -179,6 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
   {{# Foto als hero-achtergrond #}}
   <div style="position:absolute; inset:0; z-index:0;">
     <img src="{{ featured_image }}" alt="{{ title }} - Merqo creatief bureau Hengelo Twente"
+         fetchpriority="high"
          style="width:100%; height:100%; object-fit:cover; display:block; opacity:0.55;">
   </div>
   {{# Gradient overlay over de foto #}}
