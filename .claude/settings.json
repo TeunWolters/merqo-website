@@ -1,15 +1,1 @@
-{
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "cd /Users/teunwolters/Projecten/Merqo-website && git add -A && git diff --cached --quiet || (git commit -m \"Auto-commit: website wijzigingen\" && git push && curl -s -X POST 'https://ploi.io/webhooks/servers/112145/sites/364476/deploy?token=2ySnm0iA65HrWKWX85eXgxig0Ufooz5238Fz6yCuE6COa4hDUj&direct=true') 2>/dev/null || true",
-            "statusMessage": "Opslaan, pushen en deployen..."
-          }
-        ]
-      }
-    ]
-  }
-}
+{}

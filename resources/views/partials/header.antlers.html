@@ -140,9 +140,8 @@
 
   {{# Mobile menu - full screen overlay #}}
   <div
-    x-show="mobileOpen"
-    x-cloak
-    class="lg:hidden mobile-menu-overlay"
+    :class="mobileOpen ? 'mobile-menu-overlay' : 'mobile-menu-hidden'"
+    class="lg:hidden"
   >
     <div class="flex items-center justify-between px-6 h-20 border-b" style="border-color:rgba(30,31,27,0.1);">
       <a href="/" @click="close()">

@@ -5,7 +5,13 @@
 
 [x-cloak] { display: none !important; }
 
+.mobile-menu-hidden {
+  display: none !important;
+}
+
 .mobile-menu-overlay {
+  display: flex !important;
+  flex-direction: column !important;
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
@@ -13,7 +19,6 @@
   bottom: 0 !important;
   z-index: 999 !important;
   background: #F0EDE7 !important;
-  flex-direction: column !important;
 }
 
 /* ────────────────────────────────────────────────────────────
