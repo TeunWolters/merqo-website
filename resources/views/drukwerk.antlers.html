@@ -699,35 +699,3 @@
     </div>
   </div>
 </section>
-
-{{# ── 7. CTA ─────────────────────────────────────────────────── #}}
-<section style="position:relative; overflow:hidden; background:#ddd5c8; padding:6rem 0;">
-  <div style="position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;">
-    <div class="drcta-blob-a" style="position:absolute; width:80vw; height:80vw; background:#ed6b46; filter:blur(90px); opacity:0.88; will-change:transform;"></div>
-    <div class="drcta-blob-b" style="position:absolute; width:65vw; height:65vw; background:#f5b87a; filter:blur(80px); opacity:0.72; will-change:transform;"></div>
-    <div class="drcta-blob-c" style="position:absolute; width:55vw; height:55vw; background:#8fcdd0; filter:blur(90px); opacity:0.45; will-change:transform;"></div>
-  </div>
-  <style>
-    @keyframes drcta-morph-a { 0%,100%{border-radius:60% 40% 55% 45%/50% 60% 40% 50%} 33%{border-radius:45% 55% 40% 60%/60% 35% 65% 40%} 66%{border-radius:35% 65% 60% 40%/40% 55% 45% 60%} }
-    @keyframes drcta-morph-b { 0%,100%{border-radius:40% 60% 45% 55%/60% 45% 55% 40%} 50%{border-radius:60% 40% 65% 35%/45% 60% 40% 55%} }
-    @keyframes drcta-morph-c { 0%,100%{border-radius:55% 45% 60% 40%/45% 55% 45% 55%} 50%{border-radius:40% 60% 40% 60%/60% 40% 60% 40%} }
-    @keyframes drcta-drift-a { 0%{transform:translate(-30%,-40%)} 33%{transform:translate(20%,-10%)} 66%{transform:translate(-5%,-55%)} 100%{transform:translate(-30%,-40%)} }
-    @keyframes drcta-drift-b { 0%{transform:translate(40%,10%)} 50%{transform:translate(60%,55%)} 100%{transform:translate(40%,10%)} }
-    @keyframes drcta-drift-c { 0%{transform:translate(5%,30%)} 50%{transform:translate(55%,0%)} 100%{transform:translate(5%,30%)} }
-    .drcta-blob-a { animation: drcta-morph-a 12s ease-in-out infinite, drcta-drift-a 24s ease-in-out infinite; }
-    .drcta-blob-b { animation: drcta-morph-b 16s ease-in-out infinite, drcta-drift-b 20s ease-in-out infinite; }
-    .drcta-blob-c { animation: drcta-morph-c 14s ease-in-out infinite, drcta-drift-c 26s ease-in-out infinite; }
-  </style>
-  <div class="max-w-7xl mx-auto px-6 lg:px-10" style="position:relative; z-index:1; text-align:center;">
-    <h2 style="font-family:var(--font-display); font-weight:800;
-               font-size:clamp(28px,4vw,52px); letter-spacing:-0.04em;
-               line-height:1.06; color:#fff; margin-bottom:1rem;">
-      Jouw merk ook<br>offline sterk?
-    </h2>
-    <p style="font-family:var(--font-body); font-size:16px; line-height:1.7;
-              color:rgba(255,255,255,0.7); margin-bottom:2.5rem; max-width:44ch; margin-left:auto; margin-right:auto;">
-      Vertel ons wat je nodig hebt en wij zorgen voor drukwerk dat past bij jouw merk.
-    </p>
-    <a href="/contact" class="btn-primary">Start een gesprek</a>
-  </div>
-</section>
