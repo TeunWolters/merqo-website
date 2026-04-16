@@ -70,6 +70,9 @@
   .scan-textarea:focus { border-color:#ed6b46; box-shadow:0 0 0 3px rgba(237,107,70,0.1); }
 </style>
 
+{{# Sentinel zonder x-cloak zodat siteHeader de lichte achtergrond detecteert #}}
+<div data-header-bg="light" style="position:fixed; top:0; left:0; width:100%; height:100vh; pointer-events:none; z-index:-1;" aria-hidden="true"></div>
+
 <div class="scan-wrap" x-data="scanForm()" x-cloak>
 
   {{# Progress bar #}}
