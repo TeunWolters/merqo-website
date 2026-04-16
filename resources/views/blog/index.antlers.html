@@ -3,10 +3,41 @@
     ════════════════════════════════════════════════════════════ #}}
 
 {{ section:seo }}
-<meta name="description" content="Kennis, tips en inspiratie voor ondernemers in Twente. Merqo deelt inzichten over branding, websites, marketing en merkstrategie.">
-<meta property="og:title" content="Kennisbank | Kennis en inspiratie voor ondernemers - Merqo">
-<meta property="og:description" content="Kennis, tips en inspiratie voor ondernemers in Twente. Merqo deelt inzichten over branding, websites, marketing en merkstrategie.">
-<meta property="og:url" content="{{ config:app:url }}{{ url }}">
+<title>Kennisbank | Tips over branding, websites en marketing - Merqo Hengelo</title>
+<meta name="description" content="Praktische kennis en tips voor ondernemers in Twente en Overijssel. Merqo deelt eerlijke inzichten over branding, websites, marketing en merkstrategie.">
+<link rel="canonical" href="{{ config:app:url }}/blog">
+
+<meta property="og:title" content="Kennisbank | Tips over branding, websites en marketing - Merqo">
+<meta property="og:description" content="Praktische kennis en tips voor ondernemers in Twente en Overijssel. Merqo deelt eerlijke inzichten over branding, websites, marketing en merkstrategie.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ config:app:url }}/blog">
+<meta property="og:site_name" content="Merqo">
+<meta property="og:locale" content="nl_NL">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kennisbank | Merqo - Tips voor ondernemers in Twente">
+<meta name="twitter:description" content="Praktische kennis over branding, websites en marketing voor ondernemers in Twente en Overijssel.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Kennisbank - Merqo",
+  "description": "Praktische kennis en tips voor ondernemers in Twente en Overijssel over branding, websites, marketing en merkstrategie.",
+  "url": "{{ config:app:url }}/blog",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Merqo",
+    "url": "{{ config:app:url }}",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Hengelo",
+      "addressRegion": "Overijssel",
+      "addressCountry": "NL"
+    }
+  }
+}
+</script>
 {{ /section:seo }}
 
 {{ partial:partials/page-hero

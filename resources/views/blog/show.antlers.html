@@ -3,13 +3,95 @@
     ════════════════════════════════════════════════════════════ #}}
 
 {{ section:seo }}
-<title>{{ seo_title ?? title }} | Merqo Creative Agency</title>
+<title>{{ seo_title ?? title }} | Merqo</title>
 <meta name="description" content="{{ seo_description ?? intro }}">
-<meta property="og:title" content="{{ seo_title ?? title }} | Merqo Creative Agency">
+<link rel="canonical" href="{{ config:app:url }}{{ url }}">
+
+{{# ── Open Graph ── #}}
+<meta property="og:title" content="{{ seo_title ?? title }} | Merqo">
 <meta property="og:description" content="{{ seo_description ?? intro }}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{{ config:app:url }}{{ url }}">
-{{ if featured_image }}<meta property="og:image" content="{{ featured_image }}">{{ /if }}
+<meta property="og:site_name" content="Merqo">
+<meta property="og:locale" content="nl_NL">
+{{ if featured_image }}
+<meta property="og:image" content="{{ config:app:url }}{{ featured_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+{{ /if }}
+<meta property="article:published_time" content="{{ date format='Y-m-d' }}">
+<meta property="article:author" content="Team Merqo">
+<meta property="article:section" content="{{ category }}">
+
+{{# ── Twitter / X Card ── #}}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ seo_title ?? title }} | Merqo">
+<meta name="twitter:description" content="{{ seo_description ?? intro }}">
+{{ if featured_image }}
+<meta name="twitter:image" content="{{ config:app:url }}{{ featured_image }}">
+{{ /if }}
+
+{{# ── JSON-LD: Article schema ── #}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ title | entities }}",
+  "description": "{{ seo_description ?? intro | entities }}",
+  "datePublished": "{{ date format='Y-m-d' }}",
+  "dateModified": "{{ date format='Y-m-d' }}",
+  "author": {
+    "@type": "Organization",
+    "name": "Merqo",
+    "url": "{{ config:app:url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Merqo",
+    "url": "{{ config:app:url }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ config:app:url }}/assets/merqo-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ config:app:url }}{{ url }}"
+  }{{ if featured_image }},
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ config:app:url }}{{ featured_image }}"
+  }{{ /if }}
+}
+</script>
+
+{{# ── JSON-LD: BreadcrumbList ── #}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ config:app:url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Kennisbank",
+      "item": "{{ config:app:url }}/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ title | entities }}",
+      "item": "{{ config:app:url }}{{ url }}"
+    }
+  ]
+}
+</script>
 {{ /section:seo }}
 
 {{# ── Leesvoortgang indicator ── #}}
