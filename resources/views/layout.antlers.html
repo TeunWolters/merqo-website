@@ -539,22 +539,29 @@
           headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrf, 'Accept': 'application/json' },
           body: JSON.stringify({ messages: messages })
         })
-        .then(function(r){ return r.json().then(function(d){ return { ok: r.ok, data: d }; }); })
+        .then(function(r){
+          var status = r.status;
+          return r.text().then(function(t){
+            var d = {};
+            try { d = JSON.parse(t); } catch(e) { d = { error: 'Server fout (' + status + '): ' + t.substring(0,120) }; }
+            return { ok: r.ok, status: status, data: d };
+          });
+        })
         .then(function(res){
           mcHideTyping();
           if (!res.ok || res.data.error) {
             var errEl = document.getElementById('mc-error');
-            errEl.textContent = res.data.error || 'Er is een fout opgetreden.';
+            errEl.textContent = res.data.error || ('Fout ' + res.status + '. Probeer het opnieuw.');
             errEl.style.display = 'block';
             messages.pop();
           } else {
             mcAddMessage('assistant', res.data.reply);
           }
         })
-        .catch(function(){
+        .catch(function(e){
           mcHideTyping();
           var errEl = document.getElementById('mc-error');
-          errEl.textContent = 'Geen verbinding. Probeer het opnieuw.';
+          errEl.textContent = 'Geen verbinding: ' + (e && e.message ? e.message : 'onbekende fout');
           errEl.style.display = 'block';
           messages.pop();
         })
