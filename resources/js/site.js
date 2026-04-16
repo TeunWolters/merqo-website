@@ -604,5 +604,72 @@ Alpine.data('contactForm', () => ({
   },
 }));
 
+Alpine.data('merqoChat', () => ({
+  open: false,
+  input: '',
+  messages: [],
+  loading: false,
+  error: '',
+
+  toggleChat() {
+    this.open = !this.open;
+    if (this.open) {
+      this.$nextTick(() => {
+        this.$refs.inputField?.focus();
+        this.scrollToBottom();
+      });
+    }
+  },
+
+  scrollToBottom() {
+    const el = this.$refs.messages;
+    if (el) el.scrollTop = el.scrollHeight;
+  },
+
+  async send() {
+    const text = this.input.trim();
+    if (!text || this.loading) return;
+
+    this.input = '';
+    this.error = '';
+    this.$nextTick(() => {
+      if (this.$refs.inputField) {
+        this.$refs.inputField.style.height = 'auto';
+      }
+    });
+
+    this.messages.push({ role: 'user', content: text });
+    this.loading = true;
+    this.$nextTick(() => this.scrollToBottom());
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content ?? '',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({ messages: this.messages }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        this.error = data.error || 'Er is een fout opgetreden. Probeer het opnieuw.';
+        this.messages.pop();
+      } else {
+        this.messages.push({ role: 'assistant', content: data.reply });
+      }
+    } catch {
+      this.error = 'Geen verbinding. Controleer je internet en probeer opnieuw.';
+      this.messages.pop();
+    } finally {
+      this.loading = false;
+      this.$nextTick(() => this.scrollToBottom());
+    }
+  },
+}));
+
 window.Alpine = Alpine;
 Alpine.start();
