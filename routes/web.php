@@ -24,7 +24,8 @@ Route::get('/sitemap.xml', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::statamic('/blog/{category_slug}', 'blog/category', ['load' => '/blog']);
+Route::statamic('/blog/{category_slug}', 'blog/category', ['load' => '/blog'])
+    ->where('category_slug', 'branding|websites|marketing|strategie|tips|drukwerk');
 
 /*
 |--------------------------------------------------------------------------
