@@ -321,6 +321,14 @@
               <p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:#1E1F1B; margin:0;">Goeiedag! Waarmee kan ik je helpen?</p>
             </div>
           </div>
+
+          {{# Snelle antwoordknoppen #}}
+          <div id="mc-suggestions" style="display:flex; flex-wrap:wrap; gap:0.5rem; padding:0 0 0.25rem 0;">
+            <button onclick="mcQuick('Wat kost MaaS?')" class="mc-chip">Wat kost MaaS?</button>
+            <button onclick="mcQuick('Wat doet Merqo precies?')" class="mc-chip">Wat doet Merqo?</button>
+            <button onclick="mcQuick('Ik wil een nieuwe website laten maken')" class="mc-chip">Nieuwe website</button>
+            <button onclick="mcQuick('Hoe vraag ik de gratis merkenscan aan?')" class="mc-chip">Gratis scan</button>
+          </div>
         </div>
         {{# Foutmelding #}}
         <div id="mc-error" style="display:none; margin:0 1.25rem 0.5rem; padding:0.6rem 0.875rem; background:rgba(237,107,70,0.1); border-radius:8px; font-family:var(--font-body); font-size:12px; color:#ed6b46; font-weight:600;"></div>
@@ -375,6 +383,13 @@
       @keyframes merqo-dot { 0%,80%,100%{transform:scale(0.7);opacity:0.4} 40%{transform:scale(1);opacity:1} }
       #mc-messages::-webkit-scrollbar { width: 4px; }
       #mc-messages::-webkit-scrollbar-thumb { background: rgba(30,31,27,0.15); border-radius: 99px; }
+      .mc-chip {
+        font-family: var(--font-body); font-size: 12px; font-weight: 600;
+        color: #ed6b46; background: rgba(237,107,70,0.08);
+        border: 1.5px solid rgba(237,107,70,0.25); border-radius: 999px;
+        padding: 0.4rem 0.85rem; cursor: pointer; transition: all 0.15s; white-space: nowrap;
+      }
+      .mc-chip:hover { background: rgba(237,107,70,0.15); border-color: #ed6b46; }
       @media (max-width: 640px) { #mc-wrap { right:1rem; bottom:1rem; } #mc-window { width:calc(100vw - 2rem); } }
     </style>
 
@@ -452,6 +467,13 @@
         return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
       }
 
+      function mcQuick(text) {
+        document.getElementById('mc-suggestions').style.display = 'none';
+        document.getElementById('mc-input').value = text;
+        mcSend();
+      }
+      window.mcQuick = mcQuick;
+
       function mcSend() {
         if (loading) return;
         var input = document.getElementById('mc-input');
@@ -460,6 +482,7 @@
         input.value = '';
         input.style.height = 'auto';
         document.getElementById('mc-error').style.display = 'none';
+        document.getElementById('mc-suggestions').style.display = 'none';
         mcAddMessage('user', text);
         loading = true;
         mcShowTyping();
