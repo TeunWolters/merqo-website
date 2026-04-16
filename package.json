@@ -15,6 +15,7 @@
         "vite": "^7.0.0"
     },
     "dependencies": {
+        "@alpinejs/collapse": "^3.15.11",
         "@alpinejs/intersect": "^3.15.8",
         "@paper-design/shaders": "^0.0.72",
         "alpinejs": "^3.15.8",

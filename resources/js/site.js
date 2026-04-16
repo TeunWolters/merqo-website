@@ -1,9 +1,11 @@
 import Alpine from 'alpinejs';
 import intersect from '@alpinejs/intersect';
+import collapse from '@alpinejs/collapse';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 Alpine.plugin(intersect);
+Alpine.plugin(collapse);
 gsap.registerPlugin(ScrollTrigger);
 
 // ── Lenis smooth scroll ──────────────────────────────────────
