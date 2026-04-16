@@ -503,7 +503,6 @@ Alpine.data('megaMenu', () => ({
     { name: 'Fotografie & Video',    slug: 'fotografie-video',       desc: 'Beeldmateriaal dat staat',             image: '/assets/team/team-camera.jpg' },
     { name: 'Websites',              slug: 'websites',               desc: 'Snel, toegankelijk en merkgericht',    image: '/assets/team/team-laptop.jpg' },
     { name: 'Drukwerk',              slug: 'drukwerk',               desc: 'Print in lijn met jouw huisstijl',    image: '/assets/team/team-document.jpg' },
-    { name: 'Merqo as a Service',    slug: 'merqo-as-a-service',     desc: 'Jouw externe marketingmanager',        image: '/assets/team/team-werk.jpg' },
   ],
   open(name) {
     clearTimeout(this.closeTimer);
