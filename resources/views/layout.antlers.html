@@ -369,7 +369,11 @@
             </button>
           </div>
           <p style="font-family:var(--font-body); font-size:10px; color:rgba(30,31,27,0.3); margin:0.5rem 0 0; text-align:center;">
-            Aangedreven door Claude AI &middot; <a href="/contact" style="color:rgba(30,31,27,0.4); text-decoration:none;">Menselijk contact</a>
+            Liever Luuk zelf?
+            <a href="https://wa.me/31630772283" target="_blank" rel="noopener" style="color:#25D366; font-weight:600; text-decoration:none;">App</a>
+            of
+            <a href="tel:+31630772283" style="color:rgba(30,31,27,0.5); font-weight:600; text-decoration:none;">bel</a>
+            hem direct.
           </p>
         </div>
       </div>
@@ -560,21 +564,6 @@
     })();
     </script>
 
-    {{# WhatsApp floating button #}}
-    <a id="whatsapp-btn"
-       href="https://wa.me/31630772283?text=Hi%20Luuk%2C%20ik%20bezocht%20jullie%20website%20en%20ben%20benieuwd%20wat%20Merqo%20voor%20mij%20kan%20betekenen.%20Kunnen%20we%20even%20kennismaken%3F"
-       target="_blank" rel="noopener" aria-label="Chat met Luuk Scheffer via WhatsApp"
-       style="position:fixed; bottom:1.75rem; left:1.75rem; z-index:9000;
-              width:54px; height:54px; border-radius:50%; background:#25D366;
-              display:flex; align-items:center; justify-content:center;
-              box-shadow:0 4px 24px rgba(37,211,102,0.38);
-              transition:transform 0.2s ease, box-shadow 0.2s ease;"
-       onmouseenter="this.style.transform='scale(1.08)'; this.style.boxShadow='0 6px 30px rgba(37,211,102,0.5)'"
-       onmouseleave="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 24px rgba(37,211,102,0.38)'">
-      <svg width="27" height="27" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.664 4.826 1.826 6.838L2 30l7.384-1.932A13.916 13.916 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.55 11.55 0 01-5.888-1.608l-.422-.25-4.374 1.146 1.166-4.256-.276-.438A11.554 11.554 0 014.4 16C4.4 9.592 9.592 4.4 16 4.4S27.6 9.592 27.6 16 22.408 27.6 16 27.6zm6.342-8.626c-.346-.174-2.048-1.01-2.366-1.126-.318-.116-.55-.174-.782.174-.232.348-.894 1.126-1.096 1.358-.202.232-.404.26-.75.086-.346-.174-1.46-.538-2.782-1.716-1.028-.916-1.722-2.05-1.924-2.398-.202-.348-.022-.536.152-.708.156-.156.346-.406.52-.608.174-.202.23-.348.346-.58.116-.232.058-.434-.028-.608-.088-.174-.782-1.88-1.07-2.576-.282-.676-.568-.584-.782-.596-.202-.01-.434-.012-.664-.012-.232 0-.608.086-.924.434-.318.348-1.21 1.182-1.21 2.884 0 1.702 1.24 3.348 1.41 3.58.174.232 2.44 3.726 5.914 5.224.826.356 1.47.57 1.972.728.828.264 1.582.228 2.178.138.664-.1 2.048-.836 2.338-1.644.29-.808.29-1.5.202-1.646-.086-.144-.318-.23-.664-.406z"/>
-      </svg>
-    </a>
 
     <script>
 (function() {
@@ -623,18 +612,6 @@
 
 // WhatsApp knop verbergen als mobiel menu open is
 (function() {
-  var wa = document.getElementById('whatsapp-btn');
-  if (!wa) return;
-  document.addEventListener('alpine:init', function() {
-    document.addEventListener('mobile-menu-open', function() {
-      wa.style.opacity = '0';
-      wa.style.pointerEvents = 'none';
-    });
-    document.addEventListener('mobile-menu-close', function() {
-      wa.style.opacity = '1';
-      wa.style.pointerEvents = '';
-    });
-  });
 })();
 </script>
   </body>
