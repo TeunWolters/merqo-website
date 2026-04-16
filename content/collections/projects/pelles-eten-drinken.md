@@ -5,7 +5,7 @@ id: project-pelles
 order: 1
 date: 2024-09
 category: Branding
-tagline: Een herkenbaar horecamerk van nul opgebouwd — warm, eigenzinnig en direct herkenbaar.
+tagline: Een herkenbaar horecamerk van nul opgebouwd - warm, eigenzinnig en direct herkenbaar.
 services:
   - Merkstrategie
   - Logo & huisstijl
@@ -34,10 +34,10 @@ brand_fonts:
     sample: Eerlijk, warm & eigenzinnig
 published: true
 ---
-Pelle's Eten & Drinken opende de deuren als een nieuw lokaal restaurant in Hengelo. De eigenaar wist precies wat hij op het bord wilde zetten — maar hoe dat merk er visueel uit moest zien, was nog een open vraag.
+Pelle's Eten & Drinken opende de deuren als een nieuw lokaal restaurant in Hengelo. De eigenaar wist precies wat hij op het bord wilde zetten - maar hoe dat merk er visueel uit moest zien, was nog een open vraag.
 
 Wij startten met een merkintake: wie is Pelle, wat wil hij uitstralen en voor wie kookt hij? Uit die sessie ontstond een heldere positionering: eerlijk, ambachtelijk en met een knipoog. Niet te chic, wel kwalitatief.
 
-Het visuele concept bouwde op die positionering — warme aardetinten, een handgetekend logo-element en typografie met karakter. Van menukaart tot sociale media: alles ademt dezelfde sfeer.
+Het visuele concept bouwde op die positionering - warme aardetinten, een handgetekend logo-element en typografie met karakter. Van menukaart tot sociale media: alles ademt dezelfde sfeer.
 
 Het resultaat: een merk dat vanaf dag één voelde als een gevestigde naam.

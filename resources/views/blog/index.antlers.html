@@ -58,7 +58,7 @@
 }}
 
 {{# ══════════════════════════════════════════════════════
-    UITGELICHT ARTIKEL (hero card — nieuwste post)
+    UITGELICHT ARTIKEL (hero card - nieuwste post)
     ══════════════════════════════════════════════════════ #}}
 <section style="background:#F0EDE7; padding:5rem 0 0;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
@@ -145,7 +145,7 @@
         <button class="filter-btn" :class="{ 'filter-btn-active': activeFilter === 'tips' }" @click="activeFilter = 'tips'">Tips</button>
       </div>
 
-      {{# Blog grid — overige artikelen (offset 1) #}}
+      {{# Blog grid - overige artikelen (offset 1) #}}
       <div class="blog-grid" data-reveal>
         {{ collection:blog limit="11" offset="1" }}
         <a href="{{ url }}" class="blog-card"

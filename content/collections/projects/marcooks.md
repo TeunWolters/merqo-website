@@ -5,7 +5,7 @@ id: project-marcooks
 order: 3
 date: 2025-01
 category: Branding & Marketing
-tagline: Van passie project naar professioneel merk — een chef-kok zet zijn naam in de markt.
+tagline: Van passie project naar professioneel merk - een chef-kok zet zijn naam in de markt.
 services:
   - Naamgeving & conceptontwikkeling
   - Logo & huisstijl
@@ -41,10 +41,10 @@ images:
   - url: /assets/projects/pelles.jpg
 published: true
 ---
-Marc kookt al zijn hele leven. Maar zijn persoonlijke chef-dienst had geen gezicht — klanten kwamen via via, maar een online aanwezigheid ontbrak volledig.
+Marc kookt al zijn hele leven. Maar zijn persoonlijke chef-dienst had geen gezicht - klanten kwamen via via, maar een online aanwezigheid ontbrak volledig.
 
-Samen met Marc ontwikkelden wij de naam Marcooks — simpel, persoonlijk en direct. Daarna volgde een complete merkidentiteit: strak, donker en culinair. Het logo combineert een M met een mes — subtiel, maar treffend.
+Samen met Marc ontwikkelden wij de naam Marcooks - simpel, persoonlijk en direct. Daarna volgde een complete merkidentiteit: strak, donker en culinair. Het logo combineert een M met een mes - subtiel, maar treffend.
 
-De fotoshoot — producten, plating en Marc zelf in actie — leverde beeldmateriaal op dat direct inzetbaar was voor socials, website en advertenties. De campagne die volgde op Instagram zorgde voor een volle agenda binnen drie weken.
+De fotoshoot - producten, plating en Marc zelf in actie - leverde beeldmateriaal op dat direct inzetbaar was voor socials, website en advertenties. De campagne die volgde op Instagram zorgde voor een volle agenda binnen drie weken.
 
 Marcooks is nu een herkenbaar merk in de regio, met een stijl die past bij de premium positionering die Marc voor ogen had.

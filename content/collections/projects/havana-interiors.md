@@ -5,7 +5,7 @@ id: project-havana-interiors
 order: 5
 date: 2025-04
 category: Branding & Web
-tagline: Een interieurbureau dat al mooi maakt voor anderen — nu eindelijk een merk dat daarbij past.
+tagline: Een interieurbureau dat al mooi maakt voor anderen - nu eindelijk een merk dat daarbij past.
 services:
   - Merkstrategie
   - Logo & huisstijl
@@ -35,4 +35,4 @@ published: true
 ---
 Havana Interiors maakt interieurprojecten die mensen bijblijven. Maar hun eigen uitstraling liep al jaren achter op het werk dat ze leverden.
 
-Wij ontwikkelden een warme, tijdloze merkidentiteit met een logo dat ruimte en balans uitstraalt. De website vertelt het verhaal van elk project — rustig, visueel en zonder ruis.
+Wij ontwikkelden een warme, tijdloze merkidentiteit met een logo dat ruimte en balans uitstraalt. De website vertelt het verhaal van elk project - rustig, visueel en zonder ruis.

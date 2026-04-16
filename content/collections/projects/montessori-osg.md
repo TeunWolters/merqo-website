@@ -34,10 +34,10 @@ brand_fonts:
     sample: Vrijheid · Vertrouwen · Groei
 published: true
 ---
-Montessori OSG is een middelbare school met een rijke onderwijsfilosofie — maar een verouderde uitstraling die daar geen recht aan deed. De school wilde een frisse identiteit die aansluit bij de waarden van de montessori-methode: vrijheid, vertrouwen en eigen verantwoordelijkheid.
+Montessori OSG is een middelbare school met een rijke onderwijsfilosofie - maar een verouderde uitstraling die daar geen recht aan deed. De school wilde een frisse identiteit die aansluit bij de waarden van de montessori-methode: vrijheid, vertrouwen en eigen verantwoordelijkheid.
 
 Wij begonnen met een strategische verkenning van de doelgroep (leerlingen én ouders) en de kernwaarden van de school. Die inzichten vertaalden wij naar een heldere merkpositionering en een nieuwe visuele identiteit.
 
-Het ontwerp is open, licht en modern — zonder de warme menselijke kern te verliezen. Flexibel genoeg voor alle schooluitingen: van website tot open dag materialen.
+Het ontwerp is open, licht en modern - zonder de warme menselijke kern te verliezen. Flexibel genoeg voor alle schooluitingen: van website tot open dag materialen.
 
 De school reageerde enthousiast. Leerlingen herkenden zichzelf in het nieuwe merk. Precies wat wij wilden bereiken.

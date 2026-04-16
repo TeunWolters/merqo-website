@@ -5,7 +5,7 @@ id: project-studio-noor
 order: 8
 date: 2024-12
 category: Branding & Social Media
-tagline: Een beautysalon die mensen mooier maakt — nu met een merk om in te blijven.
+tagline: Een beautysalon die mensen mooier maakt - nu met een merk om in te blijven.
 services:
   - Naamgeving & positionering
   - Logo & huisstijl
@@ -36,4 +36,4 @@ published: true
 ---
 Noor opende haar salon met passie maar zonder merk. Klanten kwamen, maar herinnering en aanbeveling bleven achter.
 
-Samen ontwikkelden we Studio Noor — een naam die rust en warmte uitstraalt. De visuele identiteit is zacht maar onderscheidend. De social media aanpak zorgde binnen twee maanden voor een volgersgroei van 340%.
+Samen ontwikkelden we Studio Noor - een naam die rust en warmte uitstraalt. De visuele identiteit is zacht maar onderscheidend. De social media aanpak zorgde binnen twee maanden voor een volgersgroei van 340%.

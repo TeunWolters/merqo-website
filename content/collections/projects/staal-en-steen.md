@@ -5,7 +5,7 @@ id: project-staal-en-steen
 order: 7
 date: 2024-11
 category: Branding & Strategie
-tagline: Een bouwbedrijf dat al 20 jaar solide werk levert — nu met een merk even sterk als hun fundament.
+tagline: Een bouwbedrijf dat al 20 jaar solide werk levert - nu met een merk even sterk als hun fundament.
 services:
   - Merkstrategie
   - Logo & huisstijl
@@ -33,6 +33,6 @@ brand_fonts:
     sample: Gebouwd om te blijven
 published: true
 ---
-Staal & Steen bouwt al twee decennia projecten in de regio. Solide reputatie, trouwe klanten — maar een merk dat niet meegroeide.
+Staal & Steen bouwt al twee decennia projecten in de regio. Solide reputatie, trouwe klanten - maar een merk dat niet meegroeide.
 
 We ontwikkelden een robuuste merkidentiteit die past bij hun positionering: sterk, direct en betrouwbaar. Consequent doorgevoerd op al hun materialen.

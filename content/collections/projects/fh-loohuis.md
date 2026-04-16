@@ -5,7 +5,7 @@ id: project-fh-loohuis
 order: 4
 date: 2025-03
 category: Branding & Drukwerk
-tagline: Een familiebedrijf met generaties vakmanschap — nu met een merk dat dat uitstraalt.
+tagline: Een familiebedrijf met generaties vakmanschap - nu met een merk dat dat uitstraalt.
 services:
   - Merkstrategie
   - Logo & huisstijl
@@ -34,10 +34,10 @@ brand_fonts:
     sample: Vakmanschap & vertrouwen
 published: true
 ---
-FH Loohuis is een familiebedrijf dat al generaties lang actief is in de regio. Veel vakmanschap, trouwe klanten — maar een huisstijl die ver achter liep op de werkelijkheid.
+FH Loohuis is een familiebedrijf dat al generaties lang actief is in de regio. Veel vakmanschap, trouwe klanten - maar een huisstijl die ver achter liep op de werkelijkheid.
 
-De opdracht was helder: breng het merk in lijn met de kwaliteit die het bedrijf al jaren levert. Niet overdone, niet hip — maar solide, betrouwbaar en trots.
+De opdracht was helder: breng het merk in lijn met de kwaliteit die het bedrijf al jaren levert. Niet overdone, niet hip - maar solide, betrouwbaar en trots.
 
 Wij ontwikkelden een nieuwe merkidentiteit op basis van de kernwaarden: vakmanschap, betrouwbaarheid en lokale verbondenheid. Het nieuwe logo is sterk en tijdloos. De huisstijl is consistent doorgevoerd op alles: van briefpapier en visitekaartjes tot wagenparksigning en werkkleding.
 
-Het resultaat voelt als thuiskomen — het merk past nu bij het bedrijf.
+Het resultaat voelt als thuiskomen - het merk past nu bij het bedrijf.
