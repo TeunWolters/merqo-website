@@ -497,12 +497,13 @@ Alpine.data('megaMenu', () => ({
   hoveredService: null,
   closeTimer: null,
   services: [
-    { name: 'Branding',           slug: 'branding',         desc: 'Van logo tot merkstrategie',        image: '/assets/team/team-groep-grijs.jpg' },
-    { name: 'Marketing',          slug: 'marketing',        desc: 'Gerichte campagnes, meer bereik',   image: '/assets/team/team-tafel.jpg' },
-    { name: 'Strategie',          slug: 'strategie',        desc: 'Positie, richting en onderbouwing', image: '/assets/team/team-duo-tablet.jpg' },
-    { name: 'Fotografie & Video', slug: 'fotografie-video', desc: 'Beeldmateriaal dat staat',          image: '/assets/team/team-camera.jpg' },
-    { name: 'Websites',           slug: 'websites',         desc: 'Snel, toegankelijk en merkgericht', image: '/assets/team/team-laptop.jpg' },
-    { name: 'Drukwerk',           slug: 'drukwerk',         desc: 'Print in lijn met jouw huisstijl',  image: '/assets/team/team-document.jpg' },
+    { name: 'Branding',              slug: 'branding',               desc: 'Van logo tot merkstrategie',           image: '/assets/team/team-groep-grijs.jpg' },
+    { name: 'Marketing',             slug: 'marketing',              desc: 'Gerichte campagnes, meer bereik',      image: '/assets/team/team-tafel.jpg' },
+    { name: 'Strategie',             slug: 'strategie',              desc: 'Positie, richting en onderbouwing',    image: '/assets/team/team-duo-tablet.jpg' },
+    { name: 'Fotografie & Video',    slug: 'fotografie-video',       desc: 'Beeldmateriaal dat staat',             image: '/assets/team/team-camera.jpg' },
+    { name: 'Websites',              slug: 'websites',               desc: 'Snel, toegankelijk en merkgericht',    image: '/assets/team/team-laptop.jpg' },
+    { name: 'Drukwerk',              slug: 'drukwerk',               desc: 'Print in lijn met jouw huisstijl',    image: '/assets/team/team-document.jpg' },
+    { name: 'Merqo as a Service',    slug: 'merqo-as-a-service',     desc: 'Jouw externe marketingmanager',        image: '/assets/team/team-werk.jpg' },
   ],
   open(name) {
     clearTimeout(this.closeTimer);
