@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /Users/teunwolters/Projecten/Merqo-website && git add -A && git diff --cached --quiet || git commit -m \"Auto-commit: website wijzigingen\" && git push 2>/dev/null || true",
+            "statusMessage": "Wijzigingen opslaan naar GitHub..."
+          }
+        ]
+      }
+    ]
+  }
+}
