@@ -10,7 +10,7 @@
 
       {{# Logo #}}
       <a href="/" class="flex items-center gap-3 group z-10" @click="close()" aria-label="Merqo homepage">
-        <img :src="(scrolled || !onDark) ? '/assets/merqo-logo-dark.svg' : '/assets/merqo-logo-white.svg'"
+        <img :src="(scrolled || !onDark || mobileOpen) ? '/assets/merqo-logo-dark.svg' : '/assets/merqo-logo-white.svg'"
              alt="Merqo Creative Agency"
              class="h-7 w-auto transition-opacity duration-200 group-hover:opacity-70">
       </a>
@@ -147,15 +147,15 @@
     class="lg:hidden flex flex-col"
     style="height: calc(100vh - 80px);"
   >
-    <nav class="flex-1 px-6 pt-4 pb-6 flex flex-col justify-between overflow-hidden">
+    <nav class="px-6 pt-5 pb-8 flex flex-col" style="height:calc(100vh - 80px);">
       <div class="flex flex-col">
-        <a href="/#diensten" class="text-[#1E1F1B] font-display text-2xl font-bold py-2.5 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Diensten</a>
-        <a href="/projecten"  class="text-[#1E1F1B] font-display text-2xl font-bold py-2.5 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Projecten</a>
-        <a href="/over-ons"   class="text-[#1E1F1B] font-display text-2xl font-bold py-2.5 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Over ons</a>
-        <a href="/contact"    class="text-[#1E1F1B] font-display text-2xl font-bold py-2.5 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Contact</a>
-        <a href="/scan"       class="text-[#ed6b46] font-display text-base font-bold py-2.5 border-b transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">✦ Gratis marketingscan</a>
+        <a href="/#diensten" class="text-[#1E1F1B] font-display text-2xl font-bold py-3 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Diensten</a>
+        <a href="/projecten"  class="text-[#1E1F1B] font-display text-2xl font-bold py-3 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Projecten</a>
+        <a href="/over-ons"   class="text-[#1E1F1B] font-display text-2xl font-bold py-3 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Over ons</a>
+        <a href="/contact"    class="text-[#1E1F1B] font-display text-2xl font-bold py-3 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Contact</a>
+        <a href="/scan"       class="text-[#ed6b46] font-display text-base font-bold py-3 border-b transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">✦ Gratis marketingscan</a>
       </div>
-      <div class="flex flex-col gap-3">
+      <div class="flex flex-col gap-3 mt-auto">
         <a href="/contact" class="btn-primary w-full justify-center" @click="close()">Samenwerken</a>
         <a href="/portaal" class="btn-ghost-dark w-full justify-center flex items-center gap-2" @click="close()">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
