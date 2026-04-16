@@ -517,6 +517,66 @@ Alpine.data('megaMenu', () => ({
   },
 }));
 
+Alpine.data('pageNav', (itemsStr) => ({
+  navItems: [],
+  active: '',
+  visible: false,
+  _observer: null,
+  _scrollHandler: null,
+
+  init() {
+    // Parse "Label|id,Label2|id2" string
+    this.navItems = (itemsStr || '').split(',').map(s => {
+      const [label, id] = s.trim().split('|');
+      return { label: label?.trim(), id: id?.trim() };
+    }).filter(i => i.label && i.id);
+
+    // Show nav after scrolling 300px past the hero
+    this._scrollHandler = () => {
+      this.visible = window.scrollY > 300;
+    };
+    window.addEventListener('scroll', this._scrollHandler, { passive: true });
+    this._scrollHandler();
+
+    // IntersectionObserver to track active section
+    const threshold = [0, 0.2];
+    this._observer = new IntersectionObserver((entries) => {
+      // Find the topmost intersecting section
+      let topEntry = null;
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          if (!topEntry || e.boundingClientRect.top < topEntry.boundingClientRect.top) {
+            topEntry = e;
+          }
+        }
+      }
+      if (topEntry) this.active = topEntry.target.id;
+    }, { rootMargin: '-120px 0px -55% 0px', threshold });
+
+    // Small delay to allow DOM to be ready
+    this.$nextTick(() => {
+      this.navItems.forEach(item => {
+        const el = document.getElementById(item.id);
+        if (el) this._observer.observe(el);
+      });
+    });
+  },
+
+  destroy() {
+    if (this._observer) this._observer.disconnect();
+    if (this._scrollHandler) window.removeEventListener('scroll', this._scrollHandler);
+  },
+
+  scrollTo(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const offset = 80 + 44 + 8; // header + page-nav + small gap
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+    this.active = id;
+  },
+}));
+
 Alpine.data('contactForm', () => ({
   form: { name: '', company: '', email: '', service: '', message: '', budget: '' },
   sending: false, success: false, error: false,
