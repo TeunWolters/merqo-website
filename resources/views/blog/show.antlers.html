@@ -31,7 +31,7 @@
 <meta name="twitter:image" content="{{ config:app:url }}{{ featured_image }}">
 {{ /if }}
 
-{{# ── JSON-LD: Article schema ── #}}
+{{# ── JSON-LD: Article + LocalBusiness schema ── #}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -40,15 +40,31 @@
   "description": "{{ seo_description ?? intro | entities }}",
   "datePublished": "{{ date format='Y-m-d' }}",
   "dateModified": "{{ date format='Y-m-d' }}",
+  "inLanguage": "nl-NL",
   "author": {
     "@type": "Organization",
     "name": "Merqo",
     "url": "{{ config:app:url }}"
   },
   "publisher": {
-    "@type": "Organization",
+    "@type": "LocalBusiness",
     "name": "Merqo",
     "url": "{{ config:app:url }}",
+    "telephone": "+31-74-000-0000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Industriestraat",
+      "addressLocality": "Hengelo",
+      "addressRegion": "Overijssel",
+      "postalCode": "7553",
+      "addressCountry": "NL"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "52.2660",
+      "longitude": "6.7936"
+    },
+    "areaServed": ["Hengelo", "Enschede", "Almelo", "Twente", "Overijssel"],
     "logo": {
       "@type": "ImageObject",
       "url": "{{ config:app:url }}/assets/merqo-logo.svg"
@@ -92,11 +108,17 @@
   ]
 }
 </script>
+{{# ── Geo meta tags ── #}}
+<meta name="geo.region" content="NL-OV">
+<meta name="geo.placename" content="Hengelo, Overijssel">
+<meta name="geo.position" content="52.2660;6.7936">
+<meta name="ICBM" content="52.2660, 6.7936">
 {{ /section:seo }}
 
 {{# ── Leesvoortgang indicator ── #}}
 <div id="read-progress" style="position:fixed; top:80px; left:0; height:3px; background:#ed6b46; width:0%; z-index:40; transition:width 0.1s linear; border-radius:0 2px 2px 0;"></div>
 <script>
+// Leesvoortgang
 window.addEventListener('scroll', function() {
   var el = document.getElementById('article-body');
   if (!el) return;
@@ -105,6 +127,46 @@ window.addEventListener('scroll', function() {
   var scrolled = -rect.top;
   var pct = Math.min(100, Math.max(0, (scrolled / total) * 100));
   document.getElementById('read-progress').style.width = pct + '%';
+});
+
+// Dynamische leestijd (225 woorden per minuut)
+document.addEventListener('DOMContentLoaded', function() {
+  var body = document.getElementById('article-body');
+  if (!body) return;
+  var words = body.innerText.trim().split(/\s+/).length;
+  var minutes = Math.max(1, Math.ceil(words / 225));
+  document.querySelectorAll('.reading-time').forEach(function(el) {
+    el.textContent = minutes + ' min lezen';
+  });
+});
+
+// FAQ schema op basis van H2-koppen in het artikel
+document.addEventListener('DOMContentLoaded', function() {
+  var body = document.getElementById('article-body');
+  if (!body) return;
+  var h2s = body.querySelectorAll('h2');
+  if (h2s.length < 2) return;
+  var items = [];
+  h2s.forEach(function(h2) {
+    var answer = '';
+    var next = h2.nextElementSibling;
+    while (next && next.tagName !== 'H2' && next.tagName !== 'H3') {
+      if (next.tagName === 'P') answer += next.innerText + ' ';
+      next = next.nextElementSibling;
+    }
+    if (answer.trim().length > 30) {
+      items.push({
+        '@type': 'Question',
+        'name': h2.innerText.trim(),
+        'acceptedAnswer': { '@type': 'Answer', 'text': answer.trim().substring(0, 500) }
+      });
+    }
+  });
+  if (items.length < 2) return;
+  var schema = document.createElement('script');
+  schema.type = 'application/ld+json';
+  schema.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': items });
+  document.head.appendChild(schema);
 });
 </script>
 
@@ -116,7 +178,7 @@ window.addEventListener('scroll', function() {
   {{ if featured_image }}
   {{# Foto als hero-achtergrond #}}
   <div style="position:absolute; inset:0; z-index:0;">
-    <img src="{{ featured_image }}" alt="{{ title }}"
+    <img src="{{ featured_image }}" alt="{{ title }} - Merqo creatief bureau Hengelo Twente"
          style="width:100%; height:100%; object-fit:cover; display:block; opacity:0.55;">
   </div>
   {{# Gradient overlay over de foto #}}
@@ -185,7 +247,7 @@ window.addEventListener('scroll', function() {
                    color:rgba(240,237,231,0.75); background:rgba(255,255,255,0.12);
                    border:1px solid rgba(255,255,255,0.2);">{{ category | upper }}</span>
       {{ /if }}
-      <span style="display:inline-block; padding:4px 12px; font-size:10px; font-weight:600;
+      <span class="reading-time" style="display:inline-block; padding:4px 12px; font-size:10px; font-weight:600;
                    border-radius:999px; color:rgba(240,237,231,0.6);
                    background:rgba(255,255,255,0.08);">3 min lezen</span>
       <span style="font-size:11px; font-family:monospace; color:rgba(240,237,231,0.35);">
@@ -216,6 +278,63 @@ window.addEventListener('scroll', function() {
   <div class="max-w-4xl mx-auto px-6 lg:px-10">
     <div class="prose-merqo" id="article-body" style="max-width:68ch;">
       {{ content }}
+    </div>
+  </div>
+</section>
+
+{{# ── Lees ook: interne link naar relevante dienst ── #}}
+<section style="background:#F0EDE7; padding:0 0 0;">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10">
+    <div style="max-width:68ch; padding-left:clamp(0px,4vw,3.5rem);">
+      {{ if category == "branding" }}
+      <a href="/branding" class="lees-ook-block">
+        <div class="lees-ook-inner">
+          <span class="lees-ook-label">Onze dienst</span>
+          <span class="lees-ook-title">Branding &amp; merkidentiteit bij Merqo &rarr;</span>
+          <span class="lees-ook-desc">Van logo tot complete merkstrategie voor bedrijven in Twente en Overijssel.</span>
+        </div>
+      </a>
+      {{ elseif category == "websites" }}
+      <a href="/websites" class="lees-ook-block">
+        <div class="lees-ook-inner">
+          <span class="lees-ook-label">Onze dienst</span>
+          <span class="lees-ook-title">Websites laten maken bij Merqo &rarr;</span>
+          <span class="lees-ook-desc">Professionele websites in Statamic CMS, gebouwd voor snelheid en vindbaarheid.</span>
+        </div>
+      </a>
+      {{ elseif category == "marketing" }}
+      <a href="/marketing" class="lees-ook-block">
+        <div class="lees-ook-inner">
+          <span class="lees-ook-label">Onze dienst</span>
+          <span class="lees-ook-title">Online marketing bij Merqo &rarr;</span>
+          <span class="lees-ook-desc">Van social media tot Google Ads - resultaatgerichte marketing voor ondernemers in Twente.</span>
+        </div>
+      </a>
+      {{ elseif category == "strategie" }}
+      <a href="/strategie" class="lees-ook-block">
+        <div class="lees-ook-inner">
+          <span class="lees-ook-label">Onze dienst</span>
+          <span class="lees-ook-title">Merkstrategie bij Merqo &rarr;</span>
+          <span class="lees-ook-desc">Scherpe positionering en strategie als basis voor al je communicatie.</span>
+        </div>
+      </a>
+      {{ elseif category == "drukwerk" }}
+      <a href="/drukwerk" class="lees-ook-block">
+        <div class="lees-ook-inner">
+          <span class="lees-ook-label">Onze dienst</span>
+          <span class="lees-ook-title">Drukwerk bij Merqo &rarr;</span>
+          <span class="lees-ook-desc">Visitekaartjes, flyers en drukwerk van hoge kwaliteit voor bedrijven in Hengelo en omgeving.</span>
+        </div>
+      </a>
+      {{ else }}
+      <a href="/branding" class="lees-ook-block">
+        <div class="lees-ook-inner">
+          <span class="lees-ook-label">Meer weten?</span>
+          <span class="lees-ook-title">Bekijk wat Merqo voor jou kan doen &rarr;</span>
+          <span class="lees-ook-desc">Creatief bureau in Hengelo voor branding, websites en marketing in Twente en Overijssel.</span>
+        </div>
+      </a>
+      {{ /if }}
     </div>
   </div>
 </section>
@@ -302,7 +421,7 @@ window.addEventListener('scroll', function() {
 
           <div class="blog-img-wrap">
             {{ if featured_image }}
-              <img src="{{ featured_image }}" alt="{{ title }}" loading="lazy">
+              <img src="{{ featured_image }}" alt="{{ title }} - Merqo Kennisbank" loading="lazy" width="400" height="300">
             {{ else }}
               <div class="blog-img-placeholder">
                 {{ if category == "branding" }}
@@ -516,6 +635,49 @@ window.addEventListener('scroll', function() {
   }
   .prose-merqo tr:last-child td {
     border-bottom: none;
+  }
+
+  /* ── Lees ook blok ── */
+  .lees-ook-block {
+    display: block;
+    text-decoration: none;
+    margin: 2.5rem 0 1rem;
+  }
+  .lees-ook-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid #ed6b46;
+    background: rgba(237,107,70,0.05);
+    border-radius: 0 14px 14px 0;
+    transition: background 0.2s, transform 0.25s cubic-bezier(0.16,1,0.3,1);
+  }
+  .lees-ook-block:hover .lees-ook-inner {
+    background: rgba(237,107,70,0.1);
+    transform: translateX(4px);
+  }
+  .lees-ook-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #ed6b46;
+  }
+  .lees-ook-title {
+    font-family: var(--font-display);
+    font-size: clamp(15px, 1.2vw, 18px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #1E1F1B;
+    line-height: 1.2;
+  }
+  .lees-ook-desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: rgba(30,31,27,0.55);
+    line-height: 1.6;
   }
 
   /* ── Social share ── */

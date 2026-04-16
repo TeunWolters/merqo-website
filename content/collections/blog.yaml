@@ -10,3 +10,7 @@ sort_dir: desc
 template: blog/show
 blueprints:
   - blog_post
+sitemap:
+  enabled: true
+  priority: 0.8
+  change_frequency: weekly

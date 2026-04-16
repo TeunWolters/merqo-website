@@ -18,6 +18,12 @@
 <meta name="twitter:title" content="Kennisbank | Merqo - Tips voor ondernemers in Twente">
 <meta name="twitter:description" content="Praktische kennis over branding, websites en marketing voor ondernemers in Twente en Overijssel.">
 
+{{# ── Geo meta tags ── #}}
+<meta name="geo.region" content="NL-OV">
+<meta name="geo.placename" content="Hengelo, Overijssel">
+<meta name="geo.position" content="52.2660;6.7936">
+<meta name="ICBM" content="52.2660, 6.7936">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -152,7 +158,7 @@
           {{# Uitgelichte afbeelding #}}
           <div class="blog-img-wrap">
             {{ if featured_image }}
-              <img src="{{ featured_image }}" alt="{{ title }}" loading="lazy">
+              <img src="{{ featured_image }}" alt="{{ title }} - Merqo Kennisbank Hengelo" loading="lazy" width="400" height="300">
             {{ else }}
               <div class="blog-img-placeholder">
                 {{ if category == "branding" }}
