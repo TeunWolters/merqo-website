@@ -132,7 +132,7 @@ window.addEventListener('scroll', function() {
 {{# ── Artikel content ── #}}
 <section style="background:#F0EDE7; padding:4rem 0 2rem;">
   <div class="max-w-4xl mx-auto px-6 lg:px-10">
-    <div class="prose-merqo" id="article-body">
+    <div class="prose-merqo" id="article-body" style="max-width:68ch;">
       {{ content }}
     </div>
   </div>
@@ -295,45 +295,90 @@ window.addEventListener('scroll', function() {
   /* ── Artikel typografie ── */
   .prose-merqo {
     font-family: var(--font-body);
-    font-size: 17px;
-    line-height: 1.8;
+    font-size: clamp(16px, 1.05vw, 18px);
+    line-height: 1.85;
     color: #1E1F1B;
-    padding-left: clamp(0px, 4vw, 3.5rem);
   }
+
+  /* Openingsalinea groter en voller */
+  .prose-merqo > p:first-of-type {
+    font-size: clamp(17px, 1.15vw, 20px);
+    line-height: 1.75;
+    color: rgba(30,31,27,0.88);
+    margin-bottom: 2rem;
+  }
+
+  /* H2 met oranje streepje links */
   .prose-merqo h2 {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(22px, 2.5vw, 32px);
+    font-size: clamp(20px, 2vw, 28px);
     letter-spacing: -0.04em;
-    line-height: 1.1;
+    line-height: 1.15;
     color: #1E1F1B;
-    margin: 3rem 0 1rem;
+    margin: 3.5rem 0 1rem;
+    padding-left: 1.1rem;
+    border-left: 3px solid #ed6b46;
   }
   .prose-merqo h3 {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(18px, 2vw, 24px);
+    font-size: clamp(17px, 1.6vw, 22px);
     letter-spacing: -0.03em;
-    line-height: 1.15;
+    line-height: 1.2;
     color: #1E1F1B;
-    margin: 2.25rem 0 0.75rem;
+    margin: 2.5rem 0 0.75rem;
   }
+
+  /* Alinea's: meer lucht */
   .prose-merqo p {
-    margin: 0 0 1.5rem;
-    color: rgba(30,31,27,0.78);
-    font-size: 17px;
+    margin: 0 0 1.75rem;
+    color: rgba(30,31,27,0.76);
+    font-size: clamp(16px, 1.05vw, 18px);
+    line-height: 1.85;
+  }
+
+  /* Lijsten: custom oranje bolletjes */
+  .prose-merqo ul {
+    list-style: none;
+    margin: 0 0 1.75rem;
+    padding: 0;
+    color: rgba(30,31,27,0.76);
+  }
+  .prose-merqo ul li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.65rem;
+    font-size: clamp(16px, 1.05vw, 18px);
     line-height: 1.8;
   }
-  .prose-merqo ul,
+  .prose-merqo ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.68em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ed6b46;
+    flex-shrink: 0;
+  }
   .prose-merqo ol {
-    margin: 0 0 1.5rem 1.75rem;
-    color: rgba(30,31,27,0.78);
+    margin: 0 0 1.75rem 1.5rem;
+    color: rgba(30,31,27,0.76);
   }
-  .prose-merqo li {
-    margin-bottom: 0.5rem;
-    font-size: 17px;
-    line-height: 1.75;
+  .prose-merqo ol li {
+    margin-bottom: 0.65rem;
+    font-size: clamp(16px, 1.05vw, 18px);
+    line-height: 1.8;
+    padding-left: 0.35rem;
   }
+  .prose-merqo ol li::marker {
+    color: #ed6b46;
+    font-weight: 700;
+    font-family: var(--font-display);
+  }
+
   .prose-merqo strong {
     font-weight: 700;
     color: #1E1F1B;
@@ -347,36 +392,48 @@ window.addEventListener('scroll', function() {
   .prose-merqo a:hover {
     border-color: #ed6b46;
   }
+
+  /* Blockquote: groter en impactvoller */
   .prose-merqo blockquote {
-    margin: 2.5rem 0;
-    padding: 1.25rem 1.75rem;
-    border-left: 3px solid #ed6b46;
-    background: rgba(237,107,70,0.05);
-    border-radius: 0 12px 12px 0;
+    margin: 3rem 0;
+    padding: 1.5rem 2rem;
+    border-left: 4px solid #ed6b46;
+    background: rgba(237,107,70,0.06);
+    border-radius: 0 16px 16px 0;
+    font-size: clamp(17px, 1.2vw, 20px);
     font-style: italic;
-    color: rgba(30,31,27,0.65);
+    line-height: 1.7;
+    color: rgba(30,31,27,0.7);
   }
+
+  /* Tabel */
   .prose-merqo table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1.5rem 0 2rem;
-    font-size: 14px;
+    margin: 1.75rem 0 2.25rem;
+    font-size: 15px;
+    border-radius: 12px;
+    overflow: hidden;
   }
   .prose-merqo th {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 0.5px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     text-align: left;
-    padding: 0.6rem 1rem;
-    background: rgba(30,31,27,0.05);
-    border-bottom: 1.5px solid rgba(30,31,27,0.12);
+    padding: 0.75rem 1.25rem;
+    background: rgba(30,31,27,0.06);
+    border-bottom: 1.5px solid rgba(30,31,27,0.1);
     color: #1E1F1B;
   }
   .prose-merqo td {
-    padding: 0.65rem 1rem;
-    border-bottom: 1px solid rgba(30,31,27,0.07);
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid rgba(30,31,27,0.06);
     color: rgba(30,31,27,0.72);
+  }
+  .prose-merqo tr:last-child td {
+    border-bottom: none;
   }
 
   /* ── Social share ── */
