@@ -1,16 +1,16 @@
 {{# ════════════════════════════════════════════════════════════
-    MERQO - BLOG OVERZICHT
+    MERQO - KENNISBANK OVERZICHT
     ════════════════════════════════════════════════════════════ #}}
 
 {{ section:seo }}
 <meta name="description" content="Kennis, tips en inspiratie voor ondernemers in Twente. Merqo deelt inzichten over branding, websites, marketing en merkstrategie.">
-<meta property="og:title" content="Blog | Kennis en inspiratie voor ondernemers - Merqo">
+<meta property="og:title" content="Kennisbank | Kennis en inspiratie voor ondernemers - Merqo">
 <meta property="og:description" content="Kennis, tips en inspiratie voor ondernemers in Twente. Merqo deelt inzichten over branding, websites, marketing en merkstrategie.">
 <meta property="og:url" content="{{ config:app:url }}{{ url }}">
 {{ /section:seo }}
 
 {{ partial:partials/page-hero
-   label="Blog"
+   label="Kennisbank"
    title="Kennis, tips en"
    title_accent="inspiratie"
    tagline="Praktische inzichten over branding, websites en marketing voor ondernemers in Twente en Overijssel."
@@ -21,21 +21,20 @@
 }}
 
 {{# ══════════════════════════════════════════════════════
-    BLOG GRID
+    UITGELICHT ARTIKEL (hero card — nieuwste post)
     ══════════════════════════════════════════════════════ #}}
-<section style="background:#F0EDE7; padding:5rem 0 8rem;">
+<section style="background:#F0EDE7; padding:5rem 0 0;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
 
-    {{# Intro header #}}
-    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:4rem; flex-wrap:wrap; gap:1.5rem;" data-reveal>
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:2.5rem; flex-wrap:wrap; gap:1.5rem;" data-reveal>
       <div>
         <div class="eyebrow" style="margin-bottom:1.25rem;">
           <div class="eyebrow-line"></div>
-          <div class="eyebrow-text">Alle artikelen</div>
+          <div class="eyebrow-text">Uitgelicht</div>
         </div>
         <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(28px,3.5vw,44px);
                    letter-spacing:-0.04em; line-height:1.06; color:#1E1F1B; margin:0;">
-          <span style="opacity:0.35;">Geschreven voor</span><br>ondernemers als jij.
+          <span style="opacity:0.35;">Nieuwste uit</span><br>de Kennisbank.
         </h2>
       </div>
       <p style="font-family:var(--font-body); font-size:15px; line-height:1.8; color:rgba(30,31,27,0.5); margin:0; max-width:38ch;">
@@ -43,64 +42,149 @@
       </p>
     </div>
 
-    {{# Blog grid #}}
-    <div class="blog-grid">
-      {{ collection:blog limit="12" }}
-      <a href="{{ url }}" class="blog-card">
+    {{# Uitgelicht: nieuwste artikel #}}
+    {{ collection:blog limit="1" }}
+    <a href="{{ url }}" class="featured-card" data-reveal>
 
-        {{# Uitgelichte afbeelding #}}
-        <div class="blog-img-wrap">
-          {{ if featured_image }}
-            <img src="{{ featured_image }}" alt="{{ title }}" loading="lazy">
-          {{ else }}
-            <div class="blog-img-placeholder">
-              {{ if category == "branding" }}
-                <div style="background:linear-gradient(135deg,#ed6b46,#f5b87a);"></div>
-              {{ elseif category == "websites" }}
-                <div style="background:linear-gradient(135deg,#a8c8ca,#8fcdd0);"></div>
-              {{ elseif category == "marketing" }}
-                <div style="background:linear-gradient(135deg,#ed6b46,#501117);"></div>
-              {{ elseif category == "strategie" }}
-                <div style="background:linear-gradient(135deg,#1E1F1B,#6B6860);"></div>
-              {{ else }}
-                <div style="background:linear-gradient(135deg,#D6D2CB,#C2BDB6);"></div>
-              {{ /if }}
-            </div>
-          {{ /if }}
-          {{# Hover arrow #}}
-          <div class="blog-hover-arrow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </div>
+      {{# Afbeelding of gradiënt #}}
+      <div class="featured-img">
+        {{ if featured_image }}
+          <img src="{{ featured_image }}" alt="{{ title }}" loading="lazy">
+        {{ else }}
+          <div class="featured-img-gradient
+            {{ if category == 'branding' }}feat-grad-branding
+            {{ elseif category == 'websites' }}feat-grad-websites
+            {{ elseif category == 'marketing' }}feat-grad-marketing
+            {{ elseif category == 'strategie' }}feat-grad-strategie
+            {{ else }}feat-grad-default{{ /if }}
+          "></div>
+        {{ /if }}
+        <div class="featured-overlay"></div>
+        <div class="featured-hover-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
         </div>
+      </div>
 
-        {{# Info #}}
-        <div class="blog-info">
-          <div class="blog-info-top">
-            {{ if category }}
-              <span class="blog-category">{{ category | upper }}</span>
+      {{# Info #}}
+      <div class="featured-info">
+        <div class="featured-meta">
+          {{ if category }}
+            <span class="featured-category">{{ category | upper }}</span>
+          {{ /if }}
+          <span class="featured-readtime">3 min lezen</span>
+          <span class="featured-date">{{ date | format:"j M Y" }}</span>
+        </div>
+        <h3 class="featured-title">{{ title }}</h3>
+        {{ if intro }}
+          <p class="featured-intro">{{ intro }}</p>
+        {{ /if }}
+        <span class="featured-readmore">
+          Lees artikel
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </span>
+      </div>
+
+    </a>
+    {{ /collection:blog }}
+
+  </div>
+</section>
+
+{{# ══════════════════════════════════════════════════════
+    KENNISBANK GRID MET CATEGORIE FILTER
+    ══════════════════════════════════════════════════════ #}}
+<section style="background:#F0EDE7; padding:4rem 0 8rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    {{# Categorie filter #}}
+    <div x-data="{ activeFilter: 'alles' }" x-cloak>
+
+      <div class="filter-bar" data-reveal>
+        <button class="filter-btn" :class="{ 'filter-btn-active': activeFilter === 'alles' }" @click="activeFilter = 'alles'">Alles</button>
+        <button class="filter-btn" :class="{ 'filter-btn-active': activeFilter === 'branding' }" @click="activeFilter = 'branding'">Branding</button>
+        <button class="filter-btn" :class="{ 'filter-btn-active': activeFilter === 'websites' }" @click="activeFilter = 'websites'">Websites</button>
+        <button class="filter-btn" :class="{ 'filter-btn-active': activeFilter === 'marketing' }" @click="activeFilter = 'marketing'">Marketing</button>
+        <button class="filter-btn" :class="{ 'filter-btn-active': activeFilter === 'strategie' }" @click="activeFilter = 'strategie'">Strategie</button>
+        <button class="filter-btn" :class="{ 'filter-btn-active': activeFilter === 'tips' }" @click="activeFilter = 'tips'">Tips</button>
+      </div>
+
+      {{# Blog grid — overige artikelen (offset 1) #}}
+      <div class="blog-grid" data-reveal>
+        {{ collection:blog limit="11" offset="1" }}
+        <a href="{{ url }}" class="blog-card"
+           data-category="{{ category }}"
+           x-show="activeFilter === 'alles' || activeFilter === '{{ category }}'"
+           x-transition:enter="transition ease-out duration-200"
+           x-transition:enter-start="opacity-0 scale-95"
+           x-transition:enter-end="opacity-100 scale-100">
+
+          {{# Uitgelichte afbeelding #}}
+          <div class="blog-img-wrap">
+            {{ if featured_image }}
+              <img src="{{ featured_image }}" alt="{{ title }}" loading="lazy">
+            {{ else }}
+              <div class="blog-img-placeholder">
+                {{ if category == "branding" }}
+                  <div style="background:linear-gradient(135deg,#ed6b46,#f5b87a);"></div>
+                {{ elseif category == "websites" }}
+                  <div style="background:linear-gradient(135deg,#a8c8ca,#8fcdd0);"></div>
+                {{ elseif category == "marketing" }}
+                  <div style="background:linear-gradient(135deg,#ed6b46,#501117);"></div>
+                {{ elseif category == "strategie" }}
+                  <div style="background:linear-gradient(135deg,#6B6860,#D6D2CB);"></div>
+                {{ else }}
+                  <div style="background:linear-gradient(135deg,#D6D2CB,#C2BDB6);"></div>
+                {{ /if }}
+              </div>
             {{ /if }}
-            <span class="blog-date">{{ date | format:"j M Y" }}</span>
+            {{# Hover arrow #}}
+            <div class="blog-hover-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </div>
           </div>
-          <h3 class="blog-title">{{ title }}</h3>
-          {{ if intro }}
-            <p class="blog-intro">{{ intro | truncate:110 }}</p>
-          {{ /if }}
-          <span class="blog-readmore">
-            Lees meer
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </span>
-        </div>
 
-      </a>
-      {{ /collection:blog }}
-    </div>
+          {{# Info #}}
+          <div class="blog-info">
+            <div class="blog-info-top">
+              {{ if category }}
+                <span class="blog-category">{{ category | upper }}</span>
+              {{ /if }}
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <span class="blog-readtime">3 min lezen</span>
+                <span class="blog-date">{{ date | format:"j M Y" }}</span>
+              </div>
+            </div>
+            <h3 class="blog-title">{{ title }}</h3>
+            {{ if intro }}
+              <p class="blog-intro">{{ intro | truncate:110 }}</p>
+            {{ /if }}
+            <span class="blog-readmore">
+              Lees meer
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </span>
+          </div>
 
-    {{# Lege staat als er geen posts zijn #}}
-    {{ if {collection:blog | count} == 0 }}
-    <div style="text-align:center; padding:6rem 0; color:rgba(30,31,27,0.4);">
-      <p style="font-size:16px;">Er zijn nog geen blogposts gepubliceerd.</p>
-    </div>
-    {{ /if }}
+        </a>
+        {{ /collection:blog }}
+      </div>
+
+      {{# Lege staat #}}
+      {{ if {collection:blog | count} == 0 }}
+      <div class="empty-state" data-reveal>
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="72" height="72" rx="20" fill="rgba(237,107,70,0.08)"/>
+          <path d="M22 50V28a2 2 0 0 1 2-2h6l4-6h8l4 6h6a2 2 0 0 1 2 2v22a2 2 0 0 1-2 2H24a2 2 0 0 1-2-2Z" stroke="#ed6b46" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="36" cy="38" r="5" stroke="#ed6b46" stroke-width="1.75"/>
+        </svg>
+        <h3 style="font-family:var(--font-display); font-weight:800; font-size:22px; letter-spacing:-0.03em; color:#1E1F1B; margin:0;">Nog niets gepubliceerd</h3>
+        <p style="font-family:var(--font-body); font-size:15px; line-height:1.7; color:rgba(30,31,27,0.5); margin:0; max-width:34ch;">
+          We zijn bezig met het schrijven van interessante artikelen. Kom snel terug.
+        </p>
+        <a href="/contact" class="btn-primary">Plan alvast een gesprek</a>
+      </div>
+      {{ /if }}
+
+    </div>{{# end x-data #}}
 
   </div>
 </section>
@@ -127,14 +211,186 @@
 
 {{# ── Styles ── #}}
 <style>
-  /* Grid */
+  /* ── Featured card ── */
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 32px rgba(30,31,27,0.07);
+    transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    margin-bottom: 4rem;
+    cursor: pointer;
+  }
+  .featured-card:hover {
+    box-shadow: 0 12px 48px rgba(30,31,27,0.13);
+    transform: translateY(-3px);
+  }
+  .featured-img {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #D6D2CB;
+    flex-shrink: 0;
+  }
+  .featured-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .featured-card:hover .featured-img img {
+    transform: scale(1.04);
+  }
+  .feat-grad-branding  { width:100%; height:100%; background:linear-gradient(135deg,#ed6b46,#f5b87a); }
+  .feat-grad-websites  { width:100%; height:100%; background:linear-gradient(135deg,#a8c8ca,#8fcdd0); }
+  .feat-grad-marketing { width:100%; height:100%; background:linear-gradient(135deg,#ed6b46,#501117); }
+  .feat-grad-strategie { width:100%; height:100%; background:linear-gradient(135deg,#6B6860,#D6D2CB); }
+  .feat-grad-default   { width:100%; height:100%; background:linear-gradient(135deg,#D6D2CB,#C2BDB6); }
+  .featured-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, transparent 50%, rgba(30,31,27,0.08));
+    pointer-events: none;
+  }
+  .featured-hover-arrow {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(240,237,231,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1E1F1B;
+    opacity: 0;
+    transform: scale(0.7) rotate(-45deg);
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .featured-card:hover .featured-hover-arrow {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  .featured-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 3.5rem;
+  }
+  .featured-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .featured-category {
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ed6b46;
+  }
+  .featured-readtime {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(30,31,27,0.35);
+    padding: 2px 8px;
+    background: rgba(30,31,27,0.05);
+    border-radius: 999px;
+  }
+  .featured-date {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(30,31,27,0.35);
+  }
+  .featured-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(22px, 2.5vw, 34px);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: #1E1F1B;
+    margin: 0 0 1rem;
+    transition: color 0.2s;
+  }
+  .featured-card:hover .featured-title {
+    color: #ed6b46;
+  }
+  .featured-intro {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(30,31,27,0.55);
+    margin: 0 0 1.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .featured-readmore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #ed6b46;
+    transition: gap 0.2s;
+  }
+  .featured-card:hover .featured-readmore {
+    gap: 0.75rem;
+  }
+
+  /* ── Filter bar ── */
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .filter-btn {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 7px 16px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(30,31,27,0.15);
+    background: transparent;
+    color: rgba(30,31,27,0.55);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .filter-btn:hover {
+    border-color: rgba(30,31,27,0.35);
+    color: #1E1F1B;
+  }
+  .filter-btn-active {
+    background: #1E1F1B !important;
+    border-color: #1E1F1B !important;
+    color: #F0EDE7 !important;
+  }
+
+  /* ── Grid ── */
   .blog-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 3.5rem 2rem;
   }
 
-  /* Kaart */
+  /* ── Kaart ── */
   .blog-card {
     display: flex;
     flex-direction: column;
@@ -143,7 +399,7 @@
     cursor: pointer;
   }
 
-  /* Afbeelding wrapper */
+  /* ── Afbeelding wrapper ── */
   .blog-img-wrap {
     position: relative;
     aspect-ratio: 4 / 3;
@@ -172,7 +428,7 @@
     height: 100%;
   }
 
-  /* Hover arrow */
+  /* ── Hover arrow ── */
   .blog-hover-arrow {
     position: absolute;
     top: 1.25rem;
@@ -194,7 +450,7 @@
     transform: scale(1) rotate(0deg);
   }
 
-  /* Info */
+  /* ── Info ── */
   .blog-info {
     display: flex;
     flex-direction: column;
@@ -208,6 +464,7 @@
     justify-content: space-between;
     gap: 0.5rem;
     margin-bottom: 0.65rem;
+    flex-wrap: wrap;
   }
   .blog-category {
     font-family: var(--font-body);
@@ -216,6 +473,15 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #ed6b46;
+  }
+  .blog-readtime {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(30,31,27,0.35);
+    padding: 2px 7px;
+    background: rgba(30,31,27,0.05);
+    border-radius: 999px;
   }
   .blog-date {
     font-family: var(--font-body);
@@ -263,8 +529,27 @@
     color: #ed6b46;
   }
 
-  /* Responsive */
+  /* ── Lege staat ── */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+    padding: 6rem 0;
+  }
+
+  /* ── Responsive ── */
   @media (max-width: 1024px) {
+    .featured-card {
+      grid-template-columns: 1fr;
+    }
+    .featured-img {
+      aspect-ratio: 16 / 9;
+    }
+    .featured-info {
+      padding: 2rem 2rem;
+    }
     .blog-grid {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -273,6 +558,9 @@
     .blog-grid {
       grid-template-columns: 1fr;
       gap: 3rem;
+    }
+    .featured-info {
+      padding: 1.75rem 1.5rem;
     }
   }
 </style>

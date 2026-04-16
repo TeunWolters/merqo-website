@@ -1,5 +1,5 @@
 {{# ════════════════════════════════════════════════════════════
-    MERQO - BLOG POST DETAIL
+    MERQO - KENNISBANK POST DETAIL
     ════════════════════════════════════════════════════════════ #}}
 
 {{ section:seo }}
@@ -11,6 +11,20 @@
 <meta property="og:url" content="{{ config:app:url }}{{ url }}">
 {{ if featured_image }}<meta property="og:image" content="{{ featured_image }}">{{ /if }}
 {{ /section:seo }}
+
+{{# ── Leesvoortgang indicator ── #}}
+<div id="read-progress" style="position:fixed; top:80px; left:0; height:3px; background:#ed6b46; width:0%; z-index:40; transition:width 0.1s linear; border-radius:0 2px 2px 0;"></div>
+<script>
+window.addEventListener('scroll', function() {
+  var el = document.getElementById('article-body');
+  if (!el) return;
+  var rect = el.getBoundingClientRect();
+  var total = el.offsetHeight;
+  var scrolled = -rect.top;
+  var pct = Math.min(100, Math.max(0, (scrolled / total) * 100));
+  document.getElementById('read-progress').style.width = pct + '%';
+});
+</script>
 
 {{# ── Hero ── #}}
 <section data-header-bg="dark"
@@ -62,14 +76,14 @@
       <a href="/blog" style="font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase;
                              color:rgba(255,255,255,0.4); text-decoration:none; transition:color 0.2s;"
          onmouseover="this.style.color='rgba(255,255,255,0.8)'"
-         onmouseout="this.style.color='rgba(255,255,255,0.4)'">Blog</a>
+         onmouseout="this.style.color='rgba(255,255,255,0.4)'">Kennisbank</a>
       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
       <span style="font-size:11px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.6);">
         {{ title | truncate:40 }}
       </span>
     </nav>
 
-    {{# Categorie + datum #}}
+    {{# Categorie + datum + leestijd #}}
     <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.5rem; flex-wrap:wrap;">
       {{ if category }}
       <span style="display:inline-block; padding:4px 12px; font-size:10px; font-weight:700;
@@ -77,6 +91,9 @@
                    color:rgba(240,237,231,0.75); background:rgba(255,255,255,0.12);
                    border:1px solid rgba(255,255,255,0.2);">{{ category | upper }}</span>
       {{ /if }}
+      <span style="display:inline-block; padding:4px 12px; font-size:10px; font-weight:600;
+                   border-radius:999px; color:rgba(240,237,231,0.6);
+                   background:rgba(255,255,255,0.08);">3 min lezen</span>
       <span style="font-size:11px; font-family:monospace; color:rgba(240,237,231,0.35);">
         {{ date | format:"j F Y" }}
       </span>
@@ -112,11 +129,67 @@
 {{ /if }}
 
 {{# ── Artikel content ── #}}
-<section style="background:#F0EDE7; padding:4rem 0 6rem;">
+<section style="background:#F0EDE7; padding:4rem 0 2rem;">
   <div class="max-w-4xl mx-auto px-6 lg:px-10">
-    <div class="prose-merqo">
+    <div class="prose-merqo" id="article-body">
       {{ content }}
     </div>
+  </div>
+</section>
+
+{{# ── Social share + auteur ── #}}
+<section style="background:#F0EDE7; padding:0 0 5rem;">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10">
+
+    {{# Social share knoppen #}}
+    <div class="share-bar">
+      <span class="share-label">Deel dit artikel</span>
+      <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+
+        {{# LinkedIn #}}
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ config:app:url }}{{ url }}"
+           target="_blank" rel="noopener noreferrer"
+           class="share-btn"
+           aria-label="Delen op LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </a>
+
+        {{# Link kopiëren #}}
+        <button class="share-btn" id="copy-link-btn"
+                onclick="(function(){
+                  navigator.clipboard.writeText(window.location.href).then(function(){
+                    var btn = document.getElementById('copy-link-btn');
+                    var orig = btn.innerHTML;
+                    btn.innerHTML = '<svg width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><polyline points=\'20 6 9 17 4 12\'></polyline></svg> Gekopieerd!';
+                    btn.style.background = '#ed6b46';
+                    btn.style.color = '#fff';
+                    btn.style.borderColor = '#ed6b46';
+                    setTimeout(function(){ btn.innerHTML = orig; btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = ''; }, 2000);
+                  });
+                })()"
+                aria-label="Link kopiëren">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          Link kopiëren
+        </button>
+
+      </div>
+    </div>
+
+    {{# Auteur blok #}}
+    <div class="author-block">
+      <div class="author-avatar">M</div>
+      <div>
+        <div style="font-weight:700; font-size:14px; color:#1E1F1B; font-family:var(--font-body);">Team Merqo</div>
+        <div style="font-size:12px; color:#6B6860; font-family:var(--font-body); margin-top:2px;">Creatief bureau in Hengelo, Twente</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -140,36 +213,53 @@
 
     {{# 3 andere posts (niet de huidige) #}}
     <div class="blog-related-grid">
-      {{ collection:blog limit="3" }}
+      {{ collection:blog limit="4" }}
         {{ if id != {id} }}
-        <a href="{{ url }}" class="blog-rel-card">
-          <div class="blog-rel-img">
+        <a href="{{ url }}" class="blog-card">
+
+          <div class="blog-img-wrap">
             {{ if featured_image }}
               <img src="{{ featured_image }}" alt="{{ title }}" loading="lazy">
             {{ else }}
-              <div style="width:100%; height:100%; background:linear-gradient(135deg,#D6D2CB,#C2BDB6);"></div>
+              <div class="blog-img-placeholder">
+                {{ if category == "branding" }}
+                  <div style="background:linear-gradient(135deg,#ed6b46,#f5b87a);"></div>
+                {{ elseif category == "websites" }}
+                  <div style="background:linear-gradient(135deg,#a8c8ca,#8fcdd0);"></div>
+                {{ elseif category == "marketing" }}
+                  <div style="background:linear-gradient(135deg,#ed6b46,#501117);"></div>
+                {{ elseif category == "strategie" }}
+                  <div style="background:linear-gradient(135deg,#6B6860,#D6D2CB);"></div>
+                {{ else }}
+                  <div style="background:linear-gradient(135deg,#D6D2CB,#C2BDB6);"></div>
+                {{ /if }}
+              </div>
             {{ /if }}
-          </div>
-          <div style="padding-top:0.9rem; border-top:1px solid rgba(30,31,27,0.1);">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem;">
-              {{ if category }}
-              <span style="font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#ed6b46; font-family:var(--font-body);">{{ category | upper }}</span>
-              {{ /if }}
-              <span style="font-size:11px; color:rgba(30,31,27,0.35); font-family:var(--font-body);">{{ date | format:"j M Y" }}</span>
+            <div class="blog-hover-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
             </div>
-            <h3 style="font-family:var(--font-display); font-weight:800; font-size:clamp(15px,1.3vw,18px);
-                       letter-spacing:-0.03em; line-height:1.15; color:#1E1F1B; margin:0 0 0.4rem;
-                       transition:color 0.2s;">
-              {{ title }}
-            </h3>
-            {{ if intro }}
-            <p style="font-size:13px; line-height:1.6; color:rgba(30,31,27,0.5); margin:0;
-                      font-family:var(--font-body); display:-webkit-box; -webkit-line-clamp:2;
-                      -webkit-box-orient:vertical; overflow:hidden;">
-              {{ intro }}
-            </p>
-            {{ /if }}
           </div>
+
+          <div class="blog-info">
+            <div class="blog-info-top">
+              {{ if category }}
+                <span class="blog-category">{{ category | upper }}</span>
+              {{ /if }}
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <span class="blog-readtime">3 min lezen</span>
+                <span class="blog-date">{{ date | format:"j M Y" }}</span>
+              </div>
+            </div>
+            <h3 class="blog-title">{{ title }}</h3>
+            {{ if intro }}
+              <p class="blog-intro">{{ intro | truncate:110 }}</p>
+            {{ /if }}
+            <span class="blog-readmore">
+              Lees meer
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </span>
+          </div>
+
         </a>
         {{ /if }}
       {{ /collection:blog }}
@@ -201,10 +291,10 @@
 
 {{# ── Styles ── #}}
 <style>
-  /* Artikel typografie */
+  /* ── Artikel typografie ── */
   .prose-merqo {
     font-family: var(--font-body);
-    font-size: clamp(16px, 1.4vw, 18px);
+    font-size: 17px;
     line-height: 1.8;
     color: #1E1F1B;
   }
@@ -215,7 +305,7 @@
     letter-spacing: -0.04em;
     line-height: 1.1;
     color: #1E1F1B;
-    margin: 2.5rem 0 1rem;
+    margin: 3rem 0 1rem;
   }
   .prose-merqo h3 {
     font-family: var(--font-display);
@@ -224,19 +314,23 @@
     letter-spacing: -0.03em;
     line-height: 1.15;
     color: #1E1F1B;
-    margin: 2rem 0 0.75rem;
+    margin: 2.25rem 0 0.75rem;
   }
   .prose-merqo p {
-    margin: 0 0 1.35rem;
+    margin: 0 0 1.5rem;
     color: rgba(30,31,27,0.78);
+    font-size: 17px;
+    line-height: 1.8;
   }
   .prose-merqo ul,
   .prose-merqo ol {
-    margin: 0 0 1.35rem 1.5rem;
+    margin: 0 0 1.5rem 1.75rem;
     color: rgba(30,31,27,0.78);
   }
   .prose-merqo li {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
+    font-size: 17px;
+    line-height: 1.75;
   }
   .prose-merqo strong {
     font-weight: 700;
@@ -245,11 +339,20 @@
   .prose-merqo a {
     color: #ed6b46;
     text-decoration: none;
-    border-bottom: 1px solid rgba(237,107,70,0.3);
+    border-bottom: 1px solid rgba(237,107,70,0.35);
     transition: border-color 0.2s;
   }
   .prose-merqo a:hover {
     border-color: #ed6b46;
+  }
+  .prose-merqo blockquote {
+    margin: 2.5rem 0;
+    padding: 1.25rem 1.75rem;
+    border-left: 3px solid #ed6b46;
+    background: rgba(237,107,70,0.05);
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: rgba(30,31,27,0.65);
   }
   .prose-merqo table {
     width: 100%;
@@ -273,52 +376,220 @@
     border-bottom: 1px solid rgba(30,31,27,0.07);
     color: rgba(30,31,27,0.72);
   }
-  .prose-merqo blockquote {
-    margin: 2rem 0;
-    padding: 1.25rem 1.75rem;
-    border-left: 3px solid #ed6b46;
-    background: rgba(237,107,70,0.05);
-    border-radius: 0 12px 12px 0;
-    font-style: italic;
-    color: rgba(30,31,27,0.65);
+
+  /* ── Social share ── */
+  .share-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(30,31,27,0.1);
+    margin-top: 1rem;
+  }
+  .share-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(30,31,27,0.4);
+    text-transform: uppercase;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(30,31,27,0.15);
+    background: transparent;
+    color: rgba(30,31,27,0.6);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .share-btn:hover {
+    border-color: #ed6b46;
+    color: #ed6b46;
   }
 
-  /* Gerelateerde grid */
+  /* ── Auteur ── */
+  .author-block {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid rgba(30,31,27,0.1);
+    margin-top: 0.25rem;
+  }
+  .author-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #ed6b46;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #fff;
+    font-size: 14px;
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    letter-spacing: 0;
+  }
+
+  /* ── Gerelateerde grid (hergebruikt van index) ── */
   .blog-related-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem 1.75rem;
+    gap: 3.5rem 2rem;
   }
-  .blog-rel-card {
-    display: block;
+
+  /* ── Blog card (zelfde als index) ── */
+  .blog-card {
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
   }
-  .blog-rel-card:hover h3 {
-    color: #ed6b46;
-  }
-  .blog-rel-img {
+  .blog-img-wrap {
+    position: relative;
     aspect-ratio: 4 / 3;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     background: #D6D2CB;
-    margin-bottom: 0.9rem;
+    margin-bottom: 1.25rem;
+    flex-shrink: 0;
   }
-  .blog-rel-img img {
+  .blog-img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
   }
-  .blog-rel-card:hover .blog-rel-img img {
+  .blog-card:hover .blog-img-wrap img {
     transform: scale(1.04);
   }
+  .blog-img-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+  .blog-img-placeholder > div {
+    width: 100%;
+    height: 100%;
+  }
+  .blog-hover-arrow {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #EDEAE3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1E1F1B;
+    opacity: 0;
+    transform: scale(0.7) rotate(-45deg);
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .blog-card:hover .blog-hover-arrow {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  .blog-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-top: 1px solid rgba(30,31,27,0.1);
+    padding-top: 1rem;
+  }
+  .blog-info-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.65rem;
+    flex-wrap: wrap;
+  }
+  .blog-category {
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ed6b46;
+  }
+  .blog-readtime {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(30,31,27,0.35);
+    padding: 2px 7px;
+    background: rgba(30,31,27,0.05);
+    border-radius: 999px;
+  }
+  .blog-date {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(30,31,27,0.35);
+  }
+  .blog-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(16px, 1.4vw, 20px);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: #1E1F1B;
+    margin: 0 0 0.6rem;
+    transition: color 0.2s;
+  }
+  .blog-card:hover .blog-title {
+    color: #ed6b46;
+  }
+  .blog-intro {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(30,31,27,0.5);
+    margin: 0 0 1rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .blog-readmore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(30,31,27,0.4);
+    transition: color 0.2s;
+    margin-top: auto;
+  }
+  .blog-card:hover .blog-readmore {
+    color: #ed6b46;
+  }
 
+  /* ── Responsive ── */
   @media (max-width: 768px) {
     .blog-related-grid {
       grid-template-columns: 1fr;
-      gap: 2.5rem;
+      gap: 3rem;
+    }
+    .share-bar {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 </style>
