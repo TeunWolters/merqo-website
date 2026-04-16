@@ -1,0 +1,54 @@
+title: Blogpost
+fields:
+  -
+    handle: title
+    field:
+      type: text
+      display: Titel
+      required: true
+  -
+    handle: slug
+    field:
+      type: slug
+      display: Slug
+      required: true
+  -
+    handle: intro
+    field:
+      type: textarea
+      display: Intro (voor overzichtspagina en meta description)
+      required: true
+  -
+    handle: content
+    field:
+      type: bard
+      display: Inhoud
+      required: true
+  -
+    handle: featured_image
+    field:
+      type: assets
+      display: Uitgelichte afbeelding
+      container: assets
+      max_files: 1
+  -
+    handle: category
+    field:
+      type: select
+      display: Categorie
+      options:
+        branding: Branding
+        websites: Websites
+        marketing: Marketing
+        strategie: Strategie
+        tips: Tips & Inspiratie
+  -
+    handle: seo_title
+    field:
+      type: text
+      display: SEO Titel (optioneel)
+  -
+    handle: seo_description
+    field:
+      type: textarea
+      display: SEO Omschrijving (optioneel)
