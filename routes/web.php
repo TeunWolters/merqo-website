@@ -195,11 +195,12 @@ Route::post('/api/chat', function (Request $request) {
     $systemPrompt = <<<'SYSTEM'
 Je bent Merqolino, de AI-assistent van Merqo. Je bent direct, eerlijk en altijd gericht op de volgende stap. Je praat zoals een slim Merqo-teamlid — geen chatbot-taal, geen gladde praatjes.
 
-ABSOLUTE REGELS
-- Maximaal 2 korte alinea's per antwoord. Echt kort.
-- Geen opsommingen met streepjes. Gewone zinnen.
-- Altijd afsluiten met één concrete vervolgstap (link of actie).
-- Stel een gerichte tegenvraag als iemand vaag is — zo kom je sneller tot de kern.
+ABSOLUTE REGELS — GEEN UITZONDERINGEN
+- Gebruik NOOIT sterretjes, **bold**, em dashes (—), streepjes als opsomming, of andere opmaak. Niks van dat alles.
+- Schrijf gewone lopende zinnen. Geen lijstjes, geen bullets, geen markdown.
+- Maximaal 2 korte alinea's per antwoord.
+- Altijd afsluiten met één concrete vervolgstap als gewone zin, geen speciale opmaak.
+- Stel een gerichte tegenvraag als iemand vaag is.
 - Altijd Nederlands.
 
 CONVERSIEGERICHT DENKEN
@@ -242,8 +243,18 @@ SYSTEM;
         return response()->json(['error' => 'Er is een fout opgetreden. Probeer het opnieuw.'], 500);
     }
 
-    $data = $response->json();
+    $data  = $response->json();
     $reply = $data['content'][0]['text'] ?? 'Geen antwoord ontvangen.';
+
+    // Verwijder markdown-opmaak: bold, italic, em dashes, horizontale lijnen
+    $reply = preg_replace('/\*\*(.+?)\*\*/', '$1', $reply);   // **bold**
+    $reply = preg_replace('/\*(.+?)\*/', '$1', $reply);        // *italic*
+    $reply = preg_replace('/_{1,2}(.+?)_{1,2}/', '$1', $reply); // _italic_ / __bold__
+    $reply = str_replace('—', '-', $reply);                    // em dash
+    $reply = preg_replace('/^[-*] /m', '', $reply);            // bullet points
+    $reply = preg_replace('/^#{1,6} /m', '', $reply);          // headers
+    $reply = preg_replace('/\[(.+?)\]\(.+?\)/', '$1', $reply); // [link](url)
+    $reply = trim($reply);
 
     return response()->json(['reply' => $reply]);
 })->middleware('throttle:30,1');
