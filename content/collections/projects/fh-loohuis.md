@@ -13,6 +13,7 @@ services:
   - Wagenpark branding
   - Werkkleding design
 image: /assets/projects/fh-loohuis.jpg
+result: 'Wagenpark herkend als professioneel merk in de hele regio Twente'
 brand_colors:
   -
     hex: "#1B3A5C"

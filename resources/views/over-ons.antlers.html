@@ -970,6 +970,166 @@
   }
 </style>
 
+{{# ── VERGELIJKING ── #}}
+<section style="background:#F0EDE7; padding:6rem 0;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div style="text-align:center; max-width:48ch; margin:0 auto 4rem;" data-reveal>
+      <div class="eyebrow" style="justify-content:center; margin-bottom:1.25rem;">
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-text">De eerlijke vergelijking</div>
+      </div>
+      <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(26px,3vw,40px); letter-spacing:-0.04em; line-height:1.06; color:#1E1F1B; margin:0 0 1rem;">
+        Freelancer, groot bureau<br>of Merqo?
+      </h2>
+      <p style="font-family:var(--font-body); font-size:15px; line-height:1.8; color:rgba(30,31,27,0.55); margin:0;">
+        Elke optie heeft zijn plek. Dit is wanneer Merqo de betere keuze is, en wanneer misschien niet.
+      </p>
+    </div>
+
+    <div class="verg-table" data-reveal>
+
+      {{# Header rij #}}
+      <div class="verg-row verg-header">
+        <div class="verg-col verg-aspect">Aspect</div>
+        <div class="verg-col verg-freelancer">Freelancer</div>
+        <div class="verg-col verg-merqo">Merqo</div>
+        <div class="verg-col verg-groot">Groot bureau</div>
+      </div>
+
+      {{# Rijen #}}
+      <div class="verg-row">
+        <div class="verg-col verg-aspect">Prijs</div>
+        <div class="verg-col verg-freelancer"><span class="verg-dot verg-pos"></span> Laag</div>
+        <div class="verg-col verg-merqo"><span class="verg-dot verg-pos"></span> Eerlijk mkb-tarief</div>
+        <div class="verg-col verg-groot"><span class="verg-dot verg-neg"></span> Hoog</div>
+      </div>
+
+      <div class="verg-row">
+        <div class="verg-col verg-aspect">Persoonlijk contact</div>
+        <div class="verg-col verg-freelancer"><span class="verg-dot verg-mid"></span> Wisselend</div>
+        <div class="verg-col verg-merqo"><span class="verg-dot verg-pos"></span> Direct met het team</div>
+        <div class="verg-col verg-groot"><span class="verg-dot verg-neg"></span> Via accountmanager</div>
+      </div>
+
+      <div class="verg-row">
+        <div class="verg-col verg-aspect">Strategie inbegrepen</div>
+        <div class="verg-col verg-freelancer"><span class="verg-dot verg-neg"></span> Zelden</div>
+        <div class="verg-col verg-merqo"><span class="verg-dot verg-pos"></span> Altijd</div>
+        <div class="verg-col verg-groot"><span class="verg-dot verg-mid"></span> Tegen meerprijs</div>
+      </div>
+
+      <div class="verg-row">
+        <div class="verg-col verg-aspect">Breedte van diensten</div>
+        <div class="verg-col verg-freelancer"><span class="verg-dot verg-neg"></span> Beperkt (1 specialisme)</div>
+        <div class="verg-col verg-merqo"><span class="verg-dot verg-pos"></span> Compleet pakket</div>
+        <div class="verg-col verg-groot"><span class="verg-dot verg-pos"></span> Breed, maar duur</div>
+      </div>
+
+      <div class="verg-row">
+        <div class="verg-col verg-aspect">Consistentie</div>
+        <div class="verg-col verg-freelancer"><span class="verg-dot verg-neg"></span> Risico op uitval</div>
+        <div class="verg-col verg-merqo"><span class="verg-dot verg-pos"></span> Vast team, vaste lijn</div>
+        <div class="verg-col verg-groot"><span class="verg-dot verg-mid"></span> Afhankelijk van team</div>
+      </div>
+
+      <div class="verg-row">
+        <div class="verg-col verg-aspect">Schaalbaar</div>
+        <div class="verg-col verg-freelancer"><span class="verg-dot verg-neg"></span> Beperkt</div>
+        <div class="verg-col verg-merqo"><span class="verg-dot verg-pos"></span> Ja, meegroeit</div>
+        <div class="verg-col verg-groot"><span class="verg-dot verg-pos"></span> Ja, maar prijzig</div>
+      </div>
+
+      <div class="verg-row verg-row-last">
+        <div class="verg-col verg-aspect">Beste keuze voor</div>
+        <div class="verg-col verg-freelancer" style="color:rgba(30,31,27,0.55); font-size:13px;">Klein eenmalig project, krap budget</div>
+        <div class="verg-col verg-merqo" style="color:#ed6b46; font-weight:700; font-size:13px;">Mkb dat wil groeien met een sterk merk</div>
+        <div class="verg-col verg-groot" style="color:rgba(30,31,27,0.55); font-size:13px;">Enterprise met groot budget en team</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .verg-table {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(30,31,27,0.1);
+  }
+  .verg-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.2fr 1fr;
+    border-bottom: 1px solid rgba(30,31,27,0.07);
+  }
+  .verg-row-last { border-bottom: none; }
+  .verg-col {
+    padding: 1rem 1.25rem;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    color: #1E1F1B;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    line-height: 1.4;
+  }
+  .verg-header {
+    background: #1E1F1B;
+  }
+  .verg-header .verg-col {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(240,237,231,0.5);
+    padding: 1rem 1.25rem;
+  }
+  .verg-header .verg-merqo {
+    color: #ed6b46;
+  }
+  .verg-aspect {
+    background: rgba(30,31,27,0.03);
+    font-weight: 600;
+    color: rgba(30,31,27,0.7);
+    font-size: 13px;
+  }
+  .verg-merqo {
+    background: rgba(237,107,70,0.05);
+    font-weight: 600;
+    border-left: 2px solid rgba(237,107,70,0.2);
+    border-right: 2px solid rgba(237,107,70,0.2);
+  }
+  .verg-row:nth-child(even) .verg-freelancer,
+  .verg-row:nth-child(even) .verg-groot { background: rgba(30,31,27,0.015); }
+  .verg-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .verg-pos { background: #4caf50; }
+  .verg-mid { background: #f5b87a; }
+  .verg-neg { background: rgba(30,31,27,0.2); }
+  @media (max-width: 768px) {
+    .verg-row { grid-template-columns: 1fr 1fr; }
+    .verg-aspect { grid-column: 1 / -1; background: rgba(30,31,27,0.04); font-size: 12px; padding: 0.6rem 1rem; }
+    .verg-header .verg-aspect { display: none; }
+    .verg-header { grid-template-columns: 1fr 1fr 1fr; }
+    .verg-header .verg-aspect { display: none; }
+    .verg-freelancer, .verg-merqo, .verg-groot { font-size: 12px; padding: 0.6rem 1rem; }
+    .verg-merqo { border-left: none; border-right: none; border-top: 2px solid rgba(237,107,70,0.3); }
+  }
+  @media (max-width: 480px) {
+    .verg-row { grid-template-columns: 1fr; }
+    .verg-header { display: none; }
+    .verg-aspect { font-weight: 700; color: #1E1F1B; padding: 1rem 1rem 0.25rem; background: transparent; border-top: 1px solid rgba(30,31,27,0.08); }
+    .verg-row:first-child .verg-aspect { border-top: none; }
+    .verg-col { padding: 0.35rem 1rem; }
+    .verg-merqo { border: none; background: rgba(237,107,70,0.06); border-radius: 8px; margin: 0.25rem 0.75rem; padding: 0.5rem 0.75rem; }
+  }
+</style>
+
 {{# ── CTA ── #}}
 <section class="oo-cta" data-reveal>
   <div class="max-w-7xl mx-auto px-6 lg:px-10 oo-cta__inner">

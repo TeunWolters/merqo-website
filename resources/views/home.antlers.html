@@ -769,6 +769,72 @@
 </script>
 
 
+{{# ── KLANTEN STRIP ──────────────────────────────────────────── #}}
+<section style="background:#EDEAE3; padding:2.5rem 0; border-top:1px solid rgba(30,31,27,0.07); border-bottom:1px solid rgba(30,31,27,0.07); overflow:hidden;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="display:flex; align-items:center; gap:3rem; flex-wrap:nowrap; overflow:hidden;">
+      <div style="flex-shrink:0; font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(30,31,27,0.35); white-space:nowrap;">In goed<br>gezelschap</div>
+      <div class="klanten-marquee" style="flex:1; overflow:hidden; mask-image:linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%); -webkit-mask-image:linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);">
+        <div class="klanten-track">
+          <span>Pelle's Eten &amp; Drinken</span>
+          <span>FH Loohuis</span>
+          <span>Marcooks</span>
+          <span>Montessori OSG</span>
+          <span>De Smokerij</span>
+          <span>Havana Interiors</span>
+          <span>Studio Noor</span>
+          <span>Staal &amp; Steen</span>
+          <span>Bierkompas</span>
+          <span>De Groene Markt</span>
+          <span>Tuincentrum Borghuis</span>
+          {{# Herhaling voor naadloze loop #}}
+          <span>Pelle's Eten &amp; Drinken</span>
+          <span>FH Loohuis</span>
+          <span>Marcooks</span>
+          <span>Montessori OSG</span>
+          <span>De Smokerij</span>
+          <span>Havana Interiors</span>
+          <span>Studio Noor</span>
+          <span>Staal &amp; Steen</span>
+          <span>Bierkompas</span>
+          <span>De Groene Markt</span>
+          <span>Tuincentrum Borghuis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .klanten-track {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    animation: marquee-scroll 32s linear infinite;
+    will-change: transform;
+  }
+  .klanten-track:hover { animation-play-state: paused; }
+  .klanten-track span {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: rgba(30,31,27,0.45);
+    padding: 0 2.5rem;
+    border-right: 1px solid rgba(30,31,27,0.12);
+    transition: color 0.2s;
+  }
+  .klanten-track span:hover { color: #1E1F1B; }
+  @keyframes marquee-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (max-width: 640px) {
+    .klanten-track span { font-size: 13px; padding: 0 1.75rem; }
+  }
+</style>
+
 {{# ── 3. DIENSTEN - editorial list ───────────────────────────── #}}
 <section id="diensten" class="cream-grain" style="background:#EDEAE3; padding:4rem 0 7rem; overflow:visible; position:relative;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
@@ -1279,25 +1345,25 @@
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" data-stagger>
-      {{ collection:reviews limit="3" sort="order:asc" }}
-        <blockquote data-stagger-item style="padding:32px 36px; background:#fff; border-radius:24px; position:relative; overflow:hidden; display:flex; flex-direction:column; border:1px solid rgba(30,31,27,0.08);">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:#ed6b46;border-radius:0 2px 2px 0;"></div>
-          <div class="flex items-center gap-1 mb-5">
+    <div class="reviews-grid" data-stagger>
+      {{ collection:reviews limit="6" sort="order:asc" }}
+        <blockquote data-stagger-item style="padding:28px 32px; background:#fff; border-radius:20px; position:relative; overflow:hidden; display:flex; flex-direction:column; border:1px solid rgba(30,31,27,0.07);">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:#ed6b46;border-radius:0 2px 2px 0;"></div>
+          <div style="display:flex; align-items:center; gap:2px; margin-bottom:1rem;">
             {{ loop from="1" to="5" }}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#ed6b46" stroke="none">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
             {{ /loop }}
           </div>
-          <p class="text-[15px] leading-[1.7] mb-6" style="color:#4A4845;">"{{ quote }}"</p>
-          <footer class="flex items-center gap-3 pt-5" style="border-top:1px solid rgba(30,31,27,0.1);">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(237,107,70,0.12);">
-              <span class="text-sm font-bold" style="color:#ed6b46;">{{ company | substr(0, 1) }}</span>
+          <p style="font-family:var(--font-body); font-size:14px; line-height:1.75; color:#4A4845; margin:0 0 1.25rem; flex:1;">"{{ quote }}"</p>
+          <footer style="display:flex; align-items:center; gap:0.75rem; padding-top:1rem; border-top:1px solid rgba(30,31,27,0.08);">
+            <div style="width:36px; height:36px; border-radius:50%; background:rgba(237,107,70,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <span style="font-family:var(--font-display); font-size:13px; font-weight:800; color:#ed6b46;">{{ company | substr(0, 1) }}</span>
             </div>
             <div>
-              <div class="text-sm font-bold" style="color:#1E1F1B;">{{ company }}</div>
-              <div class="text-[#6B6860] text-xs">Klant van Merqo</div>
+              <div style="font-family:var(--font-body); font-size:13px; font-weight:700; color:#1E1F1B; line-height:1.2;">{{ author_name }}</div>
+              <div style="font-family:var(--font-body); font-size:11px; color:#9B9890; line-height:1.3;">{{ author_role }}, {{ company }}</div>
             </div>
           </footer>
         </blockquote>
@@ -1337,6 +1403,16 @@
 
   </div>
 </section>
+
+<style>
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 1024px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .reviews-grid { grid-template-columns: 1fr; } }
+</style>
 
 
 {{# ── 7. CONTACT ──────────────────────────────────────────── #}}

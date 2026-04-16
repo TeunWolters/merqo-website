@@ -12,6 +12,7 @@ services:
   - Website design & development
   - Fotografie
 image: /assets/projects/pelles.jpg
+result: '40% meer kwalitatieve projectaanvragen na website-lancering'
 brand_colors:
   -
     hex: "#2C2417"

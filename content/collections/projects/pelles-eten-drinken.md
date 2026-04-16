@@ -13,6 +13,7 @@ services:
   - Menukaart design
   - Social media templates
 image: /assets/projects/pelles.jpg
+result: 'Restaurant vol in het eerste weekend na de opening'
 brand_colors:
   -
     hex: "#8B4A2B"

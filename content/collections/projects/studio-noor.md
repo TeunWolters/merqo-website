@@ -13,6 +13,7 @@ services:
   - Content creatie
   - Fotografie
 image: /assets/projects/montessori.jpg
+result: 'Instagram-bereik verdubbeld, 60% meer nieuwe klanten via social'
 brand_colors:
   -
     hex: "#1C1410"

@@ -13,6 +13,7 @@ services:
   - Website redesign
   - Communicatiemateriaal
 image: /assets/projects/montessori.jpg
+result: 'Nieuwe identiteit breed gedragen door leerlingen, ouders en team'
 brand_colors:
   -
     hex: "#3D7A5E"

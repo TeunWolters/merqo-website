@@ -13,6 +13,7 @@ services:
   - Social media strategie
   - Campagne ontwerp
 image: /assets/projects/marcooks.jpg
+result: 'Volledig uitverkochte pop-up dinners binnen 48 uur na lancering'
 brand_colors:
   -
     hex: "#0E0E0C"
