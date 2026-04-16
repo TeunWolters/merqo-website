@@ -1,2 +1,6 @@
 User-agent: *
-Disallow:
+Disallow: /portaal
+Disallow: /admin
+Disallow: /cp
+
+Sitemap: https://merqo.nl/sitemap.xml

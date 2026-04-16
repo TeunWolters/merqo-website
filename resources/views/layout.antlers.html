@@ -197,6 +197,10 @@
 
   <body>
 
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-[#ed6b46] focus:text-white focus:px-4 focus:py-2 focus:rounded-full focus:text-sm focus:font-semibold">
+      Naar hoofdinhoud
+    </a>
+
     {{# ── Page loader ── #}}
     <div id="site-loader" style="position:fixed; inset:0; z-index:99999; background:#F4F1EC; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none;">
       <img src="/assets/merqo-logo-dark.svg" alt="Merqo" id="loader-logo"
@@ -214,7 +218,7 @@
 
     {{ partial:header }}
 
-    <main>
+    <main id="main-content">
       {{ template_content }}
     </main>
 

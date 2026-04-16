@@ -1,46 +1,45 @@
 {{ layout }}
 
 <style>
-@keyframes blob-float {
+@keyframes blob-float-500 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(30px, -20px) scale(1.05); }
-  66%       { transform: translate(-20px, 15px) scale(0.96); }
+  33%       { transform: translate(-25px, 20px) scale(1.04); }
+  66%       { transform: translate(20px, -15px) scale(0.97); }
 }
 </style>
 
 <main id="main-content" style="background:#F0EDE7; min-height:calc(100vh - 80px); display:flex; align-items:center; justify-content:center; padding:120px 24px 80px; position:relative; overflow:hidden;">
 
   {{# Decoratieve blob achtergrond #}}
-  <div aria-hidden="true" style="position:absolute; top:-80px; right:-120px; width:480px; height:480px;
+  <div aria-hidden="true" style="position:absolute; top:-80px; left:-120px; width:480px; height:480px;
        border-radius:50%; background:radial-gradient(circle, rgba(237,107,70,0.12) 0%, rgba(237,107,70,0) 70%);
-       animation:blob-float 10s ease-in-out infinite; pointer-events:none;"></div>
-  <div aria-hidden="true" style="position:absolute; bottom:-60px; left:-100px; width:360px; height:360px;
+       animation:blob-float-500 12s ease-in-out infinite; pointer-events:none;"></div>
+  <div aria-hidden="true" style="position:absolute; bottom:-60px; right:-100px; width:360px; height:360px;
        border-radius:50%; background:radial-gradient(circle, rgba(168,200,202,0.15) 0%, rgba(168,200,202,0) 70%);
-       animation:blob-float 14s ease-in-out infinite reverse; pointer-events:none;"></div>
+       animation:blob-float-500 9s ease-in-out infinite reverse; pointer-events:none;"></div>
 
   <div style="text-align:center; max-width:480px; position:relative; z-index:1;">
 
-    {{# Groot 404 getal #}}
+    {{# Groot 500 getal #}}
     <div class="font-display" style="font-size:clamp(96px,16vw,160px); font-weight:800; color:#ed6b46;
          letter-spacing:-0.05em; line-height:1; margin-bottom:0.25rem;">
-      404
+      500
     </div>
 
     {{# Headline #}}
     <h1 class="font-display" style="font-size:clamp(24px,4vw,40px); font-weight:700; color:#1E1F1B;
        letter-spacing:-0.02em; line-height:1.15; margin-bottom:1rem;">
-      Oeps, deze pagina bestaat niet
+      Er is iets misgegaan
     </h1>
 
     {{# Subtekst #}}
     <p style="color:#6B6860; font-size:1rem; line-height:1.7; max-width:38ch; margin:0 auto 2.5rem;">
-      De pagina die je zoekt is verplaatst of bestaat niet meer.
+      We werken eraan. Probeer het straks opnieuw.
     </p>
 
-    {{# CTA knoppen #}}
+    {{# CTA knop #}}
     <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:center;">
       <a href="/" class="btn-primary">Terug naar home</a>
-      <a href="/#diensten" class="btn-ghost-dark">Bekijk onze diensten</a>
     </div>
 
   </div>
