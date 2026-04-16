@@ -1,0 +1,367 @@
+{{# ════════════════════════════════════════════════════════════
+    MERQO - KENNISBANK CATEGORIE
+    ════════════════════════════════════════════════════════════ #}}
+
+{{ category_naam = category_slug | upper }}
+{{ category_label = category_slug }}
+
+{{# Stel leesbare naam in per categorie #}}
+{{ if category_slug == "branding" }}{{ category_naam = "Branding" }}{{ /if }}
+{{ if category_slug == "websites" }}{{ category_naam = "Websites" }}{{ /if }}
+{{ if category_slug == "marketing" }}{{ category_naam = "Marketing" }}{{ /if }}
+{{ if category_slug == "strategie" }}{{ category_naam = "Strategie" }}{{ /if }}
+{{ if category_slug == "tips" }}{{ category_naam = "Tips" }}{{ /if }}
+
+{{ section:seo }}
+<title>Alle {{ category_naam }} artikelen | Kennisbank - Merqo Hengelo</title>
+<meta name="description" content="Praktische kennis en tips over {{ category_naam }} voor ondernemers in Twente en Overijssel. Merqo deelt eerlijke inzichten die je direct kunt toepassen.">
+<link rel="canonical" href="{{ config:app:url }}/blog/{{ category_slug }}">
+
+<meta property="og:title" content="Alle {{ category_naam }} artikelen | Kennisbank - Merqo">
+<meta property="og:description" content="Praktische kennis en tips over {{ category_naam }} voor ondernemers in Twente en Overijssel.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ config:app:url }}/blog/{{ category_slug }}">
+<meta property="og:site_name" content="Merqo">
+<meta property="og:locale" content="nl_NL">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Alle {{ category_naam }} artikelen | Kennisbank - Merqo">
+<meta name="twitter:description" content="Praktische kennis over {{ category_naam }} voor ondernemers in Twente en Overijssel.">
+
+<meta name="geo.region" content="NL-OV">
+<meta name="geo.placename" content="Hengelo, Twente, Overijssel">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Alle {{ category_naam }} artikelen - Merqo Kennisbank",
+  "description": "Praktische kennis en tips over {{ category_naam }} voor ondernemers in Twente en Overijssel.",
+  "url": "{{ config:app:url }}/blog/{{ category_slug }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Merqo",
+    "url": "{{ config:app:url }}",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Hengelo",
+      "addressRegion": "Overijssel",
+      "addressCountry": "NL"
+    }
+  }
+}
+</script>
+{{ /section:seo }}
+
+{{ partial:partials/page-hero
+   label="Kennisbank"
+   title="Alles over"
+   title_accent="{{ category_naam }}"
+   tagline="Praktische inzichten over {{ category_naam }} voor ondernemers in Twente en Overijssel."
+   cta_label="Plan een gesprek"
+   cta_url="/contact"
+   cta2_label="Doe de gratis scan"
+   cta2_url="/scan"
+}}
+
+{{# ══════════════════════════════════════════════════════
+    TERUG LINK + HEADER
+    ══════════════════════════════════════════════════════ #}}
+<section style="background:#F0EDE7; padding:3.5rem 0 0;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:2.5rem; flex-wrap:wrap; gap:1.5rem;" data-reveal>
+      <div>
+        <a href="/blog" style="display:inline-flex; align-items:center; gap:0.4rem; font-family:var(--font-body); font-size:12px; font-weight:600; color:rgba(30,31,27,0.45); text-decoration:none; margin-bottom:1.25rem; transition:color 0.2s;"
+           onmouseover="this.style.color='#1E1F1B'" onmouseout="this.style.color='rgba(30,31,27,0.45)'">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
+          Alle artikelen
+        </a>
+        <div class="eyebrow" style="margin-bottom:1.25rem;">
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-text">{{ category_naam }}</div>
+        </div>
+        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(28px,3.5vw,44px);
+                   letter-spacing:-0.04em; line-height:1.06; color:#1E1F1B; margin:0;">
+          <span style="opacity:0.35;">Alle artikelen over</span><br>{{ category_naam }}.
+        </h2>
+      </div>
+      <p style="font-family:var(--font-body); font-size:15px; line-height:1.8; color:rgba(30,31,27,0.5); margin:0; max-width:38ch;">
+        Eerlijke kennis die je direct kunt toepassen voor jouw bedrijf in Twente en Overijssel.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+{{# ══════════════════════════════════════════════════════
+    CATEGORIE GRID
+    ══════════════════════════════════════════════════════ #}}
+<section style="background:#F0EDE7; padding:2rem 0 8rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    {{# Blog grid gefilterd op categorie #}}
+    <div class="blog-grid" data-reveal>
+      {{ collection:blog category:is="{{ category_slug }}" }}
+      <a href="{{ url }}" class="blog-card">
+
+        {{# Uitgelichte afbeelding #}}
+        <div class="blog-img-wrap">
+          {{ if featured_image }}
+            <img src="{{ featured_image }}" alt="{{ title }}" loading="lazy">
+          {{ else }}
+            <div class="blog-img-placeholder">
+              {{ if category == "branding" }}
+                <div style="background:linear-gradient(135deg,#ed6b46,#f5b87a);"></div>
+              {{ elseif category == "websites" }}
+                <div style="background:linear-gradient(135deg,#a8c8ca,#8fcdd0);"></div>
+              {{ elseif category == "marketing" }}
+                <div style="background:linear-gradient(135deg,#ed6b46,#501117);"></div>
+              {{ elseif category == "strategie" }}
+                <div style="background:linear-gradient(135deg,#6B6860,#D6D2CB);"></div>
+              {{ else }}
+                <div style="background:linear-gradient(135deg,#D6D2CB,#C2BDB6);"></div>
+              {{ /if }}
+            </div>
+          {{ /if }}
+          {{# Hover arrow #}}
+          <div class="blog-hover-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
+
+        {{# Info #}}
+        <div class="blog-info">
+          <div class="blog-info-top">
+            {{ if category }}
+              <span class="blog-category">{{ category | upper }}</span>
+            {{ /if }}
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span class="blog-readtime">3 min lezen</span>
+              <span class="blog-date">{{ date | format:"j M Y" }}</span>
+            </div>
+          </div>
+          <h3 class="blog-title">{{ title }}</h3>
+          {{ if intro }}
+            <p class="blog-intro">{{ intro | truncate:110 }}</p>
+          {{ /if }}
+          <span class="blog-readmore">
+            Lees meer
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </span>
+        </div>
+
+      </a>
+      {{ /collection:blog }}
+    </div>
+
+    {{# Lege staat #}}
+    {{ if {collection:blog category:is="{category_slug}" | count} == 0 }}
+    <div class="empty-state" data-reveal>
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="72" height="72" rx="20" fill="rgba(237,107,70,0.08)"/>
+        <path d="M22 50V28a2 2 0 0 1 2-2h6l4-6h8l4 6h6a2 2 0 0 1 2 2v22a2 2 0 0 1-2 2H24a2 2 0 0 1-2-2Z" stroke="#ed6b46" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="36" cy="38" r="5" stroke="#ed6b46" stroke-width="1.75"/>
+      </svg>
+      <h3 style="font-family:var(--font-display); font-weight:800; font-size:22px; letter-spacing:-0.03em; color:#1E1F1B; margin:0;">Nog niets gepubliceerd</h3>
+      <p style="font-family:var(--font-body); font-size:15px; line-height:1.7; color:rgba(30,31,27,0.5); margin:0; max-width:34ch;">
+        We zijn bezig met het schrijven van interessante artikelen over {{ category_naam }}. Kom snel terug.
+      </p>
+      <a href="/blog" class="btn-primary">Bekijk alle artikelen</a>
+    </div>
+    {{ /if }}
+
+  </div>
+</section>
+
+{{# ── CTA band ── #}}
+<section style="background:#EDEAE3; border-top:1px solid rgba(30,31,27,0.07); padding:6rem 1.5rem; text-align:center;">
+  <div style="max-width:640px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:1.5rem;">
+    <div class="eyebrow" style="justify-content:center;" data-reveal>
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-text">Samenwerken</div>
+    </div>
+    <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(28px,4vw,50px); letter-spacing:-0.04em; color:#1E1F1B; line-height:1.08; margin:0;" data-reveal>
+      Klaar om samen iets<br>moois te bouwen?
+    </h2>
+    <p style="color:#6B6860; font-size:16px; line-height:1.75; max-width:38ch; margin:0;" data-reveal>
+      Een nieuw merk, een betere website of een scherpe campagne: we denken graag vrijblijvend met je mee.
+    </p>
+    <div style="display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center;" data-reveal>
+      <a href="/contact" class="btn-primary" data-magnetic>Plan een gesprek</a>
+      <a href="/scan" class="btn-ghost" data-magnetic>Doe eerst de gratis scan</a>
+    </div>
+  </div>
+</section>
+
+{{# ── Styles ── #}}
+<style>
+  /* ── Grid ── */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem 2rem;
+  }
+
+  /* ── Kaart ── */
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  /* ── Afbeelding wrapper ── */
+  .blog-img-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #D6D2CB;
+    margin-bottom: 1.25rem;
+    flex-shrink: 0;
+  }
+  .blog-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .blog-card:hover .blog-img-wrap img {
+    transform: scale(1.04);
+  }
+  .blog-img-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+  .blog-img-placeholder > div {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── Hover arrow ── */
+  .blog-hover-arrow {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #F0EDE7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1E1F1B;
+    opacity: 0;
+    transform: scale(0.7) rotate(-45deg);
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .blog-card:hover .blog-hover-arrow {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+
+  /* ── Info ── */
+  .blog-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-top: 1px solid rgba(30,31,27,0.1);
+    padding-top: 1rem;
+  }
+  .blog-info-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.65rem;
+    flex-wrap: wrap;
+  }
+  .blog-category {
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ed6b46;
+  }
+  .blog-readtime {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(30,31,27,0.35);
+    padding: 2px 7px;
+    background: rgba(30,31,27,0.05);
+    border-radius: 999px;
+  }
+  .blog-date {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(30,31,27,0.35);
+  }
+  .blog-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(16px, 1.4vw, 20px);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: #1E1F1B;
+    margin: 0 0 0.6rem;
+    transition: color 0.2s;
+  }
+  .blog-card:hover .blog-title {
+    color: #ed6b46;
+  }
+  .blog-intro {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(30,31,27,0.5);
+    margin: 0 0 1rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .blog-readmore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(30,31,27,0.4);
+    transition: color 0.2s;
+    margin-top: auto;
+  }
+  .blog-card:hover .blog-readmore {
+    color: #ed6b46;
+  }
+
+  /* ── Lege staat ── */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+    padding: 6rem 0;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+</style>
