@@ -846,33 +846,62 @@
       <div>
         <div class="eyebrow">
           <div class="eyebrow-line"></div>
-          <div class="eyebrow-text">Wat wij oplossen</div>
+          <div class="eyebrow-text">Hoe wij werken</div>
         </div>
         <h2 class="h-section" style="color:var(--color-text);">
-          Elke dienst is een<br>
-          <span style="color:#a8c8ca; font-style:italic;">antwoord op iets</span>
+          Eerst het fundament.<br>
+          <span style="color:#a8c8ca; font-style:italic;">Dan de groei.</span>
         </h2>
       </div>
       <a href="/contact" class="btn-primary" data-magnetic>Start een project</a>
     </div>
 
-    {{# Numbered service list #}}
-    <div class="srv-list" data-reveal>
+    {{# Primair traject: Merkfundament → MaaS #}}
+    <div class="srv-traject" data-reveal>
 
-      <a href="/strategie" class="srv-item">
-        <div class="srv-thumb"><img src="/assets/team/team-werk.jpg" alt="Strategie" loading="lazy"></div>
-        <span class="srv-num">01</span>
-        <div class="srv-content">
-          <h3 class="srv-name">Strategie</h3>
-          <p class="srv-desc">Als je plan ontbreekt maar de druk groeit</p>
+      <a href="/merqo-as-a-service#merkfundament" class="srv-traject-item srv-traject-step1">
+        <div class="srv-traject-badge">Stap 1</div>
+        <div class="srv-traject-content">
+          <h3 class="srv-traject-name">Merkfundament</h3>
+          <p class="srv-traject-desc">De strategische basis van je merk. Zonder dit heeft marketing geen zin.</p>
+          <div class="srv-traject-keys">Merkidentiteit · Merkstrategie · Visuele identiteit · Huisstijlhandboek</div>
         </div>
-        <span class="srv-keys">Positionering · Merkstrategie · Doelgroep</span>
-        <div class="srv-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        <div class="srv-traject-arrow">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
       </a>
+
+      <div class="srv-traject-connector">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </div>
+
+      <a href="/merqo-as-a-service" class="srv-traject-item srv-traject-step2">
+        <div class="srv-traject-badge srv-traject-badge--orange">Stap 2</div>
+        <div class="srv-traject-content">
+          <h3 class="srv-traject-name">Merqo as a Service</h3>
+          <p class="srv-traject-desc">Structurele groei via marketing, content en strategie. Alles voor €899/mnd.</p>
+          <div class="srv-traject-keys">Kwartaalstrategie · Marketing · Content · Uitvoering</div>
+        </div>
+        <div class="srv-traject-arrow srv-traject-arrow--orange">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </div>
+      </a>
+
+    </div>
+
+    {{# Scheidingslabel voor aanvullende diensten #}}
+    <div style="display:flex; align-items:center; gap:1.25rem; margin:3rem 0 0;" data-reveal>
+      <div style="flex:1; height:1px; background:rgba(30,31,27,0.08);"></div>
+      <span style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(30,31,27,0.3); white-space:nowrap;">Ook los af te nemen</span>
+      <div style="flex:1; height:1px; background:rgba(30,31,27,0.08);"></div>
+    </div>
+
+    {{# Aanvullende losse diensten #}}
+    <div class="srv-list srv-list--secondary" data-reveal>
 
       <a href="/branding" class="srv-item">
         <div class="srv-thumb"><img src="/assets/team/team-groep-grijs.jpg" alt="Branding" loading="lazy"></div>
-        <span class="srv-num">02</span>
+        <span class="srv-num">01</span>
         <div class="srv-content">
           <h3 class="srv-name">Branding</h3>
           <p class="srv-desc">Als je merk niet overeenkomt met je kwaliteit</p>
@@ -883,7 +912,7 @@
 
       <a href="/websites" class="srv-item">
         <div class="srv-thumb"><img src="/assets/team/team-laptop.jpg" alt="Websites" loading="lazy"></div>
-        <span class="srv-num">03</span>
+        <span class="srv-num">02</span>
         <div class="srv-content">
           <h3 class="srv-name">Websites</h3>
           <p class="srv-desc">Als je website bezoekers niet omzet naar klanten</p>
@@ -894,12 +923,23 @@
 
       <a href="/marketing" class="srv-item">
         <div class="srv-thumb"><img src="/assets/team/team-tafel.jpg" alt="Marketing" loading="lazy"></div>
-        <span class="srv-num">04</span>
+        <span class="srv-num">03</span>
         <div class="srv-content">
           <h3 class="srv-name">Marketing</h3>
           <p class="srv-desc">Als je adverteert maar niets terugverdient</p>
         </div>
         <span class="srv-keys">Campagnes · Social · Ads</span>
+        <div class="srv-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+      </a>
+
+      <a href="/strategie" class="srv-item">
+        <div class="srv-thumb"><img src="/assets/team/team-werk.jpg" alt="Strategie" loading="lazy"></div>
+        <span class="srv-num">04</span>
+        <div class="srv-content">
+          <h3 class="srv-name">Strategie</h3>
+          <p class="srv-desc">Als je plan ontbreekt maar de druk groeit</p>
+        </div>
+        <span class="srv-keys">Positionering · Merkstrategie · Doelgroep</span>
         <div class="srv-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
       </a>
 
@@ -928,6 +968,86 @@
     </div>
   </div>
 </section>
+
+<style>
+  /* ── Primair traject ── */
+  .srv-traject {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(30,31,27,0.08);
+  }
+  .srv-traject-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    background: #fff;
+    border-top: 1px solid rgba(30,31,27,0.06);
+    border-bottom: 1px solid rgba(30,31,27,0.06);
+  }
+  .srv-traject-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.75rem;
+    padding: 1.75rem 2rem;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  .srv-traject-item:hover { background: rgba(237,107,70,0.03); }
+  .srv-traject-step2 { background: #1E1F1B; }
+  .srv-traject-step2:hover { background: #252620; }
+  .srv-traject-badge {
+    font-family: var(--font-body); font-size: 10px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    background: rgba(30,31,27,0.06); border: 1px solid rgba(30,31,27,0.1);
+    border-radius: 999px; padding: 3px 10px; color: rgba(30,31,27,0.45);
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .srv-traject-badge--orange {
+    background: rgba(237,107,70,0.12); border-color: rgba(237,107,70,0.3); color: #ed6b46;
+  }
+  .srv-traject-name {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(20px,2.2vw,32px); letter-spacing: -0.04em;
+    line-height: 1.05; color: #1E1F1B; margin: 0 0 0.3rem;
+  }
+  .srv-traject-step2 .srv-traject-name { color: #F0EDE7; }
+  .srv-traject-desc {
+    font-family: var(--font-body); font-size: 13px;
+    color: rgba(30,31,27,0.5); margin: 0 0 0.5rem; line-height: 1.5;
+  }
+  .srv-traject-step2 .srv-traject-desc { color: rgba(240,237,231,0.45); }
+  .srv-traject-keys {
+    font-family: var(--font-body); font-size: 11px;
+    color: rgba(30,31,27,0.28); letter-spacing: 0.3px;
+  }
+  .srv-traject-step2 .srv-traject-keys { color: rgba(240,237,231,0.2); }
+  .srv-traject-arrow {
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1.5px solid rgba(30,31,27,0.12);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(30,31,27,0.35); flex-shrink: 0;
+    transition: all 0.28s cubic-bezier(0.16,1,0.3,1);
+  }
+  .srv-traject-arrow--orange {
+    border-color: rgba(237,107,70,0.3); color: #ed6b46;
+  }
+  .srv-traject-item:hover .srv-traject-arrow {
+    background: #ed6b46; border-color: #ed6b46; color: #fff; transform: rotate(45deg) scale(1.08);
+  }
+  @media (max-width: 600px) {
+    .srv-traject-item { grid-template-columns: 1fr auto; gap: 1rem; padding: 1.5rem; }
+    .srv-traject-badge { display: none; }
+    .srv-traject-keys { display: none; }
+  }
+</style>
 
 <style>
   /* ── Service list ── */

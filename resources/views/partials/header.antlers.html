@@ -93,6 +93,25 @@
                 <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
             </div>
+
+            {{# Merkfundament + MaaS traject balk #}}
+            <div style="background:#1E1F1B; padding:0.75rem 1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+              <div style="display:flex; align-items:center; gap:0.6rem;">
+                <span style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(240,237,231,0.35);">Aanbevolen traject</span>
+                <span style="color:rgba(240,237,231,0.2);">·</span>
+                <a href="/merqo-as-a-service#merkfundament" class="flex items-center gap-1 text-xs font-semibold transition-colors" style="color:rgba(240,237,231,0.65);" onmouseover="this.style.color='#F0EDE7'" onmouseout="this.style.color='rgba(240,237,231,0.65)'" @click="closeMenu()">
+                  Merkfundament
+                </a>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+                <a href="/merqo-as-a-service" class="flex items-center gap-1 text-xs font-semibold transition-colors" style="color:#ed6b46;" @click="closeMenu()">
+                  MaaS
+                </a>
+              </div>
+              <a href="/merqo-as-a-service" class="text-xs font-semibold flex items-center gap-1 transition-opacity" style="color:#ed6b46; opacity:0.8;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'" @click="closeMenu()">
+                Bekijk het traject
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -168,18 +187,28 @@
             </svg>
           </button>
           <div x-show="dienstenOpen" x-collapse class="pb-2">
+            {{# Traject eerst #}}
+            <div style="margin:0.5rem 0 0.75rem; padding:0.75rem; background:rgba(30,31,27,0.04); border-radius:12px;">
+              <div style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(30,31,27,0.35); margin-bottom:0.5rem;">Aanbevolen traject</div>
+              <a href="/merqo-as-a-service#merkfundament" class="flex items-center gap-2 py-1.5 text-sm font-semibold text-[#1E1F1B] hover:text-[#ed6b46] transition-colors" @click="close()">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#ed6b46] shrink-0"></span>1. Merkfundament</a>
+              <a href="/merqo-as-a-service" class="flex items-center gap-2 py-1.5 text-sm font-semibold text-[#ed6b46] hover:opacity-75 transition-opacity" @click="close()">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#ed6b46] shrink-0"></span>2. MaaS — €899/mnd</a>
+            </div>
+            {{# Losse diensten #}}
+            <div style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(30,31,27,0.35); padding:0 0.5rem; margin-bottom:0.25rem;">Ook los af te nemen</div>
             <a href="/branding"         class="flex items-center gap-2 py-2 pl-2 text-sm font-semibold text-[#1E1F1B] hover:text-[#ed6b46] transition-colors" @click="close()">
-              <span class="w-1 h-1 rounded-full bg-[#ed6b46] shrink-0"></span>Branding &amp; Huisstijl</a>
+              <span class="w-1 h-1 rounded-full bg-[rgba(30,31,27,0.2)] shrink-0"></span>Branding &amp; Huisstijl</a>
             <a href="/websites"         class="flex items-center gap-2 py-2 pl-2 text-sm font-semibold text-[#1E1F1B] hover:text-[#ed6b46] transition-colors" @click="close()">
-              <span class="w-1 h-1 rounded-full bg-[#ed6b46] shrink-0"></span>Websites &amp; Webshops</a>
+              <span class="w-1 h-1 rounded-full bg-[rgba(30,31,27,0.2)] shrink-0"></span>Websites &amp; Webshops</a>
             <a href="/marketing"        class="flex items-center gap-2 py-2 pl-2 text-sm font-semibold text-[#1E1F1B] hover:text-[#ed6b46] transition-colors" @click="close()">
-              <span class="w-1 h-1 rounded-full bg-[#ed6b46] shrink-0"></span>Online Marketing</a>
+              <span class="w-1 h-1 rounded-full bg-[rgba(30,31,27,0.2)] shrink-0"></span>Online Marketing</a>
             <a href="/strategie"        class="flex items-center gap-2 py-2 pl-2 text-sm font-semibold text-[#1E1F1B] hover:text-[#ed6b46] transition-colors" @click="close()">
-              <span class="w-1 h-1 rounded-full bg-[#ed6b46] shrink-0"></span>Merkstrategie</a>
+              <span class="w-1 h-1 rounded-full bg-[rgba(30,31,27,0.2)] shrink-0"></span>Merkstrategie</a>
             <a href="/fotografie-video" class="flex items-center gap-2 py-2 pl-2 text-sm font-semibold text-[#1E1F1B] hover:text-[#ed6b46] transition-colors" @click="close()">
-              <span class="w-1 h-1 rounded-full bg-[#ed6b46] shrink-0"></span>Fotografie &amp; Video</a>
+              <span class="w-1 h-1 rounded-full bg-[rgba(30,31,27,0.2)] shrink-0"></span>Fotografie &amp; Video</a>
             <a href="/drukwerk"         class="flex items-center gap-2 py-2 pl-2 text-sm font-semibold text-[#1E1F1B] hover:text-[#ed6b46] transition-colors" @click="close()">
-              <span class="w-1 h-1 rounded-full bg-[#ed6b46] shrink-0"></span>Drukwerk</a>
+              <span class="w-1 h-1 rounded-full bg-[rgba(30,31,27,0.2)] shrink-0"></span>Drukwerk</a>
           </div>
         </div>
 
