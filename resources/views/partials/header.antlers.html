@@ -98,11 +98,13 @@
 
         <a href="/merqo-as-a-service"
            class="nav-link px-4 py-2 rounded-full flex items-center gap-1.5 transition-colors duration-200"
-           :style="(scrolled || !onDark) ? 'color:#ed6b46;' : 'color:#ed6b46;'">
+           :style="(scrolled || !onDark) ? 'color:#ed6b46;' : 'color:#fff;'">
           MaaS
-          <span style="font-size:8px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
-                       background:rgba(237,107,70,0.12); border:1px solid rgba(237,107,70,0.3);
-                       border-radius:999px; padding:1px 6px; color:#ed6b46; font-family:var(--font-body);">abonnement</span>
+          <span :style="(scrolled || !onDark)
+            ? 'background:rgba(237,107,70,0.12); border:1px solid rgba(237,107,70,0.3); color:#ed6b46;'
+            : 'background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.35); color:#fff;'"
+                style="font-size:8px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+                       border-radius:999px; padding:1px 6px; font-family:var(--font-body);">abonnement</span>
         </a>
         <a href="/projecten"  class="nav-link px-4 py-2 rounded-full" :style="(scrolled || !onDark) ? 'color:rgba(30,31,27,0.7)' : ''">Projecten</a>
         <a href="/blog"       class="nav-link px-4 py-2 rounded-full" :style="(scrolled || !onDark) ? 'color:rgba(30,31,27,0.7)' : ''">Kennisbank</a>
