@@ -251,7 +251,9 @@ SYSTEM;
         ]);
 
     if ($response->failed()) {
-        return response()->json(['error' => 'Er is een fout opgetreden. Probeer het opnieuw.'], 500);
+        return response()->json([
+            'error' => 'API fout ' . $response->status() . ': ' . substr($response->body(), 0, 300),
+        ], 500);
     }
 
     $data  = $response->json();
