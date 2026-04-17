@@ -129,47 +129,30 @@
   }
 </style>
 
-{{# ── TESTIMONIAL ──────────────────────────────────────────── #}}
-<section style="position:relative; overflow:hidden; background:#ddd5c8; padding:5rem 0;">
-
-  {{# Blob achtergrond - zelfde als homepage #}}
-  <div style="position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;">
-    <div class="tb-blob-a" style="position:absolute; width:80vw; height:80vw; background:#ed6b46; filter:blur(90px); opacity:0.88; will-change:transform;"></div>
-    <div class="tb-blob-b" style="position:absolute; width:65vw; height:65vw; background:#f5b87a; filter:blur(80px); opacity:0.72; will-change:transform;"></div>
-    <div class="tb-blob-c" style="position:absolute; width:55vw; height:55vw; background:#8fcdd0; filter:blur(90px); opacity:0.45; will-change:transform;"></div>
-  </div>
-  <style>
-    @keyframes tb-morph-a { 0%,100%{border-radius:60% 40% 55% 45%/50% 60% 40% 50%} 33%{border-radius:45% 55% 40% 60%/60% 35% 65% 40%} 66%{border-radius:35% 65% 60% 40%/40% 55% 45% 60%} }
-    @keyframes tb-morph-b { 0%,100%{border-radius:40% 60% 45% 55%/60% 45% 55% 40%} 50%{border-radius:60% 40% 65% 35%/45% 60% 40% 55%} }
-    @keyframes tb-morph-c { 0%,100%{border-radius:55% 45% 60% 40%/45% 55% 45% 55%} 50%{border-radius:40% 60% 40% 60%/60% 40% 60% 40%} }
-    @keyframes tb-drift-a { 0%{transform:translate(-30%,-40%)} 33%{transform:translate(20%,-10%)} 66%{transform:translate(-5%,-55%)} 100%{transform:translate(-30%,-40%)} }
-    @keyframes tb-drift-b { 0%{transform:translate(40%,10%)} 50%{transform:translate(60%,55%)} 100%{transform:translate(40%,10%)} }
-    @keyframes tb-drift-c { 0%{transform:translate(5%,30%)} 50%{transform:translate(55%,0%)} 100%{transform:translate(5%,30%)} }
-    .tb-blob-a { animation: tb-morph-a 12s ease-in-out infinite, tb-drift-a 24s ease-in-out infinite; }
-    .tb-blob-b { animation: tb-morph-b 16s ease-in-out infinite, tb-drift-b 20s ease-in-out infinite; }
-    .tb-blob-c { animation: tb-morph-c 14s ease-in-out infinite, tb-drift-c 26s ease-in-out infinite; }
-  </style>
-
-  <div class="max-w-7xl mx-auto px-6 lg:px-10" style="position:relative; z-index:1;">
-    <div style="max-width:760px; margin:0 auto; text-align:center;" data-reveal>
-      <div style="font-family:var(--font-display); font-size:6rem; font-weight:800; color:rgba(255,255,255,0.15); line-height:0.8; margin-bottom:1rem;">"</div>
-      <blockquote style="font-family:var(--font-display); font-size:clamp(20px,2.5vw,32px);
-                         font-weight:700; letter-spacing:-0.03em; line-height:1.3;
-                         color:#fff; font-style:italic; margin:0 0 2.5rem;">
-        De beelden laten eindelijk zien wie we echt zijn. Niet gespeeld, niet generiek. Klanten zeggen dat ze ons al kenden voordat ze belden.
-      </blockquote>
-      <div style="display:inline-flex; align-items:center; gap:0.9rem;">
-        <div style="width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.2); flex-shrink:0;
-                    display:flex; align-items:center; justify-content:center;
-                    font-family:var(--font-display); font-size:13px; font-weight:800; color:#fff;">TB</div>
-        <div style="text-align:left;">
-          <div style="font-family:var(--font-display); font-size:14px; font-weight:700; color:#fff;">Tom Brinkman</div>
-          <div style="font-family:var(--font-body); font-size:12px; color:rgba(255,255,255,0.65);">Eigenaar, Studio Bloom</div>
+{{# ── TESTIMONIAL (inline) ────────────────────────────────── #}}
+<div style="background:#F0EDE7; padding:0 0 4rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="max-width:720px;" data-reveal>
+      <div style="border-left:3px solid #ed6b46; padding:1.5rem 1.75rem;
+                  background:#fff; border-radius:0 16px 16px 0;
+                  box-shadow:0 2px 16px rgba(30,31,27,0.06);">
+        <p style="font-family:var(--font-display); font-size:clamp(15px,1.5vw,19px); font-weight:700;
+                  font-style:italic; color:#1E1F1B; line-height:1.5; margin:0 0 1.25rem;">
+          "De beelden laten eindelijk zien wie we echt zijn. Niet gespeeld, niet generiek. Klanten zeggen dat ze ons al kenden voordat ze belden."
+        </p>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <div style="width:34px; height:34px; border-radius:50%; background:#ed6b46; flex-shrink:0;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:10px; font-weight:800; color:#fff;">TB</div>
+          <div>
+            <div style="font-family:var(--font-display); font-size:13px; font-weight:700; color:#1E1F1B;">Tom Brinkman</div>
+            <div style="font-family:var(--font-body); font-size:11px; color:#9B9890;">Eigenaar, Studio Bloom</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {{# ── 5. WAT JE KRIJGT ──────────────────────────────────────── #}}
 <section id="wat-je-krijgt" style="background:#EDEAE3; padding:6rem 0;">
@@ -322,11 +305,83 @@
   </div>
 </section>
 
-{{# ── 4b. BEELDIMPACT-TEST ────────────────────────────────────── #}}
-<section style="background:#F0EDE7; padding:6rem 0;">
+{{# ── 4b. BEELDIMPACT-TEST ───────────────────────────────── #}}
+<section style="background:#F0EDE7; padding:5rem 0 6rem;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div style="max-width:520px; margin:0 auto;">
+  <div class="foto-test-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;">
 
+    {{# ── Links: overtuigingscopy ── #}}
+    <div data-reveal>
+      <div class="eyebrow" style="margin-bottom:1.25rem;">
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-text">Beeldtaal check</div>
+      </div>
+      <h2 style="font-family:var(--font-display); font-weight:800;
+                 font-size:clamp(28px,3.5vw,48px); letter-spacing:-0.045em;
+                 line-height:1.02; color:#1E1F1B; margin-bottom:1.5rem;">
+        Je hebt maar 50ms om<br>vertrouwen te winnen.<br><em style="font-style:italic; color:#ed6b46;">Wat zeggen jouw beelden?</em>
+      </h2>
+      <p style="font-family:var(--font-body); font-size:15px; line-height:1.8;
+                color:#6B6860; margin-bottom:2rem; max-width:46ch;">
+        Bezoekers beslissen in milliseconden of ze jou vertrouwen - puur op basis van wat ze zien. Stockfoto's, slechte verlichting of inconsistente beeldtaal ondermijnen dat vertrouwen direct.
+      </p>
+
+      {{# Stat-kaart #}}
+      <div style="background:#fff; border-radius:16px; padding:1.5rem 1.75rem;
+                  border:1px solid rgba(30,31,27,0.07); margin-bottom:2rem;">
+        <div style="font-family:var(--font-display); font-weight:800; font-size:3.5rem;
+                    letter-spacing:-0.05em; color:#ed6b46; line-height:1; margin-bottom:0.5rem;">50ms</div>
+        <p style="font-family:var(--font-body); font-size:14px; line-height:1.65; color:#6B6860; margin:0;">
+          Zo lang heeft een bezoeker nodig om een eerste indruk te vormen. Die indruk bepaalt of hij blijft of vertrekt. Jouw beeldtaal maakt dat verschil.
+        </p>
+      </div>
+
+      {{# Bullets #}}
+      <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:2rem;">
+        <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+          <div style="width:20px; height:20px; border-radius:50%; background:#ed6b46; flex-shrink:0; margin-top:1px;
+                      display:flex; align-items:center; justify-content:center;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-family:var(--font-body); font-size:14px; color:#4A4845; line-height:1.5;">Of jouw beelden vertrouwen of twijfel wekken</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+          <div style="width:20px; height:20px; border-radius:50%; background:#ed6b46; flex-shrink:0; margin-top:1px;
+                      display:flex; align-items:center; justify-content:center;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-family:var(--font-body); font-size:14px; color:#4A4845; line-height:1.5;">Hoe consistent jouw beeldtaal is over alle kanalen</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+          <div style="width:20px; height:20px; border-radius:50%; background:#ed6b46; flex-shrink:0; margin-top:1px;
+                      display:flex; align-items:center; justify-content:center;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-family:var(--font-body); font-size:14px; color:#4A4845; line-height:1.5;">Of je je onderscheidt van concurrenten of verdwijnt in de massa</span>
+        </div>
+      </div>
+
+      {{# Social proof #}}
+      <div style="display:flex; align-items:center; gap:0.875rem;">
+        <div style="display:flex; align-items:center;">
+          <div style="width:30px; height:30px; border-radius:50%; background:#a8c8ca; border:2px solid #F0EDE7; margin-right:-8px;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:9px; font-weight:800; color:#fff; flex-shrink:0;">JV</div>
+          <div style="width:30px; height:30px; border-radius:50%; background:#ed6b46; border:2px solid #F0EDE7; margin-right:-8px;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:9px; font-weight:800; color:#fff; flex-shrink:0;">PB</div>
+          <div style="width:30px; height:30px; border-radius:50%; background:#1E1F1B; border:2px solid #F0EDE7;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:9px; font-weight:800; color:#fff; flex-shrink:0;">LS</div>
+        </div>
+        <p style="font-family:var(--font-body); font-size:13px; color:#9B9890; margin:0; line-height:1.5;">
+          <span style="color:#1E1F1B; font-weight:600;">120+ ondernemers</span> testten<br>al hun beeldtaal
+        </p>
+      </div>
+    </div>
+
+    {{# ── Rechts: tool-kaart ── #}}
+    <div data-reveal>
       <div
         x-data="{
           scores: [null, null, null, null, null],
@@ -361,7 +416,6 @@
             'Ons beeldmateriaal onderscheidt ons visueel van directe concurrenten in onze branche.'
           ]
         }"
-        data-reveal
         style="background:#fff; border-radius:18px; padding:1.75rem 2rem; box-shadow:0 2px 24px rgba(30,31,27,0.06);"
       >
 
@@ -444,16 +498,15 @@
             style="font-family:var(--font-body); font-size:13px; line-height:1.65; color:rgba(30,31,27,0.55); margin:0 0 1rem;"
           ></p>
 
-          {{# CTA tekst-link #}}
-          <a
-            href="/contact"
-            style="font-family:var(--font-body); font-size:13px; font-weight:700;
-                   color:#ed6b46; text-decoration:none; border-bottom:1px solid rgba(237,107,70,0.35);
-                   padding-bottom:1px; transition:border-color 0.2s ease;"
-            onmouseover="this.style.borderColor='#ed6b46'"
-            onmouseout="this.style.borderColor='rgba(237,107,70,0.35)'"
-          >
-            Bekijk wat wij voor jouw beeldtaal doen &rarr;
+          {{# CTA button #}}
+          <a href="/contact"
+             style="display:flex; align-items:center; justify-content:space-between;
+                    padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none;
+                    background:#ed6b46; color:#fff; box-shadow:0 4px 16px rgba(237,107,70,0.25);
+                    transition:all 0.2s ease;"
+             onmouseover="this.style.background='#d95e3c'" onmouseout="this.style.background='#ed6b46'">
+            <span style="font-family:var(--font-display); font-size:14px; font-weight:700; letter-spacing:-0.01em;">Bekijk wat wij voor jouw beeldtaal doen</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
 
         </div>
@@ -467,10 +520,14 @@
         </p>
 
       </div>
-
     </div>
-  </div>
+
+  </div>{{# /foto-test-grid #}}
+  </div>{{# /max-w-7xl #}}
 </section>
+<style>
+  @media (max-width: 900px) { .foto-test-grid { grid-template-columns: 1fr !important; gap: 3rem !important; } }
+</style>
 
 {{# ── INVESTERING ───────────────────────────────────────────── #}}
 <section id="investering" style="background:#fff; padding:5rem 0; border-top:1px solid rgba(30,31,27,0.07);">

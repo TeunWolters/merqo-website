@@ -130,47 +130,30 @@
   }
 </style>
 
-{{# ── TESTIMONIAL ──────────────────────────────────────────── #}}
-<section style="position:relative; overflow:hidden; background:#ddd5c8; padding:5rem 0;">
-
-  {{# Blob achtergrond - zelfde als homepage #}}
-  <div style="position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;">
-    <div class="tb-blob-a" style="position:absolute; width:80vw; height:80vw; background:#ed6b46; filter:blur(90px); opacity:0.88; will-change:transform;"></div>
-    <div class="tb-blob-b" style="position:absolute; width:65vw; height:65vw; background:#f5b87a; filter:blur(80px); opacity:0.72; will-change:transform;"></div>
-    <div class="tb-blob-c" style="position:absolute; width:55vw; height:55vw; background:#8fcdd0; filter:blur(90px); opacity:0.45; will-change:transform;"></div>
-  </div>
-  <style>
-    @keyframes tb-morph-a { 0%,100%{border-radius:60% 40% 55% 45%/50% 60% 40% 50%} 33%{border-radius:45% 55% 40% 60%/60% 35% 65% 40%} 66%{border-radius:35% 65% 60% 40%/40% 55% 45% 60%} }
-    @keyframes tb-morph-b { 0%,100%{border-radius:40% 60% 45% 55%/60% 45% 55% 40%} 50%{border-radius:60% 40% 65% 35%/45% 60% 40% 55%} }
-    @keyframes tb-morph-c { 0%,100%{border-radius:55% 45% 60% 40%/45% 55% 45% 55%} 50%{border-radius:40% 60% 40% 60%/60% 40% 60% 40%} }
-    @keyframes tb-drift-a { 0%{transform:translate(-30%,-40%)} 33%{transform:translate(20%,-10%)} 66%{transform:translate(-5%,-55%)} 100%{transform:translate(-30%,-40%)} }
-    @keyframes tb-drift-b { 0%{transform:translate(40%,10%)} 50%{transform:translate(60%,55%)} 100%{transform:translate(40%,10%)} }
-    @keyframes tb-drift-c { 0%{transform:translate(5%,30%)} 50%{transform:translate(55%,0%)} 100%{transform:translate(5%,30%)} }
-    .tb-blob-a { animation: tb-morph-a 12s ease-in-out infinite, tb-drift-a 24s ease-in-out infinite; }
-    .tb-blob-b { animation: tb-morph-b 16s ease-in-out infinite, tb-drift-b 20s ease-in-out infinite; }
-    .tb-blob-c { animation: tb-morph-c 14s ease-in-out infinite, tb-drift-c 26s ease-in-out infinite; }
-  </style>
-
-  <div class="max-w-7xl mx-auto px-6 lg:px-10" style="position:relative; z-index:1;">
-    <div style="max-width:760px; margin:0 auto; text-align:center;" data-reveal>
-      <div style="font-family:var(--font-display); font-size:6rem; font-weight:800; color:rgba(255,255,255,0.15); line-height:0.8; margin-bottom:1rem;">"</div>
-      <blockquote style="font-family:var(--font-display); font-size:clamp(20px,2.5vw,32px);
-                         font-weight:700; letter-spacing:-0.03em; line-height:1.3;
-                         color:#fff; font-style:italic; margin:0 0 2.5rem;">
-        In drie maanden tijd zijn onze kwalitatieve leads verdubbeld. Eindelijk een bureau dat snapt dat elke euro verantwoord moet worden.
-      </blockquote>
-      <div style="display:inline-flex; align-items:center; gap:0.9rem;">
-        <div style="width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.2); flex-shrink:0;
-                    display:flex; align-items:center; justify-content:center;
-                    font-family:var(--font-display); font-size:13px; font-weight:800; color:#fff;">RJ</div>
-        <div style="text-align:left;">
-          <div style="font-family:var(--font-display); font-size:14px; font-weight:700; color:#fff;">Roel Janssen</div>
-          <div style="font-family:var(--font-body); font-size:12px; color:rgba(255,255,255,0.65);">Eigenaar, CleanTech Solutions</div>
+{{# ── TESTIMONIAL (inline) ────────────────────────────────── #}}
+<div style="background:#F0EDE7; padding:0 0 4rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="max-width:720px;" data-reveal>
+      <div style="border-left:3px solid #ed6b46; padding:1.5rem 1.75rem;
+                  background:#fff; border-radius:0 16px 16px 0;
+                  box-shadow:0 2px 16px rgba(30,31,27,0.06);">
+        <p style="font-family:var(--font-display); font-size:clamp(15px,1.5vw,19px); font-weight:700;
+                  font-style:italic; color:#1E1F1B; line-height:1.5; margin:0 0 1.25rem;">
+          "In drie maanden tijd zijn onze kwalitatieve leads verdubbeld. Eindelijk een bureau dat snapt dat elke euro verantwoord moet worden."
+        </p>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <div style="width:34px; height:34px; border-radius:50%; background:#ed6b46; flex-shrink:0;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:10px; font-weight:800; color:#fff;">RJ</div>
+          <div>
+            <div style="font-family:var(--font-display); font-size:13px; font-weight:700; color:#1E1F1B;">Roel Janssen</div>
+            <div style="font-family:var(--font-body); font-size:11px; color:#9B9890;">Eigenaar, CleanTech Solutions</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {{# ── 5. WAT JE KRIJGT ──────────────────────────────────────── #}}
 <section id="wat-je-krijgt" style="background:#EDEAE3; padding:6rem 0;">
@@ -323,201 +306,267 @@
   </div>
 </section>
 
-{{# ── 4b. KANAAL-AUDIT TOOL ──────────────────────────────────── #}}
-<section style="background:#F0EDE7; padding:5rem 0;">
-  <div style="max-width:520px; margin:0 auto; padding:0 1.25rem;">
+{{# ── 4b. KANAAL-AUDIT TOOL ──────────────────────────────── #}}
+<section style="background:#F0EDE7; padding:5rem 0 6rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+  <div class="marketing-audit-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;">
 
-    <div style="margin-bottom:2rem; text-align:center;" data-reveal>
-      <div class="eyebrow" style="margin-bottom:1rem; justify-content:center;">
+    {{# ── Links: overtuigingscopy ── #}}
+    <div data-reveal>
+      <div class="eyebrow" style="margin-bottom:1.25rem;">
         <div class="eyebrow-line"></div>
-        <div class="eyebrow-text">Audit tool</div>
-        <div class="eyebrow-line"></div>
+        <div class="eyebrow-text">Kanaal-audit</div>
       </div>
       <h2 style="font-family:var(--font-display); font-weight:800;
-                 font-size:clamp(22px,2.5vw,32px); letter-spacing:-0.04em;
-                 line-height:1.1; color:#1E1F1B; margin-bottom:0.5rem;">
-        Waar gaat jouw budget naartoe?
+                 font-size:clamp(28px,3.5vw,48px); letter-spacing:-0.045em;
+                 line-height:1.02; color:#1E1F1B; margin-bottom:1.5rem;">
+        Elke euro verspild<br>aan marketing die niet<br><em style="font-style:italic; color:#ed6b46;">werkt, is gratis geld<br>voor je concurrent.</em>
       </h2>
-      <p style="font-family:var(--font-body); font-size:14px; line-height:1.65; color:#6B6860;">
-        Vink je actieve kanalen aan en geef aan wat ze opleveren.
+      <p style="font-family:var(--font-body); font-size:15px; line-height:1.8;
+                color:#6B6860; margin-bottom:2rem; max-width:46ch;">
+        73% van ondernemers weet niet welk marketingkanaal hun meeste klanten oplevert. Ze blijven betalen voor kanalen die niets opleveren - en snijden in wat wel werkt.
       </p>
-    </div>
 
-    <div
-      x-data="{
-        channels: [
-          { id: 'instagram', icon: '📱', name: 'Instagram & TikTok' },
-          { id: 'linkedin',  icon: '💼', name: 'LinkedIn' },
-          { id: 'google',    icon: '🔍', name: 'Google Ads' },
-          { id: 'seo',       icon: '🌐', name: 'SEO / organisch' },
-          { id: 'email',     icon: '📧', name: 'E-mailmarketing' },
-          { id: 'print',     icon: '🖨️', name: 'Flyers & print' },
-          { id: 'mond',      icon: '💬', name: 'Mond-tot-mond' },
-          { id: 'website',   icon: '🌍', name: 'Website' }
-        ],
-        selected: {},
-        ratings: {},
-        showResult: false,
-        ratingLabels: ['Leads', 'Bereik', 'Weinig'],
-        get checkedChannels() {
-          return this.channels.filter(c => this.selected[c.id]);
-        },
-        get ratedCount() {
-          return this.checkedChannels.filter(c => this.ratings[c.id]).length;
-        },
-        get canShowResult() {
-          return this.checkedChannels.length >= 2 && this.ratedCount >= 2;
-        },
-        get overallConclusion() {
-          const vals = this.checkedChannels.map(c => this.ratings[c.id]).filter(Boolean);
-          if (vals.length === 0) return '';
-          const weinig = vals.filter(v => v === 'Weinig').length;
-          const leads  = vals.filter(v => v === 'Leads').length;
-          if (weinig >= Math.ceil(vals.length / 2)) return 'veel-weinig';
-          if (leads  >= Math.ceil(vals.length / 2)) return 'veel-leads';
-          return 'gemengd';
-        },
-        conclusionText() {
-          const c = this.overallConclusion;
-          if (c === 'veel-weinig') return 'Jouw marketing draait op gevoel: budget verdampt zonder dat je weet waarom.';
-          if (c === 'veel-leads')  return 'Sterke mix. De vraag is: is dit schaalbaar als één kanaal wegvalt?';
-          return 'Stop met wat niet werkt en verdubbel op wat wél resultaat geeft.';
-        },
-        analysisText(channelId) {
-          const r = this.ratings[channelId];
-          if (r === 'Leads')  return 'Werkt. Zorg dat het schaalt en leads kwalitatief blijven.';
-          if (r === 'Bereik') return 'Bereik zonder conversie is kostbaar: scherper strategie nodig.';
-          if (r === 'Weinig') return 'Investering zonder inzicht: meting ontbreekt of kanaal werkt niet.';
-          return '';
-        },
-        ratingColor(level) {
-          if (level === 'Leads')  return '#10B981';
-          if (level === 'Bereik') return '#F59E0B';
-          if (level === 'Weinig') return '#EF4444';
-          return '#9CA3AF';
-        }
-      }"
-    >
-
-      {{# Tool card - input view #}}
-      <div
-        x-show="!showResult"
-        style="background:#fff; border-radius:18px; padding:1.75rem 2rem; box-shadow:0 2px 24px rgba(30,31,27,0.06);"
-      >
-        <div style="display:flex; flex-direction:column; gap:0; margin-bottom:1.5rem;">
-          <template x-for="channel in channels" :key="channel.id">
-            <div>
-              {{# Channel row #}}
-              <div
-                @click="selected[channel.id] = !selected[channel.id]; if (!selected[channel.id]) { delete ratings[channel.id]; }"
-                :style="'padding:0.55rem 0.5rem; cursor:pointer; display:flex; align-items:center; gap:0.625rem; border-bottom:1px solid rgba(30,31,27,0.06); transition:background 0.15s; ' + (selected[channel.id] ? 'background:#fffaf8;' : '')"
-              >
-                <span x-text="channel.icon" style="font-size:1rem; flex-shrink:0; width:1.5rem; text-align:center;"></span>
-                <span x-text="channel.name" style="font-family:var(--font-body); font-size:14px; font-weight:600; color:#1E1F1B; flex:1;"></span>
-
-                {{# Inline rating pills - shown when active #}}
-                <div
-                  x-show="selected[channel.id]"
-                  style="display:flex; gap:0.3rem; flex-shrink:0;"
-                  @click.stop
-                >
-                  <template x-for="level in ratingLabels" :key="level">
-                    <button
-                      type="button"
-                      @click.stop="ratings[channel.id] = level"
-                      :style="'font-family:var(--font-body); font-size:11px; font-weight:700; border-radius:999px; padding:0.2rem 0.55rem; border:1.5px solid; cursor:pointer; transition:all 0.12s; white-space:nowrap; ' + (ratings[channel.id] === level ? 'background:#ed6b46; border-color:#ed6b46; color:#fff;' : 'background:#fff; border-color:rgba(30,31,27,0.18); color:#6B6860;')"
-                      x-text="level"
-                    ></button>
-                  </template>
-                </div>
-
-                {{# Checkbox - shown when inactive #}}
-                <span
-                  x-show="!selected[channel.id]"
-                  :style="'width:16px; height:16px; border-radius:4px; border:1.5px solid rgba(30,31,27,0.2); flex-shrink:0; display:flex; align-items:center; justify-content:center;'"
-                ></span>
-                <span
-                  x-show="selected[channel.id]"
-                  style="width:16px; height:16px; border-radius:4px; border:1.5px solid #ed6b46; background:#ed6b46; flex-shrink:0; display:flex; align-items:center; justify-content:center;"
-                >
-                  <svg width="9" height="9" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </div>
-          </template>
-        </div>
-
-        <button
-          type="button"
-          @click="showResult = true"
-          :disabled="!canShowResult"
-          :style="'width:100%; font-family:var(--font-body); font-size:14px; font-weight:700; border-radius:999px; padding:0.7rem 1.5rem; border:none; transition:all 0.2s; ' + (canShowResult ? 'background:#ed6b46; color:#fff; cursor:pointer;' : 'background:#E5E0D9; color:#B0A99E; cursor:not-allowed;')"
-        >
-          Bekijk mijn analyse
-        </button>
-
-        <p
-          x-show="!canShowResult"
-          style="font-family:var(--font-body); font-size:11px; color:#B0A99E; text-align:center; margin-top:0.5rem; min-height:1.3em;"
-          x-text="checkedChannels.length < 2 ? 'Vink minimaal 2 kanalen aan.' : 'Beoordeel minimaal 2 kanalen.'"
-        ></p>
+      {{# Stat-kaart #}}
+      <div style="background:#fff; border-radius:16px; padding:1.5rem 1.75rem;
+                  border:1px solid rgba(30,31,27,0.07); margin-bottom:2rem;">
+        <div style="font-family:var(--font-display); font-weight:800; font-size:3.5rem;
+                    letter-spacing:-0.05em; color:#ed6b46; line-height:1; margin-bottom:0.5rem;">73%</div>
+        <p style="font-family:var(--font-body); font-size:14px; line-height:1.65; color:#6B6860; margin:0;">
+          Van ondernemers weet niet welk kanaal hun meeste klanten oplevert. Zonder die kennis stuur je blind en verlies je budget aan kanalen die niet werken.
+        </p>
       </div>
 
-      {{# Results card #}}
-      <div x-show="showResult" x-transition:enter="transition-opacity duration-300" style="display:none;">
+      {{# Bullets #}}
+      <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:2rem;">
+        <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+          <div style="width:20px; height:20px; border-radius:50%; background:#ed6b46; flex-shrink:0; margin-top:1px;
+                      display:flex; align-items:center; justify-content:center;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-family:var(--font-body); font-size:14px; color:#4A4845; line-height:1.5;">Welke kanalen jou echt klanten opleveren</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+          <div style="width:20px; height:20px; border-radius:50%; background:#ed6b46; flex-shrink:0; margin-top:1px;
+                      display:flex; align-items:center; justify-content:center;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-family:var(--font-body); font-size:14px; color:#4A4845; line-height:1.5;">Waar je budget verdampt zonder resultaat</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+          <div style="width:20px; height:20px; border-radius:50%; background:#ed6b46; flex-shrink:0; margin-top:1px;
+                      display:flex; align-items:center; justify-content:center;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-family:var(--font-body); font-size:14px; color:#4A4845; line-height:1.5;">Of jouw marketing schaalt als je bedrijf groeit</span>
+        </div>
+      </div>
 
-        <div style="background:#fff; border-radius:18px; padding:1.75rem 2rem; box-shadow:0 2px 24px rgba(30,31,27,0.06);">
+      {{# Social proof #}}
+      <div style="display:flex; align-items:center; gap:0.875rem;">
+        <div style="display:flex; align-items:center;">
+          <div style="width:30px; height:30px; border-radius:50%; background:#a8c8ca; border:2px solid #F0EDE7; margin-right:-8px;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:9px; font-weight:800; color:#fff; flex-shrink:0;">AK</div>
+          <div style="width:30px; height:30px; border-radius:50%; background:#ed6b46; border:2px solid #F0EDE7; margin-right:-8px;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:9px; font-weight:800; color:#fff; flex-shrink:0;">FD</div>
+          <div style="width:30px; height:30px; border-radius:50%; background:#1E1F1B; border:2px solid #F0EDE7;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:9px; font-weight:800; color:#fff; flex-shrink:0;">BW</div>
+        </div>
+        <p style="font-family:var(--font-body); font-size:13px; color:#9B9890; margin:0; line-height:1.5;">
+          <span style="color:#1E1F1B; font-weight:600;">160+ ondernemers</span> auditeerden<br>al hun marketingmix
+        </p>
+      </div>
+    </div>
 
-          {{# Overall conclusion #}}
-          <div style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ed6b46; margin-bottom:0.5rem;">Conclusie</div>
-          <p x-text="conclusionText()" style="font-family:var(--font-body); font-size:15px; line-height:1.65; color:#1E1F1B; font-weight:600; margin:0 0 1.25rem;"></p>
+    {{# ── Rechts: tool-kaart ── #}}
+    <div data-reveal>
+      <div
+        x-data="{
+          channels: [
+            { id: 'instagram', icon: '📱', name: 'Instagram & TikTok' },
+            { id: 'linkedin',  icon: '💼', name: 'LinkedIn' },
+            { id: 'google',    icon: '🔍', name: 'Google Ads' },
+            { id: 'seo',       icon: '🌐', name: 'SEO / organisch' },
+            { id: 'email',     icon: '📧', name: 'E-mailmarketing' },
+            { id: 'print',     icon: '🖨️', name: 'Flyers & print' },
+            { id: 'mond',      icon: '💬', name: 'Mond-tot-mond' },
+            { id: 'website',   icon: '🌍', name: 'Website' }
+          ],
+          selected: {},
+          ratings: {},
+          showResult: false,
+          ratingLabels: ['Leads', 'Bereik', 'Weinig'],
+          get checkedChannels() {
+            return this.channels.filter(c => this.selected[c.id]);
+          },
+          get ratedCount() {
+            return this.checkedChannels.filter(c => this.ratings[c.id]).length;
+          },
+          get canShowResult() {
+            return this.checkedChannels.length >= 2 && this.ratedCount >= 2;
+          },
+          get overallConclusion() {
+            const vals = this.checkedChannels.map(c => this.ratings[c.id]).filter(Boolean);
+            if (vals.length === 0) return '';
+            const weinig = vals.filter(v => v === 'Weinig').length;
+            const leads  = vals.filter(v => v === 'Leads').length;
+            if (weinig >= Math.ceil(vals.length / 2)) return 'veel-weinig';
+            if (leads  >= Math.ceil(vals.length / 2)) return 'veel-leads';
+            return 'gemengd';
+          },
+          conclusionText() {
+            const c = this.overallConclusion;
+            if (c === 'veel-weinig') return 'Jouw marketing draait op gevoel: budget verdampt zonder dat je weet waarom.';
+            if (c === 'veel-leads')  return 'Sterke mix. De vraag is: is dit schaalbaar als één kanaal wegvalt?';
+            return 'Stop met wat niet werkt en verdubbel op wat wél resultaat geeft.';
+          },
+          analysisText(channelId) {
+            const r = this.ratings[channelId];
+            if (r === 'Leads')  return 'Werkt. Zorg dat het schaalt en leads kwalitatief blijven.';
+            if (r === 'Bereik') return 'Bereik zonder conversie is kostbaar: scherper strategie nodig.';
+            if (r === 'Weinig') return 'Investering zonder inzicht: meting ontbreekt of kanaal werkt niet.';
+            return '';
+          },
+          ratingColor(level) {
+            if (level === 'Leads')  return '#10B981';
+            if (level === 'Bereik') return '#F59E0B';
+            if (level === 'Weinig') return '#EF4444';
+            return '#9CA3AF';
+          }
+        }"
+      >
 
-          {{# Per-channel results #}}
-          <div style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1.25rem;">
-            <template x-for="channel in checkedChannels" :key="channel.id">
-              <div style="display:flex; flex-direction:column; gap:0.2rem; padding:0.5rem 0; border-top:1px solid rgba(30,31,27,0.06);">
-                <div style="display:flex; align-items:center; gap:0.5rem;">
-                  <span x-text="channel.icon" style="font-size:0.9rem;"></span>
-                  <span x-text="channel.name" style="font-family:var(--font-body); font-size:13px; font-weight:700; color:#1E1F1B; flex:1;"></span>
+        {{# Tool card - input view #}}
+        <div
+          x-show="!showResult"
+          style="background:#fff; border-radius:18px; padding:1.75rem 2rem; box-shadow:0 2px 24px rgba(30,31,27,0.06);"
+        >
+          <div style="display:flex; flex-direction:column; gap:0; margin-bottom:1.5rem;">
+            <template x-for="channel in channels" :key="channel.id">
+              <div>
+                {{# Channel row #}}
+                <div
+                  @click="selected[channel.id] = !selected[channel.id]; if (!selected[channel.id]) { delete ratings[channel.id]; }"
+                  :style="'padding:0.55rem 0.5rem; cursor:pointer; display:flex; align-items:center; gap:0.625rem; border-bottom:1px solid rgba(30,31,27,0.06); transition:background 0.15s; ' + (selected[channel.id] ? 'background:#fffaf8;' : '')"
+                >
+                  <span x-text="channel.icon" style="font-size:1rem; flex-shrink:0; width:1.5rem; text-align:center;"></span>
+                  <span x-text="channel.name" style="font-family:var(--font-body); font-size:14px; font-weight:600; color:#1E1F1B; flex:1;"></span>
+
+                  {{# Inline rating pills - shown when active #}}
+                  <div
+                    x-show="selected[channel.id]"
+                    style="display:flex; gap:0.3rem; flex-shrink:0;"
+                    @click.stop
+                  >
+                    <template x-for="level in ratingLabels" :key="level">
+                      <button
+                        type="button"
+                        @click.stop="ratings[channel.id] = level"
+                        :style="'font-family:var(--font-body); font-size:11px; font-weight:700; border-radius:999px; padding:0.2rem 0.55rem; border:1.5px solid; cursor:pointer; transition:all 0.12s; white-space:nowrap; ' + (ratings[channel.id] === level ? 'background:#ed6b46; border-color:#ed6b46; color:#fff;' : 'background:#fff; border-color:rgba(30,31,27,0.18); color:#6B6860;')"
+                        x-text="level"
+                      ></button>
+                    </template>
+                  </div>
+
+                  {{# Checkbox - shown when inactive #}}
                   <span
-                    x-show="ratings[channel.id]"
-                    x-text="ratings[channel.id]"
-                    :style="'font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.04em; border-radius:999px; padding:0.15rem 0.5rem; color:#fff; background:' + ratingColor(ratings[channel.id]) + ';'"
+                    x-show="!selected[channel.id]"
+                    :style="'width:16px; height:16px; border-radius:4px; border:1.5px solid rgba(30,31,27,0.2); flex-shrink:0; display:flex; align-items:center; justify-content:center;'"
                   ></span>
+                  <span
+                    x-show="selected[channel.id]"
+                    style="width:16px; height:16px; border-radius:4px; border:1.5px solid #ed6b46; background:#ed6b46; flex-shrink:0; display:flex; align-items:center; justify-content:center;"
+                  >
+                    <svg width="9" height="9" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
                 </div>
-                <p
-                  x-show="ratings[channel.id]"
-                  x-text="analysisText(channel.id)"
-                  style="font-family:var(--font-body); font-size:12px; line-height:1.55; color:#6B6860; margin:0 0 0 1.5rem;"
-                ></p>
               </div>
             </template>
           </div>
 
-          {{# CTA + back #}}
-          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem;">
-            <a
-              href="/contact"
-              style="font-family:var(--font-body); font-size:13px; font-weight:700; color:#ed6b46; text-decoration:underline; text-underline-offset:2px;"
-            >
-              Maak jouw marketing meetbaar →
-            </a>
-            <button
-              type="button"
-              @click="showResult = false"
-              style="font-family:var(--font-body); font-size:12px; font-weight:600; color:#9CA3AF; background:transparent; border:none; cursor:pointer; padding:0;"
-            >
-              ← Pas aan
-            </button>
+          <button
+            type="button"
+            @click="showResult = true"
+            :disabled="!canShowResult"
+            :style="'width:100%; font-family:var(--font-body); font-size:14px; font-weight:700; border-radius:999px; padding:0.7rem 1.5rem; border:none; transition:all 0.2s; ' + (canShowResult ? 'background:#ed6b46; color:#fff; cursor:pointer;' : 'background:#E5E0D9; color:#B0A99E; cursor:not-allowed;')"
+          >
+            Bekijk mijn analyse
+          </button>
+
+          <p
+            x-show="!canShowResult"
+            style="font-family:var(--font-body); font-size:11px; color:#B0A99E; text-align:center; margin-top:0.5rem; min-height:1.3em;"
+            x-text="checkedChannels.length < 2 ? 'Vink minimaal 2 kanalen aan.' : 'Beoordeel minimaal 2 kanalen.'"
+          ></p>
+        </div>
+
+        {{# Results card #}}
+        <div x-show="showResult" x-transition:enter="transition-opacity duration-300" style="display:none;">
+
+          <div style="background:#fff; border-radius:18px; padding:1.75rem 2rem; box-shadow:0 2px 24px rgba(30,31,27,0.06);">
+
+            {{# Overall conclusion #}}
+            <div style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ed6b46; margin-bottom:0.5rem;">Conclusie</div>
+            <p x-text="conclusionText()" style="font-family:var(--font-body); font-size:15px; line-height:1.65; color:#1E1F1B; font-weight:600; margin:0 0 1.25rem;"></p>
+
+            {{# Per-channel results #}}
+            <div style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1.25rem;">
+              <template x-for="channel in checkedChannels" :key="channel.id">
+                <div style="display:flex; flex-direction:column; gap:0.2rem; padding:0.5rem 0; border-top:1px solid rgba(30,31,27,0.06);">
+                  <div style="display:flex; align-items:center; gap:0.5rem;">
+                    <span x-text="channel.icon" style="font-size:0.9rem;"></span>
+                    <span x-text="channel.name" style="font-family:var(--font-body); font-size:13px; font-weight:700; color:#1E1F1B; flex:1;"></span>
+                    <span
+                      x-show="ratings[channel.id]"
+                      x-text="ratings[channel.id]"
+                      :style="'font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.04em; border-radius:999px; padding:0.15rem 0.5rem; color:#fff; background:' + ratingColor(ratings[channel.id]) + ';'"
+                    ></span>
+                  </div>
+                  <p
+                    x-show="ratings[channel.id]"
+                    x-text="analysisText(channel.id)"
+                    style="font-family:var(--font-body); font-size:12px; line-height:1.55; color:#6B6860; margin:0 0 0 1.5rem;"
+                  ></p>
+                </div>
+              </template>
+            </div>
+
+            {{# CTA button + back #}}
+            <div style="display:flex; flex-direction:column; gap:0.75rem;">
+              <a href="/contact"
+                 style="display:flex; align-items:center; justify-content:space-between;
+                        padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none;
+                        background:#ed6b46; color:#fff; box-shadow:0 4px 16px rgba(237,107,70,0.25);
+                        transition:all 0.2s ease;"
+                 onmouseover="this.style.background='#d95e3c'" onmouseout="this.style.background='#ed6b46'">
+                <span style="font-family:var(--font-display); font-size:14px; font-weight:700; letter-spacing:-0.01em;">Maak jouw marketing meetbaar</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <button
+                type="button"
+                @click="showResult = false"
+                style="font-family:var(--font-body); font-size:12px; font-weight:600; color:#9CA3AF; background:transparent; border:none; cursor:pointer; padding:0; text-align:left;"
+              >
+                ← Pas aan
+              </button>
+            </div>
+
           </div>
 
         </div>
 
       </div>
-
     </div>
-  </div>
+
+  </div>{{# /marketing-audit-grid #}}
+  </div>{{# /max-w-7xl #}}
 </section>
+<style>
+  @media (max-width: 900px) { .marketing-audit-grid { grid-template-columns: 1fr !important; gap: 3rem !important; } }
+</style>
 
 {{# ── INVESTERING ───────────────────────────────────────────── #}}
 <section id="investering" style="background:#fff; padding:5rem 0; border-top:1px solid rgba(30,31,27,0.07);">

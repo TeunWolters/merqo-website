@@ -130,47 +130,30 @@
   }
 </style>
 
-{{# ── TESTIMONIAL ──────────────────────────────────────────── #}}
-<section style="position:relative; overflow:hidden; background:#ddd5c8; padding:5rem 0;">
-
-  {{# Blob achtergrond - zelfde als homepage #}}
-  <div style="position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;">
-    <div class="tb-blob-a" style="position:absolute; width:80vw; height:80vw; background:#ed6b46; filter:blur(90px); opacity:0.88; will-change:transform;"></div>
-    <div class="tb-blob-b" style="position:absolute; width:65vw; height:65vw; background:#f5b87a; filter:blur(80px); opacity:0.72; will-change:transform;"></div>
-    <div class="tb-blob-c" style="position:absolute; width:55vw; height:55vw; background:#8fcdd0; filter:blur(90px); opacity:0.45; will-change:transform;"></div>
-  </div>
-  <style>
-    @keyframes tb-morph-a { 0%,100%{border-radius:60% 40% 55% 45%/50% 60% 40% 50%} 33%{border-radius:45% 55% 40% 60%/60% 35% 65% 40%} 66%{border-radius:35% 65% 60% 40%/40% 55% 45% 60%} }
-    @keyframes tb-morph-b { 0%,100%{border-radius:40% 60% 45% 55%/60% 45% 55% 40%} 50%{border-radius:60% 40% 65% 35%/45% 60% 40% 55%} }
-    @keyframes tb-morph-c { 0%,100%{border-radius:55% 45% 60% 40%/45% 55% 45% 55%} 50%{border-radius:40% 60% 40% 60%/60% 40% 60% 40%} }
-    @keyframes tb-drift-a { 0%{transform:translate(-30%,-40%)} 33%{transform:translate(20%,-10%)} 66%{transform:translate(-5%,-55%)} 100%{transform:translate(-30%,-40%)} }
-    @keyframes tb-drift-b { 0%{transform:translate(40%,10%)} 50%{transform:translate(60%,55%)} 100%{transform:translate(40%,10%)} }
-    @keyframes tb-drift-c { 0%{transform:translate(5%,30%)} 50%{transform:translate(55%,0%)} 100%{transform:translate(5%,30%)} }
-    .tb-blob-a { animation: tb-morph-a 12s ease-in-out infinite, tb-drift-a 24s ease-in-out infinite; }
-    .tb-blob-b { animation: tb-morph-b 16s ease-in-out infinite, tb-drift-b 20s ease-in-out infinite; }
-    .tb-blob-c { animation: tb-morph-c 14s ease-in-out infinite, tb-drift-c 26s ease-in-out infinite; }
-  </style>
-
-  <div class="max-w-7xl mx-auto px-6 lg:px-10" style="position:relative; z-index:1;">
-    <div style="max-width:760px; margin:0 auto; text-align:center;" data-reveal>
-      <div style="font-family:var(--font-display); font-size:6rem; font-weight:800; color:rgba(255,255,255,0.15); line-height:0.8; margin-bottom:1rem;">"</div>
-      <blockquote style="font-family:var(--font-display); font-size:clamp(20px,2.5vw,32px);
-                         font-weight:700; letter-spacing:-0.03em; line-height:1.3;
-                         color:#fff; font-style:italic; margin:0 0 2.5rem;">
-        Waar we eerder een van de velen waren, zijn we nu het bureau dat iedereen onthoudt. Merqo heeft niet alleen ons logo aangepakt: ze hebben begrepen wie we zijn.
-      </blockquote>
-      <div style="display:inline-flex; align-items:center; gap:0.9rem;">
-        <div style="width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.2); flex-shrink:0;
-                    display:flex; align-items:center; justify-content:center;
-                    font-family:var(--font-display); font-size:13px; font-weight:800; color:#fff;">LB</div>
-        <div style="text-align:left;">
-          <div style="font-family:var(--font-display); font-size:14px; font-weight:700; color:#fff;">Lisa van den Berg</div>
-          <div style="font-family:var(--font-body); font-size:12px; color:rgba(255,255,255,0.65);">Directeur, Hartman Bouw</div>
+{{# ── TESTIMONIAL (inline) ────────────────────────────────── #}}
+<div style="background:#F0EDE7; padding:0 0 4rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="max-width:720px;" data-reveal>
+      <div style="border-left:3px solid #ed6b46; padding:1.5rem 1.75rem;
+                  background:#fff; border-radius:0 16px 16px 0;
+                  box-shadow:0 2px 16px rgba(30,31,27,0.06);">
+        <p style="font-family:var(--font-display); font-size:clamp(15px,1.5vw,19px); font-weight:700;
+                  font-style:italic; color:#1E1F1B; line-height:1.5; margin:0 0 1.25rem;">
+          "Waar we eerder een van de velen waren, zijn we nu het bureau dat iedereen onthoudt. Merqo heeft niet alleen ons logo aangepakt: ze hebben begrepen wie we zijn."
+        </p>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <div style="width:34px; height:34px; border-radius:50%; background:#ed6b46; flex-shrink:0;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:10px; font-weight:800; color:#fff;">LB</div>
+          <div>
+            <div style="font-family:var(--font-display); font-size:13px; font-weight:700; color:#1E1F1B;">Lisa van den Berg</div>
+            <div style="font-family:var(--font-body); font-size:11px; color:#9B9890;">Directeur, Hartman Bouw</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {{# ── 5. WAT JE KRIJGT ──────────────────────────────────────── #}}
 <section id="wat-je-krijgt" style="background:#EDEAE3; padding:6rem 0;">
@@ -333,24 +316,84 @@
 </section>
 
 {{# ── 4b. OMZET-CALCULATOR ───────────────────────────────────── #}}
-<section style="background:#F0EDE7; padding:5rem 0;">
-  <div style="max-width:520px; margin:0 auto; padding:0 1.25rem;">
+<section style="background:#F0EDE7; padding:5rem 0 6rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+  <div class="branding-calc-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;">
 
-    <div data-reveal style="margin-bottom:1.75rem; text-align:center;">
-      <div class="eyebrow" style="margin-bottom:1rem; justify-content:center;">
+    {{# ── Links: overtuigingscopy ── #}}
+    <div data-reveal>
+      <div class="eyebrow" style="margin-bottom:1.25rem;">
         <div class="eyebrow-line"></div>
         <div class="eyebrow-text">Calculator</div>
-        <div class="eyebrow-line"></div>
       </div>
       <h2 style="font-family:var(--font-display); font-weight:800;
-                 font-size:clamp(22px,2.5vw,30px); letter-spacing:-0.04em;
-                 line-height:1.1; color:#1E1F1B;">
-        Wat laat jij jaarlijks liggen?
+                 font-size:clamp(28px,3.5vw,48px); letter-spacing:-0.045em;
+                 line-height:1.02; color:#1E1F1B; margin-bottom:1.5rem;">
+        Jouw merk kost je<br>jaarlijks meer dan<br><em style="font-style:italic; color:#ed6b46;">je denkt.</em>
       </h2>
+      <p style="font-family:var(--font-body); font-size:15px; line-height:1.8;
+                color:#6B6860; margin-bottom:2rem; max-width:46ch;">
+        Een zwak merk betekent lagere prijzen, hogere churn en minder conversie. De schade is meetbaar, maar de meeste ondernemers zien hem pas als het te laat is.
+      </p>
+
+      {{# Stat-kaart: autoriteit + verlies-aversie #}}
+      <div style="background:#fff; border-radius:16px; padding:1.5rem 1.75rem;
+                  border:1px solid rgba(30,31,27,0.07); margin-bottom:2rem;">
+        <div style="font-family:var(--font-display); font-weight:800; font-size:3.5rem;
+                    letter-spacing:-0.05em; color:#ed6b46; line-height:1; margin-bottom:0.5rem;">20-50%</div>
+        <p style="font-family:var(--font-body); font-size:14px; line-height:1.65; color:#6B6860; margin:0;">
+          Bedrijven met een sterk merk vragen gemiddeld 20 tot 50% meer voor hetzelfde product. Zonder sterk merk concurreer je altijd op prijs - en verlies je.
+        </p>
+      </div>
+
+      {{# Wat de calculator laat zien: commitment #}}
+      <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:2rem;">
+        <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+          <div style="width:20px; height:20px; border-radius:50%; background:#ed6b46; flex-shrink:0; margin-top:1px;
+                      display:flex; align-items:center; justify-content:center;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-family:var(--font-body); font-size:14px; color:#4A4845; line-height:1.5;">Hoeveel omzet je potentieel laat liggen</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+          <div style="width:20px; height:20px; border-radius:50%; background:#ed6b46; flex-shrink:0; margin-top:1px;
+                      display:flex; align-items:center; justify-content:center;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-family:var(--font-body); font-size:14px; color:#4A4845; line-height:1.5;">Waarom je conversie achterblijft bij je kwaliteit</span>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:0.75rem;">
+          <div style="width:20px; height:20px; border-radius:50%; background:#ed6b46; flex-shrink:0; margin-top:1px;
+                      display:flex; align-items:center; justify-content:center;">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span style="font-family:var(--font-body); font-size:14px; color:#4A4845; line-height:1.5;">Of een sterk merk voor jou de doorslag maakt</span>
+        </div>
+      </div>
+
+      {{# Social proof #}}
+      <div style="display:flex; align-items:center; gap:0.875rem;">
+        <div style="display:flex; align-items:center;">
+          <div style="width:30px; height:30px; border-radius:50%; background:#a8c8ca; border:2px solid #F0EDE7; margin-right:-8px;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:9px; font-weight:800; color:#fff; flex-shrink:0;">TV</div>
+          <div style="width:30px; height:30px; border-radius:50%; background:#ed6b46; border:2px solid #F0EDE7; margin-right:-8px;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:9px; font-weight:800; color:#fff; flex-shrink:0;">RH</div>
+          <div style="width:30px; height:30px; border-radius:50%; background:#1E1F1B; border:2px solid #F0EDE7;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:9px; font-weight:800; color:#fff; flex-shrink:0;">GK</div>
+        </div>
+        <p style="font-family:var(--font-body); font-size:13px; color:#9B9890; margin:0; line-height:1.5;">
+          <span style="color:#1E1F1B; font-weight:600;">180+ ondernemers</span> rekenden al uit<br>wat hun merk ze kost
+        </p>
+      </div>
     </div>
 
+    {{# ── Rechts: calculator-kaart ── #}}
+    <div data-reveal>
+
     <div
-      data-reveal
       x-data="{
         stap1: null,
         stap2: null,
@@ -401,8 +444,8 @@
               type="button"
               @click="stap1 = opt.val"
               :style="stap1 === opt.val
-                ? 'padding:0.35rem 0.85rem; background:#fffaf8; border:1.5px solid #ed6b46; box-shadow:0 0 0 2px rgba(237,107,70,0.1); border-radius:999px; cursor:pointer; font-family:var(--font-body); font-weight:600; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:border-color 0.15s, box-shadow 0.15s;'
-                : 'padding:0.35rem 0.85rem; background:#F5F4F1; border:1.5px solid transparent; border-radius:999px; cursor:pointer; font-family:var(--font-body); font-weight:600; font-size:13px; color:#6B6860; white-space:nowrap; transition:border-color 0.15s, box-shadow 0.15s;'"
+                ? 'padding:0.6rem 1.1rem; background:#ed6b46; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#fff; white-space:nowrap; transition:all 0.18s ease;'
+                : 'padding:0.6rem 1.1rem; background:#fff; border:1.5px solid rgba(30,31,27,0.1); box-shadow:0 1px 4px rgba(30,31,27,0.04); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:all 0.18s ease;'"
               x-html="opt.label"
             ></button>
           </template>
@@ -428,8 +471,8 @@
               type="button"
               @click="stap2 = opt.val"
               :style="stap2 === opt.val
-                ? 'padding:0.35rem 0.85rem; background:#fffaf8; border:1.5px solid #ed6b46; box-shadow:0 0 0 2px rgba(237,107,70,0.1); border-radius:999px; cursor:pointer; font-family:var(--font-body); font-weight:600; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:border-color 0.15s, box-shadow 0.15s;'
-                : 'padding:0.35rem 0.85rem; background:#F5F4F1; border:1.5px solid transparent; border-radius:999px; cursor:pointer; font-family:var(--font-body); font-weight:600; font-size:13px; color:#6B6860; white-space:nowrap; transition:border-color 0.15s, box-shadow 0.15s;'"
+                ? 'padding:0.6rem 1.1rem; background:#ed6b46; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#fff; white-space:nowrap; transition:all 0.18s ease;'
+                : 'padding:0.6rem 1.1rem; background:#fff; border:1.5px solid rgba(30,31,27,0.1); box-shadow:0 1px 4px rgba(30,31,27,0.04); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:all 0.18s ease;'"
               x-html="opt.label"
             ></button>
           </template>
@@ -454,8 +497,8 @@
               type="button"
               @click="stap3 = opt.val"
               :style="stap3 === opt.val
-                ? 'padding:0.35rem 0.85rem; background:#fffaf8; border:1.5px solid #ed6b46; box-shadow:0 0 0 2px rgba(237,107,70,0.1); border-radius:999px; cursor:pointer; font-family:var(--font-body); font-weight:600; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:border-color 0.15s, box-shadow 0.15s;'
-                : 'padding:0.35rem 0.85rem; background:#F5F4F1; border:1.5px solid transparent; border-radius:999px; cursor:pointer; font-family:var(--font-body); font-weight:600; font-size:13px; color:#6B6860; white-space:nowrap; transition:border-color 0.15s, box-shadow 0.15s;'"
+                ? 'padding:0.6rem 1.1rem; background:#ed6b46; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#fff; white-space:nowrap; transition:all 0.18s ease;'
+                : 'padding:0.6rem 1.1rem; background:#fff; border:1.5px solid rgba(30,31,27,0.1); box-shadow:0 1px 4px rgba(30,31,27,0.04); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:all 0.18s ease;'"
               x-text="opt.label"
             ></button>
           </template>
@@ -470,24 +513,28 @@
         x-transition:enter-end="opacity-100 translate-y-0"
         style="border-top:1px solid rgba(30,31,27,0.08); padding-top:1.25rem; margin-top:0.25rem; display:none;"
       >
-        <p style="font-family:var(--font-body); font-size:13px; line-height:1.75; color:#1E1F1B; font-weight:600; margin-bottom:0.6rem;" x-text="uitkomstZin"></p>
-        <p style="font-family:var(--font-body); font-size:13px; line-height:1.7; color:#6B6860; margin-bottom:1rem;" x-text="verklaringZin"></p>
-        <a
-          href="/scan"
-          style="font-family:var(--font-body); font-size:12px; font-weight:700;
-                 letter-spacing:0.04em; text-transform:uppercase; color:#ed6b46;
-                 text-decoration:none; border-bottom:1px solid rgba(237,107,70,0.3);
-                 padding-bottom:1px; transition:border-color 0.15s;"
-          onmouseover="this.style.borderColor='#ed6b46'"
-          onmouseout="this.style.borderColor='rgba(237,107,70,0.3)'"
-        >
-          Gratis merkscan aanvragen &rarr;
+        <p style="font-family:var(--font-body); font-size:14px; line-height:1.75; color:#1E1F1B; font-weight:600; margin-bottom:0.6rem;" x-text="uitkomstZin"></p>
+        <p style="font-family:var(--font-body); font-size:13px; line-height:1.7; color:#6B6860; margin-bottom:1.25rem;" x-text="verklaringZin"></p>
+        <a href="/scan"
+           style="display:flex; align-items:center; justify-content:space-between;
+                  padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none;
+                  background:#ed6b46; color:#fff; box-shadow:0 4px 16px rgba(237,107,70,0.25);
+                  transition:all 0.2s ease;"
+           onmouseover="this.style.background='#d95e3c'" onmouseout="this.style.background='#ed6b46'">
+          <span style="font-family:var(--font-display); font-size:14px; font-weight:700; letter-spacing:-0.01em;">Gratis merkscan aanvragen</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
+        <p style="font-family:var(--font-body); font-size:11px; color:rgba(30,31,27,0.3); text-align:center; margin:0.75rem 0 0;">Wij voeren de scan voor je uit - geen verplichtingen</p>
       </div>
 
     </div>
-  </div>
+    </div>{{# /right data-reveal #}}
+  </div>{{# /branding-calc-grid #}}
+  </div>{{# /max-w-7xl #}}
 </section>
+<style>
+  @media (max-width: 900px) { .branding-calc-grid { grid-template-columns: 1fr !important; gap: 3rem !important; } }
+</style>
 
 {{# ── INVESTERING ───────────────────────────────────────────── #}}
 <section id="investering" style="background:#fff; padding:5rem 0; border-top:1px solid rgba(30,31,27,0.07);">
