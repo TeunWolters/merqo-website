@@ -4,14 +4,18 @@
 
 <style>
   .scan-wrap  { background:#F4F1EC; min-height:100vh; padding-top:80px; }
-  .scan-bar   { height:2px; background:rgba(30,31,27,0.07); }
+  .scan-bar   { height:3px; background:rgba(30,31,27,0.07); }
   .scan-fill  { height:100%; background:#ed6b46; transition:width 0.6s cubic-bezier(0.16,1,0.3,1); }
-  .scan-meta  { max-width:600px; margin:0 auto; padding:1.25rem 2rem; display:flex; align-items:center; justify-content:space-between; }
-  .scan-body  { max-width:600px; margin:0 auto; padding:2.5rem 2rem 8rem; }
+
+  /* Twee-koloms layout */
+  .scan-layout { max-width:1100px; margin:0 auto; padding:0 2rem; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+  .scan-meta   { max-width:1100px; margin:0 auto; padding:1.25rem 2rem; display:flex; align-items:center; justify-content:space-between; }
+  .scan-body   { padding:2.5rem 0 6rem; }
+  .scan-panel  { padding:2.5rem 0 6rem; position:sticky; top:6rem; }
 
   .scan-eyebrow { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
                   color:#ed6b46; font-family:var(--font-body); margin-bottom:1rem; display:block; }
-  .scan-h     { font-family:var(--font-display); font-weight:800; font-size:clamp(30px,5vw,50px);
+  .scan-h     { font-family:var(--font-display); font-weight:800; font-size:clamp(30px,3.5vw,48px);
                 letter-spacing:-0.045em; line-height:1.0; color:#1E1F1B; margin:0 0 0.75rem; }
   .scan-sub   { font-size:15px; color:#6B6860; margin:0 0 2.5rem; line-height:1.7; }
 
@@ -56,8 +60,8 @@
   }
   .scan-btn-ghost:hover { color:#1E1F1B; }
 
-  .scan-success { text-align:center; padding:3rem 1rem; }
-  .scan-success-icon { font-size:3rem; margin-bottom:1.5rem; }
+  .scan-success { padding:3rem 0; }
+  .scan-success-icon { width:52px; height:52px; background:#ed6b46; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem; }
 
   .scan-step-label { font-size:12px; font-weight:600; color:rgba(30,31,27,0.35); font-family:var(--font-body); }
 
@@ -68,6 +72,26 @@
     width:100%; box-sizing:border-box; resize:vertical; min-height:100px;
   }
   .scan-textarea:focus { border-color:#ed6b46; box-shadow:0 0 0 3px rgba(237,107,70,0.1); }
+
+  /* Vertrouwenspaneel */
+  .scan-trust-card {
+    background:#fff; border-radius:20px; padding:2rem;
+    border:1px solid rgba(30,31,27,0.07);
+  }
+  .scan-check-item {
+    display:flex; align-items:flex-start; gap:0.75rem; margin-bottom:1rem;
+  }
+  .scan-check-icon {
+    width:20px; height:20px; background:#ed6b46; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+
+  @media (max-width: 768px) {
+    .scan-layout { grid-template-columns:1fr; gap:0; }
+    .scan-panel  { display:none; }
+    .scan-body   { padding:2rem 0 5rem; }
+    .scan-meta   { padding:1rem 0; }
+  }
 </style>
 
 {{# Sentinel zonder x-cloak zodat siteHeader de lichte achtergrond detecteert #}}
@@ -95,149 +119,212 @@
     <span class="scan-step-label" x-text="step < 3 ? 'Stap ' + step + ' van 2' : ''"></span>
   </div>
 
-  <div class="scan-body">
+  {{# Twee-koloms layout #}}
+  <div class="scan-layout">
 
-    {{# ── STAP 1: Gegevens ── #}}
-    <div x-show="step === 1"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 translate-y-3"
-         x-transition:enter-end="opacity-100 translate-y-0">
+    {{# ── LINKS: Formulier ── #}}
+    <div class="scan-body">
 
-      <span class="scan-eyebrow">Stap 1 - Jouw gegevens</span>
-      <h1 class="scan-h">Waar loopt jouw<br>groei vast?</h1>
-      <p class="scan-sub">Vul je gegevens in, wij voeren de scan voor je uit. Binnen één werkdag ontvang je persoonlijk merkadvies - geen spam, geen verkooppraatje.</p>
+      {{# ── STAP 1: Gegevens ── #}}
+      <div x-show="step === 1"
+           x-transition:enter="transition ease-out duration-300"
+           x-transition:enter-start="opacity-0 translate-y-3"
+           x-transition:enter-end="opacity-100 translate-y-0">
 
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-        <div class="scan-field" style="grid-column:1/-1;">
-          <label class="scan-label">Bedrijfsnaam *</label>
-          <input x-model="form.bedrijfsnaam" type="text" placeholder="Jouw bedrijf" class="scan-input">
+        <span class="scan-eyebrow">Stap 1 - Jouw gegevens</span>
+        <h1 class="scan-h">Waar loopt jouw<br>groei vast?</h1>
+        <p class="scan-sub">Vul je gegevens in, wij voeren de scan voor je uit. Binnen één werkdag ontvang je persoonlijk merkadvies - geen spam, geen verkooppraatje.</p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div class="scan-field" style="grid-column:1/-1;">
+            <label class="scan-label">Bedrijfsnaam *</label>
+            <input x-model="form.bedrijfsnaam" type="text" placeholder="Jouw bedrijf" class="scan-input">
+          </div>
+          <div class="scan-field">
+            <label class="scan-label">Jouw naam *</label>
+            <input x-model="form.naam" type="text" placeholder="Voor- en achternaam" class="scan-input">
+          </div>
+          <div class="scan-field">
+            <label class="scan-label">E-mailadres *</label>
+            <input x-model="form.email" type="email" placeholder="jij@bedrijf.nl" class="scan-input">
+          </div>
+          <div class="scan-field" style="grid-column:1/-1;">
+            <label class="scan-label">Website <span style="opacity:0.5;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel)</span></label>
+            <input x-model="form.website" type="text" placeholder="https://jouwbedrijf.nl" class="scan-input">
+          </div>
         </div>
-        <div class="scan-field">
-          <label class="scan-label">Jouw naam *</label>
-          <input x-model="form.naam" type="text" placeholder="Voor- en achternaam" class="scan-input">
-        </div>
-        <div class="scan-field">
-          <label class="scan-label">E-mailadres *</label>
-          <input x-model="form.email" type="email" placeholder="jij@bedrijf.nl" class="scan-input">
-        </div>
-        <div class="scan-field" style="grid-column:1/-1;">
-          <label class="scan-label">Website <span style="opacity:0.5;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel)</span></label>
-          <input x-model="form.website" type="text" placeholder="https://jouwbedrijf.nl" class="scan-input">
-        </div>
-      </div>
 
-      <button @click="step = 2"
-              class="scan-btn"
-              :disabled="!form.bedrijfsnaam || !form.naam || !form.email">
-        Volgende stap
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </button>
-    </div>
-
-    {{# ── STAP 2: Uitdaging ── #}}
-    <div x-show="step === 2"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 translate-y-3"
-         x-transition:enter-end="opacity-100 translate-y-0">
-
-      <span class="scan-eyebrow">Stap 2 - Jouw situatie</span>
-      <h2 class="scan-h">Wat speelt er<br>bij jou?</h2>
-      <p class="scan-sub">Kies wat het beste past. Je kunt altijd toelichting toevoegen.</p>
-
-      <template x-for="u in uitdagingen" :key="u.value">
-        <button @click="form.uitdaging = u.value"
-                class="scan-option"
-                :class="form.uitdaging === u.value ? 'selected' : ''">
-          <span class="scan-option-icon" x-html="u.icon"></span>
-          <span class="scan-option-text" x-text="u.label"></span>
+        <button @click="step = 2"
+                class="scan-btn"
+                :disabled="!form.bedrijfsnaam || !form.naam || !form.email">
+          Volgende stap
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-      </template>
-
-      <div class="scan-field" style="margin-top:1.25rem;">
-        <label class="scan-label">Toelichting <span style="opacity:0.5;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel)</span></label>
-        <textarea x-model="form.toelichting" class="scan-textarea" placeholder="Vertel ons iets meer over jouw situatie..."></textarea>
       </div>
 
-      <div x-show="error" x-text="error"
-           style="margin-top:1rem;padding:1rem;background:#fff0ee;border:1px solid #ed6b46;border-radius:10px;
-                  font-size:13px;color:#c0392b;font-family:var(--font-body);"></div>
+      {{# ── STAP 2: Uitdaging ── #}}
+      <div x-show="step === 2"
+           x-transition:enter="transition ease-out duration-300"
+           x-transition:enter-start="opacity-0 translate-y-3"
+           x-transition:enter-end="opacity-100 translate-y-0">
 
-      <button @click="submitScan()"
-              class="scan-btn"
-              :disabled="!form.uitdaging || submitting">
-        <span x-text="submitting ? 'Versturen...' : 'Gratis merkscan'"></span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </button>
+        <span class="scan-eyebrow">Stap 2 - Jouw situatie</span>
+        <h2 class="scan-h">Wat speelt er<br>bij jou?</h2>
+        <p class="scan-sub">Kies wat het beste past. Je kunt altijd toelichting toevoegen.</p>
 
-      <p style="font-size:11px; color:rgba(30,31,27,0.35); font-family:var(--font-body); text-align:center; margin-top:0.75rem; line-height:1.6;">
-        Je gegevens worden vertrouwelijk behandeld en niet gedeeld met derden.
-        <a href="/privacy" style="color:rgba(30,31,27,0.45); text-decoration:underline;">Privacybeleid</a>
-      </p>
+        <template x-for="u in uitdagingen" :key="u.value">
+          <button @click="form.uitdaging = u.value"
+                  class="scan-option"
+                  :class="form.uitdaging === u.value ? 'selected' : ''">
+            <span class="scan-option-icon" x-html="u.icon"></span>
+            <span class="scan-option-text" x-text="u.label"></span>
+          </button>
+        </template>
 
-      <button @click="step = 1" class="scan-btn-ghost">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Terug
-      </button>
-    </div>
+        <div class="scan-field" style="margin-top:1.25rem;">
+          <label class="scan-label">Toelichting <span style="opacity:0.5;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel)</span></label>
+          <textarea x-model="form.toelichting" class="scan-textarea" placeholder="Vertel ons iets meer over jouw situatie..."></textarea>
+        </div>
 
-    {{# ── BEVESTIGING ── #}}
-    <div x-show="step === 3"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 translate-y-3"
-         x-transition:enter-end="opacity-100 translate-y-0"
-         class="scan-success">
-      <div class="scan-success-icon">✓</div>
-      <h2 class="scan-h" style="font-size:clamp(24px,4vw,38px);">Goed ontvangen,<br><span x-text="form.naam.split(' ')[0]"></span>.</h2>
-      <p class="scan-sub" style="max-width:36ch; margin:1rem auto 2.5rem;">
-        We nemen binnen één werkdag contact op. Geen geautomatiseerd antwoord: gewoon een mens die jouw situatie heeft gelezen.
-      </p>
-      <a href="/" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:999px;
-                          background:#1E1F1B;color:#F0EDE7;font-family:var(--font-body);font-size:13px;
-                          font-weight:700;text-decoration:none;">
-        Terug naar de website
-      </a>
-    </div>
+        <div x-show="error" x-text="error"
+             style="margin-top:1rem;padding:1rem;background:#fff0ee;border:1px solid #ed6b46;border-radius:10px;
+                    font-size:13px;color:#c0392b;font-family:var(--font-body);"></div>
 
-  </div>
-</div>
+        <button @click="submitScan()"
+                class="scan-btn"
+                :disabled="!form.uitdaging || submitting">
+          <span x-text="submitting ? 'Versturen...' : 'Gratis merkscan aanvragen'"></span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
 
-{{# ── Social proof sectie onder het formulier ── #}}
-<section style="background:#EDEAE3; padding:5rem 0;">
-  <div style="max-width:600px; margin:0 auto; px:1.5rem; padding:0 1.5rem;">
+        <p style="font-size:11px; color:rgba(30,31,27,0.35); font-family:var(--font-body); text-align:center; margin-top:0.75rem; line-height:1.6;">
+          Je gegevens worden vertrouwelijk behandeld en niet gedeeld met derden.
+          <a href="/privacy" style="color:rgba(30,31,27,0.45); text-decoration:underline;">Privacybeleid</a>
+        </p>
 
-    <div style="text-align:center; margin-bottom:3rem;">
-      <div style="display:inline-flex; align-items:center; gap:4px; margin-bottom:0.75rem;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <span style="font-family:var(--font-body); font-size:12px; font-weight:600; color:#6B6860; margin-left:4px;">5.0 · Google</span>
+        <button @click="step = 1" class="scan-btn-ghost">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Terug
+        </button>
       </div>
-      <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(22px,3vw,32px); letter-spacing:-0.04em; color:#1E1F1B; margin:0 0 0.5rem;">
-        100+ ondernemers gingen je voor
-      </h2>
-      <p style="font-family:var(--font-body); font-size:14px; color:#6B6860; margin:0;">Gratis, vrijblijvend en persoonlijk advies.</p>
+
+      {{# ── BEVESTIGING ── #}}
+      <div x-show="step === 3"
+           x-transition:enter="transition ease-out duration-300"
+           x-transition:enter-start="opacity-0 translate-y-3"
+           x-transition:enter-end="opacity-100 translate-y-0"
+           class="scan-success">
+        <div class="scan-success-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 class="scan-h" style="font-size:clamp(28px,4vw,44px);">Goed ontvangen,<br><span x-text="form.naam.split(' ')[0]"></span>.</h2>
+        <p class="scan-sub" style="max-width:38ch; margin:1rem 0 2.5rem;">
+          We nemen binnen één werkdag contact op. Geen geautomatiseerd antwoord: gewoon een mens die jouw situatie heeft gelezen en nagedacht over jouw merk.
+        </p>
+        <a href="/" style="display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;
+                            background:#1E1F1B;color:#F0EDE7;font-family:var(--font-body);font-size:13px;
+                            font-weight:700;text-decoration:none; transition:opacity 0.15s;"
+           onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+          Terug naar de website
+        </a>
+      </div>
+
     </div>
 
-    <blockquote style="background:#fff; border-radius:20px; padding:2rem 2.25rem; margin:0;">
-      <p style="font-family:var(--font-display); font-size:16px; font-weight:700; font-style:italic;
-                color:#1E1F1B; margin:0 0 1.25rem; line-height:1.55;">
-        "Binnen een week hadden we een helder beeld van waar we stonden en wat er beter kon. Dat gesprek was de start van onze complete rebrand."
-      </p>
-      <div style="display:flex; align-items:center; gap:0.75rem;">
-        <div style="width:38px; height:38px; border-radius:50%; background:#ed6b46; flex-shrink:0;
-                    display:flex; align-items:center; justify-content:center;
-                    font-family:var(--font-display); font-size:11px; font-weight:800; color:#fff;">LB</div>
-        <div>
-          <div style="font-family:var(--font-display); font-size:13px; font-weight:700; color:#1E1F1B;">Lisa van den Berg</div>
-          <div style="font-family:var(--font-body); font-size:12px; color:#9B9890;">Directeur, Hartman Bouw</div>
+    {{# ── RECHTS: Vertrouwenspaneel (sticky, alleen desktop) ── #}}
+    <div class="scan-panel">
+
+      {{# Wat je krijgt #}}
+      <div class="scan-trust-card" style="margin-bottom:1.25rem;">
+        <div style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(30,31,27,0.35); margin-bottom:1.25rem;">Wat je ontvangt</div>
+
+        <div class="scan-check-item">
+          <div class="scan-check-icon">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div style="font-family:var(--font-display); font-size:14px; font-weight:700; color:#1E1F1B; line-height:1.3;">Persoonlijk merkadvies</div>
+            <div style="font-family:var(--font-body); font-size:12px; color:#9B9890; margin-top:2px; line-height:1.5;">Geen standaard rapport, maar een eerlijk beeld van jouw specifieke situatie.</div>
+          </div>
+        </div>
+
+        <div class="scan-check-item">
+          <div class="scan-check-icon">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div style="font-family:var(--font-display); font-size:14px; font-weight:700; color:#1E1F1B; line-height:1.3;">Concrete aanbevelingen</div>
+            <div style="font-family:var(--font-body); font-size:12px; color:#9B9890; margin-top:2px; line-height:1.5;">Wat je direct kunt verbeteren aan je merk, website of marketing.</div>
+          </div>
+        </div>
+
+        <div class="scan-check-item" style="margin-bottom:0;">
+          <div class="scan-check-icon">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div style="font-family:var(--font-display); font-size:14px; font-weight:700; color:#1E1F1B; line-height:1.3;">Reactie binnen één werkdag</div>
+            <div style="font-family:var(--font-body); font-size:12px; color:#9B9890; margin-top:2px; line-height:1.5;">Geen geautomatiseerd antwoord. Een mens van Merqo neemt contact op.</div>
+          </div>
         </div>
       </div>
-    </blockquote>
+
+      {{# Wie voert de scan uit #}}
+      <div class="scan-trust-card" style="margin-bottom:1.25rem;">
+        <div style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(30,31,27,0.35); margin-bottom:1.25rem;">Wie neemt jouw scan door</div>
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <img src="/assets/team/luuk.jpg" alt="Luuk Scheffer" loading="lazy"
+               style="width:52px; height:52px; border-radius:50%; object-fit:cover; flex-shrink:0;">
+          <div>
+            <div style="font-family:var(--font-display); font-size:14px; font-weight:700; color:#1E1F1B;">Luuk Scheffer</div>
+            <div style="font-family:var(--font-body); font-size:12px; color:#9B9890; margin-top:1px;">Eigenaar & strateeg · Merqo</div>
+            <div style="font-family:var(--font-body); font-size:12px; color:#6B6860; margin-top:6px; line-height:1.5;">
+              "Ik neem elke scan persoonlijk door. Je krijgt eerlijk advies, geen verkooppraatje."
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{# Testimonial #}}
+      <div class="scan-trust-card">
+        <div style="display:flex; gap:3px; margin-bottom:0.875rem;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p style="font-family:var(--font-display); font-size:14px; font-weight:700; font-style:italic; color:#1E1F1B; margin:0 0 1rem; line-height:1.55;">
+          "Binnen een week hadden we een helder beeld van waar we stonden en wat er beter kon. Dat gesprek was de start van onze complete rebrand."
+        </p>
+        <div style="display:flex; align-items:center; gap:0.625rem;">
+          <div style="width:32px; height:32px; border-radius:50%; background:#ed6b46; flex-shrink:0;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:10px; font-weight:800; color:#fff;">LB</div>
+          <div>
+            <div style="font-family:var(--font-display); font-size:12px; font-weight:700; color:#1E1F1B;">Lisa van den Berg</div>
+            <div style="font-family:var(--font-body); font-size:11px; color:#9B9890;">Directeur, Hartman Bouw</div>
+          </div>
+        </div>
+      </div>
+
+      {{# Social proof teller #}}
+      <div style="display:flex; align-items:center; gap:0.75rem; margin-top:1.25rem; padding:0 0.25rem;">
+        <div style="display:flex; gap:3px; align-items:center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#ed6b46" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span style="font-family:var(--font-body); font-size:12px; font-weight:600; color:#6B6860;">5.0 · Google</span>
+        </div>
+        <span style="color:rgba(30,31,27,0.15); font-size:12px;">·</span>
+        <span style="font-family:var(--font-body); font-size:12px; color:#6B6860;">100+ ondernemers gingen je voor</span>
+      </div>
+
+    </div>
+    {{# einde rechterkolom #}}
 
   </div>
-</section>
+  {{# einde scan-layout #}}
+
+</div>
 
 <script>
 document.addEventListener('alpine:init', () => {
