@@ -457,64 +457,83 @@
           this.done = false;
         }
       }"
-      style="background:#fff; border-radius:18px; padding:1.75rem 2rem; box-shadow:0 2px 24px rgba(30,31,27,0.06);"
-      data-reveal
+      style="background:#fff; border-radius:20px; padding:2rem 2.25rem;
+             box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);"
     >
 
-      {{# Progress #}}
-      <div x-show="!done" style="margin-bottom:1.25rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-          <span style="font-family:var(--font-body); font-size:11px; font-weight:600; color:#9b9890;" x-text="'Vraag ' + (current + 1) + ' / 7'"></span>
-          <span style="font-family:var(--font-body); font-size:11px; font-weight:600; color:#9b9890;" x-text="Math.round(((current) / questions.length) * 100) + '%'"></span>
+      {{# Progress - 7 segmenten #}}
+      <div x-show="!done" style="margin-bottom:1.75rem; padding-bottom:1.5rem; border-bottom:1px solid rgba(30,31,27,0.07);">
+        <div style="display:flex; align-items:center; gap:5px; margin-bottom:0.5rem;">
+          <template x-for="i in 7" :key="i">
+            <div style="flex:1; height:6px; border-radius:999px; transition:background 0.35s ease;"
+                 :style="i <= current ? 'background:#ed6b46;' : 'background:rgba(30,31,27,0.1);'"></div>
+          </template>
         </div>
-        <div style="height:3px; background:#F0EDE7; border-radius:999px; overflow:hidden;">
-          <div
-            style="height:100%; background:#ed6b46; border-radius:999px; transition:width 0.4s ease;"
-            :style="'width:' + Math.round(((current) / questions.length) * 100) + '%'"
-          ></div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-family:var(--font-body); font-size:11px; font-weight:700;
+                       letter-spacing:0.06em; text-transform:uppercase; color:#9b9890;"
+                x-text="'Vraag ' + (current + 1) + ' van 7'"></span>
+          <span style="font-family:var(--font-display); font-size:13px; font-weight:800;
+                       color:#ed6b46; letter-spacing:-0.02em;"
+                x-text="Math.round((current / 7) * 100) + '%'"></span>
         </div>
       </div>
 
       {{# Questions #}}
       <div x-show="!done">
         <template x-for="(q, index) in questions" :key="index">
-          <div x-show="current === index" style="min-height:120px;">
-            <p style="font-family:var(--font-body); font-size:15px; font-weight:600; line-height:1.5; color:#1E1F1B; margin-bottom:1.25rem;" x-text="q.q"></p>
-            <div style="display:flex; gap:0.75rem; justify-content:flex-start; margin-top:0.25rem;">
+          <div x-show="current === index">
+
+            {{# Vraag tekst - display font, groter #}}
+            <p style="font-family:var(--font-display); font-size:clamp(17px,1.8vw,22px); font-weight:700;
+                      letter-spacing:-0.03em; line-height:1.3; color:#1E1F1B; margin:0 0 1.75rem;"
+               x-text="q.q"></p>
+
+            {{# Ja / Nee - scan-stijl grote kaartopties naast elkaar #}}
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+
+              {{# Ja #}}
               <button
                 @click="answer(true)"
                 :disabled="selected !== null"
                 :style="selected === true
-                  ? 'background:#ed6b46; color:#fff; border-color:#ed6b46; box-shadow:0 4px 14px rgba(237,107,70,0.3);'
-                  : 'background:#fff; color:#1E1F1B; border-color:rgba(30,31,27,0.14);'"
-                style="font-family:var(--font-body); font-size:15px; font-weight:700;
-                       border:1.5px solid; border-radius:12px; padding:0.85rem 2rem; cursor:pointer;
-                       transition:all 0.18s ease; display:inline-flex; align-items:center; gap:0.5rem;"
-                onmouseover="if(!this.disabled && this.style.background !== 'rgb(237, 107, 70)') { this.style.background='rgba(237,107,70,0.06)'; this.style.borderColor='rgba(237,107,70,0.4)'; }"
-                onmouseout="if(!this.disabled && this.style.background !== 'rgb(237, 107, 70)') { this.style.background='#fff'; this.style.borderColor='rgba(30,31,27,0.14)'; }"
+                  ? 'border-color:#ed6b46; background:#fffaf8; box-shadow:0 0 0 3px rgba(237,107,70,0.1);'
+                  : 'border-color:rgba(30,31,27,0.1); background:#fff;'"
+                style="display:flex; flex-direction:column; align-items:center; justify-content:center;
+                       gap:0.75rem; padding:1.5rem 1rem; border-radius:16px; border:1.5px solid;
+                       cursor:pointer; transition:all 0.18s ease; min-height:110px;"
               >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;">
-                  <path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Ja
+                <div style="width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background 0.18s ease;"
+                     :style="selected === true ? 'background:#ed6b46;' : 'background:rgba(30,31,27,0.06);'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                       :stroke="selected === true ? '#fff' : '#1E1F1B'">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <span style="font-family:var(--font-display); font-size:16px; font-weight:800; letter-spacing:-0.02em; transition:color 0.18s;"
+                      :style="selected === true ? 'color:#ed6b46;' : 'color:#1E1F1B;'">Ja</span>
               </button>
+
+              {{# Nee #}}
               <button
                 @click="answer(false)"
                 :disabled="selected !== null"
                 :style="selected === false
-                  ? 'background:#F5F4F1; color:#1E1F1B; border-color:rgba(30,31,27,0.2);'
-                  : 'background:#fff; color:#1E1F1B; border-color:rgba(30,31,27,0.14);'"
-                style="font-family:var(--font-body); font-size:15px; font-weight:700;
-                       border:1.5px solid; border-radius:12px; padding:0.85rem 2rem; cursor:pointer;
-                       transition:all 0.18s ease; display:inline-flex; align-items:center; gap:0.5rem;"
-                onmouseover="if(!this.disabled && this.style.background !== 'rgb(245, 244, 241)') { this.style.background='rgba(30,31,27,0.04)'; }"
-                onmouseout="if(!this.disabled && this.style.background !== 'rgb(245, 244, 241)') { this.style.background='#fff'; }"
+                  ? 'border-color:rgba(30,31,27,0.2); background:#F5F4F1;'
+                  : 'border-color:rgba(30,31,27,0.1); background:#fff;'"
+                style="display:flex; flex-direction:column; align-items:center; justify-content:center;
+                       gap:0.75rem; padding:1.5rem 1rem; border-radius:16px; border:1.5px solid;
+                       cursor:pointer; transition:all 0.18s ease; min-height:110px;"
               >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;">
-                  <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Nee
+                <div style="width:38px; height:38px; border-radius:50%; background:rgba(30,31,27,0.06); display:flex; align-items:center; justify-content:center; transition:background 0.18s ease;"
+                     :style="selected === false ? 'background:rgba(30,31,27,0.12);' : 'background:rgba(30,31,27,0.06);'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1F1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </div>
+                <span style="font-family:var(--font-display); font-size:16px; font-weight:800; letter-spacing:-0.02em; color:#1E1F1B;">Nee</span>
               </button>
+
             </div>
           </div>
         </template>
@@ -523,27 +542,41 @@
       {{# Result #}}
       <div x-show="done" x-cloak>
 
-        <div style="display:flex; align-items:baseline; gap:0.5rem; margin-bottom:0.75rem;">
-          <span style="font-family:var(--font-display); font-size:2.25rem; font-weight:800; letter-spacing:-0.04em; line-height:1;" x-text="score + '/7'" :style="'color:' + barColor"></span>
-          <span style="font-family:var(--font-body); font-size:11px; font-weight:600; color:#9b9890; text-transform:uppercase; letter-spacing:0.06em;">ja-antwoorden</span>
+        {{# Score badge + balk #}}
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
+          <div style="width:64px; height:64px; border-radius:50%; flex-shrink:0; display:flex; flex-direction:column; align-items:center; justify-content:center; border:3px solid;"
+               :style="'border-color:' + barColor + '; background:' + barColor + '18;'">
+            <span style="font-family:var(--font-display); font-size:18px; font-weight:800; line-height:1;"
+                  :style="'color:' + barColor" x-text="score"></span>
+            <span style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;"
+                  :style="'color:' + barColor + '; opacity:0.7'">van 7</span>
+          </div>
+          <div>
+            <div style="height:6px; background:rgba(30,31,27,0.08); border-radius:999px; overflow:hidden; margin-bottom:0.5rem; width:100%;">
+              <div style="height:100%; border-radius:999px; transition:width 0.7s ease;"
+                   :style="'width:' + barWidth + '; background:' + barColor"></div>
+            </div>
+            <p style="font-family:var(--font-display); font-size:14px; font-weight:700; line-height:1.35; margin:0;"
+               :style="'color:' + barColor" x-text="resultTitle"></p>
+          </div>
         </div>
 
-        <div style="height:3px; background:#F0EDE7; border-radius:999px; overflow:hidden; margin-bottom:1rem;">
-          <div
-            style="height:100%; border-radius:999px; transition:width 0.7s ease;"
-            :style="'width:' + barWidth + '; background:' + barColor"
-          ></div>
-        </div>
-
-        <p style="font-family:var(--font-body); font-size:15px; font-weight:600; line-height:1.5; color:#1E1F1B; margin-bottom:1rem;" x-text="resultTitle"></p>
-
-        <div x-show="neeIndices.length > 0" style="margin-bottom:1.25rem;">
-          <p style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#9b9890; margin-bottom:0.5rem;">Aandachtspunten</p>
-          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0.35rem;">
+        {{# Aandachtspunten als icon-lijst #}}
+        <div x-show="neeIndices.length > 0"
+             style="background:#FFF8F6; border-radius:14px; padding:1.25rem; margin-bottom:1.25rem;">
+          <p style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.1em;
+                    text-transform:uppercase; color:#ed6b46; margin:0 0 0.875rem;">Aandachtspunten</p>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0.625rem;">
             <template x-for="i in neeIndices" :key="i">
-              <li style="display:flex; gap:0.5rem; align-items:baseline;">
-                <span style="flex-shrink:0; color:#ed6b46; font-size:11px; line-height:1.6;">-</span>
-                <span style="font-family:var(--font-body); font-size:12px; line-height:1.55; color:#6B6860;" x-text="questions[i].nee"></span>
+              <li style="display:flex; gap:0.625rem; align-items:flex-start;">
+                <div style="width:16px; height:16px; border-radius:50%; background:#ed6b46; flex-shrink:0; margin-top:1px;
+                            display:flex; align-items:center; justify-content:center;">
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </div>
+                <span style="font-family:var(--font-body); font-size:13px; line-height:1.55; color:#6B6860;"
+                      x-text="questions[i].nee"></span>
               </li>
             </template>
           </ul>
@@ -559,12 +592,12 @@
             <span style="font-family:var(--font-display); font-size:14px; font-weight:700; letter-spacing:-0.01em;">Laat ons je website verbeteren</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <button
-            @click="restart()"
-            style="font-family:var(--font-body); font-size:12px; font-weight:500; color:#9b9890;
-                   background:none; border:none; cursor:pointer; padding:0; text-decoration:underline;
-                   text-underline-offset:2px; text-align:left;"
-          >Opnieuw doen</button>
+          <button @click="restart()"
+                  style="font-family:var(--font-body); font-size:12px; font-weight:500; color:#9b9890;
+                         background:none; border:none; cursor:pointer; padding:0;
+                         text-decoration:underline; text-underline-offset:2px; text-align:left;">
+            Opnieuw doen
+          </button>
         </div>
 
       </div>
