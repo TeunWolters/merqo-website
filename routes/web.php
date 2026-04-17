@@ -257,6 +257,19 @@ GRATIS MERKENSCAN
 
 CONTACT
 merqo.nl/contact — info@merqo.nl — WhatsApp Luuk: +31 6 30 77 22 83
+
+BUTTONS — gebruik dit voor directe acties
+Voeg aan het einde van je bericht maximaal 2 buttons toe wanneer een directe actie logisch is. Gebruik deze exacte syntax: [BTN:Label|url]
+Beschikbare buttons (gebruik alleen deze):
+[BTN:Gratis scan doen|https://merqo.nl/scan]
+[BTN:Plan een gesprek|https://merqo.nl/contact]
+[BTN:App Luuk op WhatsApp|https://wa.me/31630772283]
+[BTN:Meer over MaaS|https://merqo.nl/merqo-as-a-service]
+[BTN:Onze projecten bekijken|https://merqo.nl/projecten]
+[BTN:Meer over branding|https://merqo.nl/diensten/branding]
+[BTN:Meer over websites|https://merqo.nl/diensten/websites]
+[BTN:Meer over marketing|https://merqo.nl/diensten/marketing]
+Plaats de buttons altijd na de tekst, op een nieuwe regel. Gebruik ze alleen als ze echt helpen — niet bij elke zin.
 SYSTEM;
 
     $response = Http::timeout(30)
@@ -289,7 +302,15 @@ SYSTEM;
     $reply = preg_replace('/^[-*] /m', '', $reply);            // bullet points
     $reply = preg_replace('/^#{1,6} /m', '', $reply);          // headers
     $reply = preg_replace('/\[(.+?)\]\(.+?\)/', '$1', $reply); // [link](url)
+
+    // Extraheer buttons uit [BTN:Label|url] syntax
+    $buttons = [];
+    preg_match_all('/\[BTN:([^\|]+)\|([^\]]+)\]/', $reply, $matches, PREG_SET_ORDER);
+    foreach ($matches as $m) {
+        $buttons[] = ['label' => trim($m[1]), 'url' => trim($m[2])];
+    }
+    $reply = preg_replace('/\[BTN:[^\]]+\]/', '', $reply);
     $reply = trim($reply);
 
-    return response()->json(['reply' => $reply]);
+    return response()->json(['reply' => $reply, 'buttons' => $buttons]);
 })->middleware('throttle:30,1');

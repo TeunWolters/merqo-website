@@ -442,7 +442,7 @@
       }
       window.mcClose = mcClose;
 
-      function mcAddMessage(role, text) {
+      function mcAddMessage(role, text, buttons) {
         messages.push({ role: role, content: text });
         var container = document.getElementById('mc-messages');
         var wrap = document.createElement('div');
@@ -451,11 +451,27 @@
           wrap.innerHTML = '<div style="background:#ed6b46; border-radius:16px 4px 16px 16px; padding:0.75rem 1rem; max-width:85%;">'
             + '<p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:white; margin:0; white-space:pre-wrap;">' + escHtml(text) + '</p></div>';
         } else {
+          var buttonsHtml = '';
+          if (buttons && buttons.length) {
+            buttonsHtml = '<div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.6rem;">';
+            buttons.forEach(function(btn) {
+              buttonsHtml += '<a href="' + escHtml(btn.url) + '" target="_blank" rel="noopener" '
+                + 'style="display:inline-block; font-family:var(--font-body); font-size:12px; font-weight:600; '
+                + 'color:#ed6b46; background:white; border:1.5px solid #ed6b46; border-radius:99px; '
+                + 'padding:0.35rem 0.85rem; text-decoration:none; white-space:nowrap; '
+                + 'transition:background 0.15s,color 0.15s;" '
+                + 'onmouseover="this.style.background=\'#ed6b46\';this.style.color=\'white\';" '
+                + 'onmouseout="this.style.background=\'white\';this.style.color=\'#ed6b46\';">'
+                + escHtml(btn.label) + '</a>';
+            });
+            buttonsHtml += '</div>';
+          }
           wrap.style.cssText = 'display:flex; gap:0.6rem; align-items:flex-start;';
           wrap.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:#ed6b46;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">'
             + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="1" x2="12" y2="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="1" r="1.3" fill="white"/><rect x="3.5" y="4.5" width="17" height="13" rx="3" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="10.5" r="1.5" fill="white"/><circle cx="15" cy="10.5" r="1.5" fill="white"/><path d="M8.5 14 Q12 16 15.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div>'
             + '<div style="background:#F0EDE7; border-radius:4px 16px 16px 16px; padding:0.75rem 1rem; max-width:85%; border:1px solid rgba(30,31,27,0.06);">'
-            + '<p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:#1E1F1B; margin:0; white-space:pre-wrap;">' + escHtml(text) + '</p></div>';
+            + '<p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:#1E1F1B; margin:0; white-space:pre-wrap;">' + escHtml(text) + '</p>'
+            + buttonsHtml + '</div>';
         }
         container.appendChild(wrap);
         container.scrollTop = container.scrollHeight;
@@ -555,7 +571,7 @@
             errEl.style.display = 'block';
             messages.pop();
           } else {
-            mcAddMessage('assistant', res.data.reply);
+            mcAddMessage('assistant', res.data.reply, res.data.buttons || []);
           }
         })
         .catch(function(e){
