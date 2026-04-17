@@ -372,22 +372,22 @@
         >
 
           {{# Visuele merkdekking-balk: 10 segmenten #}}
-          <div style="margin-bottom:1.5rem; padding-bottom:1.5rem; border-bottom:1px solid rgba(30,31,27,0.07);">
-            <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.5rem;">
+          <div style="margin-bottom:1.5rem; padding-bottom:1.25rem; border-bottom:1px solid rgba(30,31,27,0.07);">
+            <div style="display:flex; align-items:center; gap:4px; margin-bottom:0.5rem;">
               <template x-for="item in items" :key="item.id">
-                <div style="flex:1; height:7px; border-radius:999px; transition:background 0.3s ease;"
+                <div style="flex:1; height:6px; border-radius:999px; transition:background 0.3s ease;"
                      :style="item.checked
                        ? 'background:#ed6b46;'
-                       : 'background:rgba(30,31,27,0.1);'"></div>
+                       : 'background:rgba(30,31,27,0.12);'"></div>
               </template>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span style="font-family:var(--font-body); font-size:11px; font-weight:700;
-                           letter-spacing:0.05em; text-transform:uppercase; color:#9B9890;">
-                Merkdekking
-              </span>
+                           letter-spacing:0.06em; text-transform:uppercase; color:#9b9890;"
+                    x-text="score + ' van 10 plekken ingevuld'"></span>
               <span style="font-family:var(--font-display); font-size:13px; font-weight:800;
-                           color:#ed6b46; letter-spacing:-0.02em;" x-text="score + ' / 10'"></span>
+                           color:#ed6b46; letter-spacing:-0.02em;"
+                    x-text="Math.round(score / 10 * 100) + '%'"></span>
             </div>
           </div>
 
@@ -400,13 +400,9 @@
             <template x-for="item in items" :key="item.id">
               <button
                 @click="item.checked = !item.checked"
-                style="display:inline-flex; align-items:center; gap:7px;
-                       padding:0.6rem 1rem; border-radius:12px; cursor:pointer;
-                       font-family:var(--font-display); font-size:13px; font-weight:700;
-                       letter-spacing:-0.01em; transition:all 0.18s ease;"
                 :style="item.checked
-                  ? 'background:#ed6b46; color:#fff; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22);'
-                  : 'background:#fff; color:#1E1F1B; border:1.5px solid rgba(30,31,27,0.1); box-shadow:0 1px 4px rgba(30,31,27,0.04);'"
+                  ? 'display:inline-flex; align-items:center; gap:7px; padding:0.6rem 1rem; border-radius:12px; cursor:pointer; font-family:var(--font-display); font-size:13px; font-weight:700; letter-spacing:-0.01em; transition:all 0.18s ease; background:#ed6b46; color:#fff; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22);'
+                  : 'display:inline-flex; align-items:center; gap:7px; padding:0.6rem 1rem; border-radius:12px; cursor:pointer; font-family:var(--font-display); font-size:13px; font-weight:700; letter-spacing:-0.01em; transition:all 0.18s ease; background:#fff; color:#1E1F1B; border:1.5px solid rgba(30,31,27,0.1); box-shadow:0 1px 4px rgba(30,31,27,0.04);'"
               >
                 <span x-text="item.emoji" style="font-size:0.95rem; line-height:1; flex-shrink:0;"></span>
                 <span x-text="item.label"></span>
@@ -437,12 +433,9 @@
           {{# CTA: knop die meebeweegt met score #}}
           <div style="padding-top:1.25rem; border-top:1px solid rgba(30,31,27,0.07);">
             <a href="/contact"
-               style="display:flex; align-items:center; justify-content:space-between;
-                      padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none;
-                      transition:all 0.2s ease;"
                :style="score > 0
-                 ? 'background:#ed6b46; color:#fff; box-shadow:0 4px 16px rgba(237,107,70,0.25);'
-                 : 'background:#1E1F1B; color:#F0EDE7;'">
+                 ? 'display:flex; align-items:center; justify-content:space-between; padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none; transition:all 0.2s ease; background:#ed6b46; color:#fff; box-shadow:0 4px 16px rgba(237,107,70,0.25);'
+                 : 'display:flex; align-items:center; justify-content:space-between; padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none; transition:all 0.2s ease; background:#1E1F1B; color:#F0EDE7;'">
               <span style="font-family:var(--font-display); font-size:14px; font-weight:700; letter-spacing:-0.01em;"
                     x-text="ctaLabel"></span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
