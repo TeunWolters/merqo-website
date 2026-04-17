@@ -39,92 +39,79 @@
             x-transition:leave="transition ease-in duration-150"
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 translate-y-2"
-            class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[540px] bg-white border border-black/10 rounded-2xl overflow-hidden shadow-2xl shadow-black/15"
+            class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[600px] bg-white border border-black/10 rounded-2xl overflow-hidden shadow-2xl shadow-black/15"
             x-cloak
             role="navigation"
             aria-label="Diensten menu"
           >
-            <div class="flex">
 
-              {{# Services lijst #}}
-              <div class="flex-1 p-4">
-                <template x-for="service in services" :key="service.slug">
-                  <a :href="'/' + service.slug"
-                     class="flex items-start justify-between gap-4 p-3 rounded-xl hover:bg-white/5 group/item transition-colors duration-150"
-                     @mouseenter="hoverService(service)"
-                     @click="closeMenu()">
-                    <div>
-                      <div class="text-[#1E1F1B] text-sm font-semibold leading-snug group-hover/item:text-[#ed6b46] transition-colors duration-150" x-text="service.name"></div>
-                      <div class="text-[#6B6860] text-xs mt-0.5" x-text="service.desc"></div>
-                    </div>
-                    <svg class="shrink-0 mt-0.5 text-[#6B6860] group-hover/item:text-[#ed6b46] group-hover/item:translate-x-0.5 group-hover/item:-translate-y-0.5 transition-all duration-150"
-                         width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M7 17L17 7M17 7H7M17 7v10"/>
-                    </svg>
-                  </a>
-                </template>
+            {{# ── Prioriteit: Merkfundament + MaaS ── #}}
+            <div style="padding:0.875rem 0.875rem 0;">
+              <div style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(30,31,27,0.35); margin-bottom:0.5rem; padding:0 0.25rem;">Aanbevolen traject</div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+
+                {{# Stap 1: Merkfundament #}}
+                <a href="/merkfundament" @click="closeMenu()"
+                   style="display:block; background:#1E1F1B; border-radius:14px; padding:1rem 1.125rem; text-decoration:none; position:relative; overflow:hidden; transition:opacity 0.15s;"
+                   onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+                  <div style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:rgba(237,107,70,0.75); margin-bottom:0.4rem;">Stap 1</div>
+                  <div style="font-family:var(--font-display); font-size:15px; font-weight:800; color:#F0EDE7; letter-spacing:-0.02em; margin-bottom:0.3rem;">Merkfundament</div>
+                  <div style="font-family:var(--font-body); font-size:11px; color:rgba(240,237,231,0.5); line-height:1.4;">Strategie, identiteit & huisstijlhandboek</div>
+                  <svg style="position:absolute; bottom:0.75rem; right:0.875rem; color:#ed6b46;" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+
+                {{# Stap 2: MaaS #}}
+                <a href="/merqo-as-a-service" @click="closeMenu()"
+                   style="display:block; background:#ed6b46; border-radius:14px; padding:1rem 1.125rem; text-decoration:none; position:relative; overflow:hidden; transition:opacity 0.15s;"
+                   onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+                  <div style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:0.4rem;">Stap 2 &nbsp;·&nbsp; €899/mnd</div>
+                  <div style="font-family:var(--font-display); font-size:15px; font-weight:800; color:#fff; letter-spacing:-0.02em; margin-bottom:0.3rem;">Merqo as a Service</div>
+                  <div style="font-family:var(--font-body); font-size:11px; color:rgba(255,255,255,0.65); line-height:1.4;">Vaste strateeg, alles inbegrepen</div>
+                  <svg style="position:absolute; bottom:0.75rem; right:0.875rem; color:rgba(255,255,255,0.7);" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+
               </div>
-
-              {{# Preview foto #}}
-              <div class="w-48 shrink-0 m-2 rounded-xl overflow-hidden relative" style="background:#1E1F1B; min-height:200px;">
-                <template x-for="service in services" :key="service.slug">
-                  <img
-                    :src="service.image"
-                    :alt="service.name"
-                    loading="lazy"
-                    class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
-                    :style="hoveredService && hoveredService.slug === service.slug ? 'opacity:1' : 'opacity:0'"
-                  >
-                </template>
-                <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,13,12,0.75) 0%, transparent 55%); pointer-events:none;"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-3.5">
-                  <div style="font-size:12px; font-weight:700; color:#F0EDE7; letter-spacing:-0.01em; line-height:1.2; font-family:var(--font-display);" x-text="hoveredService ? hoveredService.name : 'Onze diensten'"></div>
-                  <div style="font-size:9px; color:rgba(240,237,231,0.5); margin-top:3px; font-family:var(--font-body); letter-spacing:0.3px;" x-text="hoveredService ? hoveredService.desc : ''"></div>
-                </div>
-              </div>
-
             </div>
 
-            {{# Footer met CTA #}}
-            <div class="border-t border-black/8 px-4 py-3 flex items-center justify-between" style="border-color:rgba(30,31,27,0.08);">
-              <span class="text-[#6B6860] text-xs">Niet zeker welke dienst past?</span>
-              <a href="/contact" class="text-[#ed6b46] text-xs font-semibold hover:text-[#F0EDE7] transition-colors flex items-center gap-1" @click="closeMenu()">
+            {{# ── Scheiding ── #}}
+            <div style="display:flex; align-items:center; gap:0.75rem; padding:0.75rem 1.125rem 0.375rem;">
+              <div style="flex:1; height:1px; background:rgba(30,31,27,0.07);"></div>
+              <span style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:rgba(30,31,27,0.3); white-space:nowrap;">Ook los af te nemen</span>
+              <div style="flex:1; height:1px; background:rgba(30,31,27,0.07);"></div>
+            </div>
+
+            {{# ── Losse diensten ── #}}
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; padding:0 0.5rem 0.5rem;">
+              <template x-for="service in services" :key="service.slug">
+                <a :href="'/' + service.slug"
+                   class="group/item"
+                   style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem; padding:0.6rem 0.625rem; border-radius:10px; text-decoration:none; transition:background 0.12s;"
+                   @mouseenter="hoverService(service)"
+                   @click="closeMenu()"
+                   onmouseover="this.style.background='rgba(30,31,27,0.04)'" onmouseout="this.style.background='transparent'">
+                  <div>
+                    <div style="font-family:var(--font-body); font-size:12.5px; font-weight:600; color:#1E1F1B; line-height:1.2;" x-text="service.name"></div>
+                    <div style="font-family:var(--font-body); font-size:10.5px; color:#9B9890; margin-top:1px;" x-text="service.desc"></div>
+                  </div>
+                  <svg style="flex-shrink:0; color:#C8C5BF;" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                  </svg>
+                </a>
+              </template>
+            </div>
+
+            {{# ── Footer ── #}}
+            <div style="border-top:1px solid rgba(30,31,27,0.07); padding:0.6rem 1rem; display:flex; align-items:center; justify-content:space-between;">
+              <span style="font-family:var(--font-body); font-size:11px; color:#9B9890;">Niet zeker welke dienst past?</span>
+              <a href="/contact" style="font-family:var(--font-body); font-size:11px; font-weight:700; color:#ed6b46; text-decoration:none; display:flex; align-items:center; gap:0.3rem;" @click="closeMenu()">
                 Plan een gesprek
-                <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                <svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
             </div>
 
-            {{# Merkfundament + MaaS traject balk #}}
-            <div style="background:#1E1F1B; padding:0.75rem 1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
-              <div style="display:flex; align-items:center; gap:0.6rem;">
-                <span style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(240,237,231,0.35);">Aanbevolen traject</span>
-                <span style="color:rgba(240,237,231,0.2);">·</span>
-                <a href="/merkfundament" class="flex items-center gap-1 text-xs font-semibold transition-colors" style="color:rgba(240,237,231,0.65);" onmouseover="this.style.color='#F0EDE7'" onmouseout="this.style.color='rgba(240,237,231,0.65)'" @click="closeMenu()">
-                  Merkfundament
-                </a>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
-                <a href="/merqo-as-a-service" class="flex items-center gap-1 text-xs font-semibold transition-colors" style="color:#ed6b46;" @click="closeMenu()">
-                  MaaS
-                </a>
-              </div>
-              <a href="/merqo-as-a-service" class="text-xs font-semibold flex items-center gap-1 transition-opacity" style="color:#ed6b46; opacity:0.8;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'" @click="closeMenu()">
-                Bekijk het traject
-                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-              </a>
-            </div>
           </div>
         </div>
 
-        <a href="/merqo-as-a-service"
-           class="nav-link px-4 py-2 rounded-full flex items-center gap-1.5 transition-colors duration-200"
-           :style="(scrolled || !onDark) ? 'color:#ed6b46;' : 'color:#fff;'">
-          MaaS
-          <span :style="(scrolled || !onDark)
-            ? 'background:#ed6b46; color:#fff;'
-            : 'background:rgba(255,255,255,0.22); color:#fff;'"
-                style="font-size:9px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
-                       border-radius:999px; padding:3px 8px; font-family:var(--font-body); line-height:1.4;">abonnement</span>
-        </a>
         <a href="/projecten"  class="nav-link px-4 py-2 rounded-full" :style="(scrolled || !onDark) ? 'color:rgba(30,31,27,0.7)' : ''">Projecten</a>
         <a href="/blog"       class="nav-link px-4 py-2 rounded-full" :style="(scrolled || !onDark) ? 'color:rgba(30,31,27,0.7)' : ''">Kennisbank</a>
         <a href="/over-ons"   class="nav-link px-4 py-2 rounded-full" :style="(scrolled || !onDark) ? 'color:rgba(30,31,27,0.7)' : ''">Over ons</a>
@@ -212,12 +199,6 @@
           </div>
         </div>
 
-        <a href="/merqo-as-a-service" class="text-[#ed6b46] font-display text-2xl font-bold py-3 border-b transition-colors flex items-center gap-3" style="border-color:rgba(30,31,27,0.1);" @click="close()">
-          MaaS
-          <span style="font-size:9px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
-                       background:#ed6b46; color:#fff;
-                       border-radius:999px; padding:3px 8px; line-height:1.4; font-family:var(--font-body);">abonnement</span>
-        </a>
         <a href="/projecten"  class="text-[#1E1F1B] font-display text-2xl font-bold py-3 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Projecten</a>
         <a href="/blog"       class="text-[#1E1F1B] font-display text-2xl font-bold py-3 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Kennisbank</a>
         <a href="/over-ons"   class="text-[#1E1F1B] font-display text-2xl font-bold py-3 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Over ons</a>
