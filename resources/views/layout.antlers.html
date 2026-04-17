@@ -761,5 +761,128 @@
 (function() {
 })();
 </script>
+
+{{# ══════════════════════════════════════
+    EXIT-INTENT POPUP
+    ══════════════════════════════════════ #}}
+<div id="exit-popup" style="display:none; position:fixed; inset:0; z-index:99000; align-items:center; justify-content:center; padding:1.5rem;">
+  <div id="exit-backdrop" onclick="exitPopupClose()" style="position:absolute; inset:0; background:rgba(30,31,27,0.55); backdrop-filter:blur(4px);"></div>
+  <div style="position:relative; z-index:1; background:#FDFCFA; border-radius:24px; padding:2.5rem; max-width:460px; width:100%; box-shadow:0 24px 80px rgba(30,31,27,0.22); animation:merqo-popup-in 0.35s cubic-bezier(0.16,1,0.3,1);">
+    <button onclick="exitPopupClose()" style="position:absolute; top:1.25rem; right:1.25rem; background:rgba(30,31,27,0.07); border:none; cursor:pointer; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1E1F1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div style="width:48px; height:48px; border-radius:50%; background:#ed6b46; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="1" x2="12" y2="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="1" r="1.3" fill="white"/><rect x="3.5" y="4.5" width="17" height="13" rx="3" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="10.5" r="1.5" fill="white"/><circle cx="15" cy="10.5" r="1.5" fill="white"/><path d="M8.5 14 Q12 16 15.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+    </div>
+    <div style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#ed6b46; margin-bottom:0.5rem;">Wacht even</div>
+    <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(22px,3vw,30px); letter-spacing:-0.04em; line-height:1.1; color:#1E1F1B; margin:0 0 0.75rem;">Weet jij waar je merk kansen laat liggen?</h2>
+    <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:rgba(30,31,27,0.6); margin:0 0 1.5rem;">Doe de gratis merkenscan. In 15 minuten weet je precies waar je staat - geen verplichtingen, geen verkooppraatje.</p>
+    <div style="display:flex; flex-direction:column; gap:0.6rem;">
+      <a href="/scan" onclick="exitPopupClose()" style="display:flex; align-items:center; justify-content:center; gap:0.5rem; background:#ed6b46; color:white; font-family:var(--font-body); font-size:14px; font-weight:700; padding:0.875rem 1.5rem; border-radius:12px; text-decoration:none; transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        Doe de gratis scan
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <button onclick="exitPopupClose()" style="background:transparent; border:none; cursor:pointer; font-family:var(--font-body); font-size:13px; color:rgba(30,31,27,0.38); padding:0.5rem; transition:color 0.15s;" onmouseover="this.style.color='rgba(30,31,27,0.6)'" onmouseout="this.style.color='rgba(30,31,27,0.38)'">Nee, ik ga verder kijken</button>
+    </div>
+  </div>
+</div>
+
+{{# ══════════════════════════════════════
+    SCROLL-TRIGGERED STICKY BALK
+    ══════════════════════════════════════ #}}
+<div id="sticky-cta" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:8800; transform:translateY(100%); transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);">
+  <div style="background:#1E1F1B; padding:0.875rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; max-width:900px; margin:0 auto; border-radius:16px 16px 0 0; box-shadow:0 -4px 24px rgba(30,31,27,0.18);">
+    <div style="display:flex; align-items:center; gap:1rem; flex:1; min-width:0;">
+      <div style="width:8px; height:8px; border-radius:50%; background:#4ade80; flex-shrink:0; animation:merqo-pulse 2s infinite;"></div>
+      <span id="sticky-cta-text" style="font-family:var(--font-body); font-size:13px; font-weight:600; color:rgba(240,237,231,0.8); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Interesse? Plan een vrijblijvend gesprek.</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:0.75rem; flex-shrink:0;">
+      <a id="sticky-cta-btn" href="/contact" style="display:inline-flex; align-items:center; gap:0.4rem; background:#ed6b46; color:white; font-family:var(--font-body); font-size:12px; font-weight:700; padding:0.5rem 1.1rem; border-radius:999px; text-decoration:none; white-space:nowrap; transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        Plan een gesprek
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <button onclick="stickyCTAClose()" style="background:rgba(240,237,231,0.08); border:none; cursor:pointer; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(240,237,231,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes merqo-popup-in {
+    from { opacity:0; transform:scale(0.92) translateY(12px); }
+    to   { opacity:1; transform:scale(1) translateY(0); }
+  }
+</style>
+
+<script>
+(function() {
+  // ── Exit-intent popup ──
+  var popupShown = sessionStorage.getItem('merqo_exit_popup');
+  function exitPopupShow() {
+    if (popupShown) return;
+    popupShown = true;
+    sessionStorage.setItem('merqo_exit_popup', '1');
+    var el = document.getElementById('exit-popup');
+    el.style.display = 'flex';
+  }
+  window.exitPopupClose = function() {
+    document.getElementById('exit-popup').style.display = 'none';
+  };
+  // Desktop: muis verlaat viewport bovenaan
+  document.addEventListener('mouseleave', function(e) {
+    if (e.clientY <= 5) exitPopupShow();
+  });
+  // Mobiel: na 45 seconden als nog geen andere actie
+  if (/Mobi|Android/i.test(navigator.userAgent)) {
+    setTimeout(function() { exitPopupShow(); }, 45000);
+  }
+
+  // ── Scroll-triggered sticky balk ──
+  var stickyCTADismissed = sessionStorage.getItem('merqo_sticky_dismissed');
+  var stickyVisible = false;
+
+  // Pas tekst + knop aan op basis van pagina
+  var path = window.location.pathname;
+  var stickyText = 'Interesse? Plan een vrijblijvend gesprek.';
+  var stickyHref = '/contact';
+  var stickyBtn  = 'Plan een gesprek';
+  if (path.includes('/branding'))             { stickyText = 'Klaar om je merk te versterken?'; stickyHref = '/contact'; }
+  else if (path.includes('/websites'))        { stickyText = 'Klaar voor een website die converteert?'; stickyHref = '/contact'; }
+  else if (path.includes('/marketing'))       { stickyText = 'Meer klanten via online marketing?'; stickyHref = '/contact'; }
+  else if (path.includes('/strategie'))       { stickyText = 'Scherpe positionering voor jouw bedrijf?'; stickyHref = '/contact'; }
+  else if (path.includes('/merqo-as-a-service')) { stickyText = 'Alles uitbesteed voor 899/mnd - bekijk MaaS'; stickyHref = '/merqo-as-a-service'; stickyBtn = 'Meer over MaaS'; }
+  else if (path.includes('/blog'))            { stickyText = 'Doe de gratis merkenscan - 15 minuten'; stickyHref = '/scan'; stickyBtn = 'Doe de scan'; }
+
+  if (!stickyCTADismissed) {
+    var textEl = document.getElementById('sticky-cta-text');
+    var btnEl  = document.getElementById('sticky-cta-btn');
+    if (textEl) textEl.textContent = stickyText;
+    if (btnEl)  { btnEl.textContent = stickyBtn; btnEl.href = stickyHref; }
+
+    window.addEventListener('scroll', function() {
+      var scrollPct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      var bar = document.getElementById('sticky-cta');
+      if (!bar) return;
+      if (scrollPct > 55 && !stickyVisible) {
+        stickyVisible = true;
+        bar.style.display = 'block';
+        setTimeout(function() { bar.style.transform = 'translateY(0)'; }, 10);
+      } else if (scrollPct < 20 && stickyVisible) {
+        stickyVisible = false;
+        bar.style.transform = 'translateY(100%)';
+        setTimeout(function() { bar.style.display = 'none'; }, 400);
+      }
+    }, { passive: true });
+  }
+
+  window.stickyCTAClose = function() {
+    sessionStorage.setItem('merqo_sticky_dismissed', '1');
+    var bar = document.getElementById('sticky-cta');
+    bar.style.transform = 'translateY(100%)';
+    setTimeout(function() { bar.style.display = 'none'; }, 400);
+  };
+})();
+</script>
   </body>
 </html>
