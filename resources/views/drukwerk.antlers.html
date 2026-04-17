@@ -337,105 +337,123 @@
       <div data-reveal>
         <div
           x-data="{
-            items: [
-              { id:1,  emoji:'🪪', label:'Visitekaartje',       checked:false },
-              { id:2,  emoji:'📄', label:'Offertetemplate',     checked:false },
-              { id:3,  emoji:'📋', label:'Brochure',            checked:false },
-              { id:4,  emoji:'🪟', label:'Gevelreclame',        checked:false },
-              { id:5,  emoji:'🚗', label:'Wagensigning',        checked:false },
-              { id:6,  emoji:'👕', label:'Werkkleding',         checked:false },
-              { id:7,  emoji:'📦', label:'Verpakking',          checked:false },
-              { id:8,  emoji:'🖊️', label:'Merchandise',         checked:false },
-              { id:9,  emoji:'🎁', label:'Relatiegeschenken',   checked:false },
-              { id:10, emoji:'📝', label:'Briefpapier',         checked:false }
+            current: 0,
+            answers: [],
+            selected: null,
+            done: false,
+            questions: [
+              { emoji: '🪪', label: 'Visitekaartje',     q: 'Heb je een visitekaartje in jouw huisstijl?' },
+              { emoji: '📄', label: 'Offertetemplate',   q: 'Verstuur je offertes met jouw huisstijl?' },
+              { emoji: '📋', label: 'Brochure',          q: 'Heb je een brochure of folder in jouw huisstijl?' },
+              { emoji: '🪟', label: 'Gevelreclame',      q: 'Is jouw pand herkenbaar met gevelreclame?' },
+              { emoji: '🚗', label: 'Wagensigning',      q: 'Rijdt jouw auto of bestelbus met jouw merkidentiteit?' },
+              { emoji: '👕', label: 'Werkkleding',       q: 'Draagt jouw team werkkleding met huisstijl?' },
+              { emoji: '📦', label: 'Verpakking',        q: 'Is jouw verpakking in lijn met je merk?' },
+              { emoji: '🖊️', label: 'Merchandise',       q: 'Heb je branded merchandise zoals pennen of tassen?' },
+              { emoji: '🎁', label: 'Relatiegeschenken', q: 'Geef je relatiegeschenken met jouw merkidentiteit?' },
+              { emoji: '📝', label: 'Briefpapier',       q: 'Gebruik je briefpapier of e-mailhandtekening met huisstijl?' }
             ],
-            get score() { return this.items.filter(i => i.checked).length; },
-            get missing() { return this.items.filter(i => !i.checked).length; },
+            answer(val) {
+              this.answers.push(val);
+              this.selected = null;
+              if (this.current < 9) { this.current++; } else { this.done = true; }
+            },
+            get score() { return this.answers.filter(a => a === true).length; },
+            get missing() { return 10 - this.score; },
             get insight() {
-              const s = this.score;
-              const m = 10 - s;
-              if (s === 0) return null;
-              if (s >= 8)  return 'Goede basis. Maar zijn al die uitingen ook écht consistent? Eén afwijkende kleur of oud logo kan alles ondermijnen. Laat ons een frisse blik werpen.';
-              if (s >= 5)  return 'Je concurrent is op ' + m + ' momenten zichtbaar waar jij dat niet bent. Dat zijn ' + m + ' kansen die hij wel pakt - en jij laat liggen.';
-              if (s >= 3)  return 'Op ' + m + ' van de 10 contactmomenten vormt een klant zijn oordeel zónder jouw invloed. Juist bij offertes en signing: dicht bij de beslissing.';
+              const s = this.score, m = 10 - s;
+              if (s >= 8) return 'Goede basis. Maar zijn al die uitingen ook echt consistent? Een afwijkende kleur of oud logo kan alles ondermijnen. Laat ons een frisse blik werpen.';
+              if (s >= 5) return 'Je concurrent is op ' + m + ' momenten zichtbaar waar jij dat niet bent. Dat zijn ' + m + ' kansen die hij wel pakt - en jij laat liggen.';
+              if (s >= 3) return 'Op ' + m + ' van de 10 contactmomenten vormt een klant zijn oordeel zonder jouw invloed. Juist bij offertes en signing: dicht bij de beslissing.';
               return 'Op ' + m + ' plekken is jouw merk volledig afwezig. Een klant die jou ontmoet via ' + (s === 1 ? 'slechts één kanaal' : s + ' kanalen') + ' heeft simpelweg te weinig om jou te onthouden.';
             },
             get ctaLabel() {
-              const m = 10 - this.score;
-              if (this.score === 0)   return 'Zet mijn merk op alle plekken';
-              if (this.score >= 8)    return 'Controleer de consistentie';
-              return 'Vul die ' + m + ' ontbrekende plekken in';
+              if (this.score >= 8) return 'Controleer de consistentie';
+              return 'Vul die ' + this.missing + ' ontbrekende plekken in';
             }
           }"
           style="background:#fff; border-radius:20px; padding:2rem 2.25rem;
                  box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);"
         >
 
-          {{# Visuele merkdekking-balk: 10 segmenten #}}
-          <div style="margin-bottom:1.5rem; padding-bottom:1.25rem; border-bottom:1px solid rgba(30,31,27,0.07);">
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:0.5rem;">
-              <template x-for="item in items" :key="item.id">
+          {{# Progress bar: 10 segmenten #}}
+          <div style="margin-bottom:1.75rem; padding-bottom:1.25rem; border-bottom:1px solid rgba(30,31,27,0.07);">
+            <div style="display:flex; align-items:center; gap:3px; margin-bottom:0.5rem;">
+              <template x-for="(q, i) in questions" :key="i">
                 <div style="flex:1; height:6px; border-radius:999px; transition:background 0.3s ease;"
-                     :style="item.checked
-                       ? 'background:#ed6b46;'
-                       : 'background:rgba(30,31,27,0.12);'"></div>
+                     :style="i < answers.length ? 'background:#ed6b46;' : (i === current && !done ? 'background:rgba(237,107,70,0.25);' : 'background:rgba(30,31,27,0.1);')"></div>
               </template>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-family:var(--font-body); font-size:11px; font-weight:700;
-                           letter-spacing:0.06em; text-transform:uppercase; color:#9b9890;"
-                    x-text="score + ' van 10 plekken ingevuld'"></span>
-              <span style="font-family:var(--font-display); font-size:13px; font-weight:800;
-                           color:#ed6b46; letter-spacing:-0.02em;"
-                    x-text="Math.round(score / 10 * 100) + '%'"></span>
+              <span style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9b9890;"
+                    x-text="done ? '10 van 10 vragen' : (current + 1) + ' van 10 vragen'"></span>
+              <span style="font-family:var(--font-display); font-size:13px; font-weight:800; color:#ed6b46; letter-spacing:-0.02em;"
+                    x-text="done ? 'Compleet' : ((current + 1) + '/10')"></span>
             </div>
           </div>
 
-          {{# Vraag + items #}}
-          <p style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.1em;
-                    text-transform:uppercase; color:rgba(30,31,27,0.35); margin:0 0 1rem;">
-            Wat heb je al?
-          </p>
-          <div style="display:flex; flex-wrap:wrap; gap:7px; margin-bottom:1.75rem;">
-            <template x-for="item in items" :key="item.id">
-              <button
-                @click="item.checked = !item.checked"
-                :style="item.checked
-                  ? 'display:inline-flex; align-items:center; gap:7px; padding:0.6rem 1rem; border-radius:12px; cursor:pointer; font-family:var(--font-display); font-size:13px; font-weight:700; letter-spacing:-0.01em; transition:all 0.18s ease; background:#ed6b46; color:#fff; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22);'
-                  : 'display:inline-flex; align-items:center; gap:7px; padding:0.6rem 1rem; border-radius:12px; cursor:pointer; font-family:var(--font-display); font-size:13px; font-weight:700; letter-spacing:-0.01em; transition:all 0.18s ease; background:#fff; color:#1E1F1B; border:1.5px solid rgba(30,31,27,0.1); box-shadow:0 1px 4px rgba(30,31,27,0.04);'"
-              >
-                <span x-text="item.emoji" style="font-size:0.95rem; line-height:1; flex-shrink:0;"></span>
-                <span x-text="item.label"></span>
-              </button>
+          {{# Vragen één voor één #}}
+          <div x-show="!done">
+            <template x-for="(q, i) in questions" :key="i">
+              <div x-show="current === i"
+                   x-transition:enter="transition ease-out duration-200"
+                   x-transition:enter-start="opacity-0 translate-x-3"
+                   x-transition:enter-end="opacity-100 translate-x-0">
+                <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem;">
+                  <span x-text="q.emoji" style="font-size:1.5rem; line-height:1;"></span>
+                  <span style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(30,31,27,0.35);"
+                        x-text="q.label"></span>
+                </div>
+                <p style="font-family:var(--font-body); font-size:16px; font-weight:600; color:#1E1F1B; margin-bottom:1.5rem; line-height:1.4;"
+                   x-text="q.q"></p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+                  <button type="button" @click="answer(true)"
+                    style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.6rem; padding:1.25rem 1rem; border-radius:16px; border:1.5px solid rgba(30,31,27,0.1); background:#F9F7F5; cursor:pointer; transition:all 0.18s ease;"
+                    onmouseover="this.style.borderColor='#ed6b46'; this.style.background='#fffaf8';"
+                    onmouseout="this.style.borderColor='rgba(30,31,27,0.1)'; this.style.background='#F9F7F5';">
+                    <div style="width:36px; height:36px; border-radius:50%; background:rgba(34,197,94,0.1); display:flex; align-items:center; justify-content:center;">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span style="font-family:var(--font-display); font-size:14px; font-weight:700; color:#1E1F1B;">Ja</span>
+                  </button>
+                  <button type="button" @click="answer(false)"
+                    style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.6rem; padding:1.25rem 1rem; border-radius:16px; border:1.5px solid rgba(30,31,27,0.1); background:#F9F7F5; cursor:pointer; transition:all 0.18s ease;"
+                    onmouseover="this.style.borderColor='#ed6b46'; this.style.background='#fffaf8';"
+                    onmouseout="this.style.borderColor='rgba(30,31,27,0.1)'; this.style.background='#F9F7F5';">
+                    <div style="width:36px; height:36px; border-radius:50%; background:rgba(237,107,70,0.1); display:flex; align-items:center; justify-content:center;">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </div>
+                    <span style="font-family:var(--font-display); font-size:14px; font-weight:700; color:#1E1F1B;">Nee</span>
+                  </button>
+                </div>
+              </div>
             </template>
           </div>
 
-          {{# Insight (verlies-aversie) #}}
-          <div x-show="score > 0"
+          {{# Resultaat #}}
+          <div x-show="done"
                x-transition:enter="transition ease-out duration-300"
                x-transition:enter-start="opacity-0 translate-y-2"
                x-transition:enter-end="opacity-100 translate-y-0"
-               style="border-top:1px solid rgba(30,31,27,0.07); padding-top:1.25rem; margin-bottom:1.5rem;">
+               style="display:none;">
 
-            {{# Ontbrekend teller - prominenter #}}
-            <div x-show="missing > 0" style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.875rem;">
+            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem;">
               <div style="width:36px; height:36px; border-radius:50%; background:rgba(237,107,70,0.1); flex-shrink:0;
                           display:flex; align-items:center; justify-content:center;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
               </div>
-              <p style="font-family:var(--font-display); font-size:13px; font-weight:700; color:#ed6b46; margin:0;" x-text="missing + ' contactmoment' + (missing === 1 ? '' : 'en') + ' zonder jouw merk'"></p>
+              <p style="font-family:var(--font-display); font-size:13px; font-weight:700; color:#ed6b46; margin:0;"
+                 x-text="missing > 0 ? missing + ' contactmoment' + (missing === 1 ? '' : 'en') + ' zonder jouw merk' : 'Jouw merk is op alle plekken aanwezig'"></p>
             </div>
 
-            <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#4a4740; margin:0;"
-               x-text="insight"></p>
-          </div>
+            <div style="background:#FFF8F6; border-radius:14px; padding:1.25rem 1.5rem; margin-bottom:1.25rem; border:1px solid rgba(237,107,70,0.12);">
+              <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#4a4740; margin:0;"
+                 x-text="insight"></p>
+            </div>
 
-          {{# CTA: knop die meebeweegt met score #}}
-          <div style="padding-top:1.25rem; border-top:1px solid rgba(30,31,27,0.07);">
             <a href="/contact"
-               :style="score > 0
-                 ? 'display:flex; align-items:center; justify-content:space-between; padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none; transition:all 0.2s ease; background:#ed6b46; color:#fff; box-shadow:0 4px 16px rgba(237,107,70,0.25);'
-                 : 'display:flex; align-items:center; justify-content:space-between; padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none; transition:all 0.2s ease; background:#1E1F1B; color:#F0EDE7;'">
+               style="display:flex; align-items:center; justify-content:space-between; padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none; transition:all 0.2s ease; background:#ed6b46; color:#fff; box-shadow:0 4px 16px rgba(237,107,70,0.25);"
+               onmouseover="this.style.background='#d95e3c'" onmouseout="this.style.background='#ed6b46'">
               <span style="font-family:var(--font-display); font-size:14px; font-weight:700; letter-spacing:-0.01em;"
                     x-text="ctaLabel"></span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
