@@ -424,8 +424,27 @@
           return 'Jouw merk werkt. De ruimte zit nu in het verder uitbouwen van autoriteit en merkvoorkeur om de beste leads aan te trekken.';
         }
       }"
-      style="background:#fff; border-radius:18px; padding:1.75rem 2rem; box-shadow:0 2px 24px rgba(30,31,27,0.06);"
+      style="background:#fff; border-radius:20px; padding:2rem 2.25rem;
+             box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);"
     >
+
+      {{# Stap-progress #}}
+      <div style="margin-bottom:1.5rem; padding-bottom:1.25rem; border-bottom:1px solid rgba(30,31,27,0.07);">
+        <div style="display:flex; align-items:center; gap:5px; margin-bottom:0.5rem;">
+          <div style="flex:1; height:6px; border-radius:999px; transition:background 0.35s ease;"
+               :style="stap1 !== null ? 'background:#ed6b46;' : 'background:rgba(30,31,27,0.1);'"></div>
+          <div style="flex:1; height:6px; border-radius:999px; transition:background 0.35s ease;"
+               :style="stap2 !== null ? 'background:#ed6b46;' : 'background:rgba(30,31,27,0.1);'"></div>
+          <div style="flex:1; height:6px; border-radius:999px; transition:background 0.35s ease;"
+               :style="stap3 !== null ? 'background:#ed6b46;' : 'background:rgba(30,31,27,0.1);'"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9b9890;"
+                x-text="(stap1 !== null ? 1 : 0) + (stap2 !== null ? 1 : 0) + (stap3 !== null ? 1 : 0) + ' van 3 stappen'"></span>
+          <span style="font-family:var(--font-display); font-size:13px; font-weight:800; color:#ed6b46; letter-spacing:-0.02em;"
+                x-text="klaar ? 'Compleet' : (((stap1 !== null ? 1 : 0) + (stap2 !== null ? 1 : 0) + (stap3 !== null ? 1 : 0)) + '/3')"></span>
+        </div>
+      </div>
 
       {{# Stap 1: Jaarlijkse omzet #}}
       <div style="margin-bottom:1.25rem;">

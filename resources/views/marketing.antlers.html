@@ -442,7 +442,8 @@
         {{# Tool card - input view #}}
         <div
           x-show="!showResult"
-          style="background:#fff; border-radius:18px; padding:1.75rem 2rem; box-shadow:0 2px 24px rgba(30,31,27,0.06);"
+          style="background:#fff; border-radius:20px; padding:2rem 2.25rem;
+                 box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);"
         >
           <div style="display:flex; flex-direction:column; gap:0; margin-bottom:1.5rem;">
             <template x-for="channel in channels" :key="channel.id">
@@ -491,7 +492,7 @@
             type="button"
             @click="showResult = true"
             :disabled="!canShowResult"
-            :style="'width:100%; font-family:var(--font-body); font-size:14px; font-weight:700; border-radius:999px; padding:0.7rem 1.5rem; border:none; transition:all 0.2s; ' + (canShowResult ? 'background:#ed6b46; color:#fff; cursor:pointer;' : 'background:#E5E0D9; color:#B0A99E; cursor:not-allowed;')"
+            :style="'width:100%; font-family:var(--font-display); font-size:14px; font-weight:700; border-radius:14px; padding:0.9rem 1.25rem; border:none; transition:all 0.2s; display:flex; align-items:center; justify-content:center; gap:0.5rem; ' + (canShowResult ? 'background:#ed6b46; color:#fff; cursor:pointer; box-shadow:0 4px 16px rgba(237,107,70,0.25);' : 'background:#E5E0D9; color:#B0A99E; cursor:not-allowed;')"
           >
             Bekijk mijn analyse
           </button>
@@ -506,7 +507,8 @@
         {{# Results card #}}
         <div x-show="showResult" x-transition:enter="transition-opacity duration-300" style="display:none;">
 
-          <div style="background:#fff; border-radius:18px; padding:1.75rem 2rem; box-shadow:0 2px 24px rgba(30,31,27,0.06);">
+          <div style="background:#fff; border-radius:20px; padding:2rem 2.25rem;
+                    box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);">
 
             {{# Overall conclusion #}}
             <div style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ed6b46; margin-bottom:0.5rem;">Conclusie</div>
