@@ -304,16 +304,10 @@
             </div>
           </div>
           <div style="display:flex; align-items:center; gap:0.4rem;">
-          <button onclick="mcToggleSize()" aria-label="Vergroot chat"
-                  style="background:rgba(240,237,231,0.08); border:none; cursor:pointer; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center;"
-                  onmouseover="this.style.background='rgba(240,237,231,0.15)'"
-                  onmouseout="this.style.background='rgba(240,237,231,0.08)'">
+          <button onclick="mcToggleSize()" aria-label="Vergroot chat" class="mc-header-btn">
             <svg id="mc-expand-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(240,237,231,0.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
           </button>
-          <button onclick="mcClose()" aria-label="Sluit chat"
-                  style="background:rgba(240,237,231,0.08); border:none; cursor:pointer; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center;"
-                  onmouseover="this.style.background='rgba(240,237,231,0.15)'"
-                  onmouseout="this.style.background='rgba(240,237,231,0.08)'">
+          <button onclick="mcClose()" aria-label="Sluit chat" class="mc-header-btn">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(240,237,231,0.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
           </button>
           </div>
@@ -326,7 +320,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="1" x2="12" y2="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="1" r="1.3" fill="white"/><rect x="3.5" y="4.5" width="17" height="13" rx="3" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="10.5" r="1.5" fill="white"/><circle cx="15" cy="10.5" r="1.5" fill="white"/><path d="M8.5 14 Q12 16 15.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
             </div>
             <div style="background:#F0EDE7; border-radius:4px 16px 16px 16px; padding:0.75rem 1rem; max-width:85%; border:1px solid rgba(30,31,27,0.06);">
-              <p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:#1E1F1B; margin:0;">Goeiedag! Waarmee kan ik je helpen?</p>
+              <p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:#1E1F1B; margin:0;">Hé! Ik ben Merqolino. Waarmee kan ik je helpen?</p>
             </div>
           </div>
 
@@ -378,30 +372,34 @@
         </div>
       </div>
 
-      {{# Chat knop — altijd zichtbaar #}}
-      <button id="mc-btn" onclick="mcToggle()" aria-label="Open Merqo assistent"
-              style="width:54px; height:54px; border-radius:50%; border:none; cursor:pointer;
-                     background:#ed6b46; box-shadow:0 4px 24px rgba(237,107,70,0.42);
-                     display:flex; align-items:center; justify-content:center;
-                     transition:transform 0.2s ease, box-shadow 0.2s ease;"
-              onmouseenter="this.style.transform='scale(1.08)'; this.style.boxShadow='0 6px 30px rgba(237,107,70,0.55)'"
-              onmouseleave="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 24px rgba(237,107,70,0.42)'">
-        <svg id="mc-icon-chat" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="12" y1="1" x2="12" y2="4.5" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
-          <circle cx="12" cy="1" r="1.2" fill="white"/>
-          <rect x="3.5" y="4.5" width="17" height="13" rx="3" stroke="white" stroke-width="1.75" fill="rgba(255,255,255,0.15)"/>
-          <circle cx="9" cy="10.5" r="1.5" fill="white"/>
-          <circle cx="15" cy="10.5" r="1.5" fill="white"/>
-          <path d="M8.5 14 Q12 16 15.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-        </svg>
-        <svg id="mc-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-          <path d="M18 6L6 18M6 6l12 12"/>
-        </svg>
-      </button>
+      {{# Chat knop met notificatiebadge #}}
+      <div style="position:relative; display:inline-flex;">
+        <span id="mc-badge" style="display:none; position:absolute; top:1px; right:1px; width:14px; height:14px; border-radius:50%; background:#4ade80; border:2.5px solid white; z-index:1; animation:merqo-pulse 2s infinite;"></span>
+        <button id="mc-btn" onclick="mcToggle()" aria-label="Open Merqo assistent"
+                style="width:54px; height:54px; border-radius:50%; border:none; cursor:pointer;
+                       background:#ed6b46; box-shadow:0 4px 24px rgba(237,107,70,0.42);
+                       display:flex; align-items:center; justify-content:center;
+                       transition:transform 0.2s ease, box-shadow 0.2s ease;"
+                onmouseenter="this.style.transform='scale(1.08)'; this.style.boxShadow='0 6px 30px rgba(237,107,70,0.55)'"
+                onmouseleave="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 24px rgba(237,107,70,0.42)'">
+          <svg id="mc-icon-chat" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="12" y1="1" x2="12" y2="4.5" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+            <circle cx="12" cy="1" r="1.2" fill="white"/>
+            <rect x="3.5" y="4.5" width="17" height="13" rx="3" stroke="white" stroke-width="1.75" fill="rgba(255,255,255,0.15)"/>
+            <circle cx="9" cy="10.5" r="1.5" fill="white"/>
+            <circle cx="15" cy="10.5" r="1.5" fill="white"/>
+            <path d="M8.5 14 Q12 16 15.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+          <svg id="mc-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <style>
       @keyframes merqo-dot { 0%,80%,100%{transform:scale(0.7);opacity:0.4} 40%{transform:scale(1);opacity:1} }
+      @keyframes merqo-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,0.5)} 50%{box-shadow:0 0 0 5px rgba(74,222,128,0)} }
       #mc-messages::-webkit-scrollbar { width: 4px; }
       #mc-messages::-webkit-scrollbar-thumb { background: rgba(30,31,27,0.15); border-radius: 99px; }
       .mc-chip {
@@ -411,18 +409,29 @@
         padding: 0.4rem 0.85rem; cursor: pointer; transition: all 0.15s; white-space: nowrap;
       }
       .mc-chip:hover { background: rgba(237,107,70,0.15); border-color: #ed6b46; }
-      @media (max-width: 640px) { #mc-wrap { right:1rem; bottom:1rem; } #mc-window { width:calc(100vw - 2rem); } }
+      .mc-header-btn {
+        background: rgba(240,237,231,0.08); border: none; cursor: pointer;
+        width: 30px; height: 30px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.15s;
+      }
+      .mc-header-btn:hover { background: rgba(240,237,231,0.15); }
+      /* Mobiel: bijna volledig scherm */
+      @media (max-width: 480px) {
+        #mc-wrap { right: 0.75rem; bottom: 0.75rem; left: 0.75rem; align-items: flex-end; }
+        #mc-window { width: 100% !important; height: calc(100svh - 5rem) !important; border-radius: 16px; }
+      }
     </style>
 
     <script>
     (function() {
-      var messages = [];
-      var loading  = false;
-      var open     = false;
+      var messages       = [];
+      var loading        = false;
+      var open           = false;
+      var assistantCount = 0;
+      var leadCaptured   = false;
 
-      function mcToggle() {
-        open ? mcClose() : mcOpen();
-      }
+      function mcToggle() { open ? mcClose() : mcOpen(); }
       window.mcToggle = mcToggle;
 
       function mcOpen() {
@@ -431,16 +440,28 @@
         w.style.display = 'flex';
         document.getElementById('mc-icon-chat').style.display  = 'none';
         document.getElementById('mc-icon-close').style.display = 'block';
+        document.getElementById('mc-badge').style.display      = 'none';
         setTimeout(function(){ document.getElementById('mc-input').focus(); }, 50);
       }
 
       function mcClose() {
         open = false;
-        document.getElementById('mc-window').style.display    = 'none';
+        document.getElementById('mc-window').style.display     = 'none';
         document.getElementById('mc-icon-chat').style.display  = 'block';
         document.getElementById('mc-icon-close').style.display = 'none';
       }
       window.mcClose = mcClose;
+
+      var robotSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">'
+        + '<line x1="12" y1="1" x2="12" y2="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/>'
+        + '<circle cx="12" cy="1" r="1.3" fill="white"/>'
+        + '<rect x="3.5" y="4.5" width="17" height="13" rx="3" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.15)"/>'
+        + '<circle cx="9" cy="10.5" r="1.5" fill="white"/>'
+        + '<circle cx="15" cy="10.5" r="1.5" fill="white"/>'
+        + '<path d="M8.5 14 Q12 16 15.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>';
+
+      var avatarDiv = '<div style="width:28px;height:28px;border-radius:50%;background:#ed6b46;display:flex;'
+        + 'align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">' + robotSvg + '</div>';
 
       function mcAddMessage(role, text, buttons) {
         messages.push({ role: role, content: text });
@@ -449,28 +470,24 @@
         if (role === 'user') {
           wrap.style.cssText = 'display:flex; justify-content:flex-end;';
           wrap.innerHTML = '<div style="background:#ed6b46; border-radius:16px 4px 16px 16px; padding:0.75rem 1rem; max-width:85%;">'
-            + '<p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:white; margin:0; white-space:pre-wrap;">' + escHtml(text) + '</p></div>';
+            + '<p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:white; margin:0; white-space:pre-wrap;">'
+            + escHtml(text) + '</p></div>';
         } else {
+          assistantCount++;
           var buttonsHtml = '';
           if (buttons && buttons.length) {
             buttonsHtml = '<div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.6rem;">';
             buttons.forEach(function(btn) {
-              buttonsHtml += '<a href="' + escHtml(btn.url) + '" target="_blank" rel="noopener" '
-                + 'style="display:inline-block; font-family:var(--font-body); font-size:12px; font-weight:600; '
-                + 'color:#ed6b46; background:white; border:1.5px solid #ed6b46; border-radius:99px; '
-                + 'padding:0.35rem 0.85rem; text-decoration:none; white-space:nowrap; '
-                + 'transition:background 0.15s,color 0.15s;" '
-                + 'onmouseover="this.style.background=\'#ed6b46\';this.style.color=\'white\';" '
-                + 'onmouseout="this.style.background=\'white\';this.style.color=\'#ed6b46\';">'
+              buttonsHtml += '<a href="' + escHtml(btn.url) + '" target="_blank" rel="noopener" class="mc-action-btn">'
                 + escHtml(btn.label) + '</a>';
             });
             buttonsHtml += '</div>';
           }
           wrap.style.cssText = 'display:flex; gap:0.6rem; align-items:flex-start;';
-          wrap.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:#ed6b46;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">'
-            + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="1" x2="12" y2="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="1" r="1.3" fill="white"/><rect x="3.5" y="4.5" width="17" height="13" rx="3" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="10.5" r="1.5" fill="white"/><circle cx="15" cy="10.5" r="1.5" fill="white"/><path d="M8.5 14 Q12 16 15.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div>'
+          wrap.innerHTML = avatarDiv
             + '<div style="background:#F0EDE7; border-radius:4px 16px 16px 16px; padding:0.75rem 1rem; max-width:85%; border:1px solid rgba(30,31,27,0.06);">'
-            + '<p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:#1E1F1B; margin:0; white-space:pre-wrap;">' + escHtml(text) + '</p>'
+            + '<p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:#1E1F1B; margin:0; white-space:pre-wrap;">'
+            + escHtml(text) + '</p>'
             + buttonsHtml + '</div>';
         }
         container.appendChild(wrap);
@@ -478,13 +495,84 @@
         return wrap;
       }
 
+      function mcShowSuggestions(suggestions) {
+        if (!suggestions || !suggestions.length) return;
+        var container = document.getElementById('mc-messages');
+        var el = document.createElement('div');
+        el.className = 'mc-followup';
+        el.style.cssText = 'display:flex; flex-wrap:wrap; gap:0.4rem; padding-left:2.2rem;';
+        suggestions.forEach(function(s) {
+          var btn = document.createElement('button');
+          btn.className = 'mc-chip';
+          btn.textContent = s;
+          btn.onclick = function() {
+            el.remove();
+            document.getElementById('mc-input').value = s;
+            mcSend();
+          };
+          el.appendChild(btn);
+        });
+        container.appendChild(el);
+        container.scrollTop = container.scrollHeight;
+      }
+
+      function mcShowLeadForm() {
+        if (leadCaptured) return;
+        leadCaptured = true;
+        var container = document.getElementById('mc-messages');
+        // Bot vraag
+        var introWrap = document.createElement('div');
+        introWrap.style.cssText = 'display:flex; gap:0.6rem; align-items:flex-start;';
+        introWrap.innerHTML = avatarDiv
+          + '<div style="background:#F0EDE7; border-radius:4px 16px 16px 16px; padding:0.75rem 1rem; max-width:85%; border:1px solid rgba(30,31,27,0.06);">'
+          + '<p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:#1E1F1B; margin:0;">'
+          + 'Wil je dat Luuk je persoonlijk opvolgt? Laat je naam en e-mail achter, dan neemt hij contact op.</p></div>';
+        container.appendChild(introWrap);
+        // Formulier
+        var formWrap = document.createElement('div');
+        formWrap.style.cssText = 'padding-left:2.2rem;';
+        formWrap.innerHTML = '<div style="background:#F0EDE7; border-radius:12px; padding:0.875rem; border:1px solid rgba(30,31,27,0.08);">'
+          + '<input id="mc-lead-name" type="text" placeholder="Jouw naam" style="width:100%; box-sizing:border-box; margin-bottom:0.5rem; border:1.5px solid rgba(30,31,27,0.12); border-radius:8px; padding:0.5rem 0.75rem; font-family:var(--font-body); font-size:13px; background:white; outline:none;" onfocus="this.style.borderColor=\'#ed6b46\'" onblur="this.style.borderColor=\'rgba(30,31,27,0.12)\'">'
+          + '<input id="mc-lead-email" type="email" placeholder="E-mailadres" style="width:100%; box-sizing:border-box; margin-bottom:0.75rem; border:1.5px solid rgba(30,31,27,0.12); border-radius:8px; padding:0.5rem 0.75rem; font-family:var(--font-body); font-size:13px; background:white; outline:none;" onfocus="this.style.borderColor=\'#ed6b46\'" onblur="this.style.borderColor=\'rgba(30,31,27,0.12)\'">'
+          + '<div style="display:flex; gap:0.5rem;">'
+          + '<button onclick="mcSubmitLead()" style="flex:1; background:#ed6b46; border:none; border-radius:8px; padding:0.5rem; font-family:var(--font-body); font-size:12px; font-weight:700; color:white; cursor:pointer;">Verstuur</button>'
+          + '<button onclick="this.closest(\'.mc-lead-form\').remove()" style="background:transparent; border:1.5px solid rgba(30,31,27,0.15); border-radius:8px; padding:0.5rem 0.75rem; font-family:var(--font-body); font-size:12px; color:rgba(30,31,27,0.4); cursor:pointer;">Nee, bedankt</button>'
+          + '</div></div>';
+        formWrap.className = 'mc-lead-form';
+        container.appendChild(formWrap);
+        container.scrollTop = container.scrollHeight;
+      }
+
+      function mcSubmitLead() {
+        var name  = (document.getElementById('mc-lead-name')  || {}).value || '';
+        var email = (document.getElementById('mc-lead-email') || {}).value || '';
+        if (!name.trim() || !email.trim()) return;
+        fetch('/api/chat/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ name: name.trim(), email: email.trim() })
+        }).then(function() {
+          var forms = document.querySelectorAll('.mc-lead-form');
+          forms.forEach(function(f){ f.remove(); });
+          var container = document.getElementById('mc-messages');
+          var wrap = document.createElement('div');
+          wrap.style.cssText = 'display:flex; gap:0.6rem; align-items:flex-start;';
+          wrap.innerHTML = avatarDiv
+            + '<div style="background:#F0EDE7; border-radius:4px 16px 16px 16px; padding:0.75rem 1rem; max-width:85%; border:1px solid rgba(30,31,27,0.06);">'
+            + '<p style="font-family:var(--font-body); font-size:13px; line-height:1.6; color:#1E1F1B; margin:0;">'
+            + 'Top! Luuk neemt zo snel mogelijk contact met je op.</p></div>';
+          container.appendChild(wrap);
+          container.scrollTop = container.scrollHeight;
+        });
+      }
+      window.mcSubmitLead = mcSubmitLead;
+
       function mcShowTyping() {
         var container = document.getElementById('mc-messages');
         var el = document.createElement('div');
         el.id = 'mc-typing';
         el.style.cssText = 'display:flex; gap:0.6rem; align-items:flex-start;';
-        el.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:#ed6b46;display:flex;align-items:center;justify-content:center;flex-shrink:0;">'
-          + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="1" x2="12" y2="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="1" r="1.3" fill="white"/><rect x="3.5" y="4.5" width="17" height="13" rx="3" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="10.5" r="1.5" fill="white"/><circle cx="15" cy="10.5" r="1.5" fill="white"/><path d="M8.5 14 Q12 16 15.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div>'
+        el.innerHTML = avatarDiv
           + '<div style="background:#F0EDE7; border-radius:4px 16px 16px 16px; padding:0.875rem 1.1rem; border:1px solid rgba(30,31,27,0.06);">'
           + '<div style="display:flex;gap:4px;align-items:center;">'
           + '<span style="width:6px;height:6px;border-radius:50%;background:rgba(30,31,27,0.3);animation:merqo-dot 1.2s infinite 0s;display:inline-block;"></span>'
@@ -501,10 +589,10 @@
       }
 
       function escHtml(s) {
-        return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
       }
 
-      // Scroll-isolatie: voorkom dat de pagina meescrollt als muis op chatbot staat
+      // Scroll-isolatie
       document.getElementById('mc-messages').addEventListener('wheel', function(e) {
         var el = this;
         var atTop    = el.scrollTop === 0 && e.deltaY < 0;
@@ -512,12 +600,13 @@
         if (!atTop && !atBottom) e.stopPropagation();
       }, { passive: false });
 
-      // Vergroot/verklein chatvenster
+      // Vergroot/verklein
       var mcLarge = false;
       function mcToggleSize() {
         mcLarge = !mcLarge;
         var win  = document.getElementById('mc-window');
         var icon = document.getElementById('mc-expand-icon');
+        if (window.innerWidth <= 480) return; // op mobiel geen resize nodig
         if (mcLarge) {
           win.style.width  = '480px';
           win.style.height = '680px';
@@ -553,7 +642,11 @@
         fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrf, 'Accept': 'application/json' },
-          body: JSON.stringify({ messages: messages })
+          body: JSON.stringify({
+            messages:    messages,
+            page_url:    window.location.pathname,
+            page_title:  document.title.replace(' | Merqo Creative Agency', '')
+          })
         })
         .then(function(r){
           var status = r.status;
@@ -572,6 +665,10 @@
             messages.pop();
           } else {
             mcAddMessage('assistant', res.data.reply, res.data.buttons || []);
+            mcShowSuggestions(res.data.suggestions || []);
+            if (assistantCount === 3 && !leadCaptured) {
+              setTimeout(mcShowLeadForm, 600);
+            }
           }
         })
         .catch(function(e){
@@ -584,8 +681,35 @@
         .finally(function(){ loading = false; });
       }
       window.mcSend = mcSend;
+
+      // Notificatiebadge na 8 seconden (alleen als chat nog niet open is)
+      setTimeout(function() {
+        if (!open) document.getElementById('mc-badge').style.display = 'block';
+      }, 8000);
+
+      // Proactief openen na 20 seconden (eenmalig per sessie)
+      if (!sessionStorage.getItem('mc_auto_opened')) {
+        setTimeout(function() {
+          if (!open) {
+            sessionStorage.setItem('mc_auto_opened', '1');
+            mcOpen();
+          }
+        }, 20000);
+      }
     })();
     </script>
+
+    <style>
+      .mc-action-btn {
+        display: inline-block;
+        font-family: var(--font-body); font-size: 12px; font-weight: 600;
+        color: #ed6b46; background: white; border: 1.5px solid #ed6b46;
+        border-radius: 99px; padding: 0.35rem 0.85rem;
+        text-decoration: none; white-space: nowrap;
+        transition: background 0.15s, color 0.15s;
+      }
+      .mc-action-btn:hover { background: #ed6b46; color: white; }
+    </style>
 
 
     <script>

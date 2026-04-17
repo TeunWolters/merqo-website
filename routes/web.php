@@ -180,11 +180,36 @@ Route::post('/contact/verstuur', function (Request $request) {
 | AI Chatbot — Claude (Anthropic)
 |--------------------------------------------------------------------------
 */
+Route::post('/api/chat/lead', function (Request $request) {
+    $data = $request->validate([
+        'name'  => ['required', 'string', 'max:255'],
+        'email' => ['required', 'email'],
+    ]);
+    $slug = \Illuminate\Support\Str::slug($data['name']) . '-chat-' . time();
+    \Statamic\Facades\Entry::make()
+        ->collection('contact-aanvragen')
+        ->slug($slug)
+        ->data([
+            'title'   => $data['name'],
+            'email'   => $data['email'],
+            'message' => 'Lead via Merqolino chatbot',
+            'company' => '',
+            'service' => 'Chat lead',
+            'budget'  => '',
+            'status'  => 'nieuw',
+            'date'    => now()->toDateString(),
+        ])
+        ->save();
+    return response()->json(['ok' => true]);
+})->middleware('throttle:10,1');
+
 Route::post('/api/chat', function (Request $request) {
     $validated = $request->validate([
         'messages'          => ['required', 'array', 'min:1', 'max:30'],
         'messages.*.role'   => ['required', 'in:user,assistant'],
         'messages.*.content'=> ['required', 'string', 'max:2000'],
+        'page_url'          => ['nullable', 'string', 'max:255'],
+        'page_title'        => ['nullable', 'string', 'max:255'],
     ]);
 
     $apiKey = config('services.anthropic.key');
@@ -192,7 +217,17 @@ Route::post('/api/chat', function (Request $request) {
         return response()->json(['error' => 'Chatbot is tijdelijk niet beschikbaar.'], 503);
     }
 
-    $systemPrompt = <<<'SYSTEM'
+    $pageContext = '';
+    if (!empty($validated['page_url'])) {
+        $pageContext = "HUIDIGE PAGINA VAN DE BEZOEKER\n";
+        $pageContext .= "URL: " . $validated['page_url'] . "\n";
+        if (!empty($validated['page_title'])) {
+            $pageContext .= "Paginatitel: " . $validated['page_title'] . "\n";
+        }
+        $pageContext .= "Stem je antwoord en CTA af op deze context. Is de bezoeker op een dienstpagina, verdiep dan op die dienst. Is hij op de homepage, stel dan een kwalificerende vraag.\n\n";
+    }
+
+    $systemPrompt = $pageContext . <<<'SYSTEM'
 Je bent Merqolino, de AI-assistent van Merqo. Je bent direct, eerlijk en altijd gericht op de volgende stap. Je praat zoals een slim Merqo-teamlid — geen chatbot-taal, geen gladde praatjes.
 
 ABSOLUTE REGELS — GEEN UITZONDERINGEN
@@ -258,6 +293,10 @@ GRATIS MERKENSCAN
 CONTACT
 merqo.nl/contact — info@merqo.nl — WhatsApp Luuk: +31 6 30 77 22 83
 
+VERVOLGVRAGEN — optioneel
+Voeg maximaal 3 korte vervolgvragen toe die de bezoeker logischerwijs zou stellen, met [SUGGEST:tekst] syntax. Alleen als ze echt relevant zijn. Voorbeeld: [SUGGEST:Wat kost dit?][SUGGEST:Hoe werkt dat?][SUGGEST:Bekijk projecten]
+Plaats ze na de buttons, nooit midden in de tekst.
+
 BUTTONS — gebruik dit voor directe acties
 Voeg aan het einde van je bericht maximaal 2 buttons toe wanneer een directe actie logisch is. Gebruik deze exacte syntax: [BTN:Label|url]
 Beschikbare buttons (gebruik alleen deze):
@@ -310,7 +349,15 @@ SYSTEM;
         $buttons[] = ['label' => trim($m[1]), 'url' => trim($m[2])];
     }
     $reply = preg_replace('/\[BTN:[^\]]+\]/', '', $reply);
+
+    // Extraheer vervolgvragen uit [SUGGEST:tekst] syntax
+    $suggestions = [];
+    preg_match_all('/\[SUGGEST:([^\]]+)\]/', $reply, $sugMatches);
+    foreach ($sugMatches[1] as $s) {
+        $suggestions[] = trim($s);
+    }
+    $reply = preg_replace('/\[SUGGEST:[^\]]+\]/', '', $reply);
     $reply = trim($reply);
 
-    return response()->json(['reply' => $reply, 'buttons' => $buttons]);
+    return response()->json(['reply' => $reply, 'buttons' => $buttons, 'suggestions' => $suggestions]);
 })->middleware('throttle:30,1');

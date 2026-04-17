@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->validateCsrfTokens(except: [
             'api/chat',
+            'api/chat/lead',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
