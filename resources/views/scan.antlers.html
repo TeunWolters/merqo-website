@@ -125,15 +125,42 @@
     {{# ── LINKS: Formulier ── #}}
     <div class="scan-body">
 
-      {{# ── STAP 1: Gegevens ── #}}
+      {{# ── STAP 1: Uitdaging (micro-commitment eerste, geen persoonlijke data) ── #}}
       <div x-show="step === 1"
            x-transition:enter="transition ease-out duration-300"
            x-transition:enter-start="opacity-0 translate-y-3"
            x-transition:enter-end="opacity-100 translate-y-0">
 
-        <span class="scan-eyebrow">Stap 1 - Jouw gegevens</span>
+        <span class="scan-eyebrow">Stap 1 - Jouw situatie</span>
         <h1 class="scan-h">Waar loopt jouw<br>groei vast?</h1>
-        <p class="scan-sub">Vul je gegevens in, wij voeren de scan voor je uit. Binnen één werkdag ontvang je persoonlijk merkadvies - geen spam, geen verkooppraatje.</p>
+        <p class="scan-sub">Kies de uitdaging die het meest op jou van toepassing is. Wij voeren daarna de scan voor je uit.</p>
+
+        <template x-for="u in uitdagingen" :key="u.value">
+          <button @click="form.uitdaging = u.value"
+                  class="scan-option"
+                  :class="form.uitdaging === u.value ? 'selected' : ''">
+            <span class="scan-option-icon" x-html="u.icon"></span>
+            <span class="scan-option-text" x-text="u.label"></span>
+          </button>
+        </template>
+
+        <button @click="step = 2"
+                class="scan-btn"
+                :disabled="!form.uitdaging">
+          Volgende stap
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      {{# ── STAP 2: Gegevens (na commitment, nu pas persoonlijke data) ── #}}
+      <div x-show="step === 2"
+           x-transition:enter="transition ease-out duration-300"
+           x-transition:enter-start="opacity-0 translate-y-3"
+           x-transition:enter-end="opacity-100 translate-y-0">
+
+        <span class="scan-eyebrow">Stap 2 - Jouw gegevens</span>
+        <h2 class="scan-h">Goed. Waar kunnen<br>we je bereiken?</h2>
+        <p class="scan-sub">Vul je gegevens in zodat we de scan kunnen terugkoppelen. Binnen één werkdag persoonlijk contact - geen spam, geen verkooppraatje.</p>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
           <div class="scan-field" style="grid-column:1/-1;">
@@ -149,41 +176,9 @@
             <input x-model="form.email" type="email" placeholder="jij@bedrijf.nl" class="scan-input">
           </div>
           <div class="scan-field" style="grid-column:1/-1;">
-            <label class="scan-label">Website <span style="opacity:0.5;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel)</span></label>
-            <input x-model="form.website" type="text" placeholder="https://jouwbedrijf.nl" class="scan-input">
+            <label class="scan-label">Toelichting <span style="opacity:0.5;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel)</span></label>
+            <textarea x-model="form.toelichting" class="scan-textarea" rows="3" placeholder="Vertel ons iets meer over jouw situatie..."></textarea>
           </div>
-        </div>
-
-        <button @click="step = 2"
-                class="scan-btn"
-                :disabled="!form.bedrijfsnaam || !form.naam || !form.email">
-          Volgende stap
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-
-      {{# ── STAP 2: Uitdaging ── #}}
-      <div x-show="step === 2"
-           x-transition:enter="transition ease-out duration-300"
-           x-transition:enter-start="opacity-0 translate-y-3"
-           x-transition:enter-end="opacity-100 translate-y-0">
-
-        <span class="scan-eyebrow">Stap 2 - Jouw situatie</span>
-        <h2 class="scan-h">Wat speelt er<br>bij jou?</h2>
-        <p class="scan-sub">Kies wat het beste past. Je kunt altijd toelichting toevoegen.</p>
-
-        <template x-for="u in uitdagingen" :key="u.value">
-          <button @click="form.uitdaging = u.value"
-                  class="scan-option"
-                  :class="form.uitdaging === u.value ? 'selected' : ''">
-            <span class="scan-option-icon" x-html="u.icon"></span>
-            <span class="scan-option-text" x-text="u.label"></span>
-          </button>
-        </template>
-
-        <div class="scan-field" style="margin-top:1.25rem;">
-          <label class="scan-label">Toelichting <span style="opacity:0.5;font-weight:400;text-transform:none;letter-spacing:0;">(optioneel)</span></label>
-          <textarea x-model="form.toelichting" class="scan-textarea" placeholder="Vertel ons iets meer over jouw situatie..."></textarea>
         </div>
 
         <div x-show="error" x-text="error"
@@ -192,7 +187,7 @@
 
         <button @click="submitScan()"
                 class="scan-btn"
-                :disabled="!form.uitdaging || submitting">
+                :disabled="!form.bedrijfsnaam || !form.naam || !form.email || submitting">
           <span x-text="submitting ? 'Versturen...' : 'Gratis merkscan aanvragen'"></span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
