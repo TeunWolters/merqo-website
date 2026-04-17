@@ -130,47 +130,30 @@
   }
 </style>
 
-{{# ── TESTIMONIAL ──────────────────────────────────────────── #}}
-<section style="position:relative; overflow:hidden; background:#ddd5c8; padding:5rem 0;">
-
-  {{# Blob achtergrond - zelfde als homepage #}}
-  <div style="position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;">
-    <div class="tb-blob-a" style="position:absolute; width:80vw; height:80vw; background:#ed6b46; filter:blur(90px); opacity:0.88; will-change:transform;"></div>
-    <div class="tb-blob-b" style="position:absolute; width:65vw; height:65vw; background:#f5b87a; filter:blur(80px); opacity:0.72; will-change:transform;"></div>
-    <div class="tb-blob-c" style="position:absolute; width:55vw; height:55vw; background:#8fcdd0; filter:blur(90px); opacity:0.45; will-change:transform;"></div>
-  </div>
-  <style>
-    @keyframes tb-morph-a { 0%,100%{border-radius:60% 40% 55% 45%/50% 60% 40% 50%} 33%{border-radius:45% 55% 40% 60%/60% 35% 65% 40%} 66%{border-radius:35% 65% 60% 40%/40% 55% 45% 60%} }
-    @keyframes tb-morph-b { 0%,100%{border-radius:40% 60% 45% 55%/60% 45% 55% 40%} 50%{border-radius:60% 40% 65% 35%/45% 60% 40% 55%} }
-    @keyframes tb-morph-c { 0%,100%{border-radius:55% 45% 60% 40%/45% 55% 45% 55%} 50%{border-radius:40% 60% 40% 60%/60% 40% 60% 40%} }
-    @keyframes tb-drift-a { 0%{transform:translate(-30%,-40%)} 33%{transform:translate(20%,-10%)} 66%{transform:translate(-5%,-55%)} 100%{transform:translate(-30%,-40%)} }
-    @keyframes tb-drift-b { 0%{transform:translate(40%,10%)} 50%{transform:translate(60%,55%)} 100%{transform:translate(40%,10%)} }
-    @keyframes tb-drift-c { 0%{transform:translate(5%,30%)} 50%{transform:translate(55%,0%)} 100%{transform:translate(5%,30%)} }
-    .tb-blob-a { animation: tb-morph-a 12s ease-in-out infinite, tb-drift-a 24s ease-in-out infinite; }
-    .tb-blob-b { animation: tb-morph-b 16s ease-in-out infinite, tb-drift-b 20s ease-in-out infinite; }
-    .tb-blob-c { animation: tb-morph-c 14s ease-in-out infinite, tb-drift-c 26s ease-in-out infinite; }
-  </style>
-
-  <div class="max-w-7xl mx-auto px-6 lg:px-10" style="position:relative; z-index:1;">
-    <div style="max-width:760px; margin:0 auto; text-align:center;" data-reveal>
-      <div style="font-family:var(--font-display); font-size:6rem; font-weight:800; color:rgba(255,255,255,0.15); line-height:0.8; margin-bottom:1rem;">"</div>
-      <blockquote style="font-family:var(--font-display); font-size:clamp(20px,2.5vw,32px);
-                         font-weight:700; letter-spacing:-0.03em; line-height:1.3;
-                         color:#fff; font-style:italic; margin:0 0 2.5rem;">
-        Onze visitekaartjes worden bewaard. Mensen zeggen letterlijk dat ze hem te mooi vinden om weg te gooien. Dat is exact de indruk die we wilden achterlaten.
-      </blockquote>
-      <div style="display:inline-flex; align-items:center; gap:0.9rem;">
-        <div style="width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.2); flex-shrink:0;
-                    display:flex; align-items:center; justify-content:center;
-                    font-family:var(--font-display); font-size:13px; font-weight:800; color:#fff;">MV</div>
-        <div style="text-align:left;">
-          <div style="font-family:var(--font-display); font-size:14px; font-weight:700; color:#fff;">Mark de Vries</div>
-          <div style="font-family:var(--font-body); font-size:12px; color:rgba(255,255,255,0.65);">Partner, Adviesbureau Kern</div>
+{{# ── TESTIMONIAL (inline, geen aparte sectie) ───────────── #}}
+<div style="background:#F0EDE7; padding:0 0 4rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="max-width:720px;" data-reveal>
+      <div style="border-left:3px solid #ed6b46; padding:1.5rem 1.75rem;
+                  background:#fff; border-radius:0 16px 16px 0;
+                  box-shadow:0 2px 16px rgba(30,31,27,0.06);">
+        <p style="font-family:var(--font-display); font-size:clamp(15px,1.5vw,19px); font-weight:700;
+                  font-style:italic; color:#1E1F1B; line-height:1.5; margin:0 0 1.25rem;">
+          "Onze visitekaartjes worden bewaard. Mensen zeggen letterlijk dat ze hem te mooi vinden om weg te gooien. Dat is exact de indruk die we wilden achterlaten."
+        </p>
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <div style="width:34px; height:34px; border-radius:50%; background:#ed6b46; flex-shrink:0;
+                      display:flex; align-items:center; justify-content:center;
+                      font-family:var(--font-display); font-size:10px; font-weight:800; color:#fff;">MV</div>
+          <div>
+            <div style="font-family:var(--font-display); font-size:13px; font-weight:700; color:#1E1F1B;">Mark de Vries</div>
+            <div style="font-family:var(--font-body); font-size:11px; color:#9B9890;">Partner, Adviesbureau Kern</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {{# ── 5. WAT JE KRIJGT ──────────────────────────────────────── #}}
 <section id="wat-je-krijgt" style="background:#EDEAE3; padding:6rem 0;">
@@ -340,24 +323,24 @@
                box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);"
       >
 
-        {{# Items als pills #}}
+        {{# Items als scan-stijl opties #}}
         <p style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.1em;
-                  text-transform:uppercase; color:rgba(30,31,27,0.35); margin:0 0 0.9rem;">
+                  text-transform:uppercase; color:rgba(30,31,27,0.35); margin:0 0 1rem;">
           Selecteer wat je hebt
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:1.75rem;">
           <template x-for="item in items" :key="item.id">
             <button
               @click="item.checked = !item.checked"
-              style="display:inline-flex; align-items:center; gap:6px;
-                     padding:0.5rem 1rem; border-radius:999px; cursor:pointer;
-                     font-family:var(--font-display); font-size:13px; font-weight:700;
+              style="display:inline-flex; align-items:center; gap:8px;
+                     padding:0.65rem 1.1rem; border-radius:12px; cursor:pointer;
+                     font-family:var(--font-display); font-size:14px; font-weight:700;
                      letter-spacing:-0.01em; transition:all 0.18s ease;"
               :style="item.checked
-                ? 'background:#ed6b46; color:#fff; border:1.5px solid #ed6b46; box-shadow:0 3px 10px rgba(237,107,70,0.25);'
-                : 'background:#F5F3EF; color:#1E1F1B; border:1.5px solid transparent;'"
+                ? 'background:#ed6b46; color:#fff; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22);'
+                : 'background:#fff; color:#1E1F1B; border:1.5px solid rgba(30,31,27,0.1); box-shadow:0 1px 4px rgba(30,31,27,0.05);'"
             >
-              <span x-text="item.emoji" style="font-size:0.95rem; line-height:1;"></span>
+              <span x-text="item.emoji" style="font-size:1rem; line-height:1; flex-shrink:0;"></span>
               <span x-text="item.label"></span>
             </button>
           </template>
