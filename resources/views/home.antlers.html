@@ -358,6 +358,148 @@
 
 
 
+{{# ── BRANCHES met foto-kaarten ─────────────────────────────── #}}
+<section style="background:#1E1F1B; padding:5rem 0;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; flex-wrap:wrap; margin-bottom:3rem;" data-reveal>
+      <div>
+        <div class="eyebrow" style="margin-bottom:1.25rem;">
+          <div class="eyebrow-line" style="background:rgba(240,237,231,0.2);"></div>
+          <div class="eyebrow-text" style="color:rgba(240,237,231,0.45);">Sectoren</div>
+        </div>
+        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(28px,3.5vw,44px); letter-spacing:-0.04em; line-height:1.06; color:#F0EDE7; margin:0;">
+          Wij kennen jouw wereld.
+        </h2>
+      </div>
+      <p style="font-family:var(--font-body); font-size:15px; line-height:1.75; color:rgba(240,237,231,0.4); max-width:38ch; margin:0;">
+        Merqo werkt voor bedrijven in uiteenlopende sectoren. Herken je jouw branche? Dan weten we waarschijnlijk al wat er bij jou speelt.
+      </p>
+    </div>
+
+    <div class="branches-img-grid" data-reveal>
+
+      {{# Horeca & vrije tijd — foto: marcooks #}}
+      <a href="/contact" class="branch-img-card" style="text-decoration:none;">
+        <img src="/assets/projects/marcooks.jpg" alt="Horeca & vrije tijd" loading="lazy">
+        <div class="branch-img-overlay"></div>
+        <div class="branch-img-tag">Horeca &amp; vrije tijd</div>
+        <div class="branch-img-content">
+          <h3 class="branch-img-title">Horeca &amp; vrije tijd</h3>
+          <p class="branch-img-desc">Restaurants, hotels, campings, evenementlocaties. Wij zorgen dat je merk het werk doet in drukke seizoenen.</p>
+        </div>
+      </a>
+
+      {{# Bouw & techniek — foto: fh-loohuis #}}
+      <a href="/contact" class="branch-img-card" style="text-decoration:none;">
+        <img src="/assets/projects/fh-loohuis.jpg" alt="Bouw & techniek" loading="lazy">
+        <div class="branch-img-overlay"></div>
+        <div class="branch-img-tag">Bouw &amp; techniek</div>
+        <div class="branch-img-content">
+          <h3 class="branch-img-title">Bouw &amp; techniek</h3>
+          <p class="branch-img-desc">Aannemers, installateurs, ingenieurs. Vakmanschap dat voor zichzelf spreekt - met een sterk merk erachter.</p>
+        </div>
+      </a>
+
+      {{# Onderwijs & scholen — foto: montessori #}}
+      <a href="/contact" class="branch-img-card" style="text-decoration:none;">
+        <img src="/assets/projects/montessori.jpg" alt="Onderwijs & scholen" loading="lazy">
+        <div class="branch-img-overlay"></div>
+        <div class="branch-img-tag">Onderwijs &amp; scholen</div>
+        <div class="branch-img-content">
+          <h3 class="branch-img-title">Onderwijs &amp; scholen</h3>
+          <p class="branch-img-desc">Scholen, trainers, opleidingsinstituten. Zorg dat ouders en leerlingen jouw instelling onthouden en kiezen.</p>
+        </div>
+      </a>
+
+      {{# Zakelijke dienstverlening — gradient #}}
+      <a href="/contact" class="branch-img-card branch-img-card--dark" style="text-decoration:none;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#2a2b27 0%,#1a1b17 100%);"></div>
+        <div class="branch-img-overlay" style="background:none;"></div>
+        <div class="branch-img-tag">Zakelijke dienstverlening</div>
+        <div class="branch-img-content">
+          <h3 class="branch-img-title">Zakelijke dienstverlening</h3>
+          <p class="branch-img-desc">Adviseurs, accountants, advocaten. Onderscheid jezelf in een markt vol gelijken met een merk dat vertrouwen uitstraalt.</p>
+        </div>
+        <svg style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.06;" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#F0EDE7" stroke-width="0.75"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      </a>
+
+    </div>
+
+    <div style="margin-top:2.5rem; padding-top:2rem; border-top:1px solid rgba(240,237,231,0.07); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;" data-reveal>
+      <p style="font-family:var(--font-body); font-size:13px; color:rgba(240,237,231,0.35); margin:0;">Jouw sector staat er niet bij? Wij werken voor alle type bedrijven in Twente.</p>
+      <a href="/contact" style="display:inline-flex; align-items:center; gap:0.4rem; font-family:var(--font-body); font-size:13px; font-weight:700; color:#ed6b46; text-decoration:none;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+        Plan een kennismaking
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .branches-img-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .branch-img-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .branch-img-card:hover { transform: translateY(-4px); }
+  .branch-img-card img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .branch-img-card:hover img { transform: scale(1.04); }
+  .branch-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.05) 100%);
+    pointer-events: none;
+  }
+  .branch-img-tag {
+    position: absolute; top: 1rem; left: 1rem;
+    font-family: var(--font-body); font-size: 9px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 999px;
+    padding: 4px 10px;
+  }
+  .branch-img-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1.5rem 1.25rem;
+  }
+  .branch-img-title {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(16px, 1.4vw, 20px); letter-spacing: -0.03em;
+    color: #F0EDE7; margin: 0 0 0.5rem; line-height: 1.15;
+  }
+  .branch-img-desc {
+    font-family: var(--font-body); font-size: 12px;
+    line-height: 1.6; color: rgba(240,237,231,0.55); margin: 0;
+  }
+  @media (max-width: 900px) {
+    .branches-img-grid { grid-template-columns: repeat(2, 1fr); }
+    .branch-img-card { aspect-ratio: 4/5; }
+  }
+  @media (max-width: 500px) {
+    .branches-img-grid { grid-template-columns: 1fr; }
+    .branch-img-card { aspect-ratio: 16/9; }
+  }
+</style>
+
+
 {{# ── KLANTEN STRIP ──────────────────────────────────────────── #}}
 <section style="background:#EDEAE3; padding:2.5rem 0; border-top:1px solid rgba(30,31,27,0.07); border-bottom:1px solid rgba(30,31,27,0.07); overflow:hidden;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
@@ -793,120 +935,6 @@
 </style>
 
 
-{{# ── BRANCHES ────────────────────────────────────────────── #}}
-<section style="background:#1E1F1B; padding:5rem 0;">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-
-    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; flex-wrap:wrap; margin-bottom:3.5rem;" data-reveal>
-      <div>
-        <div class="eyebrow" style="margin-bottom:1.25rem;">
-          <div class="eyebrow-line" style="background:rgba(240,237,231,0.2);"></div>
-          <div class="eyebrow-text" style="color:rgba(240,237,231,0.45);">Sectoren</div>
-        </div>
-        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(26px,3vw,40px); letter-spacing:-0.04em; line-height:1.06; color:#F0EDE7; margin:0;">
-          Wij kennen jouw wereld.
-        </h2>
-      </div>
-      <p style="font-family:var(--font-body); font-size:15px; line-height:1.75; color:rgba(240,237,231,0.45); max-width:40ch; margin:0;">
-        Merqo werkt voor bedrijven in uiteenlopende sectoren. Herken je jouw branche? Dan weten we waarschijnlijk al wat er bij jou speelt.
-      </p>
-    </div>
-
-    <div class="branches-grid" data-reveal>
-
-      {{# Horeca & vrije tijd #}}
-      <div class="branch-card">
-        <div class="branch-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-        </div>
-        <div>
-          <h3 class="branch-title">Horeca &amp; vrije tijd</h3>
-          <p class="branch-desc">Restaurants, hotels, campings, evenementlocaties. Druk seizoen, weinig tijd - wij zorgen dat je merk het werk doet.</p>
-        </div>
-      </div>
-
-      {{# Bouw & techniek #}}
-      <div class="branch-card">
-        <div class="branch-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a8c8ca" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <div>
-          <h3 class="branch-title">Bouw &amp; techniek</h3>
-          <p class="branch-desc">Aannemers, installateurs, ingenieurs. Vakmanschap dat voor zichzelf spreekt - maar nog beter werkt met een sterk merk erachter.</p>
-        </div>
-      </div>
-
-      {{# Onderwijs #}}
-      <div class="branch-card">
-        <div class="branch-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        </div>
-        <div>
-          <h3 class="branch-title">Onderwijs &amp; scholen</h3>
-          <p class="branch-desc">Scholen, trainers, opleidingsinstituten. Zorg dat ouders en leerlingen jouw instelling onthouden en kiezen.</p>
-        </div>
-      </div>
-
-      {{# Zakelijke dienstverlening #}}
-      <div class="branch-card">
-        <div class="branch-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a8c8ca" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-        </div>
-        <div>
-          <h3 class="branch-title">Zakelijke dienstverlening</h3>
-          <p class="branch-desc">Adviseurs, accountants, advocaten. Onderscheid jezelf in een markt vol gelijken met een merk dat vertrouwen uitstraalt.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div style="margin-top:2.5rem; padding-top:2.5rem; border-top:1px solid rgba(240,237,231,0.08); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;" data-reveal>
-      <p style="font-family:var(--font-body); font-size:14px; color:rgba(240,237,231,0.4); margin:0;">Jouw sector staat er niet bij? Wij werken voor alle type bedrijven in Twente.</p>
-      <a href="/contact" style="display:inline-flex; align-items:center; gap:0.4rem; font-family:var(--font-body); font-size:13px; font-weight:700; color:#ed6b46; text-decoration:none; transition:opacity 0.15s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
-        Plan een kennismaking
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<style>
-  .branches-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: rgba(240,237,231,0.07);
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  .branch-card {
-    background: rgba(240,237,231,0.03);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    transition: background 0.2s;
-  }
-  .branch-card:hover { background: rgba(240,237,231,0.07); }
-  .branch-icon {
-    width: 48px; height: 48px; border-radius: 14px;
-    background: rgba(240,237,231,0.06);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .branch-title {
-    font-family: var(--font-display); font-weight: 700;
-    font-size: 16px; letter-spacing: -0.02em;
-    color: #F0EDE7; margin: 0 0 0.4rem;
-  }
-  .branch-desc {
-    font-family: var(--font-body); font-size: 13px;
-    line-height: 1.7; color: rgba(240,237,231,0.45); margin: 0;
-  }
-  @media (max-width: 900px) { .branches-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 500px) { .branches-grid { grid-template-columns: 1fr; } }
-</style>
 
 
 {{# ── 4. AANPAK - schoon en rustig ──────────────────────────── #}}
@@ -1297,42 +1325,64 @@
         </div>
       </div>
 
+      {{# Rechts: formulier — fix: gebruik form.* en success ipv sent #}}
       <div x-data="contactForm()" data-reveal>
 
-        <div x-show="sent" x-transition class="h-full flex flex-col items-center justify-center text-center gap-4 py-12" x-cloak>
-          <div class="w-16 h-16 rounded-full bg-[#ed6b46]/10 flex items-center justify-center">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-display font-bold" style="color:#1E1F1B;">Bericht ontvangen</h3>
-          <p class="text-[#6B6860] text-sm max-w-xs">Wij reageren binnen één werkdag. Tot snel.</p>
-        </div>
-
-        <form x-show="!sent" @submit.prevent="submit()" class="space-y-4" novalidate>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-[#6B6860] text-xs font-medium mb-2 uppercase tracking-wider">Naam</label>
-              <input type="text" x-model="name" class="form-input" placeholder="Jouw naam" required>
-            </div>
-            <div>
-              <label class="block text-[#6B6860] text-xs font-medium mb-2 uppercase tracking-wider">E-mail</label>
-              <input type="email" x-model="email" class="form-input" placeholder="jouw@email.nl" required>
-            </div>
+        {{# Succes staat #}}
+        <div x-show="success" x-transition
+             style="height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:1.25rem; padding:3rem 0;"
+             x-cloak>
+          <div style="width:56px; height:56px; border-radius:50%; background:rgba(237,107,70,0.1); display:flex; align-items:center; justify-content:center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div>
-            <label class="block text-[#6B6860] text-xs font-medium mb-2 uppercase tracking-wider">Bericht</label>
-            <textarea x-model="message" class="form-input" placeholder="Vertel ons over jouw project of vraag..." required></textarea>
+            <div style="font-family:var(--font-display); font-size:1.25rem; font-weight:800; color:#1E1F1B; margin-bottom:0.4rem;">Bericht ontvangen</div>
+            <div style="font-family:var(--font-body); font-size:14px; color:#6B6860;">Wij reageren binnen één werkdag. Tot snel.</div>
           </div>
-          <div x-show="error" class="text-red-400 text-sm" x-cloak>
-            Er ging iets mis. Probeer het opnieuw of stuur een e-mail naar info@merqo.nl.
-          </div>
-          <button type="submit" class="btn-primary w-full justify-center" :disabled="sending" data-magnetic>
-            <span x-show="!sending">Verstuur bericht</span>
-            <span x-show="sending" x-cloak>Bezig met versturen...</span>
-          </button>
-        </form>
+        </div>
 
+        {{# Formulier #}}
+        <form x-show="!success" @submit.prevent="submit()"
+              style="background:#fff; border-radius:20px; padding:2rem; border:1px solid rgba(30,31,27,0.07); box-shadow:0 4px 24px rgba(30,31,27,0.05); display:flex; flex-direction:column; gap:1rem;"
+              novalidate>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+            <div style="display:flex; flex-direction:column; gap:0.4rem;">
+              <label style="font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(30,31,27,0.4); font-family:var(--font-body);">Naam *</label>
+              <input type="text" x-model="form.name" placeholder="Jouw naam" class="form-input" required>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.4rem;">
+              <label style="font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(30,31,27,0.4); font-family:var(--font-body);">Bedrijf</label>
+              <input type="text" x-model="form.company" placeholder="Bedrijfsnaam" class="form-input">
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:0.4rem;">
+            <label style="font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(30,31,27,0.4); font-family:var(--font-body);">E-mailadres *</label>
+            <input type="email" x-model="form.email" placeholder="jouw@email.nl" class="form-input" required>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:0.4rem;">
+            <label style="font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(30,31,27,0.4); font-family:var(--font-body);">Bericht *</label>
+            <textarea x-model="form.message" placeholder="Vertel ons over jouw project of vraag…" class="form-input" rows="4" required style="resize:vertical;"></textarea>
+          </div>
+
+          <div x-show="error" x-cloak
+               style="padding:10px 14px; background:rgba(237,107,70,0.07); border:1px solid rgba(237,107,70,0.2); border-radius:10px; font-size:12px; color:#c8562c; font-family:var(--font-body);">
+            Er ging iets mis. Probeer het opnieuw of mail naar info@merqo.nl.
+          </div>
+
+          <button type="submit" :disabled="sending"
+                  style="width:100%; padding:0.875rem; background:#1E1F1B; color:#F0EDE7; border:none; border-radius:12px; font-size:13px; font-weight:700; font-family:var(--font-body); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:opacity 0.2s;"
+                  :style="sending ? 'opacity:0.5;cursor:not-allowed;' : 'opacity:1;'">
+            <span x-show="!sending">Verstuur bericht</span>
+            <span x-show="sending" x-cloak>Bezig met versturen…</span>
+            <svg x-show="!sending" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </button>
+
+          <p style="font-size:10px; color:rgba(30,31,27,0.3); text-align:center; font-family:var(--font-body);">Wij delen jouw gegevens nooit met derden.</p>
+
+        </form>
       </div>
     </div>
   </div>
