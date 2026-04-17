@@ -540,21 +540,17 @@
       <div x-show="done" x-cloak>
 
         {{# Score badge + balk #}}
-        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
-          <div style="width:64px; height:64px; border-radius:50%; flex-shrink:0; display:flex; flex-direction:column; align-items:center; justify-content:center; border:3px solid;"
-               :style="'border-color:' + barColor + '; background:' + barColor + '18;'">
-            <span style="font-family:var(--font-display); font-size:18px; font-weight:800; line-height:1;"
-                  :style="'color:' + barColor" x-text="score"></span>
-            <span style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;"
-                  :style="'color:' + barColor + '; opacity:0.7'">van 7</span>
+        <div style="display:flex; align-items:center; gap:1.25rem; margin-bottom:1.5rem; padding:1.25rem; border-radius:14px; background:#F9F7F5;">
+          <div :style="'width:72px; height:72px; border-radius:50%; flex-shrink:0; display:flex; flex-direction:column; align-items:center; justify-content:center; border:3px solid ' + barColor + '; background:' + barColor + '18;'">
+            <span :style="'font-family:var(--font-display); font-size:22px; font-weight:800; line-height:1; color:' + barColor" x-text="score"></span>
+            <span :style="'font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:' + barColor + '; opacity:0.65'">van 7</span>
           </div>
-          <div>
-            <div style="height:6px; background:rgba(30,31,27,0.08); border-radius:999px; overflow:hidden; margin-bottom:0.5rem; width:100%;">
-              <div style="height:100%; border-radius:999px; transition:width 0.7s ease;"
-                   :style="'width:' + barWidth + '; background:' + barColor"></div>
+          <div style="flex:1; min-width:0;">
+            <p :style="'font-family:var(--font-display); font-size:clamp(13px,1.4vw,15px); font-weight:700; line-height:1.4; margin:0 0 0.75rem; color:' + barColor"
+               x-text="resultTitle"></p>
+            <div style="height:6px; background:rgba(30,31,27,0.1); border-radius:999px; overflow:hidden;">
+              <div :style="'height:100%; border-radius:999px; transition:width 0.8s ease; width:' + barWidth + '; background:' + barColor"></div>
             </div>
-            <p style="font-family:var(--font-display); font-size:14px; font-weight:700; line-height:1.35; margin:0;"
-               :style="'color:' + barColor" x-text="resultTitle"></p>
           </div>
         </div>
 
