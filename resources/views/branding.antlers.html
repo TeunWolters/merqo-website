@@ -395,10 +395,53 @@
 
     <div
       x-data="{
+        current: 0,
         stap1: null,
         stap2: null,
         stap3: null,
-        get klaar() { return this.stap1 !== null && this.stap2 !== null && this.stap3 !== null; },
+        done: false,
+        steps: [
+          {
+            label: 'Jaarlijkse omzet',
+            q: 'Wat is je jaarlijkse omzet?',
+            opts: [
+              { val: 'klein',   label: '< €250k' },
+              { val: 'midden',  label: '€250k - €750k' },
+              { val: 'groot',   label: '€750k - €2M' },
+              { val: 'top',     label: '> €2M' }
+            ]
+          },
+          {
+            label: 'Conversie',
+            q: 'Hoeveel leads worden klant?',
+            opts: [
+              { val: 'laag',        label: '< 10%' },
+              { val: 'midden-laag', label: '10 - 25%' },
+              { val: 'midden-hoog', label: '25 - 50%' },
+              { val: 'hoog',        label: '> 50%' }
+            ]
+          },
+          {
+            label: 'Merksterkte',
+            q: 'Hoe sterk is jouw merk?',
+            opts: [
+              { val: 'zwak',      label: 'Zwak' },
+              { val: 'gemiddeld', label: 'Gemiddeld' },
+              { val: 'sterk',     label: 'Sterk' }
+            ]
+          }
+        ],
+        get currentVal() {
+          if (this.current === 0) return this.stap1;
+          if (this.current === 1) return this.stap2;
+          return this.stap3;
+        },
+        pick(val) {
+          if (this.current === 0) this.stap1 = val;
+          else if (this.current === 1) this.stap2 = val;
+          else { this.stap3 = val; this.done = true; return; }
+          this.current++;
+        },
         get verliesLaag() {
           if (this.stap3 === 'zwak') return 25;
           if (this.stap3 === 'gemiddeld') return 12;
@@ -410,12 +453,10 @@
           return 8;
         },
         get uitkomstZin() {
-          if (!this.klaar) return '';
-          return 'Op basis van jouw antwoorden laat jij naar schatting ' + this.verliesLaag + '\u2013' + this.verliesHoog + '% van je potentiële omzet liggen doordat je merk de waarde van je product niet volledig overbrengt.';
+          return 'Op basis van jouw antwoorden laat jij naar schatting ' + this.verliesLaag + '\u2013' + this.verliesHoog + '% van je potenti\u00eble omzet liggen doordat je merk de waarde van je product niet volledig overbrengt.';
         },
         get verklaringZin() {
-          if (!this.klaar) return '';
-          const s1 = this.stap1, s2 = this.stap2, s3 = this.stap3;
+          const s2 = this.stap2, s3 = this.stap3;
           if (s3 === 'zwak' && (s2 === 'laag' || s2 === 'midden-laag')) return 'Mensen bereiken je wel, maar haken af. Dat is bijna altijd een merkprobleem, geen productprobleem.';
           if (s3 === 'zwak' && (s2 === 'midden-hoog' || s2 === 'hoog')) return 'Je converteert relatief goed, maar een zwak merk remt je bereik. Je mist kansen nog voordat leads binnenkomen.';
           if (s3 === 'gemiddeld' && (s2 === 'laag' || s2 === 'midden-laag')) return 'Je merk is herkenbaar in je netwerk, maar overtuigt buitenstaanders nog onvoldoende. Scherpere positionering maakt direct verschil.';
@@ -428,112 +469,61 @@
              box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);"
     >
 
-      {{# Stap-progress #}}
-      <div style="margin-bottom:1.5rem; padding-bottom:1.25rem; border-bottom:1px solid rgba(30,31,27,0.07);">
+      {{# Progress bar #}}
+      <div style="margin-bottom:1.75rem; padding-bottom:1.25rem; border-bottom:1px solid rgba(30,31,27,0.07);">
         <div style="display:flex; align-items:center; gap:5px; margin-bottom:0.5rem;">
-          <div style="flex:1; height:6px; border-radius:999px; transition:background 0.35s ease;"
-               :style="stap1 !== null ? 'background:#ed6b46;' : 'background:rgba(30,31,27,0.1);'"></div>
-          <div style="flex:1; height:6px; border-radius:999px; transition:background 0.35s ease;"
-               :style="stap2 !== null ? 'background:#ed6b46;' : 'background:rgba(30,31,27,0.1);'"></div>
-          <div style="flex:1; height:6px; border-radius:999px; transition:background 0.35s ease;"
-               :style="stap3 !== null ? 'background:#ed6b46;' : 'background:rgba(30,31,27,0.1);'"></div>
+          <template x-for="(s, i) in steps" :key="i">
+            <div style="flex:1; height:6px; border-radius:999px; transition:background 0.35s ease;"
+                 :style="i < current || done ? 'background:#ed6b46;' : (i === current && !done ? 'background:rgba(237,107,70,0.25);' : 'background:rgba(30,31,27,0.1);')"></div>
+          </template>
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9b9890;"
-                x-text="(stap1 !== null ? 1 : 0) + (stap2 !== null ? 1 : 0) + (stap3 !== null ? 1 : 0) + ' van 3 stappen'"></span>
+                x-text="done ? '3 van 3 stappen' : (current + 1) + ' van 3 stappen'"></span>
           <span style="font-family:var(--font-display); font-size:13px; font-weight:800; color:#ed6b46; letter-spacing:-0.02em;"
-                x-text="klaar ? 'Compleet' : (((stap1 !== null ? 1 : 0) + (stap2 !== null ? 1 : 0) + (stap3 !== null ? 1 : 0)) + '/3')"></span>
+                x-text="done ? 'Compleet' : ((current + 1) + '/3')"></span>
         </div>
       </div>
 
-      {{# Stap 1: Jaarlijkse omzet #}}
-      <div style="margin-bottom:1.25rem;">
-        <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(30,31,27,0.35); font-family:var(--font-body); margin-bottom:0.5rem;">
-          Stap 1 / 3 &nbsp;·&nbsp; Jaarlijkse omzet
-        </div>
-        <p style="font-family:var(--font-body); font-size:15px; font-weight:600; color:#1E1F1B; margin-bottom:0.6rem; line-height:1.4;">Wat is je jaarlijkse omzet?</p>
-        <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
-          <template x-for="opt in [
-            { val: 'klein',   label: '&lt; €250k' },
-            { val: 'midden',  label: '€250k – €750k' },
-            { val: 'groot',   label: '€750k – €2M' },
-            { val: 'top',     label: '&gt; €2M' }
-          ]" :key="opt.val">
-            <button
-              type="button"
-              @click="stap1 = opt.val"
-              :style="stap1 === opt.val
-                ? 'padding:0.6rem 1.1rem; background:#ed6b46; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#fff; white-space:nowrap; transition:all 0.18s ease;'
-                : 'padding:0.6rem 1.1rem; background:#fff; border:1.5px solid rgba(30,31,27,0.1); box-shadow:0 1px 4px rgba(30,31,27,0.04); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:all 0.18s ease;'"
-              x-html="opt.label"
-            ></button>
-          </template>
-        </div>
+      {{# Vragen (één per keer) #}}
+      <div x-show="!done">
+        <template x-for="(step, i) in steps" :key="i">
+          <div x-show="current === i"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0 translate-x-3"
+               x-transition:enter-end="opacity-100 translate-x-0">
+            <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(30,31,27,0.35); font-family:var(--font-body); margin-bottom:0.5rem;"
+                 x-text="'Stap ' + (i+1) + ' / 3  ·  ' + step.label"></div>
+            <p style="font-family:var(--font-body); font-size:16px; font-weight:600; color:#1E1F1B; margin-bottom:1.25rem; line-height:1.4;"
+               x-text="step.q"></p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+              <template x-for="opt in step.opts" :key="opt.val">
+                <button
+                  type="button"
+                  @click="pick(opt.val)"
+                  :style="currentVal === opt.val
+                    ? 'padding:0.65rem 1.2rem; background:#ed6b46; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#fff; white-space:nowrap; transition:all 0.18s ease;'
+                    : 'padding:0.65rem 1.2rem; background:#F9F7F5; border:1.5px solid rgba(30,31,27,0.1); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:all 0.18s ease;'"
+                  x-text="opt.label"
+                ></button>
+              </template>
+            </div>
+          </div>
+        </template>
       </div>
 
-      <div style="height:1px; background:rgba(30,31,27,0.06); margin-bottom:1.25rem;"></div>
-
-      {{# Stap 2: Conversieratio #}}
-      <div style="margin-bottom:1.25rem;">
-        <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(30,31,27,0.35); font-family:var(--font-body); margin-bottom:0.5rem;">
-          Stap 2 / 3 &nbsp;·&nbsp; Conversie
-        </div>
-        <p style="font-family:var(--font-body); font-size:15px; font-weight:600; color:#1E1F1B; margin-bottom:0.6rem; line-height:1.4;">Hoeveel leads worden klant?</p>
-        <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
-          <template x-for="opt in [
-            { val: 'laag',        label: '&lt; 10%' },
-            { val: 'midden-laag', label: '10 – 25%' },
-            { val: 'midden-hoog', label: '25 – 50%' },
-            { val: 'hoog',        label: '&gt; 50%' }
-          ]" :key="opt.val">
-            <button
-              type="button"
-              @click="stap2 = opt.val"
-              :style="stap2 === opt.val
-                ? 'padding:0.6rem 1.1rem; background:#ed6b46; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#fff; white-space:nowrap; transition:all 0.18s ease;'
-                : 'padding:0.6rem 1.1rem; background:#fff; border:1.5px solid rgba(30,31,27,0.1); box-shadow:0 1px 4px rgba(30,31,27,0.04); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:all 0.18s ease;'"
-              x-html="opt.label"
-            ></button>
-          </template>
-        </div>
-      </div>
-
-      <div style="height:1px; background:rgba(30,31,27,0.06); margin-bottom:1.25rem;"></div>
-
-      {{# Stap 3: Merksterkte #}}
-      <div style="margin-bottom:1.25rem;">
-        <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(30,31,27,0.35); font-family:var(--font-body); margin-bottom:0.5rem;">
-          Stap 3 / 3 &nbsp;·&nbsp; Merksterkte
-        </div>
-        <p style="font-family:var(--font-body); font-size:15px; font-weight:600; color:#1E1F1B; margin-bottom:0.6rem; line-height:1.4;">Hoe sterk is jouw merk?</p>
-        <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
-          <template x-for="opt in [
-            { val: 'zwak',      label: 'Zwak' },
-            { val: 'gemiddeld', label: 'Gemiddeld' },
-            { val: 'sterk',     label: 'Sterk' }
-          ]" :key="opt.val">
-            <button
-              type="button"
-              @click="stap3 = opt.val"
-              :style="stap3 === opt.val
-                ? 'padding:0.6rem 1.1rem; background:#ed6b46; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#fff; white-space:nowrap; transition:all 0.18s ease;'
-                : 'padding:0.6rem 1.1rem; background:#fff; border:1.5px solid rgba(30,31,27,0.1); box-shadow:0 1px 4px rgba(30,31,27,0.04); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:all 0.18s ease;'"
-              x-text="opt.label"
-            ></button>
-          </template>
-        </div>
-      </div>
-
-      {{# Resultaat - zichtbaar zodra alle 3 gekozen zijn #}}
+      {{# Resultaat #}}
       <div
-        x-show="klaar"
+        x-show="done"
         x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-2"
         x-transition:enter-end="opacity-100 translate-y-0"
-        style="border-top:1px solid rgba(30,31,27,0.08); padding-top:1.25rem; margin-top:0.25rem; display:none;"
+        style="display:none;"
       >
-        <p style="font-family:var(--font-body); font-size:14px; line-height:1.75; color:#1E1F1B; font-weight:600; margin-bottom:0.6rem;" x-text="uitkomstZin"></p>
-        <p style="font-family:var(--font-body); font-size:13px; line-height:1.7; color:#6B6860; margin-bottom:1.25rem;" x-text="verklaringZin"></p>
+        <div style="background:#FFF8F6; border-radius:14px; padding:1.25rem 1.5rem; margin-bottom:1.25rem; border:1px solid rgba(237,107,70,0.12);">
+          <p style="font-family:var(--font-body); font-size:14px; line-height:1.75; color:#1E1F1B; font-weight:600; margin:0 0 0.6rem;" x-text="uitkomstZin"></p>
+          <p style="font-family:var(--font-body); font-size:13px; line-height:1.7; color:#6B6860; margin:0;" x-text="verklaringZin"></p>
+        </div>
         <a href="/scan"
            style="display:flex; align-items:center; justify-content:space-between;
                   padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none;
