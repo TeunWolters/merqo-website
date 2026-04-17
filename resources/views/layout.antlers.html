@@ -778,10 +778,10 @@
     </div>
     <div style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#ed6b46; margin-bottom:0.5rem;">Wacht even</div>
     <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(22px,3vw,30px); letter-spacing:-0.04em; line-height:1.1; color:#1E1F1B; margin:0 0 0.75rem;">Weet jij waar je merk kansen laat liggen?</h2>
-    <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:rgba(30,31,27,0.6); margin:0 0 1.5rem;">Doe de gratis merkenscan. In 15 minuten weet je precies waar je staat - geen verplichtingen, geen verkooppraatje.</p>
+    <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:rgba(30,31,27,0.6); margin:0 0 1.5rem;">Vraag de gratis merkscan aan. Wij voeren de scan voor je uit en sturen je binnen één werkdag persoonlijk advies - geen verplichtingen, geen verkooppraatje.</p>
     <div style="display:flex; flex-direction:column; gap:0.6rem;">
       <a href="/scan" onclick="exitPopupClose()" style="display:flex; align-items:center; justify-content:center; gap:0.5rem; background:#ed6b46; color:white; font-family:var(--font-body); font-size:14px; font-weight:700; padding:0.875rem 1.5rem; border-radius:12px; text-decoration:none; transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
-        Doe de gratis scan
+        Scan aanvragen
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
       </a>
       <button onclick="exitPopupClose()" style="background:transparent; border:none; cursor:pointer; font-family:var(--font-body); font-size:13px; color:rgba(30,31,27,0.38); padding:0.5rem; transition:color 0.15s;" onmouseover="this.style.color='rgba(30,31,27,0.6)'" onmouseout="this.style.color='rgba(30,31,27,0.38)'">Nee, ik ga verder kijken</button>
@@ -854,7 +854,7 @@
   else if (path.includes('/marketing'))       { stickyText = 'Meer klanten via online marketing?'; stickyHref = '/contact'; }
   else if (path.includes('/strategie'))       { stickyText = 'Scherpe positionering voor jouw bedrijf?'; stickyHref = '/contact'; }
   else if (path.includes('/merqo-as-a-service')) { stickyText = 'Alles uitbesteed voor 899/mnd - bekijk MaaS'; stickyHref = '/merqo-as-a-service'; stickyBtn = 'Meer over MaaS'; }
-  else if (path.includes('/blog'))            { stickyText = 'Doe de gratis merkenscan - 15 minuten'; stickyHref = '/scan'; stickyBtn = 'Doe de scan'; }
+  else if (path.includes('/blog'))            { stickyText = 'Gratis merkscan - wij voeren het voor je uit'; stickyHref = '/scan'; stickyBtn = 'Scan aanvragen'; }
 
   if (!stickyCTADismissed) {
     var textEl = document.getElementById('sticky-cta-text');
