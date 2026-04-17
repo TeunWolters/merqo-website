@@ -319,18 +319,18 @@
       <h2 style="font-family:var(--font-display); font-weight:800;
                  font-size:clamp(28px,3.5vw,48px); letter-spacing:-0.045em;
                  line-height:1.02; color:#1E1F1B; margin-bottom:1.5rem;">
-        Je hebt maar 50ms om<br>vertrouwen te winnen.<br><em style="font-style:italic; color:#ed6b46;">Wat zeggen jouw beelden?</em>
+        Je hebt maar 0,05 sec om<br>vertrouwen te winnen.<br><em style="font-style:italic; color:#ed6b46;">Wat zeggen jouw beelden?</em>
       </h2>
       <p style="font-family:var(--font-body); font-size:15px; line-height:1.8;
                 color:#6B6860; margin-bottom:2rem; max-width:46ch;">
-        Bezoekers beslissen in milliseconden of ze jou vertrouwen - puur op basis van wat ze zien. Stockfoto's, slechte verlichting of inconsistente beeldtaal ondermijnen dat vertrouwen direct.
+        Bezoekers beslissen in een fractie van een seconde of ze jou vertrouwen - puur op basis van wat ze zien. Stockfoto's, slechte verlichting of inconsistente beeldtaal ondermijnen dat vertrouwen direct.
       </p>
 
       {{# Stat-kaart #}}
       <div style="background:#fff; border-radius:16px; padding:1.5rem 1.75rem;
                   border:1px solid rgba(30,31,27,0.07); margin-bottom:2rem;">
         <div style="font-family:var(--font-display); font-weight:800; font-size:3.5rem;
-                    letter-spacing:-0.05em; color:#ed6b46; line-height:1; margin-bottom:0.5rem;">50ms</div>
+                    letter-spacing:-0.05em; color:#ed6b46; line-height:1; margin-bottom:0.5rem;">0,05 sec</div>
         <p style="font-family:var(--font-body); font-size:14px; line-height:1.65; color:#6B6860; margin:0;">
           Zo lang heeft een bezoeker nodig om een eerste indruk te vormen. Die indruk bepaalt of hij blijft of vertrekt. Jouw beeldtaal maakt dat verschil.
         </p>
@@ -417,7 +417,7 @@
           if (s >= 5) return 'Jouw beeldtaal is een asset. Zorg dat dit niveau meeschaalt als je bedrijf groeit.';
           if (s >= 3) return 'Solide basis, maar nog niet onderscheidend. Er liggen kansen die je laat liggen.';
           if (s >= 1) return 'Jouw beeldmateriaal ondersteunt je verhaal onvoldoende. Dat kost je vertrouwen.';
-          return 'Jouw beelden werken momenteel tegen je. Bezoekers oordelen binnen 50ms op basis van beeld.';
+          return 'Jouw beelden werken momenteel tegen je. Bezoekers oordelen binnen 0,05 seconde op basis van beeld.';
         },
         get barColor() {
           const s = this.score;
