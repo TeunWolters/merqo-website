@@ -120,10 +120,10 @@
            :style="(scrolled || !onDark) ? 'color:#ed6b46;' : 'color:#fff;'">
           MaaS
           <span :style="(scrolled || !onDark)
-            ? 'background:rgba(237,107,70,0.12); border:1px solid rgba(237,107,70,0.3); color:#ed6b46;'
-            : 'background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.35); color:#fff;'"
-                style="font-size:8px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
-                       border-radius:999px; padding:1px 6px; font-family:var(--font-body);">abonnement</span>
+            ? 'background:#ed6b46; color:#fff;'
+            : 'background:rgba(255,255,255,0.22); color:#fff;'"
+                style="font-size:9px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+                       border-radius:999px; padding:3px 8px; font-family:var(--font-body); line-height:1.4;">abonnement</span>
         </a>
         <a href="/projecten"  class="nav-link px-4 py-2 rounded-full" :style="(scrolled || !onDark) ? 'color:rgba(30,31,27,0.7)' : ''">Projecten</a>
         <a href="/blog"       class="nav-link px-4 py-2 rounded-full" :style="(scrolled || !onDark) ? 'color:rgba(30,31,27,0.7)' : ''">Kennisbank</a>
@@ -214,9 +214,9 @@
 
         <a href="/merqo-as-a-service" class="text-[#ed6b46] font-display text-2xl font-bold py-3 border-b transition-colors flex items-center gap-3" style="border-color:rgba(30,31,27,0.1);" @click="close()">
           MaaS
-          <span style="font-size:9px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
-                       background:rgba(237,107,70,0.1); border:1px solid rgba(237,107,70,0.3);
-                       border-radius:999px; padding:2px 8px; font-family:var(--font-body);">abonnement</span>
+          <span style="font-size:9px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+                       background:#ed6b46; color:#fff;
+                       border-radius:999px; padding:3px 8px; line-height:1.4; font-family:var(--font-body);">abonnement</span>
         </a>
         <a href="/projecten"  class="text-[#1E1F1B] font-display text-2xl font-bold py-3 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Projecten</a>
         <a href="/blog"       class="text-[#1E1F1B] font-display text-2xl font-bold py-3 border-b hover:text-[#ed6b46] transition-colors" style="border-color:rgba(30,31,27,0.1);" @click="close()">Kennisbank</a>
