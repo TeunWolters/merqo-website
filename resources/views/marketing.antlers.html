@@ -395,167 +395,200 @@
             { id: 'mond',      icon: '💬', name: 'Mond-tot-mond' },
             { id: 'website',   icon: '🌍', name: 'Website' }
           ],
-          selected: {},
           ratings: {},
           showResult: false,
-          ratingLabels: ['Leads', 'Bereik', 'Weinig'],
-          get checkedChannels() {
-            return this.channels.filter(c => this.selected[c.id]);
-          },
-          get ratedCount() {
-            return this.checkedChannels.filter(c => this.ratings[c.id]).length;
+          get ratedChannels() {
+            return this.channels.filter(c => this.ratings[c.id]);
           },
           get canShowResult() {
-            return this.checkedChannels.length >= 2 && this.ratedCount >= 2;
+            return this.ratedChannels.length >= 2;
           },
           get overallConclusion() {
-            const vals = this.checkedChannels.map(c => this.ratings[c.id]).filter(Boolean);
+            const vals = Object.values(this.ratings);
             if (vals.length === 0) return '';
-            const weinig = vals.filter(v => v === 'Weinig').length;
-            const leads  = vals.filter(v => v === 'Leads').length;
-            if (weinig >= Math.ceil(vals.length / 2)) return 'veel-weinig';
-            if (leads  >= Math.ceil(vals.length / 2)) return 'veel-leads';
+            const slecht = vals.filter(v => v === 'Slecht').length;
+            const werkt  = vals.filter(v => v === 'Werkt').length;
+            if (slecht >= Math.ceil(vals.length / 2)) return 'veel-slecht';
+            if (werkt  >= Math.ceil(vals.length / 2)) return 'veel-werkt';
             return 'gemengd';
           },
           conclusionText() {
             const c = this.overallConclusion;
-            if (c === 'veel-weinig') return 'Jouw marketing draait op gevoel: budget verdampt zonder dat je weet waarom.';
-            if (c === 'veel-leads')  return 'Sterke mix. De vraag is: is dit schaalbaar als één kanaal wegvalt?';
+            if (c === 'veel-slecht') return 'Jouw marketing draait op gevoel: budget verdampt zonder dat je weet waarom.';
+            if (c === 'veel-werkt')  return 'Sterke mix. De vraag is: is dit schaalbaar als één kanaal wegvalt?';
             return 'Stop met wat niet werkt en verdubbel op wat wél resultaat geeft.';
           },
           analysisText(channelId) {
             const r = this.ratings[channelId];
-            if (r === 'Leads')  return 'Werkt. Zorg dat het schaalt en leads kwalitatief blijven.';
-            if (r === 'Bereik') return 'Bereik zonder conversie is kostbaar: scherper strategie nodig.';
-            if (r === 'Weinig') return 'Investering zonder inzicht: meting ontbreekt of kanaal werkt niet.';
+            if (r === 'Werkt')  return 'Goed. Zorg dat het schaalt en leads kwalitatief blijven.';
+            if (r === 'Matig')  return 'Bereik zonder conversie is kostbaar - scherpere strategie nodig.';
+            if (r === 'Slecht') return 'Weinig inzicht of resultaat: stop of meet eerst wat er mis gaat.';
             return '';
           },
           ratingColor(level) {
-            if (level === 'Leads')  return '#10B981';
-            if (level === 'Bereik') return '#F59E0B';
-            if (level === 'Weinig') return '#EF4444';
+            if (level === 'Werkt')  return '#10B981';
+            if (level === 'Matig')  return '#F59E0B';
+            if (level === 'Slecht') return '#EF4444';
             return '#9CA3AF';
+          },
+          setRating(channelId, level) {
+            if (this.ratings[channelId] === level) {
+              const r = { ...this.ratings }; delete r[channelId]; this.ratings = r;
+            } else {
+              this.ratings = { ...this.ratings, [channelId]: level };
+            }
           }
         }"
+        style="background:#fff; border-radius:20px; padding:2rem 2.25rem;
+               box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);"
       >
 
-        {{# Tool card - input view #}}
-        <div
-          x-show="!showResult"
-          style="background:#fff; border-radius:20px; padding:2rem 2.25rem;
-                 box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);"
-        >
-          <div style="display:flex; flex-direction:column; gap:0; margin-bottom:1.5rem;">
+        {{# INPUT VIEW #}}
+        <div x-show="!showResult">
+
+          {{# Koptekst #}}
+          <div class="eyebrow" style="margin-bottom:0.75rem;">
+            <div class="eyebrow-line"></div>
+            <div class="eyebrow-text">Kanaal-audit</div>
+          </div>
+          <h3 style="font-family:var(--font-display); font-size:clamp(17px,2vw,21px); font-weight:800;
+                     letter-spacing:-0.03em; color:#1E1F1B; margin:0 0 0.4rem; line-height:1.2;">
+            Hoe presteert elk kanaal<br>dat je gebruikt?
+          </h3>
+          <p style="font-family:var(--font-body); font-size:12px; color:rgba(30,31,27,0.45); margin:0 0 1.25rem; line-height:1.5;">
+            Beoordeel alleen kanalen die je actief inzet. Klik op de kleur die het resultaat beschrijft.
+          </p>
+
+          {{# Legenda #}}
+          <div style="display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap;">
+            <span style="display:inline-flex; align-items:center; gap:4px; font-family:var(--font-body); font-size:11px; font-weight:700; color:#10B981; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); border-radius:6px; padding:0.2rem 0.5rem;">
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none"><polyline points="1,6 4,9 11,2" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Levert klanten op
+            </span>
+            <span style="display:inline-flex; align-items:center; gap:4px; font-family:var(--font-body); font-size:11px; font-weight:700; color:#D97706; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.2); border-radius:6px; padding:0.2rem 0.5rem;">
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none"><line x1="2" y1="6" x2="10" y2="6" stroke="#D97706" stroke-width="2" stroke-linecap="round"/></svg>
+              Bereik, weinig conversie
+            </span>
+            <span style="display:inline-flex; align-items:center; gap:4px; font-family:var(--font-body); font-size:11px; font-weight:700; color:#EF4444; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); border-radius:6px; padding:0.2rem 0.5rem;">
+              <svg width="9" height="9" viewBox="0 0 12 12" fill="none"><line x1="2" y1="2" x2="10" y2="10" stroke="#EF4444" stroke-width="2" stroke-linecap="round"/><line x1="10" y1="2" x2="2" y2="10" stroke="#EF4444" stroke-width="2" stroke-linecap="round"/></svg>
+              Weinig effect
+            </span>
+          </div>
+
+          {{# Kanaalrijen #}}
+          <div style="display:flex; flex-direction:column; margin-bottom:1.5rem;">
             <template x-for="channel in channels" :key="channel.id">
-              <div>
-                {{# Channel row #}}
-                <div
-                  @click="selected[channel.id] = !selected[channel.id]; if (!selected[channel.id]) { delete ratings[channel.id]; }"
-                  :style="'padding:0.55rem 0.5rem; cursor:pointer; display:flex; align-items:center; gap:0.625rem; border-bottom:1px solid rgba(30,31,27,0.06); transition:background 0.15s; ' + (selected[channel.id] ? 'background:#fffaf8;' : '')"
-                >
-                  <span x-text="channel.icon" style="font-size:1rem; flex-shrink:0; width:1.5rem; text-align:center;"></span>
-                  <span x-text="channel.name" style="font-family:var(--font-body); font-size:14px; font-weight:600; color:#1E1F1B; flex:1;"></span>
+              <div style="display:flex; align-items:center; gap:0.625rem; padding:0.6rem 0; border-bottom:1px solid rgba(30,31,27,0.06);">
 
-                  {{# Inline rating pills - shown when active #}}
-                  <div
-                    x-show="selected[channel.id]"
-                    style="display:flex; gap:0.3rem; flex-shrink:0;"
-                    @click.stop
-                  >
-                    <template x-for="level in ratingLabels" :key="level">
-                      <button
-                        type="button"
-                        @click.stop="ratings[channel.id] = level"
-                        :style="'font-family:var(--font-body); font-size:11px; font-weight:700; border-radius:999px; padding:0.2rem 0.55rem; border:1.5px solid; cursor:pointer; transition:all 0.12s; white-space:nowrap; ' + (ratings[channel.id] === level ? 'background:#ed6b46; border-color:#ed6b46; color:#fff;' : 'background:#fff; border-color:rgba(30,31,27,0.18); color:#6B6860;')"
-                        x-text="level"
-                      ></button>
-                    </template>
-                  </div>
+                <span x-text="channel.icon" style="font-size:1rem; flex-shrink:0; width:1.5rem; text-align:center;"></span>
+                <span x-text="channel.name" :style="'font-family:var(--font-body); font-size:13px; font-weight:600; flex:1; transition:color 0.15s; color:' + (ratings[channel.id] ? '#1E1F1B' : 'rgba(30,31,27,0.45)')"></span>
 
-                  {{# Checkbox - shown when inactive #}}
-                  <span
-                    x-show="!selected[channel.id]"
-                    :style="'width:16px; height:16px; border-radius:4px; border:1.5px solid rgba(30,31,27,0.2); flex-shrink:0; display:flex; align-items:center; justify-content:center;'"
-                  ></span>
-                  <span
-                    x-show="selected[channel.id]"
-                    style="width:16px; height:16px; border-radius:4px; border:1.5px solid #ed6b46; background:#ed6b46; flex-shrink:0; display:flex; align-items:center; justify-content:center;"
-                  >
-                    <svg width="9" height="9" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </span>
+                {{# 3 rating-knoppen #}}
+                <div style="display:flex; gap:4px; flex-shrink:0;">
+
+                  {{# Werkt - groen #}}
+                  <button type="button" @click="setRating(channel.id, 'Werkt')"
+                    :style="ratings[channel.id] === 'Werkt'
+                      ? 'width:30px; height:28px; border-radius:8px; border:none; background:#10B981; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.15s;'
+                      : 'width:30px; height:28px; border-radius:8px; border:1.5px solid rgba(30,31,27,0.12); background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.15s;'">
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none"
+                         :stroke="ratings[channel.id] === 'Werkt' ? '#fff' : 'rgba(30,31,27,0.3)'"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="1,6 4,9 11,2"/>
+                    </svg>
+                  </button>
+
+                  {{# Matig - geel #}}
+                  <button type="button" @click="setRating(channel.id, 'Matig')"
+                    :style="ratings[channel.id] === 'Matig'
+                      ? 'width:30px; height:28px; border-radius:8px; border:none; background:#F59E0B; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.15s;'
+                      : 'width:30px; height:28px; border-radius:8px; border:1.5px solid rgba(30,31,27,0.12); background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.15s;'">
+                    <svg width="11" height="3" viewBox="0 0 11 3" fill="none"
+                         :stroke="ratings[channel.id] === 'Matig' ? '#fff' : 'rgba(30,31,27,0.3)'"
+                         stroke-width="2" stroke-linecap="round">
+                      <line x1="0" y1="1.5" x2="11" y2="1.5"/>
+                    </svg>
+                  </button>
+
+                  {{# Slecht - rood #}}
+                  <button type="button" @click="setRating(channel.id, 'Slecht')"
+                    :style="ratings[channel.id] === 'Slecht'
+                      ? 'width:30px; height:28px; border-radius:8px; border:none; background:#EF4444; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.15s;'
+                      : 'width:30px; height:28px; border-radius:8px; border:1.5px solid rgba(30,31,27,0.12); background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.15s;'">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                         :stroke="ratings[channel.id] === 'Slecht' ? '#fff' : 'rgba(30,31,27,0.3)'"
+                         stroke-width="2" stroke-linecap="round">
+                      <line x1="1" y1="1" x2="9" y2="9"/><line x1="9" y1="1" x2="1" y2="9"/>
+                    </svg>
+                  </button>
+
                 </div>
               </div>
             </template>
           </div>
 
+          {{# CTA #}}
           <button
             type="button"
             @click="showResult = true"
             :disabled="!canShowResult"
-            :style="'width:100%; font-family:var(--font-display); font-size:14px; font-weight:700; border-radius:14px; padding:0.9rem 1.25rem; border:none; transition:all 0.2s; display:flex; align-items:center; justify-content:center; gap:0.5rem; ' + (canShowResult ? 'background:#ed6b46; color:#fff; cursor:pointer; box-shadow:0 4px 16px rgba(237,107,70,0.25);' : 'background:#E5E0D9; color:#B0A99E; cursor:not-allowed;')"
+            :style="canShowResult
+              ? 'width:100%; font-family:var(--font-display); font-size:14px; font-weight:700; border-radius:14px; padding:0.9rem 1.25rem; border:none; display:flex; align-items:center; justify-content:space-between; background:#ed6b46; color:#fff; cursor:pointer; box-shadow:0 4px 16px rgba(237,107,70,0.25); transition:all 0.2s;'
+              : 'width:100%; font-family:var(--font-display); font-size:14px; font-weight:700; border-radius:14px; padding:0.9rem 1.25rem; border:none; display:flex; align-items:center; justify-content:center; background:#E5E0D9; color:#B0A99E; cursor:not-allowed; transition:all 0.2s;'"
           >
-            Bekijk mijn analyse
+            <span>Bekijk mijn analyse</span>
+            <svg x-show="canShowResult" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
+          <p x-show="!canShowResult"
+             style="font-family:var(--font-body); font-size:11px; color:#B0A99E; text-align:center; margin-top:0.5rem;"
+             x-text="'Beoordeel minimaal 2 kanalen (' + ratedChannels.length + ' van 2)'"></p>
 
-          <p
-            x-show="!canShowResult"
-            style="font-family:var(--font-body); font-size:11px; color:#B0A99E; text-align:center; margin-top:0.5rem; min-height:1.3em;"
-            x-text="checkedChannels.length < 2 ? 'Vink minimaal 2 kanalen aan.' : 'Beoordeel minimaal 2 kanalen.'"
-          ></p>
         </div>
 
-        {{# Results card #}}
-        <div x-show="showResult" x-transition:enter="transition-opacity duration-300" style="display:none;">
+        {{# RESULTATEN VIEW #}}
+        <div x-show="showResult" x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0"
+             style="display:none;">
 
-          <div style="background:#fff; border-radius:20px; padding:2rem 2.25rem;
-                    box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);">
+          {{# Conclusie #}}
+          <div style="background:#F9F7F5; border-radius:14px; padding:1.25rem; margin-bottom:1.25rem;">
+            <div style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ed6b46; margin-bottom:0.4rem;">Conclusie</div>
+            <p x-text="conclusionText()" style="font-family:var(--font-display); font-size:15px; font-weight:700; line-height:1.45; color:#1E1F1B; margin:0;"></p>
+          </div>
 
-            {{# Overall conclusion #}}
-            <div style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ed6b46; margin-bottom:0.5rem;">Conclusie</div>
-            <p x-text="conclusionText()" style="font-family:var(--font-body); font-size:15px; line-height:1.65; color:#1E1F1B; font-weight:600; margin:0 0 1.25rem;"></p>
-
-            {{# Per-channel results #}}
-            <div style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1.25rem;">
-              <template x-for="channel in checkedChannels" :key="channel.id">
-                <div style="display:flex; flex-direction:column; gap:0.2rem; padding:0.5rem 0; border-top:1px solid rgba(30,31,27,0.06);">
-                  <div style="display:flex; align-items:center; gap:0.5rem;">
-                    <span x-text="channel.icon" style="font-size:0.9rem;"></span>
-                    <span x-text="channel.name" style="font-family:var(--font-body); font-size:13px; font-weight:700; color:#1E1F1B; flex:1;"></span>
-                    <span
-                      x-show="ratings[channel.id]"
-                      x-text="ratings[channel.id]"
-                      :style="'font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.04em; border-radius:999px; padding:0.15rem 0.5rem; color:#fff; background:' + ratingColor(ratings[channel.id]) + ';'"
-                    ></span>
+          {{# Per-kanaal resultaat #}}
+          <div style="display:flex; flex-direction:column; margin-bottom:1.25rem;">
+            <template x-for="channel in ratedChannels" :key="channel.id">
+              <div style="display:flex; align-items:flex-start; gap:0.75rem; padding:0.75rem 0; border-top:1px solid rgba(30,31,27,0.06);">
+                <span x-text="channel.icon" style="font-size:1rem; flex-shrink:0; margin-top:1px;"></span>
+                <div style="flex:1; min-width:0;">
+                  <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.2rem;">
+                    <span x-text="channel.name" style="font-family:var(--font-body); font-size:13px; font-weight:700; color:#1E1F1B;"></span>
+                    <span x-text="ratings[channel.id]"
+                          :style="'font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.04em; border-radius:6px; padding:0.15rem 0.45rem; color:#fff; background:' + ratingColor(ratings[channel.id]) + ';'"></span>
                   </div>
-                  <p
-                    x-show="ratings[channel.id]"
-                    x-text="analysisText(channel.id)"
-                    style="font-family:var(--font-body); font-size:12px; line-height:1.55; color:#6B6860; margin:0 0 0 1.5rem;"
-                  ></p>
+                  <p x-text="analysisText(channel.id)"
+                     style="font-family:var(--font-body); font-size:12px; line-height:1.55; color:#6B6860; margin:0;"></p>
                 </div>
-              </template>
-            </div>
+              </div>
+            </template>
+          </div>
 
-            {{# CTA button + back #}}
-            <div style="display:flex; flex-direction:column; gap:0.75rem;">
-              <a href="/contact"
-                 style="display:flex; align-items:center; justify-content:space-between;
-                        padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none;
-                        background:#ed6b46; color:#fff; box-shadow:0 4px 16px rgba(237,107,70,0.25);
-                        transition:all 0.2s ease;"
-                 onmouseover="this.style.background='#d95e3c'" onmouseout="this.style.background='#ed6b46'">
-                <span style="font-family:var(--font-display); font-size:14px; font-weight:700; letter-spacing:-0.01em;">Maak jouw marketing meetbaar</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-              <button
-                type="button"
-                @click="showResult = false"
-                style="font-family:var(--font-body); font-size:12px; font-weight:600; color:#9CA3AF; background:transparent; border:none; cursor:pointer; padding:0; text-align:left;"
-              >
-                ← Pas aan
-              </button>
-            </div>
-
+          {{# CTA + terug #}}
+          <div style="display:flex; flex-direction:column; gap:0.75rem; padding-top:1rem; border-top:1px solid rgba(30,31,27,0.07);">
+            <a href="/contact"
+               style="display:flex; align-items:center; justify-content:space-between;
+                      padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none;
+                      background:#ed6b46; color:#fff; box-shadow:0 4px 16px rgba(237,107,70,0.25);
+                      transition:all 0.2s ease;"
+               onmouseover="this.style.background='#d95e3c'" onmouseout="this.style.background='#ed6b46'">
+              <span style="font-family:var(--font-display); font-size:14px; font-weight:700; letter-spacing:-0.01em;">Maak jouw marketing meetbaar</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <button type="button" @click="showResult = false; ratings = {};"
+                    style="font-family:var(--font-body); font-size:12px; font-weight:600; color:#9CA3AF; background:transparent; border:none; cursor:pointer; padding:0; text-align:left;">
+              ← Opnieuw
+            </button>
           </div>
 
         </div>
