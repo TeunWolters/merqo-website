@@ -380,142 +380,183 @@
       </div>
     </div>
 
-    {{# ── Rechts: tool-kaart ── #}}
+    {{# ── Rechts: quiz-kaart ── #}}
     <div data-reveal>
-      <div
-        x-data="{
-          scores: [null, null, null, null, null],
-          get total() { return this.scores.reduce((s, v) => s + (v ?? 0), 0); },
-          get allFilled() { return this.scores.every(v => v !== null); },
-          get resultLevel() {
-            const t = this.total;
-            if (t >= 20) return 'Sterk';
-            if (t >= 13) return 'Solide';
-            if (t >= 7)  return 'Ontwikkeling nodig';
-            return 'Urgent';
+    <div
+      x-data="{
+        current: 0,
+        answers: [],
+        selected: null,
+        done: false,
+        questions: [
+          {
+            q: 'Laat jouw beeldmateriaal zien wie jullie écht zijn - niet wat je denkt dat klanten willen zien?',
+            nee: 'Beelden die niet kloppen bij wie je bent wekken onbewust twijfel. Klanten voelen dat.'
           },
-          get resultLabel() {
-            const t = this.total;
-            if (t >= 20) return 'Jouw beeldtaal is een asset. Zorg dat je dit niveau vasthoudt als je bedrijf groeit.';
-            if (t >= 13) return 'Solide maar niet onderscheidend. Jouw beelden communiceren competentie, maar nog niet karakter.';
-            if (t >= 7)  return 'Jouw beeldmateriaal ondersteunt je verhaal onvoldoende. Dat kost je vertrouwen op het moment dat het telt.';
-            return 'Jouw beelden werken momenteel tegen je. Bezoekers vormen binnen 50ms een oordeel op basis van wat ze zien.';
+          {
+            q: 'Zijn jouw foto\'s en video\'s visueel consistent - alsof ze allemaal van dezelfde hand komen?',
+            nee: 'Inconsistente beeldtaal ondermijnt je professionaliteit, ook als de kwaliteit per stuk goed is.'
           },
-          get resultColor() {
-            const t = this.total;
-            if (t >= 20) return '#3a7d5e';
-            if (t >= 13) return '#a07c2e';
-            if (t >= 7)  return '#c05c20';
-            return '#b83030';
+          {
+            q: 'Begrijpt een potentiële klant binnen 5 seconden wat jouw kwaliteit is, puur op basis van beeld?',
+            nee: 'Bezoekers besluiten in milliseconden. Trage of onduidelijke beelden kosten je direct vertrouwen.'
           },
-          statements: [
-            'Ons beeldmateriaal laat zien wie wij écht zijn, niet wat we denken dat klanten willen zien.',
-            'Onze foto\'s en video\'s zijn visueel consistent: ze hadden allemaal van dezelfde hand kunnen komen.',
-            'Een potentiële klant begrijpt binnen 5 seconden wat onze kwaliteit is, puur op basis van wat hij ziet.',
-            'We werken met eigen beeldmateriaal: geen stockfoto\'s die ook op tien andere websites staan.',
-            'Ons beeldmateriaal onderscheidt ons visueel van directe concurrenten in onze branche.'
-          ]
-        }"
-        style="background:#fff; border-radius:20px; padding:2rem 2.25rem;
-               box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);"
-      >
+          {
+            q: 'Werk je uitsluitend met eigen beeldmateriaal - geen stockfoto\'s die ook elders staan?',
+            nee: 'Stockfoto\'s signaleren onbewust: dit bedrijf wil zichzelf niet laten zien. Dat wekt twijfel.'
+          },
+          {
+            q: 'Onderscheidt jouw beeldmateriaal je visueel van directe concurrenten in jouw branche?',
+            nee: 'Als jouw beelden inwisselbaar zijn met die van een concurrent, geeft beeld geen reden om voor jou te kiezen.'
+          }
+        ],
+        get score() { return this.answers.filter(a => a === true).length; },
+        get neeIndices() { return this.answers.map((a,i) => a === false ? i : null).filter(i => i !== null); },
+        get resultTitle() {
+          const s = this.score;
+          if (s >= 5) return 'Jouw beeldtaal is een asset. Zorg dat dit niveau meeschaalt als je bedrijf groeit.';
+          if (s >= 3) return 'Solide basis, maar nog niet onderscheidend. Er liggen kansen die je laat liggen.';
+          if (s >= 1) return 'Jouw beeldmateriaal ondersteunt je verhaal onvoldoende. Dat kost je vertrouwen.';
+          return 'Jouw beelden werken momenteel tegen je. Bezoekers oordelen binnen 50ms op basis van beeld.';
+        },
+        get barColor() {
+          const s = this.score;
+          if (s >= 5) return '#4caf87';
+          if (s >= 3) return '#ed9b46';
+          if (s >= 1) return '#ed6b46';
+          return '#c0392b';
+        },
+        get barWidth() { return Math.round((this.score / 5) * 100) + '%'; },
+        answer(val) {
+          if (this.selected !== null) return;
+          this.selected = val;
+          setTimeout(() => {
+            this.answers.push(val);
+            this.selected = null;
+            if (this.current < this.questions.length - 1) {
+              this.current++;
+            } else {
+              this.done = true;
+            }
+          }, 420);
+        },
+        restart() {
+          this.current = 0; this.answers = []; this.selected = null; this.done = false;
+        }
+      }"
+      style="background:#fff; border-radius:20px; padding:2rem 2.25rem;
+             box-shadow:0 1px 0 rgba(30,31,27,0.05), 0 8px 40px rgba(30,31,27,0.07);"
+    >
 
-        {{# Progress - 5 segmenten #}}
-        <div style="margin-bottom:1.5rem; padding-bottom:1.25rem; border-bottom:1px solid rgba(30,31,27,0.07);">
-          <div style="display:flex; align-items:center; gap:5px; margin-bottom:0.5rem;">
-            <template x-for="j in 5" :key="j">
-              <div style="flex:1; height:6px; border-radius:999px; transition:background 0.35s ease;"
-                   :style="j <= scores.filter(s => s !== null).length ? 'background:#ed6b46;' : 'background:rgba(30,31,27,0.1);'"></div>
-            </template>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9b9890;"
-                  x-text="scores.filter(s => s !== null).length + ' van 5 beoordeeld'"></span>
-            <span style="font-family:var(--font-display); font-size:13px; font-weight:800; color:#ed6b46; letter-spacing:-0.02em;"
-                  x-text="Math.round(scores.filter(s => s !== null).length / 5 * 100) + '%'"></span>
-          </div>
-        </div>
-
-        {{# Eyebrow + Titel #}}
-        <div class="eyebrow" style="margin-bottom:0.875rem;">
-          <div class="eyebrow-line"></div>
-          <div class="eyebrow-text">Test jezelf</div>
-        </div>
-        <h2 style="font-family:var(--font-display); font-weight:800;
-                   font-size:clamp(20px,2.5vw,28px); letter-spacing:-0.04em;
-                   line-height:1.08; color:#1E1F1B; margin-bottom:0.5rem;">
-          Wat vertelt jouw beeldmateriaal?
-        </h2>
-        <p style="font-family:var(--font-body); font-size:13px; line-height:1.65; color:rgba(30,31,27,0.5); margin-bottom:1.5rem;">
-          Scoor vijf stellingen: 1 is helemaal niet, 5 is volledig van toepassing.
-        </p>
-
-        {{# Stellingen #}}
-        <div style="display:flex; flex-direction:column; gap:0.875rem;">
-          <template x-for="(statement, i) in statements" :key="i">
-            <div style="border-top:1px solid rgba(30,31,27,0.07); padding-top:0.875rem;">
-
-              {{# Stelling tekst #}}
-              <p style="font-family:var(--font-display); font-size:15px; font-weight:700; line-height:1.4; color:#1E1F1B; letter-spacing:-0.02em; margin:0 0 0.75rem;"
-                 x-text="(i + 1) + '. ' + statement"></p>
-
-              {{# Score-knoppen 1–5 #}}
-              <div style="display:flex; gap:0.375rem; align-items:center;">
-                <template x-for="n in [1,2,3,4,5]" :key="n">
-                  <button
-                    type="button"
-                    @click="scores[i] = n"
-                    :style="scores[i] === n
-                      ? 'font-family:var(--font-display); font-size:14px; font-weight:800; min-width:2.5rem; height:2.5rem; border-radius:12px; border:2px solid #ed6b46; background:#ed6b46; color:#fff; cursor:pointer; transition:all 0.15s ease; flex-shrink:0; box-shadow:0 3px 10px rgba(237,107,70,0.25);'
-                      : 'font-family:var(--font-display); font-size:14px; font-weight:700; min-width:2.5rem; height:2.5rem; border-radius:12px; border:1.5px solid rgba(30,31,27,0.1); background:#F5F3EF; color:#1E1F1B; cursor:pointer; transition:all 0.15s ease; flex-shrink:0;'"
-                    x-text="n"
-                  ></button>
-                </template>
-                <span
-                  style="margin-left:0.4rem; font-family:var(--font-body); font-size:11px; color:rgba(30,31,27,0.3);"
-                  x-show="scores[i] === null"
-                >Kies</span>
-              </div>
-
-            </div>
+      {{# Voortgang #}}
+      <div x-show="!done" style="margin-bottom:1.75rem; padding-bottom:1.5rem; border-bottom:1px solid rgba(30,31,27,0.07);">
+        <div style="display:flex; align-items:center; gap:5px; margin-bottom:0.5rem;">
+          <template x-for="i in 5" :key="i">
+            <div style="flex:1; height:6px; border-radius:999px; transition:background 0.35s ease;"
+                 :style="i <= current ? 'background:#ed6b46;' : 'background:rgba(30,31,27,0.1);'"></div>
           </template>
         </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9b9890;"
+                x-text="'Vraag ' + (current + 1) + ' van 5'"></span>
+          <span style="font-family:var(--font-display); font-size:13px; font-weight:800; color:#ed6b46; letter-spacing:-0.02em;"
+                x-text="Math.round((current / 5) * 100) + '%'"></span>
+        </div>
+      </div>
 
-        {{# Resultaat #}}
-        <div
-          x-show="allFilled"
-          x-transition:enter="transition ease-out duration-300"
-          x-transition:enter-start="opacity-0 translate-y-2"
-          x-transition:enter-end="opacity-100 translate-y-0"
-          style="margin-top:1.25rem; border-top:1px solid rgba(30,31,27,0.07); padding-top:1.25rem;"
-        >
+      {{# Vragen #}}
+      <div x-show="!done">
+        <template x-for="(q, index) in questions" :key="index">
+          <div x-show="current === index">
 
-          {{# Score badge + balk #}}
-          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
-            <div style="width:64px; height:64px; border-radius:50%; flex-shrink:0; display:flex; flex-direction:column; align-items:center; justify-content:center; border:3px solid;"
-                 :style="'border-color:' + resultColor + '; background:' + resultColor + '18;'">
-              <span style="font-family:var(--font-display); font-size:18px; font-weight:800; line-height:1;"
-                    :style="'color:' + resultColor" x-text="total"></span>
-              <span style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;"
-                    :style="'color:' + resultColor + '; opacity:0.7'">van 25</span>
-            </div>
-            <div style="flex:1;">
-              <div style="height:6px; background:rgba(30,31,27,0.08); border-radius:999px; overflow:hidden; margin-bottom:0.5rem;">
-                <div style="height:100%; border-radius:999px; transition:width 0.7s ease;"
-                     :style="'width:' + (total / 25 * 100) + '%; background:' + resultColor"></div>
-              </div>
-              <p style="font-family:var(--font-display); font-size:15px; font-weight:700; line-height:1.3; margin:0;"
-                 :style="'color:' + resultColor" x-text="resultLevel"></p>
+            <p style="font-family:var(--font-display); font-size:clamp(17px,1.8vw,22px); font-weight:700;
+                      letter-spacing:-0.03em; line-height:1.3; color:#1E1F1B; margin:0 0 1.75rem;"
+               x-text="q.q"></p>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+
+              {{# Ja #}}
+              <button
+                @click="answer(true)"
+                :disabled="selected !== null"
+                :style="selected === true
+                  ? 'display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.75rem; padding:1.5rem 1rem; border-radius:16px; border:1.5px solid #ed6b46; background:#fffaf8; box-shadow:0 0 0 3px rgba(237,107,70,0.1); cursor:pointer; transition:all 0.18s ease; min-height:110px; width:100%;'
+                  : 'display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.75rem; padding:1.5rem 1rem; border-radius:16px; border:1.5px solid rgba(30,31,27,0.1); background:#fff; cursor:pointer; transition:all 0.18s ease; min-height:110px; width:100%;'"
+              >
+                <div :style="selected === true
+                       ? 'width:38px; height:38px; border-radius:50%; background:#ed6b46; display:flex; align-items:center; justify-content:center;'
+                       : 'width:38px; height:38px; border-radius:50%; background:rgba(30,31,27,0.06); display:flex; align-items:center; justify-content:center;'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                       :stroke="selected === true ? '#fff' : '#1E1F1B'">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <span :style="selected === true
+                        ? 'font-family:var(--font-display); font-size:16px; font-weight:800; letter-spacing:-0.02em; color:#ed6b46;'
+                        : 'font-family:var(--font-display); font-size:16px; font-weight:800; letter-spacing:-0.02em; color:#1E1F1B;'">Ja</span>
+              </button>
+
+              {{# Nee #}}
+              <button
+                @click="answer(false)"
+                :disabled="selected !== null"
+                :style="selected === false
+                  ? 'display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.75rem; padding:1.5rem 1rem; border-radius:16px; border:1.5px solid rgba(30,31,27,0.2); background:#F5F4F1; cursor:pointer; transition:all 0.18s ease; min-height:110px; width:100%;'
+                  : 'display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.75rem; padding:1.5rem 1rem; border-radius:16px; border:1.5px solid rgba(30,31,27,0.1); background:#fff; cursor:pointer; transition:all 0.18s ease; min-height:110px; width:100%;'"
+              >
+                <div :style="selected === false
+                       ? 'width:38px; height:38px; border-radius:50%; background:rgba(30,31,27,0.12); display:flex; align-items:center; justify-content:center;'
+                       : 'width:38px; height:38px; border-radius:50%; background:rgba(30,31,27,0.06); display:flex; align-items:center; justify-content:center;'">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1F1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </div>
+                <span style="font-family:var(--font-display); font-size:16px; font-weight:800; letter-spacing:-0.02em; color:#1E1F1B;">Nee</span>
+              </button>
+
             </div>
           </div>
+        </template>
+      </div>
 
-          {{# 1-zin conclusie #}}
-          <p
-            x-text="resultLabel"
-            style="font-family:var(--font-body); font-size:13px; line-height:1.65; color:rgba(30,31,27,0.55); margin:0 0 1.25rem;"
-          ></p>
+      {{# Resultaat #}}
+      <div x-show="done" x-cloak>
 
-          {{# CTA button #}}
+        <div style="display:flex; align-items:center; gap:1.25rem; margin-bottom:1.5rem; padding:1.25rem; border-radius:14px; background:#F9F7F5;">
+          <div :style="'width:72px; height:72px; border-radius:50%; flex-shrink:0; display:flex; flex-direction:column; align-items:center; justify-content:center; border:3px solid ' + barColor + '; background:' + barColor + '18;'">
+            <span :style="'font-family:var(--font-display); font-size:22px; font-weight:800; line-height:1; color:' + barColor" x-text="score"></span>
+            <span :style="'font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:' + barColor + '; opacity:0.65'">van 5</span>
+          </div>
+          <div style="flex:1; min-width:0;">
+            <p :style="'font-family:var(--font-display); font-size:clamp(13px,1.4vw,15px); font-weight:700; line-height:1.4; margin:0 0 0.75rem; color:' + barColor"
+               x-text="resultTitle"></p>
+            <div style="height:6px; background:rgba(30,31,27,0.1); border-radius:999px; overflow:hidden;">
+              <div :style="'height:100%; border-radius:999px; transition:width 0.8s ease; width:' + barWidth + '; background:' + barColor"></div>
+            </div>
+          </div>
+        </div>
+
+        <div x-show="neeIndices.length > 0"
+             style="background:#FFF8F6; border-radius:14px; padding:1.25rem; margin-bottom:1.25rem;">
+          <p style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:0.1em;
+                    text-transform:uppercase; color:#ed6b46; margin:0 0 0.875rem;">Aandachtspunten</p>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0.625rem;">
+            <template x-for="i in neeIndices" :key="i">
+              <li style="display:flex; gap:0.625rem; align-items:flex-start;">
+                <div style="width:16px; height:16px; border-radius:50%; background:#ed6b46; flex-shrink:0; margin-top:1px;
+                            display:flex; align-items:center; justify-content:center;">
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </div>
+                <span style="font-family:var(--font-body); font-size:13px; line-height:1.55; color:#6B6860;"
+                      x-text="questions[i].nee"></span>
+              </li>
+            </template>
+          </ul>
+        </div>
+
+        <div style="padding-top:1rem; border-top:1px solid rgba(30,31,27,0.07); display:flex; flex-direction:column; gap:0.75rem;">
           <a href="/contact"
              style="display:flex; align-items:center; justify-content:space-between;
                     padding:0.9rem 1.25rem; border-radius:14px; text-decoration:none;
@@ -525,18 +566,17 @@
             <span style="font-family:var(--font-display); font-size:14px; font-weight:700; letter-spacing:-0.01em;">Bekijk wat wij voor jouw beeldtaal doen</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-
+          <button @click="restart()"
+                  style="font-family:var(--font-body); font-size:12px; font-weight:500; color:#9b9890;
+                         background:none; border:none; cursor:pointer; padding:0;
+                         text-decoration:underline; text-underline-offset:2px; text-align:left;">
+            Opnieuw doen
+          </button>
         </div>
 
-        {{# Hint als nog niet alle stellingen zijn ingevuld #}}
-        <p
-          x-show="!allFilled"
-          style="margin-top:1rem; font-family:var(--font-body); font-size:12px; color:rgba(30,31,27,0.28); text-align:center;"
-        >
-          Beantwoord alle vijf stellingen om je analyse te zien.
-        </p>
-
       </div>
+
+    </div>
     </div>
 
   </div>{{# /foto-test-grid #}}
