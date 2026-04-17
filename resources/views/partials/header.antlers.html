@@ -39,73 +39,72 @@
             x-transition:leave="transition ease-in duration-150"
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 translate-y-2"
-            class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[600px] bg-white border border-black/10 rounded-2xl overflow-hidden shadow-2xl shadow-black/15"
+            class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[720px] bg-white border border-black/10 rounded-2xl overflow-hidden shadow-2xl shadow-black/15"
             x-cloak
             role="navigation"
             aria-label="Diensten menu"
           >
 
             {{# ── Prioriteit: Merkfundament + MaaS ── #}}
-            <div style="padding:0.875rem 0.875rem 0;">
-              <div style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(30,31,27,0.35); margin-bottom:0.5rem; padding:0 0.25rem;">Aanbevolen traject</div>
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+            <div style="padding:1rem 1rem 0;">
+              <div style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; color:rgba(30,31,27,0.3); margin-bottom:0.625rem; padding:0 0.125rem;">Aanbevolen traject</div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.625rem;">
 
                 {{# Stap 1: Merkfundament #}}
                 <a href="/merkfundament" @click="closeMenu()"
-                   style="display:block; background:#1E1F1B; border-radius:14px; padding:1rem 1.125rem; text-decoration:none; position:relative; overflow:hidden; transition:opacity 0.15s;"
-                   onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
-                  <div style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:rgba(237,107,70,0.75); margin-bottom:0.4rem;">Stap 1</div>
-                  <div style="font-family:var(--font-display); font-size:15px; font-weight:800; color:#F0EDE7; letter-spacing:-0.02em; margin-bottom:0.3rem;">Merkfundament</div>
-                  <div style="font-family:var(--font-body); font-size:11px; color:rgba(240,237,231,0.5); line-height:1.4;">Strategie, identiteit & huisstijlhandboek</div>
-                  <svg style="position:absolute; bottom:0.75rem; right:0.875rem; color:#ed6b46;" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                   style="display:flex; flex-direction:column; background:#1E1F1B; border-radius:16px; padding:1.25rem 1.375rem 1.125rem; text-decoration:none; position:relative; overflow:hidden; transition:opacity 0.15s; min-height:110px;"
+                   onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                  {{# Pijl rechtsbovenin #}}
+                  <svg style="position:absolute; top:1rem; right:1rem; color:#ed6b46; opacity:0.7;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                  <div style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(237,107,70,0.7); margin-bottom:0.5rem;">Stap 1</div>
+                  <div style="font-family:var(--font-display); font-size:18px; font-weight:800; color:#F0EDE7; letter-spacing:-0.025em; line-height:1.1; margin-bottom:0.5rem;">Merkfundament</div>
+                  <div style="font-family:var(--font-body); font-size:12px; color:rgba(240,237,231,0.45); line-height:1.45; margin-top:auto;">Strategie · merkidentiteit · huisstijlhandboek</div>
                 </a>
 
                 {{# Stap 2: MaaS #}}
                 <a href="/merqo-as-a-service" @click="closeMenu()"
-                   style="display:block; background:#ed6b46; border-radius:14px; padding:1rem 1.125rem; text-decoration:none; position:relative; overflow:hidden; transition:opacity 0.15s;"
-                   onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
-                  <div style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:0.4rem;">Stap 2 &nbsp;·&nbsp; €899/mnd</div>
-                  <div style="font-family:var(--font-display); font-size:15px; font-weight:800; color:#fff; letter-spacing:-0.02em; margin-bottom:0.3rem;">Merqo as a Service</div>
-                  <div style="font-family:var(--font-body); font-size:11px; color:rgba(255,255,255,0.65); line-height:1.4;">Vaste strateeg, alles inbegrepen</div>
-                  <svg style="position:absolute; bottom:0.75rem; right:0.875rem; color:rgba(255,255,255,0.7);" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                   style="display:flex; flex-direction:column; background:#ed6b46; border-radius:16px; padding:1.25rem 1.375rem 1.125rem; text-decoration:none; position:relative; overflow:hidden; transition:opacity 0.15s; min-height:110px;"
+                   onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                  {{# Pijl rechtsbovenin #}}
+                  <svg style="position:absolute; top:1rem; right:1rem; color:rgba(255,255,255,0.55);" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                  <div style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:0.5rem;">Stap 2 &nbsp;·&nbsp; €899/mnd</div>
+                  <div style="font-family:var(--font-display); font-size:18px; font-weight:800; color:#fff; letter-spacing:-0.025em; line-height:1.1; margin-bottom:0.5rem;">Merqo as a Service</div>
+                  <div style="font-family:var(--font-body); font-size:12px; color:rgba(255,255,255,0.55); line-height:1.45; margin-top:auto;">Vaste strateeg · alles inbegrepen · maandelijks opzegbaar</div>
                 </a>
 
               </div>
             </div>
 
             {{# ── Scheiding ── #}}
-            <div style="display:flex; align-items:center; gap:0.75rem; padding:0.75rem 1.125rem 0.375rem;">
+            <div style="display:flex; align-items:center; gap:0.75rem; padding:0.875rem 1.125rem 0.5rem;">
               <div style="flex:1; height:1px; background:rgba(30,31,27,0.07);"></div>
-              <span style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:rgba(30,31,27,0.3); white-space:nowrap;">Ook los af te nemen</span>
+              <span style="font-family:var(--font-body); font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(30,31,27,0.28); white-space:nowrap;">Ook los af te nemen</span>
               <div style="flex:1; height:1px; background:rgba(30,31,27,0.07);"></div>
             </div>
 
-            {{# ── Losse diensten ── #}}
-            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; padding:0 0.5rem 0.5rem;">
+            {{# ── Losse diensten: 3 kolommen, 2 rijen ── #}}
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); padding:0 0.625rem 0.625rem;">
               <template x-for="service in services" :key="service.slug">
                 <a :href="'/' + service.slug"
-                   class="group/item"
-                   style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem; padding:0.6rem 0.625rem; border-radius:10px; text-decoration:none; transition:background 0.12s;"
+                   style="display:flex; align-items:center; justify-content:space-between; gap:0.75rem; padding:0.625rem 0.75rem; border-radius:10px; text-decoration:none; transition:background 0.12s;"
                    @mouseenter="hoverService(service)"
                    @click="closeMenu()"
                    onmouseover="this.style.background='rgba(30,31,27,0.04)'" onmouseout="this.style.background='transparent'">
                   <div>
-                    <div style="font-family:var(--font-body); font-size:12.5px; font-weight:600; color:#1E1F1B; line-height:1.2;" x-text="service.name"></div>
-                    <div style="font-family:var(--font-body); font-size:10.5px; color:#9B9890; margin-top:1px;" x-text="service.desc"></div>
+                    <div style="font-family:var(--font-body); font-size:13px; font-weight:600; color:#1E1F1B; line-height:1.2; white-space:nowrap;" x-text="service.name"></div>
+                    <div style="font-family:var(--font-body); font-size:11px; color:#A09D99; margin-top:2px; white-space:nowrap;" x-text="service.desc"></div>
                   </div>
-                  <svg style="flex-shrink:0; color:#C8C5BF;" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M7 17L17 7M17 7H7M17 7v10"/>
-                  </svg>
+                  <svg style="flex-shrink:0; color:#D4D1CD;" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
                 </a>
               </template>
             </div>
 
             {{# ── Footer ── #}}
-            <div style="border-top:1px solid rgba(30,31,27,0.07); padding:0.6rem 1rem; display:flex; align-items:center; justify-content:space-between;">
-              <span style="font-family:var(--font-body); font-size:11px; color:#9B9890;">Niet zeker welke dienst past?</span>
-              <a href="/contact" style="font-family:var(--font-body); font-size:11px; font-weight:700; color:#ed6b46; text-decoration:none; display:flex; align-items:center; gap:0.3rem;" @click="closeMenu()">
+            <div style="border-top:1px solid rgba(30,31,27,0.07); padding:0.625rem 1.125rem; display:flex; align-items:center; justify-content:space-between;">
+              <span style="font-family:var(--font-body); font-size:11px; color:#A09D99;">Niet zeker welke dienst past?</span>
+              <a href="/contact" style="font-family:var(--font-body); font-size:11px; font-weight:700; color:#ed6b46; text-decoration:none; display:flex; align-items:center; gap:0.35rem; transition:opacity 0.15s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'" @click="closeMenu()">
                 Plan een gesprek
-                <svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
             </div>
 
