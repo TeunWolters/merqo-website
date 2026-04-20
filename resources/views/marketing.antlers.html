@@ -391,32 +391,32 @@
         done: false,
         questions: [
           {
-            q: 'Weet je welk marketingkanaal jou de meeste klanten oplevert?',
-            nee: 'Zonder dit inzicht stuur je blind - je betaalt voor kanalen die niets opleveren.'
-          },
-          {
-            q: 'Meet je per kanaal hoeveel het kost en hoeveel klanten het oplevert?',
-            nee: 'Zonder meting per kanaal is bijsturen onmogelijk. Je draait op gevoel.'
-          },
-          {
-            q: 'Heb je de afgelopen 3 maanden je aanpak aangepast op basis van data?',
-            nee: 'Marketing die niet wordt bijgestuurd, verliest elk kwartaal aan effectiviteit.'
-          },
-          {
-            q: 'Heb je een vaste contentstrategie die onafhankelijk van jou doorloopt?',
-            nee: 'Als marketing stopt zodra jij stopt met posten, is er geen systeem - alleen inspanning.'
+            q: 'Weet je welk kanaal jou de meeste klanten oplevert - en kun je dat aantonen?',
+            nee: 'Gemiddeld komt 80% van de omzet via 1-2 kanalen. Als je niet weet welke, investeer je waarschijnlijk in de verkeerde.'
           },
           {
             q: 'Weet je wat het je kost om één nieuwe klant te werven?',
-            nee: 'Zonder klantacquisitiekosten weet je niet of je winst maakt op marketing.'
+            nee: 'Zonder klantacquisitiekosten weet je niet of groei je rijker of armer maakt. Je investeert op gevoel.'
           },
           {
-            q: 'Heb je de afgelopen 6 maanden nieuwe klanten gekregen via online marketing?',
-            nee: 'Online marketing die geen klanten oplevert is een kostenpost, geen investering.'
+            q: 'Heb je het afgelopen kwartaal iets gestopt omdat het niet werkte?',
+            nee: 'Als je niets stopt, groeit de inefficiëntie elke maand. Marketing zonder onderhoud kost meer dan het oplevert.'
+          },
+          {
+            q: 'Blijft jouw marketing doorgaan als jij twee weken op vakantie bent?',
+            nee: 'Als marketing stopt zodra jij stopt, heb je geen systeem - je hebt inspanning. Dat groeit niet en schaalt niet.'
+          },
+          {
+            q: 'Komen nieuwe klanten jou vinden, of vind jij altijd de klanten zelf?',
+            nee: 'Koude acquisitie is duur en niet schaalbaar. Inbound marketing - klanten die jou vinden - is de efficiëntste groeiroute.'
           },
           {
             q: 'Bereik je via jouw marketing ook mensen die jou nog niet kennen?',
-            nee: 'Marketing alleen aan bestaand netwerk schaalt niet - nieuwe doelgroepen zijn essentieel.'
+            nee: 'Je netwerk is eindig. Als je alleen bekenden bereikt, is groei afhankelijk van toeval en mond-tot-mond.'
+          },
+          {
+            q: 'Heb je een scherp beeld van wie jouw ideale klant is en wat hem drijft?',
+            nee: 'Marketing zonder scherp klantprofiel is schieten met hagel. Je bereikt iedereen - en overtuigt niemand.'
           }
         ],
         get score() { return this.answers.filter(a => a === true).length; },
@@ -424,7 +424,7 @@
         get resultTitle() {
           const s = this.score;
           if (s >= 6) return 'Jouw marketing is meetbaar en strategisch. Zorg dat het meeschaalt als je groeit.';
-          if (s >= 4) return 'Solide basis, maar er zijn blinde vlekken. Die kosten je klanten zonder dat je het doorhebt.';
+          if (s >= 4) return 'Redelijke basis, maar er zijn blinde vlekken die je ongemerkt klanten kosten.';
           if (s >= 2) return 'Jouw marketing draait op gevoel. Elke euro die je uitgeeft is deels geraden.';
           return 'Jouw marketing werkt niet voor je. Je betaalt voor zichtbaarheid die geen klanten oplevert.';
         },

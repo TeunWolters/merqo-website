@@ -390,23 +390,23 @@
         done: false,
         questions: [
           {
-            q: 'Laat jouw beeldmateriaal zien wie jullie écht zijn - niet wat je denkt dat klanten willen zien?',
-            nee: 'Beelden die niet kloppen bij wie je bent wekken onbewust twijfel. Klanten voelen dat.'
+            q: 'Als je jouw eigen website bekijkt: herken je jezelf écht in het beeldmateriaal?',
+            nee: 'Beelden die niet kloppen bij wie je bent wekken onbewust twijfel. Klanten voelen dat - ook als ze niet weten waarom.'
           },
           {
-            q: 'Zijn jouw foto\'s en video\'s visueel consistent - alsof ze allemaal van dezelfde hand komen?',
-            nee: 'Inconsistente beeldtaal ondermijnt je professionaliteit, ook als de kwaliteit per stuk goed is.'
+            q: 'Zien je website, social media en drukwerk er visueel als één geheel uit?',
+            nee: 'Inconsistente beeldtaal ondermijnt je professionaliteit - ook als elk onderdeel apart goed is. Het geheel telt.'
           },
           {
-            q: 'Begrijpt een potentiële klant binnen 5 seconden wat jouw kwaliteit is, puur op basis van beeld?',
-            nee: 'Bezoekers besluiten in milliseconden. Trage of onduidelijke beelden kosten je direct vertrouwen.'
+            q: 'Straalt jouw beeldmateriaal binnen 3 seconden jouw kwaliteitsniveau uit?',
+            nee: 'Als beeld je kwaliteit niet uitstraalt, betwijfelt een klant je prijs nog voordat je hem noemt.'
           },
           {
-            q: 'Werk je uitsluitend met eigen beeldmateriaal - geen stockfoto\'s die ook elders staan?',
-            nee: 'Stockfoto\'s signaleren onbewust: dit bedrijf wil zichzelf niet laten zien. Dat wekt twijfel.'
+            q: 'Gebruik je uitsluitend eigen beeldmateriaal - geen stockfoto\'s?',
+            nee: 'Stockfoto\'s signaleren: dit bedrijf wil zichzelf niet laten zien. Klanten kiezen mensen, geen modellen.'
           },
           {
-            q: 'Onderscheidt jouw beeldmateriaal je visueel van directe concurrenten in jouw branche?',
+            q: 'Kun je één foto of video noemen die alleen van jouw bedrijf kan zijn?',
             nee: 'Als jouw beelden inwisselbaar zijn met die van een concurrent, geeft beeld geen reden om voor jou te kiezen.'
           }
         ],
@@ -415,9 +415,9 @@
         get resultTitle() {
           const s = this.score;
           if (s >= 5) return 'Jouw beeldtaal is een asset. Zorg dat dit niveau meeschaalt als je bedrijf groeit.';
-          if (s >= 3) return 'Solide basis, maar nog niet onderscheidend. Er liggen kansen die je laat liggen.';
-          if (s >= 1) return 'Jouw beeldmateriaal ondersteunt je verhaal onvoldoende. Dat kost je vertrouwen.';
-          return 'Jouw beelden werken momenteel tegen je. Bezoekers oordelen binnen 0,05 seconde op basis van beeld.';
+          if (s >= 3) return 'Redelijke basis, maar nog niet onderscheidend. Er liggen kansen die je laat liggen.';
+          if (s >= 1) return 'Jouw beeldmateriaal ondersteunt je verhaal onvoldoende. Dat kost je vertrouwen en klanten.';
+          return 'Jouw beelden werken momenteel tegen je. In 0,05 seconde vormt een bezoeker een oordeel - op basis van wat hij ziet.';
         },
         get barColor() {
           const s = this.score;

@@ -392,42 +392,42 @@
         done: false,
         questions: [
           {
-            q: 'Laadt jouw website op mobiel binnen 3 seconden?',
-            nee: '53% van mobiele bezoekers verlaat een pagina die langer dan 3 s laadt.'
+            q: 'Weet een bezoeker binnen 5 seconden wat jij doet, voor wie, en waarom bij jou?',
+            nee: 'Als dat niet meteen duidelijk is, scrollt niemand verder. Duidelijkheid is je eerste en belangrijkste verkoopargument.'
           },
           {
-            q: 'Weet een bezoeker binnen 5 seconden wat jij doet en voor wie?',
-            nee: 'Geen antwoord in 5 s = minder dan 20% kans dat iemand doorleest.'
+            q: 'Heeft jouw website de afgelopen 12 maanden minstens één aanvraag of klant opgeleverd?',
+            nee: 'Als klanten nooit via je website binnenkomen, is het een digitale brochure - geen verkoopkanaal. Dat is elke maand gemiste omzet.'
           },
           {
-            q: 'Is er op elke pagina een duidelijke volgende stap?',
-            nee: 'Zonder CTA beslist de bezoeker zelf, en dat is vrijwel altijd: weggaan.'
+            q: 'Laadt jouw website op mobiel in minder dan 3 seconden?',
+            nee: 'Meer dan de helft van je bezoekers is op mobiel. Google straft trage sites - en bezoekers vertrekken nog sneller dan Google.'
           },
           {
-            q: 'Weet je hoeveel bezoekers je krijgt en wat ze doen?',
-            nee: 'Zonder data stuur je blind en weet je niet waar je geld verliest.'
+            q: 'Heeft elke pagina een logische, duidelijke vervolgstap voor de bezoeker?',
+            nee: 'Een pagina zonder duidelijke volgende stap is een gesprek dat niemand afsluit. De bezoeker weet niet wat hij moet doen - en doet niks.'
           },
           {
-            q: 'Is jouw website de afgelopen 2 jaar herzien of vernieuwd?',
-            nee: 'Online gedrag verandert significant elke 18 maanden. Achterstand loopt op.'
+            q: 'Weet je welke pagina\'s bezoekers verliest - en waarom?',
+            nee: 'Je website heeft waarschijnlijk een lek in de conversietrechter. Zonder data weet je niet waar - en repareer je hem nooit.'
           },
           {
-            q: 'Levert jouw website aantoonbaar leads of aanvragen op?',
-            nee: 'Een website zonder klanten is een kostenpost, geen investering.'
+            q: 'Staat jouw website vindbaar op Google voor de diensten die jij levert?',
+            nee: '90% van de kliks gaat naar de eerste pagina van Google. Wie je niet vindt, kiest een concurrent die er wel staat.'
           },
           {
-            q: 'Sluit de uitstraling van je website aan op hoe jij jezelf presenteert?',
-            nee: 'Een kloof tussen persoonlijk optreden en online aanwezigheid wekt twijfel.'
+            q: 'Zou jij zelf klant worden bij jouw website als je hem voor het eerst zag?',
+            nee: 'Als jij twijfelt, twijfelt een bezoeker ook. En die twijfel kost je klanten nog voordat je ze ooit spreekt.'
           }
         ],
         get score() { return this.answers.filter(a => a === true).length; },
         get neeIndices() { return this.answers.map((a,i) => a === false ? i : null).filter(i => i !== null); },
         get resultTitle() {
           const s = this.score;
-          if (s >= 6) return 'Jouw website presteert goed. Zorg dat hij meeschaalt als jouw bedrijf groeit.';
-          if (s >= 4) return 'Solide basis, maar er lekken conversies weg. Kleine aanpassingen, grote impact.';
-          if (s >= 2) return 'Jouw website kost je klanten zonder dat je het doorhebt. Prioriteit één.';
-          return 'Jouw website werkt niet voor jou. Elke dag zo kost je omzet.';
+          if (s >= 6) return 'Jouw website werkt als verkoopkanaal. Zorg dat hij meeschaalt als jouw bedrijf groeit.';
+          if (s >= 4) return 'Redelijke basis, maar er lekken conversies weg die je niet ziet. Kleine verbeteringen, grote impact.';
+          if (s >= 2) return 'Jouw website kost je klanten zonder dat je het doorhebt. Dit is prioriteit één.';
+          return 'Jouw website werkt momenteel niet voor jou. Elke dag zo is omzet die naar een concurrent gaat.';
         },
         get barColor() {
           const s = this.score;

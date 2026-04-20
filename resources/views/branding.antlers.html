@@ -366,73 +366,91 @@
         done: false,
         questions: [
           {
-            q: 'Wat drijft jouw bedrijf het meest?',
+            q: 'Wat is de kern van wat jij voor klanten doet?',
             opts: [
-              { label: 'Groeien en de absolute beste worden in ons vak', arch: 'held' },
-              { label: 'Kennis en expertise delen zodat klanten slimmer worden', arch: 'wijze' },
-              { label: 'Mensen echt helpen en een verschil maken', arch: 'verzorger' },
-              { label: 'Iets nieuws en origineels bouwen dat er nog niet was', arch: 'schepper' }
+              { label: 'Ik help ze een doel bereiken of resultaat behalen', arch: 'held' },
+              { label: 'Ik geef ze kennis of inzicht die ze echt verder helpt', arch: 'wijze' },
+              { label: 'Ik zorg dat ze ontzorgd en goed geholpen zijn', arch: 'verzorger' },
+              { label: 'Ik maak iets unieks dat er voor hen nog niet was', arch: 'schepper' }
             ]
           },
           {
-            q: 'Hoe klinkt de toon van jouw communicatie?',
+            q: 'Als een project tegenvalt, wat doe je dan?',
             opts: [
-              { label: 'Krachtig, direct en ambitieus', arch: 'held' },
-              { label: 'Informatief, helder en betrouwbaar', arch: 'wijze' },
-              { label: 'Warm, persoonlijk en betrokken', arch: 'verzorger' },
-              { label: 'Speels, luchtig en toegankelijk', arch: 'nar' }
+              { label: 'We gaan harder - dit moet en gaat goed komen', arch: 'held' },
+              { label: 'We trekken onze eigen lijn, ook als dat ongemakkelijk is', arch: 'rebel' },
+              { label: 'We zoeken een andere weg - opgeven is geen optie', arch: 'ontdekker' },
+              { label: 'We houden het luchtig en zoeken samen een uitweg', arch: 'nar' }
             ]
           },
           {
-            q: 'Wat typeert jouw bedrijfscultuur het beste?',
+            q: 'Hoe omschrijft jouw beste klant jou aan een vriend?',
             opts: [
-              { label: 'Wij gaan altijd voor de top - geen genoegen met minder', arch: 'held' },
-              { label: 'Wij denken buiten de gebaande paden en dagen de norm uit', arch: 'rebel' },
-              { label: 'Wij hechten aan sfeer, vertrouwen en echte verbinding', arch: 'verzorger' },
-              { label: 'Wij stralen kwaliteit, autoriteit en vakmanschap uit', arch: 'heerser' }
+              { label: '"Duur, maar zonder twijfel de beste keuze"', arch: 'heerser' },
+              { label: '"Ze weten meer dan wie dan ook in dit vak"', arch: 'wijze' },
+              { label: '"Ze doen het altijd net even anders dan je verwacht"', arch: 'schepper' },
+              { label: '"Ze staan altijd voor je klaar - echt altijd"', arch: 'verzorger' }
             ]
           },
           {
-            q: 'Welke eigenschap omschrijft jou het beste?',
+            q: 'Wat is iets wat jij als bedrijf nooit zou doen?',
             opts: [
-              { label: 'Avontuurlijk en onafhankelijk - wij volgen geen stappenplan', arch: 'ontdekker' },
-              { label: 'Gedreven en competitief - wij willen winnen', arch: 'held' },
-              { label: 'Creatief en vernieuwend - wij verrassen graag', arch: 'schepper' },
-              { label: 'Betrouwbaar en gezaghebbend - wij zijn de expert', arch: 'heerser' }
+              { label: 'Ons aanpassen aan trends die niet bij ons passen', arch: 'rebel' },
+              { label: 'Concessies doen op kwaliteit om een deal te scoren', arch: 'heerser' },
+              { label: 'Dezelfde aanpak herhalen zonder te innoveren', arch: 'ontdekker' },
+              { label: 'Zo serieus worden dat het werk z\'n lol verliest', arch: 'nar' }
             ]
           },
           {
-            q: 'Welk merk inspireert jou het meest?',
+            q: 'Wat geeft jou het meeste voldoening in jouw werk?',
             opts: [
-              { label: 'Nike - alles is mogelijk als je ervoor gaat', arch: 'held' },
-              { label: 'Patagonia - doe het anders, doe het goed', arch: 'ontdekker' },
-              { label: 'Apple - maak iets wat er nog niet was', arch: 'schepper' },
-              { label: 'Coolblue - alles voor een glimlach', arch: 'nar' }
+              { label: 'Als een klant zegt: "Fijn, ik hoef er niet meer aan te denken"', arch: 'verzorger' },
+              { label: 'Als je iets oplevert waar je zelf trots op bent', arch: 'schepper' },
+              { label: 'Als een klant met een glimlach de deur uit loopt', arch: 'nar' },
+              { label: 'Als je iets probeert wat je nog nooit eerder hebt gedaan', arch: 'ontdekker' }
             ]
           },
           {
-            q: 'Wat wil je dat klanten als eerste voelen bij jouw merk?',
+            q: 'Welke zin past het beste bij jouw merkbelofte?',
             opts: [
-              { label: 'Vertrouwen en zekerheid - dit is de beste keuze', arch: 'heerser' },
-              { label: 'Warmte en geborgenheid - hier word ik goed geholpen', arch: 'verzorger' },
-              { label: 'Energie en nieuwsgierigheid - dit is anders', arch: 'ontdekker' },
-              { label: 'Plezier en herkenning - dit snapt mij', arch: 'nar' }
+              { label: '"Wij weten wat werkt - en kunnen dat aantonen"', arch: 'wijze' },
+              { label: '"Wij doen het anders - en dat is precies de bedoeling"', arch: 'rebel' },
+              { label: '"Wij leveren resultaat - punt"', arch: 'held' },
+              { label: '"Wij zijn de referentie in ons vakgebied"', arch: 'heerser' }
+            ]
+          },
+          {
+            q: 'Hoe kijkt een nieuwe klant aan tegen jouw prijs?',
+            opts: [
+              { label: 'Aan de hoge kant, maar ze begrijpen en accepteren dat', arch: 'heerser' },
+              { label: 'Eerlijk - ze voelen dat wij er echt voor ze zijn', arch: 'verzorger' },
+              { label: 'Verrassend - ze hadden een heel andere aanpak verwacht', arch: 'ontdekker' },
+              { label: 'Uniek - ze kunnen ons niet vergelijken met anderen', arch: 'schepper' }
+            ]
+          },
+          {
+            q: 'Wat is jouw grootste concurrentievoordeel?',
+            opts: [
+              { label: 'We presteren beter dan de rest - structureel en aantoonbaar', arch: 'held' },
+              { label: 'We begrijpen het probleem dieper dan wie dan ook', arch: 'wijze' },
+              { label: 'We zijn de enigen die durven wat wij doen', arch: 'rebel' },
+              { label: 'We maken van elk contact een prettige, makkelijke ervaring', arch: 'nar' }
             ]
           }
         ],
         archetypes: {
-          held:      { name: 'De Held',      emoji: '🏆', color: '#ed6b46', desc: 'Jouw merk staat voor prestatie, ambitie en het overstijgen van grenzen. Je inspireert klanten om het beste uit zichzelf te halen - en jij levert wat daarvoor nodig is. Sterk merk, sterke boodschap.', brands: 'Nike, Red Bull, Adidas' },
-          wijze:     { name: 'De Wijze',     emoji: '🧠', color: '#6B9BB8', desc: 'Kennis is jouw kracht. Jouw merk bouwt vertrouwen door expertise en helpt klanten met de juiste informatie de beste keuzes te maken. Mensen volgen jou omdat je echt weet waar je het over hebt.', brands: 'Google, TED, McKinsey' },
-          rebel:     { name: 'De Rebel',     emoji: '⚡', color: '#1E1F1B', desc: 'Jij daagt de norm uit. Jouw merk denkt buiten de gebaande paden en trekt mensen aan die zich niet conformeren aan de massa. Onconventioneel, gedurfd en onmiskenbaar.', brands: 'Harley-Davidson, Oatly, Patagonia' },
-          verzorger: { name: 'De Verzorger', emoji: '🤝', color: '#a8c8ca', desc: 'Mensen helpen is wat je drijft. Jouw merk straalt warmte, zorg en betrokkenheid uit - klanten voelen zich gezien en geholpen. Dat vertrouwen is jouw grootste kracht.', brands: 'Dove, IKEA, Pampers' },
-          schepper:  { name: 'De Schepper',  emoji: '✨', color: '#ed6b46', desc: 'Originaliteit en creativiteit zijn de kern van alles wat je maakt. Jouw merk inspireert anderen en brengt nieuwe ideeën tot leven. Je wilt geen kopie zijn - je wilt de bron.', brands: 'Apple, LEGO, Adobe' },
-          heerser:   { name: 'De Heerser',   emoji: '👑', color: '#8B7355', desc: 'Kwaliteit, autoriteit en prestige - jouw merk straalt controle en succes uit. Klanten kiezen jou omdat je simpelweg de beste bent. Geen concessies, alleen het hoogste niveau.', brands: 'Rolex, Mercedes, American Express' },
-          ontdekker: { name: 'De Ontdekker', emoji: '🧭', color: '#4A7B5B', desc: 'Vrijheid en avontuur definiëren jouw merk. Je spreekt mensen aan die buiten de gebaande paden willen gaan en op zoek zijn naar iets nieuws. Jij laat ze die kant op kijken.', brands: 'Patagonia, Jeep, The North Face' },
-          nar:       { name: 'De Nar',       emoji: '😄', color: '#E8A838', desc: 'Plezier en toegankelijkheid zijn jouw handelsmerk. Jouw merk maakt het leven een beetje lichter en klanten een stuk blijer. Dat klinkt eenvoudig - maar heel weinig merken durven het.', brands: 'Coolblue, Bol.com, Old Spice' }
+          held:      { name: 'De Held',      emoji: '🏆', color: '#ed6b46', desc: 'Jouw merk staat voor resultaat en prestatie. Je trekt klanten die willen groeien - en jij levert wat daarvoor nodig is. Geen verhalen, gewoon werken. Dat is jouw sterkste verkoopargument.', brands: 'Nike, Red Bull, Adidas' },
+          wijze:     { name: 'De Wijze',     emoji: '🧠', color: '#6B9BB8', desc: 'Kennis is jouw machtsmiddel. Klanten vertrouwen jou omdat je simpelweg meer weet dan wie dan ook. Je bouwt autoriteit door te bewijzen wat je beweert - niet door het te roepen.', brands: 'Google, TED, McKinsey' },
+          rebel:     { name: 'De Rebel',     emoji: '⚡', color: '#3D3D3D', desc: 'Jij daagt de norm uit. Jouw merk bestaat omdat de bestaande aanpak niet goed genoeg is. Je trekt klanten die dat ook vinden. Onconventioneel, gedurfd en onmiskenbaar jezelf.', brands: 'Harley-Davidson, Oatly, Liquid Death' },
+          verzorger: { name: 'De Verzorger', emoji: '🤝', color: '#a8c8ca', desc: 'Ontzorgen is jouw kernwaarde. Klanten kiezen jou omdat ze weten dat je er echt voor ze bent - niet alleen bij de deal, maar ook daarna. Dat vertrouwen is niet te kopen, alleen te verdienen.', brands: 'Dove, IKEA, Coolblue' },
+          schepper:  { name: 'De Schepper',  emoji: '✨', color: '#9B72B0', desc: 'Originaliteit is wat jou drijft. Geen templates, geen kopieer-plak. Jij maakt iets dat bestaat omdat jij er bent. Je wilt geen kopie zijn - je wilt de bron waar anderen naar verwijzen.', brands: 'Apple, LEGO, Adobe' },
+          heerser:   { name: 'De Heerser',   emoji: '👑', color: '#8B7355', desc: 'Jij bent de benchmark. Klanten betalen premium omdat jij simpelweg de beste optie bent. Geen concessies, geen compromissen. Kwaliteit en autoriteit zijn niet onderhandelbaar.', brands: 'Rolex, Mercedes, American Express' },
+          ontdekker: { name: 'De Ontdekker', emoji: '🧭', color: '#4A7B5B', desc: 'Vrijheid en vernieuwing definiëren jouw merk. Je werkt niet met een standaard aanpak - elke situatie vraagt een nieuwe route. Klanten kiezen jou omdat ze iets nieuws willen ontdekken.', brands: 'The North Face, Jeep, Airbnb' },
+          nar:       { name: 'De Nar',       emoji: '😄', color: '#E8A838', desc: 'Toegankelijkheid is jouw superkracht. Jouw merk maakt het leven makkelijker en leuker. Dat klinkt eenvoudig - maar heel weinig merken durven het consequent vol te houden.', brands: 'Coolblue, Bol.com, Old Spice' }
         },
         pick(arch) {
           this.answers.push(arch);
-          if (this.current < 5) { this.current++; } else { this.done = true; }
+          if (this.current < 7) { this.current++; } else { this.done = true; }
         },
         get result() {
           if (!this.done) return null;
@@ -458,9 +476,9 @@
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9b9890;"
-                x-text="done ? '6 van 6 vragen' : 'Vraag ' + (current + 1) + ' van 6'"></span>
+                x-text="done ? '8 van 8 vragen' : 'Vraag ' + (current + 1) + ' van 8'"></span>
           <span style="font-family:var(--font-display); font-size:13px; font-weight:800; color:#ed6b46; letter-spacing:-0.02em;"
-                x-text="done ? 'Compleet' : ((current + 1) + '/6')"></span>
+                x-text="done ? 'Compleet' : ((current + 1) + '/8')"></span>
         </div>
       </div>
 
