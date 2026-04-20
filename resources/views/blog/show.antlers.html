@@ -289,11 +289,9 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
 
       {{# Sticky inhoudsopgave (alleen desktop) #}}
-      <aside id="toc-sidebar" style="display:none;">
-        <div id="toc-inner" style="position:sticky; top:7rem;">
-          <p style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(30,31,27,0.4); margin:0 0 1rem;">Inhoud</p>
-          <nav id="toc-nav" style="display:flex; flex-direction:column; gap:0;"></nav>
-        </div>
+      <aside id="toc-sidebar" style="display:none; position:sticky; top:6.5rem; align-self:start; max-height:calc(100vh - 8rem); overflow-y:auto;">
+        <p style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(30,31,27,0.4); margin:0 0 1rem;">Inhoud</p>
+        <nav id="toc-nav" style="display:flex; flex-direction:column; gap:0;"></nav>
       </aside>
 
     </div>
@@ -377,7 +375,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (window.innerWidth >= 1280) {
       sidebar.style.display = 'block';
       grid.style.gridTemplateColumns = '1fr 220px';
-      grid.style.alignItems = 'start';
     } else {
       sidebar.style.display = 'none';
       grid.style.gridTemplateColumns = '1fr';
