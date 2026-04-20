@@ -417,25 +417,29 @@
           {
             q: 'Heb je een scherp beeld van wie jouw ideale klant is en wat hem drijft?',
             nee: 'Marketing zonder scherp klantprofiel is schieten met hagel. Je bereikt iedereen - en overtuigt niemand.'
+          },
+          {
+            q: 'Zet jij tevreden klanten actief in als marketingmiddel - via reviews, referrals of cases?',
+            nee: 'Mond-tot-mond is je sterkste marketingkanaal - maar alleen als je het structureel organiseert. Nu laat je het aan toeval over.'
           }
         ],
         get score() { return this.answers.filter(a => a === true).length; },
         get neeIndices() { return this.answers.map((a,i) => a === false ? i : null).filter(i => i !== null); },
         get resultTitle() {
           const s = this.score;
-          if (s >= 6) return 'Jouw marketing is meetbaar en strategisch. Zorg dat het meeschaalt als je groeit.';
-          if (s >= 4) return 'Redelijke basis, maar er zijn blinde vlekken die je ongemerkt klanten kosten.';
-          if (s >= 2) return 'Jouw marketing draait op gevoel. Elke euro die je uitgeeft is deels geraden.';
+          if (s >= 7) return 'Jouw marketing is meetbaar en strategisch. Zorg dat het meeschaalt als je groeit.';
+          if (s >= 5) return 'Redelijke basis, maar er zijn blinde vlekken die je ongemerkt klanten kosten.';
+          if (s >= 3) return 'Jouw marketing draait op gevoel. Elke euro die je uitgeeft is deels geraden.';
           return 'Jouw marketing werkt niet voor je. Je betaalt voor zichtbaarheid die geen klanten oplevert.';
         },
         get barColor() {
           const s = this.score;
-          if (s >= 6) return '#4caf87';
-          if (s >= 4) return '#ed9b46';
+          if (s >= 7) return '#4caf87';
+          if (s >= 5) return '#ed9b46';
           if (s >= 2) return '#ed6b46';
           return '#c0392b';
         },
-        get barWidth() { return Math.round((this.score / 7) * 100) + '%'; },
+        get barWidth() { return Math.round((this.score / 8) * 100) + '%'; },
         answer(val) {
           if (this.selected !== null) return;
           this.selected = val;

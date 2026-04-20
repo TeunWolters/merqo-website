@@ -408,25 +408,37 @@
           {
             q: 'Kun je één foto of video noemen die alleen van jouw bedrijf kan zijn?',
             nee: 'Als jouw beelden inwisselbaar zijn met die van een concurrent, geeft beeld geen reden om voor jou te kiezen.'
+          },
+          {
+            q: 'Is jouw beeldmateriaal het afgelopen jaar actief vernieuwd of aangevuld?',
+            nee: 'Verouderd beeldmateriaal ondermijnt je uitstraling - ook als de kwaliteit ooit goed was. Bezoekers zien het direct.'
+          },
+          {
+            q: 'Heb je video beschikbaar op je website of social media?',
+            nee: 'Video converteert aantoonbaar beter dan foto of tekst alleen. Het is het meest directe medium om vertrouwen te bouwen.'
+          },
+          {
+            q: 'Wordt jouw beeldmateriaal consequent ingezet - op je website, socials én in offertes?',
+            nee: 'Goed beeldmateriaal dat ongebruikt blijft, doet niets voor je merk. Consistentie maakt het verschil.'
           }
         ],
         get score() { return this.answers.filter(a => a === true).length; },
         get neeIndices() { return this.answers.map((a,i) => a === false ? i : null).filter(i => i !== null); },
         get resultTitle() {
           const s = this.score;
-          if (s >= 5) return 'Jouw beeldtaal is een asset. Zorg dat dit niveau meeschaalt als je bedrijf groeit.';
-          if (s >= 3) return 'Redelijke basis, maar nog niet onderscheidend. Er liggen kansen die je laat liggen.';
-          if (s >= 1) return 'Jouw beeldmateriaal ondersteunt je verhaal onvoldoende. Dat kost je vertrouwen en klanten.';
+          if (s >= 7) return 'Jouw beeldtaal is een asset. Zorg dat dit niveau meeschaalt als je bedrijf groeit.';
+          if (s >= 5) return 'Redelijke basis, maar nog niet onderscheidend. Er liggen kansen die je laat liggen.';
+          if (s >= 3) return 'Jouw beeldmateriaal ondersteunt je verhaal onvoldoende. Dat kost je vertrouwen en klanten.';
           return 'Jouw beelden werken momenteel tegen je. In 0,05 seconde vormt een bezoeker een oordeel - op basis van wat hij ziet.';
         },
         get barColor() {
           const s = this.score;
-          if (s >= 5) return '#4caf87';
-          if (s >= 3) return '#ed9b46';
-          if (s >= 1) return '#ed6b46';
+          if (s >= 7) return '#4caf87';
+          if (s >= 5) return '#ed9b46';
+          if (s >= 3) return '#ed6b46';
           return '#c0392b';
         },
-        get barWidth() { return Math.round((this.score / 5) * 100) + '%'; },
+        get barWidth() { return Math.round((this.score / 8) * 100) + '%'; },
         answer(val) {
           if (this.selected !== null) return;
           this.selected = val;

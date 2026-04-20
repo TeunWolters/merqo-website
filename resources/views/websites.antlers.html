@@ -418,25 +418,29 @@
           {
             q: 'Zou jij zelf klant worden bij jouw website als je hem voor het eerst zag?',
             nee: 'Als jij twijfelt, twijfelt een bezoeker ook. En die twijfel kost je klanten nog voordat je ze ooit spreekt.'
+          },
+          {
+            q: 'Staan er reviews, cases of klantverhalen zichtbaar op jouw website?',
+            nee: 'Bezoekers geloven andere klanten meer dan jou. Ontbrekende social proof kost je conversie die je niet ziet.'
           }
         ],
         get score() { return this.answers.filter(a => a === true).length; },
         get neeIndices() { return this.answers.map((a,i) => a === false ? i : null).filter(i => i !== null); },
         get resultTitle() {
           const s = this.score;
-          if (s >= 6) return 'Jouw website werkt als verkoopkanaal. Zorg dat hij meeschaalt als jouw bedrijf groeit.';
-          if (s >= 4) return 'Redelijke basis, maar er lekken conversies weg die je niet ziet. Kleine verbeteringen, grote impact.';
-          if (s >= 2) return 'Jouw website kost je klanten zonder dat je het doorhebt. Dit is prioriteit één.';
+          if (s >= 7) return 'Jouw website werkt als verkoopkanaal. Zorg dat hij meeschaalt als jouw bedrijf groeit.';
+          if (s >= 5) return 'Redelijke basis, maar er lekken conversies weg die je niet ziet. Kleine verbeteringen, grote impact.';
+          if (s >= 3) return 'Jouw website kost je klanten zonder dat je het doorhebt. Dit is prioriteit één.';
           return 'Jouw website werkt momenteel niet voor jou. Elke dag zo is omzet die naar een concurrent gaat.';
         },
         get barColor() {
           const s = this.score;
-          if (s >= 6) return '#4caf87';
-          if (s >= 4) return '#ed9b46';
-          if (s >= 2) return '#ed6b46';
+          if (s >= 7) return '#4caf87';
+          if (s >= 5) return '#ed9b46';
+          if (s >= 3) return '#ed6b46';
           return '#c0392b';
         },
-        get barWidth() { return Math.round((this.score / 7) * 100) + '%'; },
+        get barWidth() { return Math.round((this.score / 8) * 100) + '%'; },
         answer(val) {
           if (this.selected !== null) return;
           this.selected = val;

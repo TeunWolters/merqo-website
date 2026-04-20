@@ -342,33 +342,31 @@
             selected: null,
             done: false,
             questions: [
-              { emoji: '🪪', label: 'Visitekaartje',     q: 'Heb je een visitekaartje dat je trots aan een potentiële klant geeft?' },
-              { emoji: '📄', label: 'Offertetemplate',   q: 'Ziet jouw offerte er zo professioneel uit dat hij al vertrouwen wekt voor je het gesprek voert?' },
-              { emoji: '📋', label: 'Brochure',          q: 'Heb je een folder of brochure die je bij een gesprek kunt meegeven?' },
-              { emoji: '🪟', label: 'Gevelreclame',      q: 'Is jouw pand van buiten direct herkenbaar als jouw bedrijf?' },
-              { emoji: '🚗', label: 'Wagensigning',      q: 'Rijdt jouw auto of bestelbus als rijdende reclame voor jouw merk?' },
-              { emoji: '👕', label: 'Werkkleding',       q: 'Draagt jouw team kleding waarmee ze jouw merk uitstralen?' },
-              { emoji: '📦', label: 'Verpakking',        q: 'Sluit jouw verpakking visueel aan op de rest van je huisstijl?' },
-              { emoji: '🖊️', label: 'Merchandise',       q: 'Heb je branded merchandise die je bij klanten achterlaat?' },
-              { emoji: '🎁', label: 'Relatiegeschenken', q: 'Geef je relatiegeschenken die jouw merk zichtbaar maken?' },
-              { emoji: '📝', label: 'E-mailhandtekening', q: 'Heeft elke zakelijke e-mail een handtekening met jouw huisstijl?' }
+              { emoji: '🪪', label: 'Visitekaartje',      q: 'Heb je een visitekaartje dat je trots aan een potentiële klant geeft?' },
+              { emoji: '📄', label: 'Offerte',             q: 'Ziet jouw offerte er zo professioneel uit dat hij al vertrouwen wekt voor je het gesprek voert?' },
+              { emoji: '📋', label: 'Brochure',            q: 'Heb je een folder of brochure die je bij een gesprek kunt meegeven?' },
+              { emoji: '🪟', label: 'Gevelreclame',        q: 'Is jouw pand van buiten direct herkenbaar als jouw bedrijf?' },
+              { emoji: '🚗', label: 'Wagensigning',        q: 'Rijdt jouw auto of bestelbus als rijdende reclame voor jouw merk?' },
+              { emoji: '👕', label: 'Werkkleding',         q: 'Draagt jouw team kleding waarmee ze jouw merk uitstralen?' },
+              { emoji: '🖊️', label: 'Merchandise',         q: 'Heb je branded merchandise die je bij klanten achterlaat?' },
+              { emoji: '📝', label: 'E-mailhandtekening',  q: 'Heeft elke zakelijke e-mail een handtekening met jouw huisstijl?' }
             ],
             answer(val) {
               this.answers.push(val);
               this.selected = null;
-              if (this.current < 9) { this.current++; } else { this.done = true; }
+              if (this.current < 7) { this.current++; } else { this.done = true; }
             },
             get score() { return this.answers.filter(a => a === true).length; },
-            get missing() { return 10 - this.score; },
+            get missing() { return 8 - this.score; },
             get insight() {
-              const s = this.score, m = 10 - s;
-              if (s >= 8) return 'Goede basis. Maar zijn al die uitingen ook echt consistent? Een afwijkende kleur of oud logo kan alles ondermijnen. Laat ons een frisse blik werpen.';
+              const s = this.score, m = 8 - s;
+              if (s >= 7) return 'Goede basis. Maar zijn al die uitingen ook echt consistent? Een afwijkende kleur of oud logo kan alles ondermijnen. Laat ons een frisse blik werpen.';
               if (s >= 5) return 'Je concurrent is op ' + m + ' momenten zichtbaar waar jij dat niet bent. Dat zijn ' + m + ' kansen die hij wel pakt - en jij laat liggen.';
-              if (s >= 3) return 'Op ' + m + ' van de 10 contactmomenten vormt een klant zijn oordeel zonder jouw invloed. Juist bij offertes en signing: dicht bij de beslissing.';
+              if (s >= 3) return 'Op ' + m + ' van de 8 contactmomenten vormt een klant zijn oordeel zonder jouw invloed. Juist bij offertes en signing: dicht bij de beslissing.';
               return 'Op ' + m + ' plekken is jouw merk volledig afwezig. Een klant die jou ontmoet via ' + (s === 1 ? 'slechts één kanaal' : s + ' kanalen') + ' heeft simpelweg te weinig om jou te onthouden.';
             },
             get ctaLabel() {
-              if (this.score >= 8) return 'Controleer de consistentie';
+              if (this.score >= 7) return 'Controleer de consistentie';
               return 'Vul die ' + this.missing + ' ontbrekende plekken in';
             }
           }"
@@ -386,9 +384,9 @@
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9b9890;"
-                    x-text="done ? '10 van 10 vragen' : (current + 1) + ' van 10 vragen'"></span>
+                    x-text="done ? '8 van 8 vragen' : (current + 1) + ' van 8 vragen'"></span>
               <span style="font-family:var(--font-display); font-size:13px; font-weight:800; color:#ed6b46; letter-spacing:-0.02em;"
-                    x-text="done ? 'Compleet' : ((current + 1) + '/10')"></span>
+                    x-text="done ? 'Compleet' : ((current + 1) + '/8')"></span>
             </div>
           </div>
 
