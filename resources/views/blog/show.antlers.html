@@ -278,14 +278,147 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 
 
-{{# ── Artikel content ── #}}
+{{# ── Artikel content + sticky TOC ── #}}
 <section style="background:#F0EDE7; padding:4rem 0 2rem;">
-  <div class="max-w-4xl mx-auto px-6 lg:px-10">
-    <div class="prose-merqo" id="article-body" style="max-width:68ch;">
-      {{ content }}
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="display:grid; grid-template-columns:1fr; gap:3rem;" id="article-grid">
+
+      {{# Artikel tekst #}}
+      <div class="prose-merqo" id="article-body" style="max-width:68ch;">
+        {{ content }}
+      </div>
+
+      {{# Sticky inhoudsopgave (alleen desktop) #}}
+      <aside id="toc-sidebar" style="display:none;">
+        <div id="toc-inner" style="position:sticky; top:7rem;">
+          <p style="font-family:var(--font-body); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(30,31,27,0.4); margin:0 0 1rem;">Inhoud</p>
+          <nav id="toc-nav" style="display:flex; flex-direction:column; gap:0;"></nav>
+        </div>
+      </aside>
+
     </div>
   </div>
 </section>
+
+<script>
+// ── Inhoudsopgave (Table of Contents) ────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  var body   = document.getElementById('article-body');
+  var nav    = document.getElementById('toc-nav');
+  var grid   = document.getElementById('article-grid');
+  var sidebar = document.getElementById('toc-sidebar');
+  if (!body || !nav || !grid || !sidebar) return;
+
+  // Verzamel alle H2 en H3 koppen
+  var headings = body.querySelectorAll('h2, h3');
+  if (headings.length < 2) return; // Geen TOC nodig bij < 2 koppen
+
+  // Injecteer unieke ID's op koppen die er geen hebben
+  var slugCount = {};
+  headings.forEach(function(h) {
+    if (!h.id) {
+      var slug = h.innerText.trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim()
+        .replace(/\s+/g, '-');
+      slugCount[slug] = (slugCount[slug] || 0) + 1;
+      h.id = slugCount[slug] > 1 ? slug + '-' + slugCount[slug] : slug;
+    }
+  });
+
+  // Bouw TOC-links
+  headings.forEach(function(h) {
+    var isH3 = h.tagName === 'H3';
+    var a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.innerText.trim();
+    a.dataset.tocTarget = h.id;
+    a.style.cssText = [
+      'display:block',
+      'font-family:var(--font-body)',
+      'font-size:' + (isH3 ? '11px' : '12px'),
+      'font-weight:' + (isH3 ? '500' : '700'),
+      'line-height:1.4',
+      'color:rgba(30,31,27,0.45)',
+      'text-decoration:none',
+      'padding:0.45rem 0 0.45rem ' + (isH3 ? '0.875rem' : '0'),
+      'border-left:2px solid transparent',
+      'padding-left:' + (isH3 ? '0.875rem' : '0.75rem'),
+      'transition:color 0.15s, border-color 0.15s',
+      'margin-left:' + (isH3 ? '0.5rem' : '0')
+    ].join(';');
+
+    a.addEventListener('mouseenter', function() {
+      if (!a.classList.contains('toc-active')) {
+        a.style.color = 'rgba(30,31,27,0.75)';
+      }
+    });
+    a.addEventListener('mouseleave', function() {
+      if (!a.classList.contains('toc-active')) {
+        a.style.color = 'rgba(30,31,27,0.45)';
+      }
+    });
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.getElementById(h.id);
+      if (target) {
+        var offset = 100;
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+
+    nav.appendChild(a);
+  });
+
+  // Activeer TOC sidebar op desktop (>= 1280px)
+  function maybeShowSidebar() {
+    if (window.innerWidth >= 1280) {
+      sidebar.style.display = 'block';
+      grid.style.gridTemplateColumns = '1fr 220px';
+      grid.style.alignItems = 'start';
+    } else {
+      sidebar.style.display = 'none';
+      grid.style.gridTemplateColumns = '1fr';
+    }
+  }
+  maybeShowSidebar();
+  window.addEventListener('resize', maybeShowSidebar);
+
+  // Highlight actieve sectie via IntersectionObserver
+  var tocLinks = nav.querySelectorAll('a[data-toc-target]');
+  var activeId = null;
+
+  function setActive(id) {
+    if (id === activeId) return;
+    activeId = id;
+    tocLinks.forEach(function(link) {
+      var isActive = link.dataset.tocTarget === id;
+      link.classList.toggle('toc-active', isActive);
+      link.style.color = isActive ? '#ed6b46' : 'rgba(30,31,27,0.45)';
+      link.style.borderLeftColor = isActive ? '#ed6b46' : 'transparent';
+      link.style.fontWeight = isActive ? '700' : (link.tagName === 'A' && link.style.fontSize === '11px' ? '500' : '700');
+    });
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        setActive(entry.target.id);
+      }
+    });
+  }, {
+    rootMargin: '-80px 0px -65% 0px',
+    threshold: 0
+  });
+
+  headings.forEach(function(h) { observer.observe(h); });
+
+  // Activeer het eerste item standaard
+  if (headings.length > 0) setActive(headings[0].id);
+});
+</script>
 
 {{# ── Conversiebalk na artikel ── #}}
 <section style="background:#F0EDE7; padding:0 0 0;">
