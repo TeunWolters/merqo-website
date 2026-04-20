@@ -630,67 +630,121 @@
     <div
       x-data="{
         current: 0,
-        stap1: null,
-        stap2: null,
-        stap3: null,
+        answers: [],
         done: false,
-        steps: [
+        questions: [
           {
             label: 'Jaarlijkse omzet',
             q: 'Wat is je jaarlijkse omzet?',
             opts: [
-              { val: 'klein',   label: '< €250k' },
-              { val: 'midden',  label: '€250k - €750k' },
-              { val: 'groot',   label: '€750k - €2M' },
-              { val: 'top',     label: '> €2M' }
+              { val: 'klein',   label: '< \u20ac250k',        score: null },
+              { val: 'midden',  label: '\u20ac250k - \u20ac750k', score: null },
+              { val: 'groot',   label: '\u20ac750k - \u20ac2M',  score: null },
+              { val: 'top',     label: '> \u20ac2M',           score: null }
             ]
           },
           {
             label: 'Conversie',
             q: 'Hoeveel van je offertes of gesprekken worden klant?',
             opts: [
-              { val: 'laag',        label: '< 10%' },
-              { val: 'midden-laag', label: '10 - 25%' },
-              { val: 'midden-hoog', label: '25 - 50%' },
-              { val: 'hoog',        label: '> 50%' }
+              { val: 'laag',        label: '< 10%',    score: null },
+              { val: 'midden-laag', label: '10 - 25%', score: null },
+              { val: 'midden-hoog', label: '25 - 50%', score: null },
+              { val: 'hoog',        label: '> 50%',    score: null }
             ]
           },
           {
-            label: 'Merksterkte',
-            q: 'Welke omschrijving past het beste bij jouw merk?',
+            label: 'Prijspositie',
+            q: 'Hoe verhoudt jouw prijs zich tot die van concurrenten?',
             opts: [
-              { val: 'zwak',      label: 'Mensen kennen ons niet buiten ons eigen netwerk' },
-              { val: 'gemiddeld', label: 'We zijn herkenbaar, maar onderscheiden ons niet sterk' },
-              { val: 'sterk',     label: 'Klanten kiezen bewust voor ons merk' }
+              { val: 'p0', label: 'Wij zijn goedkoper dan de meeste concurrenten',   score: 0 },
+              { val: 'p1', label: 'Vergelijkbaar geprijsd als de meeste concurrenten', score: 1 },
+              { val: 'p2', label: 'Wij zijn duurder en klanten accepteren dat',        score: 2 },
+              { val: 'p3', label: 'Klanten vergelijken ons zelden op prijs',           score: 2 }
+            ]
+          },
+          {
+            label: 'Klantwerving',
+            q: 'Hoe kom je voornamelijk aan nieuwe klanten?',
+            opts: [
+              { val: 'k0', label: 'Wij benaderen zelf actief prospects',           score: 0 },
+              { val: 'k1', label: 'Mix van actief zoeken en inkomende interesse',   score: 1 },
+              { val: 'k2', label: 'Klanten vinden ons via aanbevelingen',           score: 2 },
+              { val: 'k3', label: 'Klanten zoeken ons actief op via ons merk',      score: 2 }
+            ]
+          },
+          {
+            label: 'Klantloyaliteit',
+            q: 'Worden klanten na de eerste samenwerking terugkerende klant?',
+            opts: [
+              { val: 'l0', label: 'Zelden - de meeste opdrachten zijn eenmalig',   score: 0 },
+              { val: 'l1', label: 'Af en toe, maar geen duidelijk patroon',         score: 1 },
+              { val: 'l2', label: 'De meeste klanten komen vaker terug',            score: 2 },
+              { val: 'l3', label: 'Klanten blijven jarenlang bij ons',              score: 2 }
+            ]
+          },
+          {
+            label: 'Naamsbekendheid',
+            q: 'Hoe bekend ben je buiten je eigen netwerk?',
+            opts: [
+              { val: 'n0', label: 'Buiten ons netwerk kent men ons nauwelijks',        score: 0 },
+              { val: 'n1', label: 'Bekend bij mensen in de sector',                    score: 1 },
+              { val: 'n2', label: 'We worden regelmatig spontaan aanbevolen',          score: 2 },
+              { val: 'n3', label: 'Mensen kiezen bewust voor ons merk',                score: 2 }
+            ]
+          },
+          {
+            label: 'Uitstraling',
+            q: 'Hoe consistent is jouw uitstraling over alle kanalen?',
+            opts: [
+              { val: 'u0', label: 'Inconsistent - elk kanaal ziet er anders uit',      score: 0 },
+              { val: 'u1', label: 'Redelijk consistent maar niet onderscheidend',      score: 1 },
+              { val: 'u2', label: 'Consistent en professioneel over alle kanalen',     score: 2 },
+              { val: 'u3', label: 'Direct herkenbaar en onderscheidend',               score: 2 }
+            ]
+          },
+          {
+            label: 'Concurrentiepositie',
+            q: 'Hoe onderscheid jij je van concurrenten?',
+            opts: [
+              { val: 'c0', label: 'We lijken sterk op andere aanbieders in ons segment', score: 0 },
+              { val: 'c1', label: 'We onderscheiden ons enigszins maar niet sterk',       score: 1 },
+              { val: 'c2', label: 'We zijn duidelijk anders dan onze concurrenten',       score: 2 },
+              { val: 'c3', label: 'We zetten de toon in ons vakgebied',                   score: 2 }
             ]
           }
         ],
-        get currentVal() {
-          if (this.current === 0) return this.stap1;
-          if (this.current === 1) return this.stap2;
-          return this.stap3;
+        pick(val, score) {
+          this.answers.push({ val: val, score: score });
+          if (this.current < 7) { this.current++; } else { this.done = true; }
         },
-        pick(val) {
-          if (this.current === 0) this.stap1 = val;
-          else if (this.current === 1) this.stap2 = val;
-          else { this.stap3 = val; this.done = true; return; }
-          this.current++;
+        get omzet() { return this.answers.length > 0 ? this.answers[0].val : null; },
+        get conversie() { return this.answers.length > 1 ? this.answers[1].val : null; },
+        get merkScore() {
+          if (this.answers.length < 8) return 0;
+          return this.answers.slice(2).reduce((sum, a) => sum + (a.score || 0), 0);
+        },
+        get merksterkte() {
+          const s = this.merkScore;
+          if (s >= 8) return 'sterk';
+          if (s >= 4) return 'gemiddeld';
+          return 'zwak';
         },
         get verliesLaag() {
-          if (this.stap3 === 'zwak') return 25;
-          if (this.stap3 === 'gemiddeld') return 12;
+          if (this.merksterkte === 'zwak') return 25;
+          if (this.merksterkte === 'gemiddeld') return 12;
           return 3;
         },
         get verliesHoog() {
-          if (this.stap3 === 'zwak') return 35;
-          if (this.stap3 === 'gemiddeld') return 20;
+          if (this.merksterkte === 'zwak') return 35;
+          if (this.merksterkte === 'gemiddeld') return 20;
           return 8;
         },
         get uitkomstZin() {
           return 'Op basis van jouw antwoorden laat jij naar schatting ' + this.verliesLaag + '\u2013' + this.verliesHoog + '% van je potenti\u00eble omzet liggen doordat je merk de waarde van je product niet volledig overbrengt.';
         },
         get verklaringZin() {
-          const s2 = this.stap2, s3 = this.stap3;
+          const s2 = this.conversie, s3 = this.merksterkte;
           if (s3 === 'zwak' && (s2 === 'laag' || s2 === 'midden-laag')) return 'Mensen bereiken je wel, maar haken af. Dat is bijna altijd een merkprobleem, geen productprobleem.';
           if (s3 === 'zwak' && (s2 === 'midden-hoog' || s2 === 'hoog')) return 'Je converteert relatief goed, maar een zwak merk remt je bereik. Je mist kansen nog voordat leads binnenkomen.';
           if (s3 === 'gemiddeld' && (s2 === 'laag' || s2 === 'midden-laag')) return 'Je merk is herkenbaar in je netwerk, maar overtuigt buitenstaanders nog onvoldoende. Scherpere positionering maakt direct verschil.';
@@ -705,39 +759,39 @@
 
       {{# Progress bar #}}
       <div style="margin-bottom:1.75rem; padding-bottom:1.25rem; border-bottom:1px solid rgba(30,31,27,0.07);">
-        <div style="display:flex; align-items:center; gap:5px; margin-bottom:0.5rem;">
-          <template x-for="(s, i) in steps" :key="i">
+        <div style="display:flex; align-items:center; gap:4px; margin-bottom:0.5rem;">
+          <template x-for="(q, i) in questions" :key="i">
             <div style="flex:1; height:6px; border-radius:999px; transition:background 0.35s ease;"
-                 :style="i < current || done ? 'background:#ed6b46;' : (i === current && !done ? 'background:rgba(237,107,70,0.25);' : 'background:rgba(30,31,27,0.1);')"></div>
+                 :style="i < answers.length ? 'background:#ed6b46;' : (i === current && !done ? 'background:rgba(237,107,70,0.25);' : 'background:rgba(30,31,27,0.1);')"></div>
           </template>
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#9b9890;"
-                x-text="done ? '3 van 3 stappen' : (current + 1) + ' van 3 stappen'"></span>
+                x-text="done ? '8 van 8 stappen' : 'Stap ' + (current + 1) + ' van 8'"></span>
           <span style="font-family:var(--font-display); font-size:13px; font-weight:800; color:#ed6b46; letter-spacing:-0.02em;"
-                x-text="done ? 'Compleet' : ((current + 1) + '/3')"></span>
+                x-text="done ? 'Compleet' : ((current + 1) + '/8')"></span>
         </div>
       </div>
 
       {{# Vragen (één per keer) #}}
       <div x-show="!done">
-        <template x-for="(step, i) in steps" :key="i">
+        <template x-for="(q, i) in questions" :key="i">
           <div x-show="current === i"
                x-transition:enter="transition ease-out duration-200"
                x-transition:enter-start="opacity-0 translate-x-3"
                x-transition:enter-end="opacity-100 translate-x-0">
             <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(30,31,27,0.35); font-family:var(--font-body); margin-bottom:0.5rem;"
-                 x-text="'Stap ' + (i+1) + ' / 3  ·  ' + step.label"></div>
+                 x-text="'Stap ' + (i+1) + ' / 8  \u00b7  ' + q.label"></div>
             <p style="font-family:var(--font-body); font-size:16px; font-weight:600; color:#1E1F1B; margin-bottom:1.25rem; line-height:1.4;"
-               x-text="step.q"></p>
+               x-text="q.q"></p>
             <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-              <template x-for="opt in step.opts" :key="opt.val">
+              <template x-for="opt in q.opts" :key="opt.val">
                 <button
                   type="button"
-                  @click="pick(opt.val)"
-                  :style="currentVal === opt.val
-                    ? 'padding:0.65rem 1.2rem; background:#ed6b46; border:1.5px solid #ed6b46; box-shadow:0 4px 12px rgba(237,107,70,0.22); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#fff; white-space:nowrap; transition:all 0.18s ease;'
-                    : 'padding:0.65rem 1.2rem; background:#F9F7F5; border:1.5px solid rgba(30,31,27,0.1); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:all 0.18s ease;'"
+                  @click="pick(opt.val, opt.score)"
+                  style="padding:0.65rem 1.2rem; background:#F9F7F5; border:1.5px solid rgba(30,31,27,0.1); border-radius:12px; cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:13px; color:#1E1F1B; white-space:nowrap; transition:all 0.18s ease;"
+                  onmouseover="this.style.borderColor='#ed6b46'; this.style.background='#fffaf8';"
+                  onmouseout="this.style.borderColor='rgba(30,31,27,0.1)'; this.style.background='#F9F7F5';"
                   x-text="opt.label"
                 ></button>
               </template>
