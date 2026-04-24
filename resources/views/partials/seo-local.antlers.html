@@ -1,35 +1,27 @@
 {{# ════════════════════════════════════════════════════════════
     MERQO - GEDEELDE LOKALE SEO PARTIAL
-    Voeg toe in {{ section:seo }} van elke pagina:
+    Verwijst naar de globale LocalBusiness @id uit layout.antlers.html.
+    Geo-metatags staan al in de layout - hier dus niet herhalen.
+    Voeg toe in {{ section:seo }} van elke dienstpagina:
     {{ partial:partials/seo-local }}
     ════════════════════════════════════════════════════════════ #}}
 
-{{# ── Geo meta tags ── #}}
-<meta name="geo.region" content="NL-OV">
-<meta name="geo.placename" content="Hengelo, Overijssel">
-<meta name="geo.position" content="52.2660;6.7936">
-<meta name="ICBM" content="52.2660, 6.7936">
-
-{{# ── LocalBusiness JSON-LD ── #}}
+{{# Referentie naar de globale LocalBusiness entiteit - versterkt lokale relevantie #}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "Merqo",
-  "description": "Creatief bureau in Hengelo voor branding, websites, marketing en drukwerk voor bedrijven in Twente en Overijssel.",
+  "@id": "https://merqo.nl/#localbusiness",
+  "name": "Merqo Creative Agency",
   "url": "{{ config:app:url }}",
   "telephone": "+31630772283",
   "email": "info@merqo.nl",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Hengelo",
+    "postalCode": "7558 PJ",
     "addressRegion": "Overijssel",
     "addressCountry": "NL"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "52.2660",
-    "longitude": "6.7936"
   },
   "areaServed": [
     { "@type": "City", "name": "Hengelo" },
@@ -41,20 +33,8 @@
     { "@type": "AdministrativeArea", "name": "Overijssel" }
   ],
   "sameAs": [
+    "https://www.instagram.com/merqo.agency",
     "https://www.linkedin.com/company/merqo"
-  ],
-  "priceRange": "€€",
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-      "opens": "09:00",
-      "closes": "17:30"
-    }
-  ],
-  "logo": {
-    "@type": "ImageObject",
-    "url": "{{ config:app:url }}/assets/merqo-logo.svg"
-  }
+  ]
 }
 </script>

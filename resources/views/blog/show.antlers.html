@@ -35,53 +35,37 @@
 <meta name="twitter:image" content="{{ config:app:url }}{{ featured_image }}">
 {{ /if }}
 
-{{# ── JSON-LD: Article + LocalBusiness schema ── #}}
+{{# ── JSON-LD: BlogPosting schema ── #}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
   "headline": "{{ title | entities }}",
   "description": "{{ seo_description ?? intro | entities }}",
   "datePublished": "{{ date format='Y-m-d' }}",
   "dateModified": "{{ date format='Y-m-d' }}",
   "inLanguage": "nl-NL",
-  "author": {
-    "@type": "Organization",
-    "name": "Merqo",
-    "url": "{{ config:app:url }}"
-  },
+  "author": { "@id": "https://merqo.nl/#organization" },
   "publisher": {
-    "@type": "LocalBusiness",
+    "@type": "Organization",
+    "@id": "https://merqo.nl/#organization",
     "name": "Merqo",
-    "url": "{{ config:app:url }}",
-    "telephone": "+31-74-000-0000",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Industriestraat",
-      "addressLocality": "Hengelo",
-      "addressRegion": "Overijssel",
-      "postalCode": "7553",
-      "addressCountry": "NL"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "52.2660",
-      "longitude": "6.7936"
-    },
-    "areaServed": ["Hengelo", "Enschede", "Almelo", "Twente", "Overijssel"],
+    "url": "https://merqo.nl",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ config:app:url }}/assets/merqo-logo.svg"
+      "url": "https://merqo.nl/assets/merqo-logo-dark.svg",
+      "width": 200,
+      "height": 60
     }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ config:app:url }}{{ url }}"
-  }{{ if featured_image }},
+  },
   "image": {
     "@type": "ImageObject",
-    "url": "{{ config:app:url }}{{ featured_image }}"
-  }{{ /if }}
+    "url": "{{ if featured_image }}{{ config:app:url }}{{ featured_image }}{{ else }}https://merqo.nl/assets/team/team-groep-grijs.jpg{{ /if }}"
+  }
 }
 </script>
 

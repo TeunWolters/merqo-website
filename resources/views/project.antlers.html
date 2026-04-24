@@ -2,6 +2,40 @@
     MERQO - PROJECT DETAIL
     ════════════════════════════════════════════════════════════ #}}
 
+{{ section:seo }}
+<title>{{ title }} | Project - Merqo Creatief Bureau Hengelo</title>
+<meta name="description" content="{{ tagline ?? 'Bekijk hoe Merqo dit project aanpakte voor ' }}{{ title }}. Creatief bureau in Hengelo, Twente.">
+<link rel="canonical" href="{{ config:app:url }}{{ url }}">
+<meta property="og:title" content="{{ title }} | Project - Merqo">
+<meta property="og:description" content="{{ tagline }}">
+<meta property="og:url" content="{{ config:app:url }}{{ url }}">
+<meta property="og:type" content="article">
+{{ if image }}<meta property="og:image" content="{{ config:app:url }}{{ image }}">{{ /if }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "{{ title | entities }}",
+  "description": "{{ tagline | entities }}",
+  "creator": { "@id": "https://merqo.nl/#organization" },
+  "dateCreated": "{{ date format='Y' }}",
+  "url": "{{ config:app:url }}{{ url }}"{{ if image }},
+  "image": "{{ config:app:url }}{{ image }}"{{ /if }}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://merqo.nl/"},
+    {"@type":"ListItem","position":2,"name":"Projecten","item":"https://merqo.nl/projecten"},
+    {"@type":"ListItem","position":3,"name":"{{ title | entities }}","item":"{{ config:app:url }}{{ url }}"}
+  ]
+}
+</script>
+{{ /section:seo }}
+
 {{# ── Hero ── #}}
 <section data-header-bg="dark" style="position:relative; overflow:hidden; background:#0D0D0C; min-height:82vh; display:flex; align-items:flex-end;">
   {{ if image }}
