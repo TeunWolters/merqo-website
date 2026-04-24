@@ -3,10 +3,25 @@
     ════════════════════════════════════════════════════════════ #}}
 
 {{ section:seo }}
-<meta name="description" content="Marketing bureau in Hengelo | Merqo - Online marketing voor bedrijven in Twente en Overijssel. SEO, advertenties en sociale media.">
-<meta property="og:title" content="Marketing bureau Hengelo | Merqo - Online marketing Twente">
-<meta property="og:description" content="Marketing bureau in Hengelo | Merqo - Online marketing voor bedrijven in Twente en Overijssel. SEO, advertenties en sociale media.">
-<meta property="og:url" content="{{ config:app:url }}{{ url }}">
+<title>Marketing bureau Hengelo | Online marketing voor bedrijven in Twente - Merqo</title>
+<meta name="description" content="Online marketing bureau in Hengelo voor bedrijven in Twente en Overijssel. SEO, Google Ads, social media en e-mailmarketing met meetbaar resultaat.">
+<link rel="canonical" href="{{ config:app:url }}/marketing">
+<meta property="og:title" content="Marketing bureau Hengelo | Online marketing Twente - Merqo">
+<meta property="og:description" content="Meer klanten via gerichte online marketing. Merqo is het marketing bureau in Hengelo dat campagnes bouwt die converteren.">
+<meta property="og:url" content="{{ config:app:url }}/marketing">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Online Marketing",
+  "description": "SEO, Google Ads, social media en e-mailmarketing voor bedrijven in Twente en Overijssel.",
+  "provider": { "@id": "https://merqo.nl/#organization" },
+  "areaServed": [{"@type":"AdministrativeArea","name":"Twente"},{"@type":"AdministrativeArea","name":"Overijssel"}],
+  "url": "https://merqo.nl/marketing",
+  "serviceType": "Online Marketing"
+}
+</script>
 {{ partial:partials/seo-local }}
 {{ /section:seo }}
 
