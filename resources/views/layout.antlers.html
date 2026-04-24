@@ -19,10 +19,13 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    {{# Google Fonts - async voor render-performance #}}
+    {{# Kritieke custom fonts preloaden (LCP) #}}
+    <link rel="preload" as="font" href="/fonts/PolySans-Median.otf" type="font/otf" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/fonts/SeasonSans-Regular.otf" type="font/otf" crossorigin="anonymous">
+
+    {{# Google Fonts - async voor render-performance (fallback) #}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
 
@@ -159,6 +162,29 @@
       if (localStorage.getItem('merqo_cookie_consent') === 'accepted') {
         merqoLoadTracking();
       }
+
+      // Web Vitals meting (onafhankelijk van consent - geen PII)
+      (function() {
+        function sendVital(name, value, rating) {
+          if (window.gtag) {
+            gtag('event', name, {
+              event_category: 'Web Vitals',
+              value: Math.round(name === 'CLS' ? value * 1000 : value),
+              event_label: rating,
+              non_interaction: true
+            });
+          }
+        }
+        // Laad web-vitals via CDN na pagina load
+        window.addEventListener('load', function() {
+          var s = document.createElement('script');
+          s.type = 'module';
+          s.textContent = 'import{onLCP,onINP,onCLS}from"https://unpkg.com/web-vitals@4/dist/web-vitals.attribution.js";'
+            + 'function r(m){sendVital(m.name,m.value,m.rating);}'
+            + 'onLCP(r);onINP(r);onCLS(r);';
+          document.head.appendChild(s);
+        });
+      })();
     </script>
 
     <meta name="csrf-token" content="{{ csrf_token }}">
@@ -721,20 +747,32 @@
   var barWrap = document.getElementById('loader-bar-wrap');
   var bar     = document.getElementById('loader-bar');
 
-  // Toon logo + balk
+  function hideLoader(instant) {
+    if (instant) {
+      loader.style.display = 'none';
+      return;
+    }
+    loader.style.transition = 'opacity 0.3s ease';
+    loader.style.opacity = '0';
+    setTimeout(function() { loader.style.display = 'none'; }, 300);
+  }
+
+  // Herhaald bezoek binnen sessie: loader direct weggooien (LCP verbetering)
+  if (sessionStorage.getItem('merqo_loaded')) {
+    hideLoader(true);
+    return;
+  }
+  sessionStorage.setItem('merqo_loaded', '1');
+
+  // Eerste bezoek: korte loader (400ms toon + 300ms fade = ~700ms totaal)
   requestAnimationFrame(function() {
     logo.style.opacity    = '1';
     logo.style.transform  = 'translateY(0)';
     barWrap.style.opacity = '1';
-    setTimeout(function() { bar.style.width = '100%'; }, 60);
+    setTimeout(function() { bar.style.width = '100%'; }, 30);
   });
 
-  // Na 1.5s → fade out loader
-  setTimeout(function() {
-    loader.style.transition = 'opacity 0.5s ease';
-    loader.style.opacity    = '0';
-    setTimeout(function() { loader.style.display = 'none'; }, 500);
-  }, 1500);
+  setTimeout(function() { hideLoader(false); }, 400);
 })();
 
 (function() {

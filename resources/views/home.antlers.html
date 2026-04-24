@@ -18,11 +18,19 @@
 <section data-header-bg="dark" class="hero" style="position: relative; overflow: hidden; background: #ddd5c8; min-height: 100svh;">
 
   {{# Blob achtergrond #}}
-  <div id="hero-blobs" style="position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none;">
+  <div id="hero-blobs" style="position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; contain:strict; isolation:isolate;">
     <div id="blob-a" style="position:absolute; width:75vw; height:75vw; background:#ed6b46; filter:blur(90px); opacity:0.85; will-change:transform;"></div>
     <div id="blob-b" style="position:absolute; width:65vw; height:65vw; background:#8fcdd0; filter:blur(90px); opacity:0.85; will-change:transform;"></div>
     <div id="blob-c" style="position:absolute; width:55vw; height:55vw; background:#f5b87a; filter:blur(80px); opacity:0.7; will-change:transform;"></div>
   </div>
+  <style>
+    /* Mobiel: kleinere blur voor betere paint performance */
+    @media (max-width: 768px) {
+      #blob-a { filter: blur(55px) !important; width: 90vw !important; height: 90vw !important; }
+      #blob-b { filter: blur(55px) !important; width: 80vw !important; height: 80vw !important; }
+      #blob-c { filter: blur(50px) !important; width: 70vw !important; height: 70vw !important; }
+    }
+  </style>
   <style>
     @keyframes morph-a {
       0%,100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
