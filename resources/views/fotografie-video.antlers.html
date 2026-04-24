@@ -87,12 +87,8 @@
           Beeldmateriaal<br>dat staat.
         </h2>
         <p style="font-family:var(--font-body); font-size:15px; line-height:1.8;
-                  color:#6B6860; max-width:52ch; margin-bottom:1rem;">
-          Beeld is het eerste wat mensen zien. Slechte foto's of generieke stockbeelden ondermijnen je merk zonder dat je het merkt. Wij maken beeldmateriaal dat klopt: bij jou, bij je merk en bij je klant.
-        </p>
-        <p style="font-family:var(--font-body); font-size:15px; line-height:1.8;
                   color:#6B6860; max-width:52ch; margin-bottom:2rem;">
-          Van bedrijfsfotografie tot productvideo's: we regelen alles van briefing tot levering. Wij zijn actief als fotograaf in Hengelo en door heel Twente. Binnen één dag heb je jouw beeldmateriaal klaar voor gebruik.
+          Beeld is het eerste wat mensen zien. Slechte foto's of generieke stockbeelden ondermijnen je merk zonder dat je het merkt. Wij maken beeldmateriaal dat klopt: bij jou, bij je merk en bij je klant.
         </p>
         <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
           <span style="display:inline-block; font-family:var(--font-body); font-size:12px; font-weight:700;
@@ -171,7 +167,7 @@
 </div>
 
 {{# ── 5. WAT JE KRIJGT ──────────────────────────────────────── #}}
-<section id="wat-je-krijgt" style="background:#EDEAE3; padding:6rem 0;">
+<section id="wat-je-krijgt" style="background:#EDEAE3; padding:6rem 0;" x-data="{ expanded: false }">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
 
     <div style="margin-bottom:3rem;" data-reveal>
@@ -213,7 +209,7 @@
         <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Bedrijfsfilms, productvideo's en social content die beweging geven aan jouw merk.</p>
       </div>
 
-      <div data-reveal style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
+      <div data-reveal :class="!expanded ? 'fotovideo-card-extra' : ''" style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
         <div style="width:44px; height:44px; border-radius:50%; background:rgba(237,107,70,0.08);
                     display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
@@ -222,7 +218,7 @@
         <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Foto's en video's op maat voor Instagram, LinkedIn en andere platformen.</p>
       </div>
 
-      <div data-reveal style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
+      <div data-reveal :class="!expanded ? 'fotovideo-card-extra' : ''" style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
         <div style="width:44px; height:44px; border-radius:50%; background:rgba(168,200,202,0.15);
                     display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a8c8ca" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
@@ -232,16 +228,39 @@
       </div>
 
     </div>
+
+    <button x-show="!expanded" @click="expanded = true" class="fotovideo-expand-btn"
+            style="display:none; margin-top:1.5rem; width:100%; align-items:center; justify-content:center; gap:0.5rem; padding:0.875rem; border-radius:12px; border:1.5px solid rgba(30,31,27,0.12); background:#fff; font-family:var(--font-body); font-size:14px; font-weight:600; color:var(--color-text); cursor:pointer;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      Toon meer
+    </button>
   </div>
 </section>
 
 <style>
   @media (max-width: 900px) { .fotovideo-cards-grid { grid-template-columns: repeat(2,1fr) !important; } }
-  @media (max-width: 600px) { .fotovideo-cards-grid { grid-template-columns: 1fr !important; } }
+  @media (max-width: 600px) {
+    .fotovideo-cards-grid { grid-template-columns: 1fr !important; }
+    .fotovideo-card-extra { display: none !important; }
+    .fotovideo-expand-btn { display: flex !important; }
+  }
 </style>
 
+<div style="background:#F0EDE7; padding:0 0 3rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="margin-top:2.5rem; padding-top:2rem; border-top:1px solid rgba(30,31,27,0.1); display:flex; align-items:center; gap:2rem; flex-wrap:wrap;" data-reveal>
+      <div>
+        <div style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(30,31,27,0.38); margin-bottom:0.3rem;">Investering</div>
+        <div style="font-family:var(--font-display); font-size:clamp(24px,2.5vw,32px); font-weight:800; letter-spacing:-0.04em; color:var(--color-text); line-height:1.1;">Vanaf €650</div>
+        <div style="font-family:var(--font-body); font-size:12px; color:#9B9890; margin-top:0.2rem;">excl. BTW · volledig op maat</div>
+      </div>
+      <a href="#investering" style="font-family:var(--font-body); font-size:13px; font-weight:700; color:#ed6b46; text-decoration:none; border-bottom:1px solid rgba(237,107,70,0.35); padding-bottom:2px;">Bekijk pakketverdeling ↓</a>
+    </div>
+  </div>
+</div>
+
 {{# ── 4. WERKWIJZE ───────────────────────────────────────────── #}}
-<section id="werkwijze" style="background:#F0EDE7; padding:6rem 0;">
+<section id="werkwijze" style="background:#F0EDE7; padding:6rem 0;" x-data="{ stepsOpen: false }">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
 
     <div style="margin-bottom:3rem;" data-reveal>
@@ -270,7 +289,7 @@
       </div>
     </div>
 
-    <div data-reveal style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08);">
+    <div data-reveal :class="!stepsOpen ? 'fotovideo-step-extra' : ''" style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08);">
       <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:800; color:rgba(30,31,27,0.07); line-height:1; padding-top:0.25rem;">03</div>
       <div>
         <h3 style="font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--color-text); margin-bottom:0.5rem;">Shoot & opname</h3>
@@ -278,7 +297,7 @@
       </div>
     </div>
 
-    <div data-reveal style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08); border-bottom:1px solid rgba(30,31,27,0.08);">
+    <div data-reveal :class="!stepsOpen ? 'fotovideo-step-extra' : ''" style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08); border-bottom:1px solid rgba(30,31,27,0.08);">
       <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:800; color:rgba(30,31,27,0.07); line-height:1; padding-top:0.25rem;">04</div>
       <div>
         <h3 style="font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--color-text); margin-bottom:0.5rem;">Nabewerking & levering</h3>
@@ -286,40 +305,20 @@
       </div>
     </div>
 
-  </div>
-</section>
+    <button x-show="!stepsOpen" @click="stepsOpen = true" class="fotovideo-steps-expand-btn"
+            style="display:none; margin-top:1.5rem; width:100%; align-items:center; justify-content:center; gap:0.5rem; padding:0.875rem; border-radius:12px; border:1.5px solid rgba(30,31,27,0.12); background:#fff; font-family:var(--font-body); font-size:14px; font-weight:600; color:var(--color-text); cursor:pointer;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      Toon alle 4 stappen
+    </button>
 
-{{# ── VOOR WIE ──────────────────────────────────────────────── #}}
-<section style="background:#F5F2EC; padding:5rem 0;">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div style="margin-bottom:3rem;" data-reveal>
-      <div class="eyebrow" style="margin-bottom:1.25rem;">
-        <div class="eyebrow-line"></div>
-        <div class="eyebrow-text">Voor wie is dit?</div>
-      </div>
-      <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(26px,3vw,40px); letter-spacing:-0.04em; line-height:1.06; color:var(--color-text);">
-        Dit is voor jou<br>als je herkent dat...
-      </h2>
-    </div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;">
-      <div data-reveal style="background:#fff; border-radius:18px; padding:1.75rem; border:1px solid rgba(30,31,27,0.07);">
-        <div style="font-family:var(--font-display); font-size:2rem; font-weight:800; color:rgba(30,31,27,0.07); margin-bottom:1rem; line-height:1;">01</div>
-        <h3 style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--color-text); margin-bottom:0.6rem;">Bedrijven die zichzelf willen laten zien</h3>
-        <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Die geloven in persoonlijk contact en dat ook digitaal willen uitstralen.</p>
-      </div>
-      <div data-reveal style="background:#fff; border-radius:18px; padding:1.75rem; border:1px solid rgba(30,31,27,0.07);">
-        <div style="font-family:var(--font-display); font-size:2rem; font-weight:800; color:rgba(30,31,27,0.07); margin-bottom:1rem; line-height:1;">02</div>
-        <h3 style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--color-text); margin-bottom:0.6rem;">Merken met ambitieuze content plannen</h3>
-        <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Die consistent kwalitatief beeldmateriaal nodig hebben voor meerdere kanalen.</p>
-      </div>
-      <div data-reveal style="background:#fff; border-radius:18px; padding:1.75rem; border:1px solid rgba(30,31,27,0.07);">
-        <div style="font-family:var(--font-display); font-size:2rem; font-weight:800; color:rgba(30,31,27,0.07); margin-bottom:1rem; line-height:1;">03</div>
-        <h3 style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--color-text); margin-bottom:0.6rem;">Ondernemers die opvallen willen</h3>
-        <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Die begrijpen dat beeld het eerste is wat iemand ziet en beoordeelt.</p>
-      </div>
-    </div>
   </div>
 </section>
+<style>
+  @media (max-width: 600px) {
+    .fotovideo-step-extra { display: none !important; }
+    .fotovideo-steps-expand-btn { display: flex !important; }
+  }
+</style>
 
 {{# ── 4b. BEELDIMPACT-TEST ───────────────────────────────── #}}
 <section style="background:#F0EDE7; padding:5rem 0 6rem;">

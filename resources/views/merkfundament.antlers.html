@@ -189,7 +189,7 @@
 </section>
 
 {{# ── 4. WAT JE KRIJGT ──────────────────────────────────────── #}}
-<section id="wat-je-krijgt" style="background:#EDEAE3; padding:6rem 0;">
+<section id="wat-je-krijgt" style="background:#EDEAE3; padding:6rem 0;" x-data="{ expanded: false }">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
 
     <div style="margin-bottom:3rem;" data-reveal>
@@ -231,7 +231,7 @@
         <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Een duidelijke strategie voor hoe je jouw merk inzet in de markt — van communicatietoon tot kanaalkeuze en doelgroepaanpak.</p>
       </div>
 
-      <div data-reveal style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
+      <div data-reveal :class="!expanded ? 'mf-card-extra' : ''" style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
         <div style="width:44px; height:44px; border-radius:50%; background:rgba(168,200,202,0.15);
                     display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a8c8ca" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
@@ -240,7 +240,7 @@
         <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Logo, kleurpalet en typografie die passen bij wie je bent en wat je wil uitstralen. Ontworpen om consistent te werken op elk kanaal.</p>
       </div>
 
-      <div data-reveal style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
+      <div data-reveal :class="!expanded ? 'mf-card-extra' : ''" style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
         <div style="width:44px; height:44px; border-radius:50%; background:rgba(237,107,70,0.08);
                     display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
@@ -249,7 +249,7 @@
         <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Alles vastgelegd in een helder handboek: hoe gebruik je het logo, welke kleuren, welke toon. Voor jou en iedereen die met je merk werkt.</p>
       </div>
 
-      <div data-reveal style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
+      <div data-reveal :class="!expanded ? 'mf-card-extra' : ''" style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
         <div style="width:44px; height:44px; border-radius:50%; background:rgba(168,200,202,0.15);
                     display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a8c8ca" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
@@ -259,16 +259,39 @@
       </div>
 
     </div>
+
+    <button x-show="!expanded" @click="expanded = true" class="mf-expand-btn"
+            style="display:none; margin-top:1.5rem; width:100%; align-items:center; justify-content:center; gap:0.5rem; padding:0.875rem; border-radius:12px; border:1.5px solid rgba(30,31,27,0.12); background:#fff; font-family:var(--font-body); font-size:14px; font-weight:600; color:var(--color-text); cursor:pointer;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      Toon meer
+    </button>
   </div>
 </section>
 
 <style>
   @media (max-width: 900px) { .mf-cards-grid { grid-template-columns: repeat(2,1fr) !important; } }
-  @media (max-width: 600px) { .mf-cards-grid { grid-template-columns: 1fr !important; } }
+  @media (max-width: 600px) {
+    .mf-cards-grid { grid-template-columns: 1fr !important; }
+    .mf-card-extra { display: none !important; }
+    .mf-expand-btn { display: flex !important; }
+  }
 </style>
 
+<div style="background:#F0EDE7; padding:0 0 3rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="margin-top:2.5rem; padding-top:2rem; border-top:1px solid rgba(30,31,27,0.1); display:flex; align-items:center; gap:2rem; flex-wrap:wrap;" data-reveal>
+      <div>
+        <div style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(30,31,27,0.38); margin-bottom:0.3rem;">Investering</div>
+        <div style="font-family:var(--font-display); font-size:clamp(24px,2.5vw,32px); font-weight:800; letter-spacing:-0.04em; color:var(--color-text); line-height:1.1;">Vanaf €2.500</div>
+        <div style="font-family:var(--font-body); font-size:12px; color:#9B9890; margin-top:0.2rem;">excl. BTW · volledig op maat</div>
+      </div>
+      <a href="#investering" style="font-family:var(--font-body); font-size:13px; font-weight:700; color:#ed6b46; text-decoration:none; border-bottom:1px solid rgba(237,107,70,0.35); padding-bottom:2px;">Bekijk pakketverdeling ↓</a>
+    </div>
+  </div>
+</div>
+
 {{# ── 5. WERKWIJZE ───────────────────────────────────────────── #}}
-<section id="werkwijze" style="background:#F0EDE7; padding:6rem 0;">
+<section id="werkwijze" style="background:#F0EDE7; padding:6rem 0;" x-data="{ stepsOpen: false }">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
 
     <div style="margin-bottom:3rem;" data-reveal>
@@ -297,7 +320,7 @@
       </div>
     </div>
 
-    <div data-reveal style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08);">
+    <div data-reveal :class="!stepsOpen ? 'mf-step-extra' : ''" style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08);">
       <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:800; color:rgba(30,31,27,0.07); line-height:1; padding-top:0.25rem;">03</div>
       <div>
         <h3 style="font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--color-text); margin-bottom:0.5rem;">Ontwerp & verfijning</h3>
@@ -305,7 +328,7 @@
       </div>
     </div>
 
-    <div data-reveal style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08); border-bottom:1px solid rgba(30,31,27,0.08);">
+    <div data-reveal :class="!stepsOpen ? 'mf-step-extra' : ''" style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08); border-bottom:1px solid rgba(30,31,27,0.08);">
       <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:800; color:rgba(30,31,27,0.07); line-height:1; padding-top:0.25rem;">04</div>
       <div>
         <h3 style="font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--color-text); margin-bottom:0.5rem;">Oplevering & uitleg</h3>
@@ -313,42 +336,19 @@
       </div>
     </div>
 
-  </div>
-</section>
+    <button x-show="!stepsOpen" @click="stepsOpen = true" class="mf-steps-expand-btn"
+            style="display:none; margin-top:1.5rem; width:100%; align-items:center; justify-content:center; gap:0.5rem; padding:0.875rem; border-radius:12px; border:1.5px solid rgba(30,31,27,0.12); background:#fff; font-family:var(--font-body); font-size:14px; font-weight:600; color:var(--color-text); cursor:pointer;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      Toon alle 4 stappen
+    </button>
 
-{{# ── VOOR WIE ────────────────────────────────────────────────── #}}
-<section style="background:#F5F2EC; padding:5rem 0;">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div style="margin-bottom:3rem;" data-reveal>
-      <div class="eyebrow" style="margin-bottom:1.25rem;">
-        <div class="eyebrow-line"></div>
-        <div class="eyebrow-text">Voor wie is dit?</div>
-      </div>
-      <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(26px,3vw,40px); letter-spacing:-0.04em; line-height:1.06; color:var(--color-text);">
-        Dit is voor jou<br>als je herkent dat...
-      </h2>
-    </div>
-    <div class="mf-voor-wie" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;">
-      <div data-reveal style="background:#fff; border-radius:18px; padding:1.75rem; border:1px solid rgba(30,31,27,0.07);">
-        <div style="font-family:var(--font-display); font-size:2rem; font-weight:800; color:rgba(30,31,27,0.07); margin-bottom:1rem; line-height:1;">01</div>
-        <h3 style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--color-text); margin-bottom:0.6rem;">Startende ondernemers</h3>
-        <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Die vanaf dag een een solide basis willen leggen en niet eerst jaren met een provisorisch merk door de markt willen.</p>
-      </div>
-      <div data-reveal style="background:#fff; border-radius:18px; padding:1.75rem; border:1px solid rgba(30,31,27,0.07);">
-        <div style="font-family:var(--font-display); font-size:2rem; font-weight:800; color:rgba(30,31,27,0.07); margin-bottom:1rem; line-height:1;">02</div>
-        <h3 style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--color-text); margin-bottom:0.6rem;">Groeiende bedrijven</h3>
-        <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Die merken dat hun huisstijl niet meer past bij wie ze zijn geworden en een professionele basis nodig hebben om de volgende stap te zetten.</p>
-      </div>
-      <div data-reveal style="background:#fff; border-radius:18px; padding:1.75rem; border:1px solid rgba(30,31,27,0.07);">
-        <div style="font-family:var(--font-display); font-size:2rem; font-weight:800; color:rgba(30,31,27,0.07); margin-bottom:1rem; line-height:1;">03</div>
-        <h3 style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--color-text); margin-bottom:0.6rem;">Ambitieuze bedrijven</h3>
-        <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Die begrijpen dat marketing zonder een sterk merk als basis gewoon geldverspilling is — en het liever goed doen dan snel.</p>
-      </div>
-    </div>
   </div>
 </section>
 <style>
-  @media (max-width: 700px) { .mf-voor-wie { grid-template-columns: 1fr !important; } }
+  @media (max-width: 600px) {
+    .mf-step-extra { display: none !important; }
+    .mf-steps-expand-btn { display: flex !important; }
+  }
 </style>
 
 {{# ── MERKBASIS CHECK ─────────────────────────────────────────── #}}

@@ -87,12 +87,8 @@
           Offline aanwezig<br>met impact.
         </h2>
         <p style="font-family:var(--font-body); font-size:15px; line-height:1.8;
-                  color:#6B6860; max-width:52ch; margin-bottom:1rem;">
-          In een digitale wereld valt goed drukwerk extra op. Een visitekaartje dat blijft hangen, signing die indruk maakt of verpakking die het verhaal vertelt: print is tastbaar en blijft bij.
-        </p>
-        <p style="font-family:var(--font-body); font-size:15px; line-height:1.8;
                   color:#6B6860; max-width:52ch; margin-bottom:2rem;">
-          Wij ontwerpen en leveren drukwerk dat volledig aansluit op jouw huisstijl. Drukklaar aangeleverd bij de drukkerij, of geregeld via ons eigen netwerk van betrouwbare partners. Als drukwerk bureau in Hengelo werken we voor bedrijven in heel Twente en Overijssel.
+          In een digitale wereld valt goed drukwerk extra op. Een visitekaartje dat blijft hangen, signing die indruk maakt of verpakking die het verhaal vertelt: print is tastbaar en blijft bij.
         </p>
         <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
           <span style="display:inline-block; font-family:var(--font-body); font-size:12px; font-weight:700;
@@ -171,7 +167,7 @@
 </div>
 
 {{# ── 5. WAT JE KRIJGT ──────────────────────────────────────── #}}
-<section id="wat-je-krijgt" style="background:#EDEAE3; padding:6rem 0;">
+<section id="wat-je-krijgt" style="background:#EDEAE3; padding:6rem 0;" x-data="{ expanded: false }">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
 
     <div style="margin-bottom:3rem;" data-reveal>
@@ -213,7 +209,7 @@
         <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Verpakkingen die bij je merk passen en een onuitwisbare indruk achterlaten bij de ontvanger.</p>
       </div>
 
-      <div data-reveal style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
+      <div data-reveal :class="!expanded ? 'drukwerk-card-extra' : ''" style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
         <div style="width:44px; height:44px; border-radius:50%; background:rgba(237,107,70,0.08);
                     display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
@@ -222,7 +218,7 @@
         <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Merchandise en relatiegeschenken in jouw merkstijl die indruk maken bij klanten en partners.</p>
       </div>
 
-      <div data-reveal style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
+      <div data-reveal :class="!expanded ? 'drukwerk-card-extra' : ''" style="background:#fff; border:1px solid rgba(30,31,27,0.07); border-radius:18px; padding:1.75rem;">
         <div style="width:44px; height:44px; border-radius:50%; background:rgba(168,200,202,0.15);
                     display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a8c8ca" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -232,16 +228,39 @@
       </div>
 
     </div>
+
+    <button x-show="!expanded" @click="expanded = true" class="drukwerk-expand-btn"
+            style="display:none; margin-top:1.5rem; width:100%; align-items:center; justify-content:center; gap:0.5rem; padding:0.875rem; border-radius:12px; border:1.5px solid rgba(30,31,27,0.12); background:#fff; font-family:var(--font-body); font-size:14px; font-weight:600; color:var(--color-text); cursor:pointer;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      Toon meer
+    </button>
   </div>
 </section>
 
 <style>
   @media (max-width: 900px) { .drukwerk-cards-grid { grid-template-columns: repeat(2,1fr) !important; } }
-  @media (max-width: 600px) { .drukwerk-cards-grid { grid-template-columns: 1fr !important; } }
+  @media (max-width: 600px) {
+    .drukwerk-cards-grid { grid-template-columns: 1fr !important; }
+    .drukwerk-card-extra { display: none !important; }
+    .drukwerk-expand-btn { display: flex !important; }
+  }
 </style>
 
+<div style="background:#F0EDE7; padding:0 0 3rem;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="margin-top:2.5rem; padding-top:2rem; border-top:1px solid rgba(30,31,27,0.1); display:flex; align-items:center; gap:2rem; flex-wrap:wrap;" data-reveal>
+      <div>
+        <div style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(30,31,27,0.38); margin-bottom:0.3rem;">Investering</div>
+        <div style="font-family:var(--font-display); font-size:clamp(24px,2.5vw,32px); font-weight:800; letter-spacing:-0.04em; color:var(--color-text); line-height:1.1;">Vanaf €250</div>
+        <div style="font-family:var(--font-body); font-size:12px; color:#9B9890; margin-top:0.2rem;">excl. BTW · volledig op maat</div>
+      </div>
+      <a href="#investering" style="font-family:var(--font-body); font-size:13px; font-weight:700; color:#ed6b46; text-decoration:none; border-bottom:1px solid rgba(237,107,70,0.35); padding-bottom:2px;">Bekijk pakketverdeling ↓</a>
+    </div>
+  </div>
+</div>
+
 {{# ── 4. WERKWIJZE ───────────────────────────────────────────── #}}
-<section id="werkwijze" style="background:#F0EDE7; padding:6rem 0;">
+<section id="werkwijze" style="background:#F0EDE7; padding:6rem 0;" x-data="{ stepsOpen: false }">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
 
     <div style="margin-bottom:3rem;" data-reveal>
@@ -270,7 +289,7 @@
       </div>
     </div>
 
-    <div data-reveal style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08);">
+    <div data-reveal :class="!stepsOpen ? 'drukwerk-step-extra' : ''" style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08);">
       <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:800; color:rgba(30,31,27,0.07); line-height:1; padding-top:0.25rem;">03</div>
       <div>
         <h3 style="font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--color-text); margin-bottom:0.5rem;">Proef & goedkeuring</h3>
@@ -278,7 +297,7 @@
       </div>
     </div>
 
-    <div data-reveal style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08); border-bottom:1px solid rgba(30,31,27,0.08);">
+    <div data-reveal :class="!stepsOpen ? 'drukwerk-step-extra' : ''" style="display:grid; grid-template-columns:4rem 1fr; gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(30,31,27,0.08); border-bottom:1px solid rgba(30,31,27,0.08);">
       <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:800; color:rgba(30,31,27,0.07); line-height:1; padding-top:0.25rem;">04</div>
       <div>
         <h3 style="font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--color-text); margin-bottom:0.5rem;">Productie & levering</h3>
@@ -286,8 +305,20 @@
       </div>
     </div>
 
+    <button x-show="!stepsOpen" @click="stepsOpen = true" class="drukwerk-steps-expand-btn"
+            style="display:none; margin-top:1.5rem; width:100%; align-items:center; justify-content:center; gap:0.5rem; padding:0.875rem; border-radius:12px; border:1.5px solid rgba(30,31,27,0.12); background:#fff; font-family:var(--font-body); font-size:14px; font-weight:600; color:var(--color-text); cursor:pointer;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      Toon alle 4 stappen
+    </button>
+
   </div>
 </section>
+<style>
+  @media (max-width: 600px) {
+    .drukwerk-step-extra { display: none !important; }
+    .drukwerk-steps-expand-btn { display: flex !important; }
+  }
+</style>
 
 {{# ── 5. MERKCONSISTENTIE-SCAN ───────────────────────────────── #}}
 <section style="background:#F0EDE7; padding:5rem 0 6rem;">
@@ -483,38 +514,6 @@
 <style>
   @media (max-width: 900px) { .merk-grid { grid-template-columns: 1fr !important; gap: 3rem !important; } }
 </style>
-
-{{# ── VOOR WIE ──────────────────────────────────────────────── #}}
-<section style="background:#F5F2EC; padding:5rem 0;">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div style="margin-bottom:3rem;" data-reveal>
-      <div class="eyebrow" style="margin-bottom:1.25rem;">
-        <div class="eyebrow-line"></div>
-        <div class="eyebrow-text">Voor wie is dit?</div>
-      </div>
-      <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(26px,3vw,40px); letter-spacing:-0.04em; line-height:1.06; color:var(--color-text);">
-        Dit is voor jou<br>als je herkent dat...
-      </h2>
-    </div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;">
-      <div data-reveal style="background:#fff; border-radius:18px; padding:1.75rem; border:1px solid rgba(30,31,27,0.07);">
-        <div style="font-family:var(--font-display); font-size:2rem; font-weight:800; color:rgba(30,31,27,0.07); margin-bottom:1rem; line-height:1;">01</div>
-        <h3 style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--color-text); margin-bottom:0.6rem;">Bedrijven die netwerken en presenteren</h3>
-        <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Die op events, meetings en beurzen een sterke indruk willen achterlaten.</p>
-      </div>
-      <div data-reveal style="background:#fff; border-radius:18px; padding:1.75rem; border:1px solid rgba(30,31,27,0.07);">
-        <div style="font-family:var(--font-display); font-size:2rem; font-weight:800; color:rgba(30,31,27,0.07); margin-bottom:1rem; line-height:1;">02</div>
-        <h3 style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--color-text); margin-bottom:0.6rem;">Merken die offline zichtbaar willen zijn</h3>
-        <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Die begrijpen dat fysiek materiaal digitale communicatie versterkt.</p>
-      </div>
-      <div data-reveal style="background:#fff; border-radius:18px; padding:1.75rem; border:1px solid rgba(30,31,27,0.07);">
-        <div style="font-family:var(--font-display); font-size:2rem; font-weight:800; color:rgba(30,31,27,0.07); margin-bottom:1rem; line-height:1;">03</div>
-        <h3 style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--color-text); margin-bottom:0.6rem;">Bedrijven na een rebrand</h3>
-        <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:#6B6860;">Die hun nieuwe identiteit ook offline consistent willen doorvoeren.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 {{# ── INVESTERING ───────────────────────────────────────────── #}}
 <section id="investering" style="background:#fff; padding:5rem 0; border-top:1px solid rgba(30,31,27,0.07);">
@@ -733,16 +732,14 @@
 }
 </script>
 
-{{# ── CROSS-SELL ────────────────────────────────────────────── #}}
-<section style="background:#EDEAE3; padding:4rem 0;">
+{{# ── VERDIEPING (cross-sell + kennisbank) ───────────────────── #}}
+<section style="background:#EDEAE3; padding:4rem 0 5rem;">
+  <style>@media (max-width:768px) { .verdieping-grid-drukwerk { grid-template-columns:1fr !important; } }</style>
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div style="margin-bottom:2rem;" data-reveal>
-      <div class="eyebrow">
-        <div class="eyebrow-line"></div>
-        <div class="eyebrow-text">Combineer met</div>
-      </div>
+    <div style="margin-bottom:2.5rem;" data-reveal>
+      <div class="eyebrow"><div class="eyebrow-line"></div><div class="eyebrow-text">Combineer met</div></div>
     </div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+    <div class="verdieping-grid-drukwerk" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:3.5rem;">
       <a href="/branding" style="display:flex; justify-content:space-between; align-items:center; background:#fff; border-radius:16px; padding:1.5rem 1.75rem; text-decoration:none; border:1px solid rgba(30,31,27,0.07); transition:border-color 0.2s, transform 0.2s;" onmouseover="this.style.borderColor='#ed6b46';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(30,31,27,0.07)';this.style.transform='translateY(0)'">
         <div>
           <div style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--color-text); margin-bottom:0.3rem;">Branding</div>
@@ -758,38 +755,25 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ed6b46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-left:1rem;"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
       </a>
     </div>
-  </div>
-</section>
-
-{{# ── Kennisbank: gerelateerde artikelen ── #}}
-<section style="background:#F0EDE7; padding:5rem 0; border-top:1px solid rgba(30,31,27,0.07);">
-  <style>
-    @media (max-width:768px) { .kennisbank-grid-drukwerk { grid-template-columns:1fr !important; } }
-  </style>
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:2.5rem; flex-wrap:wrap; gap:1rem;">
-      <div>
-        <div class="eyebrow" style="margin-bottom:1rem;">
-          <div class="eyebrow-line"></div>
-          <div class="eyebrow-text">Kennisbank</div>
-        </div>
-        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(22px,2.5vw,34px); letter-spacing:-0.04em; color:#1E1F1B; margin:0; line-height:1.1;">Verder lezen</h2>
+    <div>
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+        <div class="eyebrow"><div class="eyebrow-line"></div><div class="eyebrow-text">Verder lezen</div></div>
+        <a href="/blog" class="btn-ghost">Alle artikelen</a>
       </div>
-      <a href="/blog" class="btn-ghost">Alle artikelen</a>
-    </div>
-    <div class="kennisbank-grid-drukwerk" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;">
-      <a href="/blog/drukwerk-tips-visitekaartje-flyer" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem 1.5rem; background:#fff; border-radius:14px; text-decoration:none; color:#1E1F1B; font-family:var(--font-body); font-size:14px; font-weight:600; line-height:1.35; box-shadow:0 2px 12px rgba(30,31,27,0.06);">
-        Visitekaartje of flyer laten drukken?
-        <svg style="flex-shrink:0; color:#ed6b46;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </a>
-      <a href="/blog/merkidentiteit-meer-dan-een-logo" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem 1.5rem; background:#fff; border-radius:14px; text-decoration:none; color:#1E1F1B; font-family:var(--font-body); font-size:14px; font-weight:600; line-height:1.35; box-shadow:0 2px 12px rgba(30,31,27,0.06);">
-        Merkidentiteit: meer dan alleen een logo
-        <svg style="flex-shrink:0; color:#ed6b46;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </a>
-      <a href="/blog/juiste-kleuren-huisstijl-kiezen" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem 1.5rem; background:#fff; border-radius:14px; text-decoration:none; color:#1E1F1B; font-family:var(--font-body); font-size:14px; font-weight:600; line-height:1.35; box-shadow:0 2px 12px rgba(30,31,27,0.06);">
-        Kleuren kiezen voor je huisstijl
-        <svg style="flex-shrink:0; color:#ed6b46;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-      </a>
+      <div class="verdieping-grid-drukwerk" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;">
+        <a href="/blog/drukwerk-tips-visitekaartje-flyer" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem 1.5rem; background:#fff; border-radius:14px; text-decoration:none; color:#1E1F1B; font-family:var(--font-body); font-size:14px; font-weight:600; line-height:1.35; box-shadow:0 2px 12px rgba(30,31,27,0.06);">
+          Visitekaartje of flyer laten drukken?
+          <svg style="flex-shrink:0; color:#ed6b46;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="/blog/merkidentiteit-meer-dan-een-logo" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem 1.5rem; background:#fff; border-radius:14px; text-decoration:none; color:#1E1F1B; font-family:var(--font-body); font-size:14px; font-weight:600; line-height:1.35; box-shadow:0 2px 12px rgba(30,31,27,0.06);">
+          Merkidentiteit: meer dan alleen een logo
+          <svg style="flex-shrink:0; color:#ed6b46;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="/blog/juiste-kleuren-huisstijl-kiezen" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem 1.5rem; background:#fff; border-radius:14px; text-decoration:none; color:#1E1F1B; font-family:var(--font-body); font-size:14px; font-weight:600; line-height:1.35; box-shadow:0 2px 12px rgba(30,31,27,0.06);">
+          Kleuren kiezen voor je huisstijl
+          <svg style="flex-shrink:0; color:#ed6b46;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
