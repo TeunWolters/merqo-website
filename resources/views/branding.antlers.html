@@ -904,6 +904,73 @@
   @media (max-width: 900px) { .investering-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; } }
 </style>
 
+{{# ── GRATIS MERKCHECK ──────────────────────────────────────── #}}
+<section style="background:#F0EDE7; padding:5rem 0; border-top:1px solid rgba(30,31,27,0.07);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div style="max-width:760px;" data-reveal>
+
+      <div class="eyebrow" style="margin-bottom:1.25rem;">
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-text">Gratis hulpmiddel</div>
+      </div>
+      <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(26px,3vw,40px); letter-spacing:-0.04em; line-height:1.06; color:#1E1F1B; margin-bottom:0.75rem;">
+        Is jouw merk klaar voor groei?
+      </h2>
+      <p style="font-family:var(--font-body); font-size:16px; line-height:1.75; color:rgba(30,31,27,0.6); margin-bottom:2.5rem; max-width:54ch;">
+        Loop de zeven signalen na. Hoe meer je herkent, hoe meer je merk je groei remt in plaats van ondersteunt.
+      </p>
+
+      <div x-data="{ checked: {}, get score() { return Object.values(this.checked).filter(Boolean).length } }" style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:2rem;">
+
+        <template x-for="(item, i) in [
+          'Mijn logo ziet er anders uit op elke plek waar ik het gebruik.',
+          'Ik durf mijn website-URL niet door te sturen naar een potentiële klant.',
+          'Klanten omschrijven mijn bedrijf anders dan ik het zelf zou doen.',
+          'Mijn concurrent lijkt professioneler, ook al ben ik beter in mijn vak.',
+          'Ik pas mijn kleurgebruik en lettertypes aan per ontwerper of tool.',
+          'Mijn bedrijf heeft geen duidelijk antwoord op de vraag: waarom jij en niet een ander?',
+          'Ik heb mijn merk nog nooit strategisch opgebouwd - het is gewoon gegroeid.'
+        ]" :key="i">
+          <label style="display:flex; align-items:center; gap:1rem; padding:1rem 1.25rem; background:#fff; border-radius:14px; border:1.5px solid; cursor:pointer; transition:border-color 0.15s;"
+                 :style="checked[i] ? 'border-color:#ed6b46; background:rgba(237,107,70,0.04);' : 'border-color:rgba(30,31,27,0.1);'">
+            <input type="checkbox" x-model="checked[i]" style="display:none;">
+            <span style="width:20px; height:20px; border-radius:6px; border:2px solid; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.15s;"
+                  :style="checked[i] ? 'border-color:#ed6b46; background:#ed6b46;' : 'border-color:rgba(30,31,27,0.2); background:transparent;'">
+              <svg x-show="checked[i]" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span style="font-family:var(--font-body); font-size:15px; color:rgba(30,31,27,0.8); line-height:1.5;" x-text="item"></span>
+          </label>
+        </template>
+
+        <div x-show="score === 0" style="display:none; padding:1.25rem 1.5rem; background:rgba(34,197,94,0.08); border:1.5px solid rgba(34,197,94,0.3); border-radius:14px;">
+          <p style="font-family:var(--font-body); font-size:14px; color:#166534; margin:0; line-height:1.65;">
+            <strong>Sterk merk.</strong> Je hebt goed werk gedaan. Wil je weten of er nog kansen liggen? De gratis merkscan geeft je een eerlijk beeld.
+          </p>
+        </div>
+        <div x-show="score >= 1 && score <= 3" style="display:none; padding:1.25rem 1.5rem; background:rgba(234,179,8,0.08); border:1.5px solid rgba(234,179,8,0.3); border-radius:14px;">
+          <p style="font-family:var(--font-body); font-size:14px; color:#854d0e; margin:0; line-height:1.65;">
+            <strong x-text="score + ' signaal' + (score > 1 ? 'en' : '') + ' herkend.'"></strong> Er zijn verbeterpunten. Een strategische merkopfrisser kan al veel oplossen - we leggen je graag uit wat de beste aanpak is.
+          </p>
+        </div>
+        <div x-show="score >= 4" style="display:none; padding:1.25rem 1.5rem; background:rgba(237,107,70,0.08); border:1.5px solid rgba(237,107,70,0.3); border-radius:14px;">
+          <p style="font-family:var(--font-body); font-size:14px; color:#c8562c; margin:0; line-height:1.65;">
+            <strong x-text="score + ' van de 7 signalen herkend.'"></strong> Jouw merk remt je groei actief. Dit is het moment om dat te veranderen, voor je concurrent dat eerder doet.
+          </p>
+        </div>
+
+        <div x-show="score > 0" style="display:none; margin-top:0.5rem;">
+          <a href="/scan" style="display:inline-flex; align-items:center; gap:0.5rem; background:#ed6b46; color:white; font-family:var(--font-body); font-size:14px; font-weight:700; padding:0.875rem 1.75rem; border-radius:12px; text-decoration:none; transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+            Gratis merkscan aanvragen
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+          <p style="font-family:var(--font-body); font-size:12px; color:rgba(30,31,27,0.4); margin:0.75rem 0 0;">Wij voeren de scan voor je uit - geen verplichtingen, geen verkooppraatje.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 {{# ── FAQ ────────────────────────────────────────────────── #}}
 <section id="faq" style="background:#F5F2EC; padding:6rem 0;">
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
@@ -925,18 +992,21 @@
 
         <div style="border-top:1px solid rgba(30,31,27,0.1);">
           <button @click="open = open === 0 ? null : 0"
+                  :aria-expanded="open === 0"
+                  aria-controls="faq-0"
                   style="width:100%; display:flex; align-items:center; justify-content:space-between;
                          padding:1.4rem 0; text-align:left; background:none; border:none; cursor:pointer;">
             <span style="font-family:var(--font-display); font-size:17px; font-weight:700;
                          color:#1E1F1B; letter-spacing:-0.02em;">Wat kost een huisstijl bij Merqo?</span>
             <svg :class="open === 0 ? 'rotate-180' : ''"
+                 aria-hidden="true"
                  style="flex-shrink:0; margin-left:1rem; transition:transform 0.25s ease;"
                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ed6b46"
                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div x-show="open === 0" x-transition style="padding-bottom:1.4rem;">
+          <div x-show="open === 0" id="faq-0" x-transition style="padding-bottom:1.4rem;">
             <p style="font-family:var(--font-body); font-size:15px; line-height:1.75;
                       color:rgba(30,31,27,0.65); max-width:62ch;">
               Dat verschilt per project. Een complete merkidentiteit met logo, kleurpalet, typografie en toepassingen start bij circa €2.500. We maken altijd een offerte op maat na een eerste gesprek.
@@ -946,18 +1016,21 @@
 
         <div style="border-top:1px solid rgba(30,31,27,0.1);">
           <button @click="open = open === 1 ? null : 1"
+                  :aria-expanded="open === 1"
+                  aria-controls="faq-1"
                   style="width:100%; display:flex; align-items:center; justify-content:space-between;
                          padding:1.4rem 0; text-align:left; background:none; border:none; cursor:pointer;">
             <span style="font-family:var(--font-display); font-size:17px; font-weight:700;
                          color:#1E1F1B; letter-spacing:-0.02em;">Hoe lang duurt een brandingtraject?</span>
             <svg :class="open === 1 ? 'rotate-180' : ''"
+                 aria-hidden="true"
                  style="flex-shrink:0; margin-left:1rem; transition:transform 0.25s ease;"
                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ed6b46"
                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div x-show="open === 1" x-transition style="padding-bottom:1.4rem;">
+          <div x-show="open === 1" id="faq-1" x-transition style="padding-bottom:1.4rem;">
             <p style="font-family:var(--font-body); font-size:15px; line-height:1.75;
                       color:rgba(30,31,27,0.65); max-width:62ch;">
               Gemiddeld 4 tot 8 weken, afhankelijk van de scope. We werken in duidelijke fases zodat je altijd weet waar je aan toe bent.
@@ -967,18 +1040,21 @@
 
         <div style="border-top:1px solid rgba(30,31,27,0.1);">
           <button @click="open = open === 2 ? null : 2"
+                  :aria-expanded="open === 2"
+                  aria-controls="faq-2"
                   style="width:100%; display:flex; align-items:center; justify-content:space-between;
                          padding:1.4rem 0; text-align:left; background:none; border:none; cursor:pointer;">
             <span style="font-family:var(--font-display); font-size:17px; font-weight:700;
                          color:#1E1F1B; letter-spacing:-0.02em;">Wat krijg ik precies bij een nieuwe huisstijl?</span>
             <svg :class="open === 2 ? 'rotate-180' : ''"
+                 aria-hidden="true"
                  style="flex-shrink:0; margin-left:1rem; transition:transform 0.25s ease;"
                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ed6b46"
                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div x-show="open === 2" x-transition style="padding-bottom:1.4rem;">
+          <div x-show="open === 2" id="faq-2" x-transition style="padding-bottom:1.4rem;">
             <p style="font-family:var(--font-body); font-size:15px; line-height:1.75;
                       color:rgba(30,31,27,0.65); max-width:62ch;">
               Je ontvangt alle merkbestanden: logo in alle formaten, kleurpalet, typografie en een brandbook. Alles klaar voor gebruik op zowel drukwerk als digitaal.
@@ -988,18 +1064,21 @@
 
         <div style="border-top:1px solid rgba(30,31,27,0.1); border-bottom:1px solid rgba(30,31,27,0.1);">
           <button @click="open = open === 3 ? null : 3"
+                  :aria-expanded="open === 3"
+                  aria-controls="faq-3"
                   style="width:100%; display:flex; align-items:center; justify-content:space-between;
                          padding:1.4rem 0; text-align:left; background:none; border:none; cursor:pointer;">
             <span style="font-family:var(--font-display); font-size:17px; font-weight:700;
                          color:#1E1F1B; letter-spacing:-0.02em;">Kan ik mijn bestaande logo laten aanpassen?</span>
             <svg :class="open === 3 ? 'rotate-180' : ''"
+                 aria-hidden="true"
                  style="flex-shrink:0; margin-left:1rem; transition:transform 0.25s ease;"
                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ed6b46"
                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div x-show="open === 3" x-transition style="padding-bottom:1.4rem;">
+          <div x-show="open === 3" id="faq-3" x-transition style="padding-bottom:1.4rem;">
             <p style="font-family:var(--font-body); font-size:15px; line-height:1.75;
                       color:rgba(30,31,27,0.65); max-width:62ch;">
               Ja, we kunnen een bestaande identiteit doorontwikkelen of verfijnen. Soms is dat de slimmste keuze. We bespreken altijd eerst wat de beste aanpak is voor jouw situatie.

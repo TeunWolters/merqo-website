@@ -398,6 +398,13 @@ document.addEventListener('alpine:init', () => {
         });
         if (res.ok) {
           this.step = 3;
+          // GA4 conversie-event
+          if (window.gtag) {
+            gtag('event', 'generate_lead', {
+              event_category: 'merkscan',
+              event_label: this.form.uitdaging || 'onbekend',
+            });
+          }
         } else {
           const d = await res.json().catch(() => ({}));
           this.error = d.message || 'Er ging iets mis. Probeer het opnieuw of mail info@merqo.nl.';

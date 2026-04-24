@@ -378,7 +378,9 @@
         {{# Input #}}
         <div style="padding:0.875rem 1.25rem; border-top:1px solid rgba(30,31,27,0.07); background:#FDFCFA; flex-shrink:0;">
           <div style="display:flex; gap:0.6rem; align-items:flex-end;">
+            <label for="mc-input" class="sr-only">Stel je vraag aan Merqolino</label>
             <textarea id="mc-input" placeholder="Stel je vraag..." rows="1"
+                      aria-label="Stel je vraag aan Merqolino"
                       oninput="this.style.height='auto'; this.style.height=Math.min(this.scrollHeight,100)+'px'"
                       onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();mcSend();}"
                       onfocus="this.style.borderColor='#ed6b46'"
@@ -761,8 +763,9 @@
     setTimeout(function() { loader.style.display = 'none'; }, 300);
   }
 
-  // Herhaald bezoek binnen sessie: loader direct weggooien (LCP verbetering)
-  if (sessionStorage.getItem('merqo_loaded')) {
+  // Herhaald bezoek binnen sessie of verminderde-animatie voorkeur: loader direct weggooien (LCP verbetering)
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (sessionStorage.getItem('merqo_loaded') || prefersReducedMotion) {
     hideLoader(true);
     return;
   }
@@ -809,20 +812,20 @@
 {{# ══════════════════════════════════════
     EXIT-INTENT POPUP
     ══════════════════════════════════════ #}}
-<div id="exit-popup" style="display:none; position:fixed; inset:0; z-index:99000; align-items:center; justify-content:center; padding:1.5rem;">
+<div id="exit-popup" role="dialog" aria-modal="true" aria-labelledby="exit-popup-title" style="display:none; position:fixed; inset:0; z-index:99000; align-items:center; justify-content:center; padding:1.5rem;">
   <div id="exit-backdrop" onclick="exitPopupClose()" style="position:absolute; inset:0; background:rgba(30,31,27,0.55); backdrop-filter:blur(4px);"></div>
   <div style="position:relative; z-index:1; background:#FDFCFA; border-radius:24px; padding:2.5rem; max-width:460px; width:100%; box-shadow:0 24px 80px rgba(30,31,27,0.22); animation:merqo-popup-in 0.35s cubic-bezier(0.16,1,0.3,1);">
-    <button onclick="exitPopupClose()" style="position:absolute; top:1.25rem; right:1.25rem; background:rgba(30,31,27,0.07); border:none; cursor:pointer; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1E1F1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    <button onclick="exitPopupClose()" aria-label="Sluit popup" style="position:absolute; top:1.25rem; right:1.25rem; background:rgba(30,31,27,0.07); border:none; cursor:pointer; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1E1F1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
     <div style="width:48px; height:48px; border-radius:50%; background:#ed6b46; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem;">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="1" x2="12" y2="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="1" r="1.3" fill="white"/><rect x="3.5" y="4.5" width="17" height="13" rx="3" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="10.5" r="1.5" fill="white"/><circle cx="15" cy="10.5" r="1.5" fill="white"/><path d="M8.5 14 Q12 16 15.5 14" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
     </div>
     <div style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#ed6b46; margin-bottom:0.5rem;">Wacht even</div>
-    <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(22px,3vw,30px); letter-spacing:-0.04em; line-height:1.1; color:#1E1F1B; margin:0 0 0.75rem;">Weet jij waar je merk kansen laat liggen?</h2>
+    <h2 id="exit-popup-title" style="font-family:var(--font-display); font-weight:800; font-size:clamp(22px,3vw,30px); letter-spacing:-0.04em; line-height:1.1; color:#1E1F1B; margin:0 0 0.75rem;">Weet jij waar je merk kansen laat liggen?</h2>
     <p style="font-family:var(--font-body); font-size:14px; line-height:1.7; color:rgba(30,31,27,0.6); margin:0 0 1.5rem;">Vraag de gratis merkscan aan. Wij voeren de scan voor je uit en sturen je binnen één werkdag persoonlijk advies - geen verplichtingen, geen verkooppraatje.</p>
     <div style="display:flex; flex-direction:column; gap:0.6rem;">
-      <a href="/scan" onclick="exitPopupClose()" style="display:flex; align-items:center; justify-content:center; gap:0.5rem; background:#ed6b46; color:white; font-family:var(--font-body); font-size:14px; font-weight:700; padding:0.875rem 1.5rem; border-radius:12px; text-decoration:none; transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+      <a href="/scan" onclick="exitPopupClose();if(window.gtag)gtag('event','click',{event_category:'exit_popup',event_label:'merkscan_cta'})" style="display:flex; align-items:center; justify-content:center; gap:0.5rem; background:#ed6b46; color:white; font-family:var(--font-body); font-size:14px; font-weight:700; padding:0.875rem 1.5rem; border-radius:12px; text-decoration:none; transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
         Gratis merkscan
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
       </a>
@@ -841,12 +844,12 @@
       <span id="sticky-cta-text" style="font-family:var(--font-body); font-size:13px; font-weight:600; color:rgba(240,237,231,0.8); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Interesse? Plan een vrijblijvend gesprek.</span>
     </div>
     <div style="display:flex; align-items:center; gap:0.75rem; flex-shrink:0;">
-      <a id="sticky-cta-btn" href="/contact" style="display:inline-flex; align-items:center; gap:0.4rem; background:#ed6b46; color:white; font-family:var(--font-body); font-size:12px; font-weight:700; padding:0.5rem 1.1rem; border-radius:999px; text-decoration:none; white-space:nowrap; transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+      <a id="sticky-cta-btn" href="/contact" onclick="if(window.gtag)gtag('event','click',{event_category:'sticky_cta',event_label:window.location.pathname})" style="display:inline-flex; align-items:center; gap:0.4rem; background:#ed6b46; color:white; font-family:var(--font-body); font-size:12px; font-weight:700; padding:0.5rem 1.1rem; border-radius:999px; text-decoration:none; white-space:nowrap; transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
         Plan een gesprek
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
       </a>
-      <button onclick="stickyCTAClose()" style="background:rgba(240,237,231,0.08); border:none; cursor:pointer; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(240,237,231,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      <button onclick="stickyCTAClose()" aria-label="Sluit melding" style="background:rgba(240,237,231,0.08); border:none; cursor:pointer; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(240,237,231,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
     </div>
   </div>

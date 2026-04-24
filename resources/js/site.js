@@ -598,6 +598,13 @@ Alpine.data('contactForm', () => ({
       if (res.ok) {
         this.success = true;
         this.form = { name: '', company: '', email: '', service: '', message: '', budget: '' };
+        // GA4 conversie-event
+        if (window.gtag) {
+          gtag('event', 'generate_lead', {
+            event_category: 'contact',
+            event_label: this.form.service || 'onbekend',
+          });
+        }
       } else { this.error = true; }
     } catch { this.error = true; }
     finally { this.sending = false; }

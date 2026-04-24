@@ -701,18 +701,21 @@
 
         <div style="border-top:1px solid rgba(30,31,27,0.1);">
           <button @click="open = open === 0 ? null : 0"
+                  :aria-expanded="open === 0"
+                  aria-controls="faq-0"
                   style="width:100%; display:flex; align-items:center; justify-content:space-between;
                          padding:1.4rem 0; text-align:left; background:none; border:none; cursor:pointer;">
             <span style="font-family:var(--font-display); font-size:17px; font-weight:700;
                          color:#1E1F1B; letter-spacing:-0.02em;">Hoe lang duurt het bouwen van een website?</span>
             <svg :class="open === 0 ? 'rotate-180' : ''"
+                 aria-hidden="true"
                  style="flex-shrink:0; margin-left:1rem; transition:transform 0.25s ease;"
                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ed6b46"
                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div x-show="open === 0" x-transition style="padding-bottom:1.4rem;">
+          <div x-show="open === 0" id="faq-0" x-transition style="padding-bottom:1.4rem;">
             <p style="font-family:var(--font-body); font-size:15px; line-height:1.75;
                       color:rgba(30,31,27,0.65); max-width:62ch;">
               Een gemiddeld maatwerk websiteproject duurt 6 tot 10 weken, van briefing tot lancering. We houden je elke stap op de hoogte.
@@ -722,18 +725,21 @@
 
         <div style="border-top:1px solid rgba(30,31,27,0.1);">
           <button @click="open = open === 1 ? null : 1"
+                  :aria-expanded="open === 1"
+                  aria-controls="faq-1"
                   style="width:100%; display:flex; align-items:center; justify-content:space-between;
                          padding:1.4rem 0; text-align:left; background:none; border:none; cursor:pointer;">
             <span style="font-family:var(--font-display); font-size:17px; font-weight:700;
                          color:#1E1F1B; letter-spacing:-0.02em;">Wat kost een maatwerk website?</span>
             <svg :class="open === 1 ? 'rotate-180' : ''"
+                 aria-hidden="true"
                  style="flex-shrink:0; margin-left:1rem; transition:transform 0.25s ease;"
                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ed6b46"
                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div x-show="open === 1" x-transition style="padding-bottom:1.4rem;">
+          <div x-show="open === 1" id="faq-1" x-transition style="padding-bottom:1.4rem;">
             <p style="font-family:var(--font-body); font-size:15px; line-height:1.75;
                       color:rgba(30,31,27,0.65); max-width:62ch;">
               Websites beginnen bij circa €3.000. De prijs hangt af van het aantal pagina's, de gewenste functionaliteit en koppelingen. We maken altijd een transparante offerte.
@@ -743,18 +749,21 @@
 
         <div style="border-top:1px solid rgba(30,31,27,0.1);">
           <button @click="open = open === 2 ? null : 2"
+                  :aria-expanded="open === 2"
+                  aria-controls="faq-2"
                   style="width:100%; display:flex; align-items:center; justify-content:space-between;
                          padding:1.4rem 0; text-align:left; background:none; border:none; cursor:pointer;">
             <span style="font-family:var(--font-display); font-size:17px; font-weight:700;
                          color:#1E1F1B; letter-spacing:-0.02em;">Kan ik mijn website zelf beheren na oplevering?</span>
             <svg :class="open === 2 ? 'rotate-180' : ''"
+                 aria-hidden="true"
                  style="flex-shrink:0; margin-left:1rem; transition:transform 0.25s ease;"
                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ed6b46"
                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div x-show="open === 2" x-transition style="padding-bottom:1.4rem;">
+          <div x-show="open === 2" id="faq-2" x-transition style="padding-bottom:1.4rem;">
             <p style="font-family:var(--font-body); font-size:15px; line-height:1.75;
                       color:rgba(30,31,27,0.65); max-width:62ch;">
               Ja. Wij bouwen op Statamic CMS, waarmee je teksten, afbeeldingen en pagina's eenvoudig zelf kunt bijhouden. Geen technische kennis nodig.
@@ -764,18 +773,21 @@
 
         <div style="border-top:1px solid rgba(30,31,27,0.1); border-bottom:1px solid rgba(30,31,27,0.1);">
           <button @click="open = open === 3 ? null : 3"
+                  :aria-expanded="open === 3"
+                  aria-controls="faq-3"
                   style="width:100%; display:flex; align-items:center; justify-content:space-between;
                          padding:1.4rem 0; text-align:left; background:none; border:none; cursor:pointer;">
             <span style="font-family:var(--font-display); font-size:17px; font-weight:700;
                          color:#1E1F1B; letter-spacing:-0.02em;">Bouwen jullie ook webshops?</span>
             <svg :class="open === 3 ? 'rotate-180' : ''"
+                 aria-hidden="true"
                  style="flex-shrink:0; margin-left:1rem; transition:transform 0.25s ease;"
                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ed6b46"
                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
-          <div x-show="open === 3" x-transition style="padding-bottom:1.4rem;">
+          <div x-show="open === 3" id="faq-3" x-transition style="padding-bottom:1.4rem;">
             <p style="font-family:var(--font-body); font-size:15px; line-height:1.75;
                       color:rgba(30,31,27,0.65); max-width:62ch;">
               Ja, we bouwen ook e-commerce oplossingen. We bespreken graag welke aanpak het beste past bij jouw situatie en doelgroep.
