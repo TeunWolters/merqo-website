@@ -158,9 +158,14 @@
         <button @click="step = 2"
                 class="scan-btn"
                 :disabled="!form.uitdaging">
-          Volgende stap
+          Ja, scan mijn merk
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
+
+        {{# Micro-trust onder CTA #}}
+        <p style="font-size:11px; color:rgba(30,31,27,0.35); font-family:var(--font-body); text-align:center; margin-top:0.75rem;">
+          50+ ondernemers gingen je voor &nbsp;·&nbsp; Geen verplichtingen
+        </p>
       </div>
 
       {{# ── STAP 2: Gegevens (na commitment, nu pas persoonlijke data) ── #}}
@@ -227,12 +232,35 @@
         <p class="scan-sub" style="max-width:38ch; margin:1rem 0 2.5rem;">
           We nemen binnen één werkdag contact op. Geen geautomatiseerd antwoord: gewoon een mens die jouw situatie heeft gelezen en nagedacht over jouw merk.
         </p>
-        <a href="/" style="display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;
-                            background:#1E1F1B;color:#F0EDE7;font-family:var(--font-body);font-size:13px;
-                            font-weight:700;text-decoration:none; transition:opacity 0.15s;"
-           onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
-          Terug naar de website
-        </a>
+        <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:0;">
+          <a href="/" style="display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;
+                              background:#1E1F1B;color:#F0EDE7;font-family:var(--font-body);font-size:13px;
+                              font-weight:700;text-decoration:none; transition:opacity 0.15s;"
+             onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+            Terug naar de website
+          </a>
+          <a href="/blog" style="display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;
+                                  border:1.5px solid rgba(30,31,27,0.15); color:rgba(30,31,27,0.6);font-family:var(--font-body);font-size:13px;
+                                  font-weight:600;text-decoration:none; transition:all 0.15s;"
+             onmouseover="this.style.color='#1E1F1B'; this.style.borderColor='rgba(30,31,27,0.3)'"
+             onmouseout="this.style.color='rgba(30,31,27,0.6)'; this.style.borderColor='rgba(30,31,27,0.15)'">
+            Lees onze kennisbank
+          </a>
+        </div>
+
+        {{# Terwijl je wacht #}}
+        <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(30,31,27,0.08);">
+          <p style="font-family:var(--font-body); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(30,31,27,0.35); margin-bottom:1rem;">Terwijl je wacht</p>
+          <a href="/blog" style="display:flex; align-items:center; gap:1rem; text-decoration:none; padding:1rem 1.25rem; background:#fff; border-radius:14px; border:1px solid rgba(30,31,27,0.07); transition:border-color 0.2s;" onmouseover="this.style.borderColor='#ed6b46'" onmouseout="this.style.borderColor='rgba(30,31,27,0.07)'">
+            <div style="width:40px; height:40px; background:#ed6b46; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display); font-weight:700; font-size:13px; color:#1E1F1B; line-height:1.3;">Lees onze kennisbank</div>
+              <div style="font-family:var(--font-body); font-size:12px; color:#9B9890; margin-top:2px;">Praktische artikelen over branding, marketing en groei.</div>
+            </div>
+          </a>
+        </div>
       </div>
 
     </div>
