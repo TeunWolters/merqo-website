@@ -74,7 +74,7 @@
       <span style="display:inline-block; padding:4px 12px; font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; border-radius:999px; color:rgba(240,237,231,0.6); background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15);">{{ category }}</span>
       {{ if date }}<span style="font-size:11px; font-family:monospace; color:rgba(240,237,231,0.35);">{{ date | format:"F Y" }}</span>{{ /if }}
     </div>
-    <h1 style="font-family:var(--font-display); font-weight:800; font-size:clamp(52px,8vw,100px); letter-spacing:-0.05em; line-height:0.92; color:#F0EDE7; margin-bottom:1.5rem; max-width:14ch;">
+    <h1 style="font-family:var(--font-display); font-weight:800; font-size:clamp(52px,8vw,100px); letter-spacing:-0.02em; line-height:0.92; color:#F0EDE7; margin-bottom:1.5rem; max-width:14ch;">
       {{ title }}
     </h1>
     <p style="color:rgba(220,214,206,0.6); font-size:clamp(16px,1.5vw,20px); line-height:1.6; max-width:52ch; font-family:var(--font-body);">
@@ -140,7 +140,7 @@
              style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy">
       {{ else }}
         <div style="width:100%; height:100%; background:linear-gradient(135deg,#e8e0d4,#d4cbbf); display:flex; align-items:center; justify-content:center;">
-          <span style="font-family:var(--font-display); font-size:10rem; font-weight:800; color:rgba(30,31,27,0.06); letter-spacing:-0.05em; line-height:1; user-select:none;">{{ title | truncate:1:"" }}</span>
+          <span style="font-family:var(--font-display); font-size:10rem; font-weight:800; color:rgba(30,31,27,0.06); letter-spacing:-0.02em; line-height:1; user-select:none;">{{ title | truncate:1:"" }}</span>
         </div>
       {{ /if }}
     </div>
@@ -173,7 +173,7 @@
           {{ brand_fonts }}
           <div style="padding-bottom:1.5rem; border-bottom:1px solid rgba(30,31,27,0.07);">
             <div style="font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#a8c8ca; margin-bottom:0.6rem; font-family:var(--font-body);">{{ style }}</div>
-            <div style="font-family:var(--font-display); font-size:clamp(1.6rem,2.8vw,2.8rem); font-weight:800; color:#1E1F1B; letter-spacing:-0.04em; line-height:1.05; margin-bottom:0.35rem;">{{ sample }}</div>
+            <div style="font-family:var(--font-display); font-size:clamp(1.6rem,2.8vw,2.8rem); font-weight:800; color:#1E1F1B; letter-spacing:-0.02em; line-height:1.05; margin-bottom:0.35rem;">{{ sample }}</div>
             <div style="font-size:10px; color:rgba(30,31,27,0.32); font-family:monospace; letter-spacing:0.5px;">{{ name }}</div>
           </div>
           {{ /brand_fonts }}
@@ -400,7 +400,7 @@
       {{ if quote }}
       <div data-reveal>
         <div style="font-size:3rem; color:#ed6b46; line-height:1; margin-bottom:1rem; font-family:Georgia,serif;">"</div>
-        <blockquote style="font-family:var(--font-display); font-size:clamp(20px,2.2vw,28px); font-weight:700; color:#1E1F1B; letter-spacing:-0.03em; line-height:1.3; margin:0 0 2rem 0;">{{ quote }}</blockquote>
+        <blockquote style="font-family:var(--font-display); font-size:clamp(20px,2.2vw,28px); font-weight:700; color:#1E1F1B; letter-spacing:-0.02em; line-height:1.3; margin:0 0 2rem 0;">{{ quote }}</blockquote>
         {{ if quote_name }}
         <div style="display:flex; align-items:center; gap:1rem;">
           <div style="width:40px; height:1px; background:#ed6b46;"></div>
@@ -417,7 +417,7 @@
           <div class="eyebrow-line"></div>
           <div class="eyebrow-text">Resultaat</div>
         </div>
-        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(28px,3vw,42px); letter-spacing:-0.04em; color:#1E1F1B; line-height:1.1; margin-bottom:1rem;">Opgeleverd &amp; goedgekeurd.</h2>
+        <h2 style="font-family:var(--font-display); font-weight:800; font-size:clamp(28px,3vw,42px); letter-spacing:-0.02em; color:#1E1F1B; line-height:1.1; margin-bottom:1rem;">Opgeleverd &amp; goedgekeurd.</h2>
         <p style="color:#6B6860; font-size:15px; line-height:1.75; max-width:36ch;">Een merk dat staat - van strategie tot uitvoering, volledig op maat gemaakt voor {{ title }}.</p>
       </div>
       {{ /if }}
